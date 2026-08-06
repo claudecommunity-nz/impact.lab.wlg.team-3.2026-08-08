@@ -28,9 +28,13 @@ a narrow thing that works beats a broad thing that doesn't demo.
 
 > How might we help emergency staff rapidly sort incoming reports into information for awareness, information requiring verification, and information requiring action?
 
-During an event, information arrives through phone calls, emails, forms, social media, news reports and partner agencies. Staff must identify where it relates to, whether it is new or duplicated, how reliable it may be, and whether it requires action. A prototype could extract location, time, issue and urgency; group similar reports; preserve source links; and present a queue for human review.
+During an event, information arrives through phone calls, emails, forms, social media, news reports and partner agencies. The challenge is not just collecting it. Staff must identify where it relates to, whether it is new or duplicated, how reliable it may be, and whether it requires action.
+
+A prototype could extract location, time, issue and potential urgency; group similar reports; preserve links to the original sources; and present a queue for human review.
 
 **Desired outcome:** Staff spend less time sorting information and more time checking significant reports and coordinating action.
+
+All five statements sit inside one frame: the common theme is improving the flow and use of information between communities and Council before and during an event.
 
 ## What success looks like
 
