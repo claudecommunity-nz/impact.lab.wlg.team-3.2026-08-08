@@ -217,7 +217,13 @@ say so rather than working around it silently.
 
 ## Known wrinkle
 
-`server.py` currently runs its own internal replay clock that releases the old
-76-report corpus. If it is still doing that when you run `push.py`, reports will
-arrive from both sources at once. Raise it rather than working around it — the
-clock is being removed from the server, because the pusher owns time.
+The server's internal replay clock is now behind a flag. `python3 server.py`
+is a dumb store that waits to be pushed to; `python3 server.py --replay` drives
+the old 76-report corpus and is the dashboard developer's fixture. Run the
+plain form when testing `push.py`, or the queue will fill from both ends.
+
+Two things the server already does for you, so do not build them again:
+
+- It honours the `id` and `received_at` you post. The pusher owns time.
+- It stores by id, so re-pushing the same stream replaces rather than
+  duplicates. Your `--once` and restart cases are already safe.

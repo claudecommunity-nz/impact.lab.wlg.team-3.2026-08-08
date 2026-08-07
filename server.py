@@ -21,6 +21,7 @@ from __future__ import annotations
 import datetime
 import json
 import pathlib
+import sys
 import threading
 import time
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
@@ -87,11 +88,18 @@ class Clock:
 
 
 class Intake:
-    """Holds every report received so far, with its assessment."""
+    """Holds every report received so far, with its assessment.
 
-    def __init__(self, corpus: list[dict], clock: Clock):
-        self._pending = sorted(corpus, key=lambda r: r["received_at"])
+    Two ways a report gets here. Either the internal replay clock releases one
+    from the corpus (`--replay`, the development fixture), or something posts
+    one in. In production it is only ever the second: the pusher owns time and
+    the server is a dumb store.
+    """
+
+    def __init__(self, corpus: list[dict], clock: Clock, replay: bool = False):
+        self._pending = sorted(corpus, key=lambda r: r["received_at"]) if replay else []
         self._received: list[dict] = []
+        self._index: dict[str, int] = {}
         self._live_count = 0
         self._lock = threading.Lock()
         self.clock = clock
@@ -103,29 +111,49 @@ class Intake:
         with self._lock:
             while self._pending and self._pending[0]["received_at"] <= now:
                 report = self._pending.pop(0)
-                self._received.append(self._assess(report, source="replay"))
+                self._store(self._assess(report, source="replay"))
                 released += 1
         return released
 
-    def submit(self, channel: str, text: str, source_url: str | None) -> dict:
-        """Take a report typed in live and put it at the head of the queue."""
+    def submit(self, channel: str, text: str, source_url: str | None,
+               report_id: str | None = None,
+               received_at: str | None = None) -> dict:
+        """Accept a report from outside - the pusher, or the live intake form.
+
+        Whoever posts owns the timestamp. A report replayed from 20 April
+        belongs at its own moment in the event, not at whatever the server
+        thinks the time is. Only a report typed in with no time of its own
+        falls back to the clock.
+        """
         with self._lock:
-            self._live_count += 1
+            if report_id is None:
+                self._live_count += 1
+                report_id = f"L{self._live_count:04d}"
             report = {
-                "id": f"L{self._live_count:04d}",
-                "received_at": self.clock.state()["now"],
+                "id": report_id,
+                "received_at": received_at or self.clock.state()["now"],
                 "channel": channel,
                 "text": text,
                 "source_url": source_url,
             }
-            record = self._assess(report, source="live")
-            self._received.append(record)
+            record = self._assess(report, source="pushed" if received_at else "live")
+            self._store(record)
             return record
 
-    def reset(self, corpus: list[dict]) -> None:
+    def _store(self, record: dict) -> None:
+        """Add or replace by id, so re-pushing the same stream cannot duplicate."""
+        existing = self._index.get(record["id"])
+        if existing is None:
+            self._index[record["id"]] = len(self._received)
+            self._received.append(record)
+        else:
+            self._received[existing] = record
+
+    def reset(self, corpus: list[dict], replay: bool = False) -> None:
         with self._lock:
-            self._pending = sorted(corpus, key=lambda r: r["received_at"])
+            self._pending = sorted(corpus, key=lambda r: r["received_at"]) if replay else []
             self._received = []
+            self._index = {}
             self._live_count = 0
 
     @staticmethod
@@ -162,7 +190,14 @@ CLOCK = Clock(
     datetime.datetime.fromisoformat(min(_times)),
     datetime.datetime.fromisoformat(max(_times)) + datetime.timedelta(minutes=5),
 )
-INTAKE = Intake(CORPUS, CLOCK)
+
+# --replay drives the old 76-report corpus from an internal clock. It exists so
+# the dashboard has something to render before the event bundle is ready. The
+# default is a dumb store that waits to be pushed to, because the pusher owns
+# time. Running both at once would feed the queue twice.
+REPLAY = "--replay" in sys.argv
+
+INTAKE = Intake(CORPUS, CLOCK, replay=REPLAY)
 
 
 def summarise(records: list[dict]) -> dict:
@@ -274,13 +309,15 @@ class Handler(SimpleHTTPRequestHandler):
                 channel=body.get("channel") or "form",
                 text=text,
                 source_url=body.get("source_url"),
+                report_id=body.get("id"),
+                received_at=body.get("received_at"),
             )
             return self._send(record, 201)
 
         if path == "/api/clock":
             action = body.get("action", "")
             if action == "reset":
-                INTAKE.reset(CORPUS)
+                INTAKE.reset(CORPUS, replay=REPLAY)
             CLOCK.control(action, body.get("speed"))
             return self._send(CLOCK.state())
 
@@ -304,12 +341,16 @@ def replay_loop() -> None:
 
 
 def main() -> None:
-    threading.Thread(target=replay_loop, daemon=True).start()
     server = ThreadingHTTPServer(("", PORT), Handler)
     print(f"Report triage prototype  ->  http://localhost:{PORT}/")
-    print(f"{len(CORPUS)} reports in the corpus, "
-          f"{CLOCK.start:%H:%M} to {CLOCK.end:%H:%M} on 20 April 2026")
-    print("Press the clock in the interface to start the replay.\n")
+    if REPLAY:
+        threading.Thread(target=replay_loop, daemon=True).start()
+        print(f"--replay: {len(CORPUS)} corpus reports, "
+              f"{CLOCK.start:%H:%M} to {CLOCK.end:%H:%M} on 20 April 2026")
+        print("Press the clock in the interface to start the replay.\n")
+    else:
+        print("Waiting to be pushed to. POST reports to /api/reports,")
+        print("or restart with --replay to drive the old corpus internally.\n")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
