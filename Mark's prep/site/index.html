@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wellington flood replay - 20 April 2026</title>
+<link rel="stylesheet" href="vendor/maplibre-gl.css">
+<style>
+  :root {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --page: #0d0d0d;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --muted: #898781;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --land: #2c2c2a;
+    --land-edge: #383835;
+    --good: #0ca30c;
+    --warning: #fab219;
+    --critical: #d03b3b;
+    --below: #d95926;   /* diverging pole: below normal */
+    --above: #3987e5;   /* diverging pole: above normal */
+    --neutral: #898781;
+    --rain: #3987e5;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:where(:not([data-theme="dark"])) {
+      color-scheme: light;
+      --surface-1: #fcfcfb; --page: #f9f9f7; --ink: #0b0b0b; --ink-2: #52514e;
+      --grid: #e1e0d9; --axis: #c3c2b7; --below: #eb6834; --above: #2a78d6;
+      --rain: #2a78d6; --land: #e1e0d9; --land-edge: #c3c2b7;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--page); color: var(--ink);
+    font: 14px/1.45 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  header {
+    padding: 14px 18px; background: var(--surface-1); border-bottom: 1px solid var(--grid);
+  }
+  h1 { margin: 0 0 2px; font-size: 16px; font-weight: 650; letter-spacing: -0.01em; }
+  .sub { color: var(--ink-2); font-size: 13px; }
+  .layout { display: grid; grid-template-columns: minmax(0,1fr) 340px; gap: 0; height: calc(100vh - 132px); }
+  @media (max-width: 860px) { .layout { grid-template-columns: 1fr; height: auto; } #map { height: 55vh; } }
+  #map { width: 100%; height: 100%; background: var(--page); }
+  aside {
+    background: var(--surface-1); border-left: 1px solid var(--grid);
+    padding: 16px; overflow-y: auto;
+  }
+  .controls {
+    display: flex; align-items: center; gap: 12px; padding: 10px 18px;
+    background: var(--surface-1); border-bottom: 1px solid var(--grid);
+  }
+  button {
+    font: inherit; background: var(--page); color: var(--ink); border: 1px solid var(--axis);
+    border-radius: 6px; padding: 5px 12px; cursor: pointer; min-width: 74px;
+  }
+  button:hover { border-color: var(--muted); }
+  input[type=range] { flex: 1; accent-color: var(--above); min-width: 120px; }
+  .stamp { font-variant-numeric: tabular-nums; min-width: 168px; font-weight: 600; }
+  .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .tile { background: var(--page); border: 1px solid var(--grid); border-radius: 8px; padding: 10px 12px; }
+  .tile .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+  .tile .value { font-size: 21px; font-weight: 650; font-variant-numeric: tabular-nums; margin-top: 2px; }
+  .assess { border-radius: 8px; padding: 11px 13px; margin-bottom: 16px; border: 1px solid; display: flex; gap: 9px; align-items: flex-start; }
+  .assess .icon { font-weight: 700; }
+  .assess.normal { border-color: var(--good); }
+  .assess.holiday { border-color: var(--warning); }
+  .assess.disruption { border-color: var(--critical); }
+  h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin: 18px 0 8px; font-weight: 600; }
+  ul.log { list-style: none; margin: 0; padding: 0; }
+  ul.log li { padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 13px; }
+  ul.log li.future { opacity: 0.32; }
+  ul.log time { color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 7px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; padding: 9px 18px; background: var(--surface-1); border-top: 1px solid var(--grid); font-size: 12px; color: var(--ink-2); }
+  .swatch { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+  .limits { font-size: 12px; color: var(--ink-2); }
+  .limits li { margin-bottom: 5px; }
+  table { border-collapse: collapse; width: 100%; font-size: 12px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: right; padding: 3px 5px; border-bottom: 1px solid var(--grid); }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--muted); font-weight: 600; }
+  details { margin-top: 14px; }
+  summary { cursor: pointer; color: var(--ink-2); font-size: 12px; }
+  .maplibregl-popup-content { background: var(--surface-1); color: var(--ink); font: 12px/1.4 ui-sans-serif, system-ui, sans-serif; border-radius: 6px; }
+  .maplibregl-popup-tip { border-top-color: var(--surface-1); border-bottom-color: var(--surface-1); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Wellington flooding, April 2026 — replay from public data</h1>
+  <div class="sub">Transport sensor counts, rainfall gauges and what actually happened. State of emergency declared 17:25, Monday 20 April.</div>
+</header>
+
+<div class="controls">
+  <button id="play">Play</button>
+  <input type="range" id="scrub" min="0" value="0">
+  <span class="stamp" id="stamp">—</span>
+</div>
+
+<div class="layout">
+  <div id="map"></div>
+  <aside>
+    <div class="tiles">
+      <div class="tile"><div class="label">Movements this hour</div><div class="value" id="v-total">—</div></div>
+      <div class="tile"><div class="label">vs normal</div><div class="value" id="v-vol">—</div></div>
+      <div class="tile"><div class="label">Mode mix</div><div class="value" id="v-ratio">—</div></div>
+      <div class="tile"><div class="label">Rain, wettest gauge</div><div class="value" id="v-rain">—</div></div>
+    </div>
+
+    <div class="assess normal" id="assess">
+      <span class="icon" id="assess-icon">✓</span>
+      <span><strong id="assess-title">Normal</strong><br><span class="sub" id="assess-note"></span></span>
+    </div>
+
+    <h2>What actually happened</h2>
+    <ul class="log" id="log"></ul>
+
+    <h2>Wettest gauges, this hour</h2>
+    <table id="rain-table"><thead><tr><th>Gauge</th><th>mm</th></tr></thead><tbody></tbody></table>
+
+    <details>
+      <summary>Known limits</summary>
+      <ul class="limits">
+        <li>Thresholds were tuned by eye against this one event. One event is not a validation set.</li>
+        <li>The mode-mix test clears Good Friday, Easter Monday and ANZAC Day observed, but wrongly flags Easter Sunday, which had no rain.</li>
+        <li>Counts are hourly, so nothing can be detected sooner than the end of the hour it happens in.</li>
+        <li>Sensors cover instrumented streets only. A sensor knocked out by the storm looks the same as a street nobody used.</li>
+        <li>The timeline comes from news reporting, not a Council incident log. Times are approximate except the declaration.</li>
+        <li>19 of 51 listed rainfall gauges were reporting during the window.</li>
+      </ul>
+    </details>
+  </aside>
+</div>
+
+<div class="legend">
+  <span><span class="swatch" style="background:var(--below)"></span>Movement below normal</span>
+  <span><span class="swatch" style="background:var(--neutral)"></span>Near normal</span>
+  <span><span class="swatch" style="background:var(--above)"></span>Above normal</span>
+  <span><span class="swatch" style="background:var(--rain)"></span>Rainfall gauge, sized by mm this hour</span>
+  <span style="color:var(--muted)">Circle size = movements past that sensor</span>
+</div>
+
+<script src="vendor/maplibre-gl.js"></script>
+<script>
+const BUNDLE = "../data/replay/april-2026";
+const files = [
+  `${BUNDLE}/movement.json`, `${BUNDLE}/countlines.geojson`, `${BUNDLE}/rainfall.json`,
+  `${BUNDLE}/ground-truth.json`, `${BUNDLE}/assessment.json`, "data/suburbs.geojson",
+];
+
+Promise.all(files.map(f => fetch(f).then(r => {
+  if (!r.ok) throw new Error(`${f}: ${r.status}`);
+  return r.json();
+}))).then(([movement, countlines, rainfall, truth, assessment, suburbs]) => {
+  start(movement, countlines, rainfall, truth, assessment, suburbs);
+}).catch(err => {
+  document.getElementById("map").innerHTML =
+    `<div style="padding:24px;color:var(--ink-2)">Could not load the replay bundle.<br><br>
+     <code>${err.message}</code><br><br>
+     Serve the repo root rather than opening the file directly:<br>
+     <code>python3 -m http.server</code> then open <code>/site/</code>.</div>`;
+});
+
+function start(movement, countlines, rainfall, truth, assessment, suburbs) {
+  const hours = assessment.hours;
+  const byStamp = Object.fromEntries(hours.map(h => [h.at, h]));
+  const scrub = document.getElementById("scrub");
+  scrub.max = hours.length - 1;
+
+  const posById = {};
+  for (const f of countlines.features) posById[f.properties.countline_id] = f;
+
+  // Rainfall indexed by hour so the map can show intensity, not just totals.
+  //
+  // Gauges do not share a reporting interval - some are hourly, others report
+  // every five minutes. Summing each gauge's readings within the hour is what
+  // makes them comparable; plotting one point per reading would both stack
+  // duplicate markers and report a five-minute increment as the hourly rainfall.
+  const rainByHour = {};
+  for (const [name, g] of Object.entries(rainfall.reporting)) {
+    for (const [t, mm] of g.series) {
+      const key = t.slice(0, 13);
+      const hour = (rainByHour[key] ||= {});
+      const entry = (hour[name] ||= { name, mm: 0, lat: g.lat, lon: g.lon });
+      entry.mm += mm;
+    }
+  }
+  for (const key of Object.keys(rainByHour)) {
+    rainByHour[key] = Object.values(rainByHour[key]);
+  }
+
+  // Everything the map needs is served from this repo, and the boundary polygons
+  // are handed to MapLibre already parsed rather than as a URL for it to fetch.
+  // Any source the style has to load itself can stall, and while it is stalled
+  // the style never finishes - addSource and addLayer both throw "Style is not
+  // done loading" and the map stays blank with no visible error. With the data
+  // inline there is nothing left to stall on.
+  const map = new maplibregl.Map({
+    container: "map",
+    style: {
+      version: 8,
+      sources: {
+        suburbs: {
+          type: "geojson", data: suburbs,
+          attribution: "Suburbs &amp; sensors: Wellington City Council. Rainfall: Greater Wellington."
+        }
+      },
+      layers: [
+        { id: "bg", type: "background",
+          paint: { "background-color": getVar("--page") } },
+        { id: "suburb-fill", type: "fill", source: "suburbs",
+          paint: { "fill-color": getVar("--land") } },
+        { id: "suburb-line", type: "line", source: "suburbs",
+          paint: { "line-color": getVar("--land-edge"), "line-width": 1 } }
+      ]
+    },
+    center: [174.79, -41.28],
+    zoom: 11.2,
+    attributionControl: { compact: true }
+  });
+
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+  window.__map = map;  // handy when debugging layers from the console
+
+  map.on("error", e => console.error("maplibre:", e && e.error && e.error.message));
+
+  // Do not hang initialisation on 'load' alone. That event waits for every
+  // source to finish, so one slow or queued response leaves the map blank with
+  // no error at all. Take whichever signal arrives first and only act once.
+  let started = false;
+  function init() {
+    if (started) return;
+    try {
+      addLayers();
+    } catch (err) {
+      return;  // style not ready yet - another event or the poll will retry
+    }
+    started = true;
+    // Browsers restore the slider position across a reload, so set it
+    // explicitly rather than letting the handle disagree with the clock.
+    scrub.value = 0;
+    render(0);
+  }
+  map.on("load", init);
+  map.on("styledata", init);
+  map.on("idle", init);
+
+  // Belt and braces. MapLibre's readiness events are easy to miss if a source
+  // is slow, and a blank map with no error is the worst outcome in a demo.
+  const poll = setInterval(init, 300);
+  setTimeout(() => {
+    clearInterval(poll);
+    if (!started) {
+      console.error("map layers never initialised");
+      document.getElementById("stamp").textContent = "map failed - panel still works";
+    }
+  }, 15000);
+
+  function addLayers() {
+    map.addSource("countlines", { type: "geojson", data: emptyFC() });
+    map.addLayer({
+      id: "countlines",
+      type: "circle",
+      source: "countlines",
+      paint: {
+        // Diverging: below normal / near normal / above normal, neutral midpoint.
+        "circle-color": [
+          "case",
+          ["==", ["get", "pct"], null], "#898781",
+          ["interpolate", ["linear"], ["get", "pct"],
+            -60, ["to-color", getVar("--below")],
+              0, ["to-color", getVar("--neutral")],
+             60, ["to-color", getVar("--above")]]
+        ],
+        "circle-radius": ["interpolate", ["linear"], ["sqrt", ["get", "count"]], 0, 3, 10, 6, 40, 14, 90, 22],
+        "circle-opacity": 0.82,
+        "circle-stroke-width": 2,
+        "circle-stroke-color": getVar("--surface-1")
+      }
+    });
+
+    map.addSource("rain", { type: "geojson", data: emptyFC() });
+    map.addLayer({
+      id: "rain",
+      type: "circle",
+      source: "rain",
+      paint: {
+        "circle-color": getVar("--rain"),
+        "circle-radius": ["interpolate", ["linear"], ["get", "mm"], 0, 0, 1, 6, 10, 16, 30, 30],
+        "circle-opacity": 0.30,
+        "circle-stroke-width": 2,
+        "circle-stroke-color": getVar("--rain")
+      }
+    }, "countlines");
+
+    const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false });
+    for (const layer of ["countlines", "rain"]) {
+      map.on("mouseenter", layer, e => {
+        map.getCanvas().style.cursor = "pointer";
+        const p = e.features[0].properties;
+        popup.setLngLat(e.lngLat).setHTML(
+          layer === "rain"
+            ? `<strong>${p.name}</strong><br>${(+p.mm).toFixed(1)} mm this hour`
+            : `<strong>${p.name || "sensor"}</strong><br>${(+p.count).toLocaleString()} movements` +
+              (p.pct === null || p.pct === undefined ? "<br>no baseline" : `<br>${fmtPct(+p.pct)} vs normal`)
+        ).addTo(map);
+      });
+      map.on("mouseleave", layer, () => {
+        map.getCanvas().style.cursor = "";
+        popup.remove();
+      });
+    }
+  }
+
+  function emptyFC() { return { type: "FeatureCollection", features: [] }; }
+  function getVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+  function fmtPct(v) { return `${v > 0 ? "+" : ""}${v.toFixed(0)}%`; }
+
+  const DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+  // Timestamps are read off the string rather than via Date methods. The bundle
+  // is in NZ local time; getHours() would reinterpret it in the browser's zone,
+  // which silently shifts every lookup for anyone not sitting in Wellington.
+  function parts(iso) {
+    const [date, rest] = iso.split("T");
+    const [y, m, d] = date.split("-").map(Number);
+    return { date, hour: +rest.slice(0, 2), key: `${date}T${rest.slice(0, 2)}`,
+             label: `${DAYS[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]} ${d} ${MONTHS[m - 1]} ${rest.slice(0, 5)}` };
+  }
+
+  function render(i) {
+    const h = hours[i];
+    const p = parts(h.at);
+    const key = p.key;
+    document.getElementById("stamp").textContent = p.label;
+    document.getElementById("v-total").textContent = h.total.toLocaleString();
+    document.getElementById("v-vol").textContent = fmtPct(h.vol_pct);
+    document.getElementById("v-ratio").textContent = h.ratio_pct === null ? "—" : fmtPct(h.ratio_pct);
+
+    // Countlines for this hour, against each sensor's own hour-of-day baseline.
+    const rec = movement.window[key];
+    const feats = [];
+    if (rec) {
+      for (const [cid, count] of Object.entries(rec.by_countline)) {
+        const f = posById[cid];
+        if (!f) continue;
+        // Below about 20 movements an hour the percentage is mostly noise -
+        // three cars instead of one is +200% and means nothing. Those sensors
+        // are drawn neutral rather than given a colour they have not earned.
+        const base = movement.countline_baseline[cid]?.[String(p.hour)];
+        const pct = base && base >= 20 ? 100 * (count - base) / base : null;
+        feats.push({
+          type: "Feature", geometry: f.geometry,
+          properties: { count, pct, name: f.properties.name }
+        });
+      }
+    }
+    map.getSource("countlines")?.setData({ type: "FeatureCollection", features: feats });
+
+    const gauges = (rainByHour[key] || []).filter(g => g.mm > 0);
+    map.getSource("rain")?.setData({
+      type: "FeatureCollection",
+      features: gauges.map(g => ({
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [g.lon, g.lat] },
+        properties: { mm: g.mm, name: g.name }
+      }))
+    });
+
+    const wettest = gauges.slice().sort((a, b) => b.mm - a.mm);
+    document.getElementById("v-rain").textContent = wettest.length ? `${wettest[0].mm.toFixed(1)} mm` : "0 mm";
+    const tbody = document.querySelector("#rain-table tbody");
+    tbody.innerHTML = wettest.slice(0, 6).map(g =>
+      `<tr><td>${g.name}</td><td>${g.mm.toFixed(1)}</td></tr>`).join("")
+      || `<tr><td colspan="2" style="color:var(--muted)">No rain recorded this hour</td></tr>`;
+
+    const box = document.getElementById("assess");
+    const label = h.label;
+    const isDisruption = label === "DISRUPTION";
+    const isHoliday = label.startsWith("low volume");
+    box.className = "assess " + (isDisruption ? "disruption" : isHoliday ? "holiday" : "normal");
+    document.getElementById("assess-icon").textContent = isDisruption ? "!" : isHoliday ? "?" : "✓";
+    document.getElementById("assess-title").textContent =
+      isDisruption ? "Disruption" : isHoliday ? "Low volume, normal mode mix" : "Normal";
+    document.getElementById("assess-note").textContent =
+      isDisruption ? "Volume down and people have abandoned bikes and scooters — consistent with a storm, not a holiday."
+      : isHoliday ? "Fewer trips, but the travel mix is unchanged — this is what a public holiday looks like."
+      : "Within the normal range for this weekday and hour.";
+
+    const log = document.getElementById("log");
+    log.innerHTML = truth.timeline.map(ev => {
+      const e = parts(ev.at);
+      const future = ev.at.slice(0, 13) > key;
+      return `<li class="${future ? "future" : ""}"><time>${e.label}</time>${ev.what}</li>`;
+    }).join("");
+  }
+
+  let timer = null;
+  const playBtn = document.getElementById("play");
+  playBtn.addEventListener("click", () => {
+    if (timer) { clearInterval(timer); timer = null; playBtn.textContent = "Play"; return; }
+    playBtn.textContent = "Pause";
+    timer = setInterval(() => {
+      const next = (+scrub.value + 1) % hours.length;
+      scrub.value = next;
+      render(next);
+    }, 420);
+  });
+  scrub.addEventListener("input", () => render(+scrub.value));
+}
+</script>
+</body>
+</html>

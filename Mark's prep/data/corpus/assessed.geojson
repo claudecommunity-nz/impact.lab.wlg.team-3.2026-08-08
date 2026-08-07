@@ -1,0 +1,1819 @@
+{
+ "type": "FeatureCollection",
+ "properties": {
+  "produced_by": "wellington impact lab, team 3",
+  "describes": "incoming reports assessed against public instruments",
+  "verdicts": {
+   "corroborated": "an instrument nearby supports it",
+   "unsupported": "an instrument nearby does not support it",
+   "no_nearby_data": "no instrument within 4 km",
+   "not_checked": "no instrument here can speak to this kind of report",
+   "no_location": "the report could not be placed"
+  },
+  "caveat": "Corroboration is not confirmation and 'unsupported' is not 'false'. A gauge kilometres away misses a local downpour, and a burst main floods a street on a dry day. Every verdict carries the evidence it rests on so it can be argued with.",
+  "synthetic_data_warning": "Reports flagged synthetic are generated from the April 2026 flood for testing. They are not real reports and must not be presented as such.",
+  "attribution": "Rainfall: Greater Wellington Regional Council (Hilltop)."
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.77286,
+     -41.32004
+    ]
+   },
+   "properties": {
+    "report_id": "R0020",
+    "received_at": "2026-04-20T03:36:00",
+    "channel": "social",
+    "text": "Mud and debris across Berhampore after the rain",
+    "issue": "surface_water",
+    "verdict": "corroborated",
+    "because": "34.4 mm at Berhampore at Nursery (0.4 km away) in the 3 h before",
+    "gauge": "Berhampore at Nursery",
+    "gauge_distance_km": 0.4,
+    "rain_mm": 34.4,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.91981,
+     -41.35146
+    ]
+   },
+   "properties": {
+    "report_id": "R0031",
+    "received_at": "2026-04-20T03:41:00",
+    "channel": "social",
+    "text": "Word going round that the river's broken its banks at Remutaka Forest Park",
+    "issue": "flooding",
+    "verdict": "unsupported",
+    "because": "only 1.2 mm at NRFA at Remutaka Forest Park (0.8 km away) in the 3 h before",
+    "gauge": "NRFA at Remutaka Forest Park",
+    "gauge_distance_km": 0.8,
+    "rain_mm": 1.2,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.91534,
+     -41.23674
+    ]
+   },
+   "properties": {
+    "report_id": "R0029",
+    "received_at": "2026-04-20T04:13:00",
+    "channel": "phone",
+    "text": "Someone posted that Seaview WWTP has been evacuated - can anyone confirm?",
+    "issue": "flooding",
+    "verdict": "unsupported",
+    "because": "only 1.0 mm at Waiwhetu Stream at Seaview WWTP (1.0 km away) in the 3 h before",
+    "gauge": "Waiwhetu Stream at Seaview WWTP",
+    "gauge_distance_km": 1.0,
+    "rain_mm": 1.0,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.79575,
+     -41.30766
+    ]
+   },
+   "properties": {
+    "report_id": "R0023",
+    "received_at": "2026-04-20T04:19:00",
+    "channel": "form",
+    "text": "Water coming up over the road at Hataitai, getting deeper",
+    "issue": "surface_water",
+    "verdict": "corroborated",
+    "because": "33.6 mm at Hataitai at Hataitai Park (0.4 km away) in the 3 h before",
+    "gauge": "Hataitai at Hataitai Park",
+    "gauge_distance_km": 0.4,
+    "rain_mm": 33.6,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.89899,
+     -41.22826
+    ]
+   },
+   "properties": {
+    "report_id": "R0032",
+    "received_at": "2026-04-20T04:24:00",
+    "channel": "phone",
+    "text": "Someone posted that Shandon Golf Club has been evacuated - can anyone confirm?",
+    "issue": "flooding",
+    "verdict": "unsupported",
+    "because": "only 1.6 mm at Hutt River at Shandon Golf Club (0.3 km away) in the 3 h before",
+    "gauge": "Hutt River at Shandon Golf Club",
+    "gauge_distance_km": 0.3,
+    "rain_mm": 1.6,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.73226,
+     -41.28422
+    ]
+   },
+   "properties": {
+    "report_id": "R0028",
+    "received_at": "2026-04-20T04:33:00",
+    "channel": "form",
+    "text": "Reports of water through properties on Karori",
+    "issue": "surface_water",
+    "verdict": "corroborated",
+    "because": "26.8 mm at Karori Stream at Samuel Marsden School (1.1 km away) in the 3 h before",
+    "gauge": "Karori Stream at Samuel Marsden School",
+    "gauge_distance_km": 1.1,
+    "rain_mm": 26.8,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.78288,
+     -41.31101
+    ]
+   },
+   "properties": {
+    "report_id": "R0024",
+    "received_at": "2026-04-20T04:46:00",
+    "channel": "form",
+    "text": "Mud and debris across Hataitai after the rain",
+    "issue": "surface_water",
+    "verdict": "corroborated",
+    "because": "55.4 mm at Newtown at Carmichael Reservoir (0.7 km away) in the 3 h before",
+    "gauge": "Newtown at Carmichael Reservoir",
+    "gauge_distance_km": 0.7,
+    "rain_mm": 55.4,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.78189,
+     -41.28689
+    ]
+   },
+   "properties": {
+    "report_id": "R0026",
+    "received_at": "2026-04-20T04:52:00",
+    "channel": "phone",
+    "text": "Landslip at Te Aro - looks like it's still moving",
+    "issue": "surface_water",
+    "verdict": "corroborated",
+    "because": "39.8 mm at Wellington at Te Papa (0.4 km away) in the 3 h before",
+    "gauge": "Wellington at Te Papa",
+    "gauge_distance_km": 0.4,
+    "rain_mm": 39.8,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.88079,
+     -41.22834
+    ]
+   },
+   "properties": {
+    "report_id": "R0030",
+    "received_at": "2026-04-20T05:00:00",
+    "channel": "social",
+    "text": "Word going round that the river's broken its banks at Regent Street",
+    "issue": "flooding",
+    "verdict": "unsupported",
+    "because": "only 1.0 mm at Hutt River at Regent Street (0.8 km away) in the 3 h before",
+    "gauge": "Hutt River at Regent Street",
+    "gauge_distance_km": 0.8,
+    "rain_mm": 1.0,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.74523,
+     -41.29159
+    ]
+   },
+   "properties": {
+    "report_id": "R0027",
+    "received_at": "2026-04-20T05:02:00",
+    "channel": "news",
+    "text": "Flooding at Karori. Been rising for the last hour",
+    "issue": "surface_water",
+    "verdict": "corroborated",
+    "because": "53.0 mm at Kaiwharawhara Stream at Karori Reservoir (0.7 km away) in the 3 h before",
+    "gauge": "Kaiwharawhara Stream at Karori Reservoir",
+    "gauge_distance_km": 0.7,
+    "rain_mm": 53.0,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.77772,
+     -41.28673
+    ]
+   },
+   "properties": {
+    "report_id": "R0025",
+    "received_at": "2026-04-20T05:17:00",
+    "channel": "news",
+    "text": "Mud and debris across Te Aro after the rain",
+    "issue": "surface_water",
+    "verdict": "corroborated",
+    "because": "39.0 mm at Wellington at Te Papa (0.5 km away) in the 3 h before",
+    "gauge": "Wellington at Te Papa",
+    "gauge_distance_km": 0.5,
+    "rain_mm": 39.0,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.77524,
+     -41.32421
+    ]
+   },
+   "properties": {
+    "report_id": "R0019",
+    "received_at": "2026-04-20T05:50:00",
+    "channel": "email",
+    "text": "Can't get through Berhampore, it's underwater",
+    "issue": "surface_water",
+    "verdict": "corroborated",
+    "because": "96.8 mm at Berhampore at Nursery (0.3 km away) in the 3 h before",
+    "gauge": "Berhampore at Nursery",
+    "gauge_distance_km": 0.3,
+    "rain_mm": 96.8,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.78246,
+     -41.32091
+    ]
+   },
+   "properties": {
+    "report_id": "R0021",
+    "received_at": "2026-04-20T05:50:00",
+    "channel": "email",
+    "text": "Can't get through Newtown, it's underwater",
+    "issue": "surface_water",
+    "verdict": "corroborated",
+    "because": "53.2 mm at Newtown at Carmichael Reservoir (0.7 km away) in the 3 h before",
+    "gauge": "Newtown at Carmichael Reservoir",
+    "gauge_distance_km": 0.7,
+    "rain_mm": 53.2,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.75577,
+     -41.28356
+    ]
+   },
+   "properties": {
+    "report_id": "R0022",
+    "received_at": "2026-04-20T05:55:00",
+    "channel": "form",
+    "text": "Reports of water through properties on Karori",
+    "issue": "surface_water",
+    "verdict": "corroborated",
+    "because": "51.6 mm at Kaiwharawhara Stream at Karori Reservoir (0.8 km away) in the 3 h before",
+    "gauge": "Kaiwharawhara Stream at Karori Reservoir",
+    "gauge_distance_km": 0.8,
+    "rain_mm": 51.6,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.77644,
+     -41.26181
+    ]
+   },
+   "properties": {
+    "report_id": "R0060",
+    "received_at": "2026-04-20T12:31:00",
+    "channel": "partner",
+    "text": "General Fault. Fault 9 Fitzroy Street, Wadestown, Wellington 6012. 9 Fitzroy Street, Wadestown, Wellington, 6012. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.80499,
+     -41.22199
+    ]
+   },
+   "properties": {
+    "report_id": "R0049",
+    "received_at": "2026-04-20T12:43:00",
+    "channel": "partner",
+    "text": "General Fault. TC/CP Fault 14 Frankmoore Avenue, Johnsonville, Wellington 6037. 14 Frankmoore Avenue, Johnsonville, Wellington, 6037. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.77448,
+     -41.26081
+    ]
+   },
+   "properties": {
+    "report_id": "R0038",
+    "received_at": "2026-04-20T13:21:00",
+    "channel": "partner",
+    "text": "General Fault. Fault 25 WELD STREET, Wadestown. 25 Weld Street, Wadestown, Wellington, 6012. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.76573,
+     -41.31882
+    ]
+   },
+   "properties": {
+    "report_id": "R0016",
+    "received_at": "2026-04-20T13:25:00",
+    "channel": "email",
+    "text": "Reports of water through properties on Mornington",
+    "issue": "flooding",
+    "verdict": "corroborated",
+    "because": "17.6 mm at Berhampore at Nursery (0.7 km away) in the 3 h before",
+    "gauge": "Berhampore at Nursery",
+    "gauge_distance_km": 0.7,
+    "rain_mm": 17.6,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.77383,
+     -41.29103
+    ]
+   },
+   "properties": {
+    "report_id": "R0070",
+    "received_at": "2026-04-20T13:45:00",
+    "channel": "partner",
+    "text": "Meter Reading. Fault 171 WILLIS STREET, Te Aro. 171 Willis Street, Te Aro, Wellington, 6011. Do Not Display. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.78284,
+     -41.29649
+    ]
+   },
+   "properties": {
+    "report_id": "R0064",
+    "received_at": "2026-04-20T13:58:00",
+    "channel": "partner",
+    "text": "Information Request Public. Public Info Request 38 KENT TERRACE, Mount Victoria. 38 Kent Terrace, Mount Victoria, Wellington, 6011. In Queue. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.80612,
+     -41.31763
+    ]
+   },
+   "properties": {
+    "report_id": "R0043",
+    "received_at": "2026-04-20T14:16:00",
+    "channel": "partner",
+    "text": "Leaky or Faulty Connection/Meter/Toby. Fault 9 Jean Batten Street, Rongotai, Wellington, 6022. 9 Jean Batten Street, Wellington, 6022, Wellington. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.83922,
+     -41.10073
+    ]
+   },
+   "properties": {
+    "report_id": "R0042",
+    "received_at": "2026-04-20T14:23:00",
+    "channel": "partner",
+    "text": "Blockage - Significant. Blockage 21 Thornley Street Titahi Bay, Porirua City 5022. 21 Thornley Street, Titahi Bay, Porirua, Wellington, 5022. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.85367,
+     -41.13576
+    ]
+   },
+   "properties": {
+    "report_id": "R0041",
+    "received_at": "2026-04-20T14:27:00",
+    "channel": "partner",
+    "text": "Leaking Pipes. Leaking Pipes 14 Thompson Grove Ranui, Porirua City 5024. 14 Thompson Grove, Ranui, Porirua, Wellington, 5024. In Queue. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.73919,
+     -41.2913
+    ]
+   },
+   "properties": {
+    "report_id": "R0018",
+    "received_at": "2026-04-20T14:29:00",
+    "channel": "form",
+    "text": "Landslip at South Karori - looks like it's still moving",
+    "issue": "slip",
+    "verdict": "corroborated",
+    "because": "18.8 mm at Karori Stream at Samuel Marsden School (0.9 km away) in the 3 h before",
+    "gauge": "Karori Stream at Samuel Marsden School",
+    "gauge_distance_km": 0.9,
+    "rain_mm": 18.8,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.95173,
+     -41.18303
+    ]
+   },
+   "properties": {
+    "report_id": "R0037",
+    "received_at": "2026-04-20T14:37:00",
+    "channel": "partner",
+    "text": "Blockage - Significant. Blockage 19 Pringle Street, TAITA. 19 Pringle Street, Taita, Lower Hutt, Wellington, 5011. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.80407,
+     -41.19721
+    ]
+   },
+   "properties": {
+    "report_id": "R0066",
+    "received_at": "2026-04-20T14:47:00",
+    "channel": "partner",
+    "text": "General Fault. Fault 12 MAULDETH TERRACE, Churton Park. 12 Mauldeth Terrace, Churton Park, Wellington, 6037. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.76697,
+     -41.24925
+    ]
+   },
+   "properties": {
+    "report_id": "R0072",
+    "received_at": "2026-04-20T14:54:00",
+    "channel": "partner",
+    "text": "General Fault. Fault 100 HEKE STREET, Ngaio. 100 Heke Street, Ngaio, Wellington, 6035. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.76128,
+     -41.28839
+    ]
+   },
+   "properties": {
+    "report_id": "R0057",
+    "received_at": "2026-04-20T15:07:00",
+    "channel": "partner",
+    "text": "General Fault. Fault 107 UPLAND ROAD, Kelburn. 107 Upland Road, Kelburn, Wellington, 6012. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.73929,
+     -41.28189
+    ]
+   },
+   "properties": {
+    "report_id": "R0075",
+    "received_at": "2026-04-20T15:15:00",
+    "channel": "partner",
+    "text": "General Fault. Fault - 52 FRIEND STREET, Karori. 52 Friend Street, Karori, Wellington, 6012. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.77628,
+     -41.28172
+    ]
+   },
+   "properties": {
+    "report_id": "R0076",
+    "received_at": "2026-04-20T15:19:00",
+    "channel": "partner",
+    "text": "Meter Reading. Fault 147 LAMBTON QUAY, Wellington Central. 147 Lambton Quay, Wellington Central, Wellington, 6011. Do Not Display. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.74547,
+     -41.28262
+    ]
+   },
+   "properties": {
+    "report_id": "R0052",
+    "received_at": "2026-04-20T15:30:00",
+    "channel": "partner",
+    "text": "Information Request Public. Public Info Request 157 KARORI ROAD, Karori. 157 Karori Road, Karori, Wellington, 6012. In Queue. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     175.09673,
+     -41.11193
+    ]
+   },
+   "properties": {
+    "report_id": "R0061",
+    "received_at": "2026-04-20T15:44:00",
+    "channel": "partner",
+    "text": "Leaking Pipes. Rider main leak @ 15 LPM:  1202 Fergusson Drive. 1202 Fergusson Drive, Brown Owl, Upper Hutt, Wellington, 5018. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.96316,
+     -41.17246
+    ]
+   },
+   "properties": {
+    "report_id": "R0050",
+    "received_at": "2026-04-20T15:54:00",
+    "channel": "partner",
+    "text": "Blockage - Significant. Blockage 55 Biddle Crescent, TAITA. 55 Biddle Crescent, Taita, Lower Hutt, Wellington, 5011. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.78621,
+     -41.26324
+    ]
+   },
+   "properties": {
+    "report_id": "R0069",
+    "received_at": "2026-04-20T16:15:00",
+    "channel": "partner",
+    "text": "General Fault. Fault Unit 1, 78 Hutt Road, Pipitea, Wellington 6035. 78 Hutt Road, #1, Pipitea, Wellington, 6035. In Queue. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.94955,
+     -41.26746
+    ]
+   },
+   "properties": {
+    "report_id": "R0068",
+    "received_at": "2026-04-20T16:27:00",
+    "channel": "partner",
+    "text": "Blockage - Significant. Blockage 46 Bledisloe Crescent, WAINUIOMATA. 46 Bledisloe Crescent, Wainuiomata, Lower Hutt, Wellington, 5014. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.7462,
+     -41.28301
+    ]
+   },
+   "properties": {
+    "report_id": "R0039",
+    "received_at": "2026-04-20T16:44:00",
+    "channel": "partner",
+    "text": "General Fault. Fault 8 MARSDEN AVENUE, Karori. 8 Marsden Avenue, Karori, Wellington, 6012. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.7772,
+     -41.26247
+    ]
+   },
+   "properties": {
+    "report_id": "R0073",
+    "received_at": "2026-04-20T16:58:00",
+    "channel": "partner",
+    "text": "Leaky or Faulty Connection/Meter/Toby. Leaking Valve Opp 42 MOORHOUSE STREET, Wadestown. 42 Moorhouse Street, Wadestown, Wellington, 6012. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.9375,
+     -41.25743
+    ]
+   },
+   "properties": {
+    "report_id": "R0007",
+    "received_at": "2026-04-20T17:09:00",
+    "channel": "phone",
+    "text": "Emergency services door knocking Rata Street, Wainuiomata, everyone out",
+    "issue": "flooding",
+    "verdict": "corroborated",
+    "because": "12.8 mm at Waiwhetu Stream at Seaview WWTP (3.4 km away) in the 3 h before",
+    "gauge": "Waiwhetu Stream at Seaview WWTP",
+    "gauge_distance_km": 3.4,
+    "rain_mm": 12.8,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.93536,
+     -41.25457
+    ]
+   },
+   "properties": {
+    "report_id": "R0003",
+    "received_at": "2026-04-20T17:13:00",
+    "channel": "partner",
+    "text": "Emergency services door knocking Konini Street, Wainuiomata, everyone out",
+    "issue": "flooding",
+    "verdict": "corroborated",
+    "because": "12.8 mm at Waiwhetu Stream at Seaview WWTP (3.1 km away) in the 3 h before",
+    "gauge": "Waiwhetu Stream at Seaview WWTP",
+    "gauge_distance_km": 3.1,
+    "rain_mm": 12.8,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.9375,
+     -41.25743
+    ]
+   },
+   "properties": {
+    "report_id": "R0008",
+    "received_at": "2026-04-20T17:18:00",
+    "channel": "social",
+    "text": "Emergency services door knocking Rata Street, Wainuiomata, everyone out",
+    "issue": "flooding",
+    "verdict": "corroborated",
+    "because": "12.8 mm at Waiwhetu Stream at Seaview WWTP (3.4 km away) in the 3 h before",
+    "gauge": "Waiwhetu Stream at Seaview WWTP",
+    "gauge_distance_km": 3.4,
+    "rain_mm": 12.8,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     175.09912,
+     -41.10635
+    ]
+   },
+   "properties": {
+    "report_id": "R0059",
+    "received_at": "2026-04-20T17:30:00",
+    "channel": "partner",
+    "text": "Leaking Pipes. Leaking Pipes 9 Radiata Grove. 9 Radiata Grove, Brown Owl, Upper Hutt, Wellington, 5018. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.93536,
+     -41.25457
+    ]
+   },
+   "properties": {
+    "report_id": "R0002",
+    "received_at": "2026-04-20T17:34:00",
+    "channel": "phone",
+    "text": "We've evacuated our house on Konini Street, Wainuiomata, whole street is going",
+    "issue": "flooding",
+    "verdict": "corroborated",
+    "because": "13.6 mm at Waiwhetu Stream at Seaview WWTP (3.1 km away) in the 3 h before",
+    "gauge": "Waiwhetu Stream at Seaview WWTP",
+    "gauge_distance_km": 3.1,
+    "rain_mm": 13.6,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": null,
+   "properties": {
+    "report_id": "R0035",
+    "received_at": "2026-04-20T17:35:00",
+    "channel": "social",
+    "text": "Water everywhere down our street, been like it for hours",
+    "issue": "unknown",
+    "verdict": "no_location",
+    "because": "no location could be resolved from the text",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.9375,
+     -41.25743
+    ]
+   },
+   "properties": {
+    "report_id": "R0009",
+    "received_at": "2026-04-20T17:40:00",
+    "channel": "social",
+    "text": "Residents on Rata Street, Wainuiomata being told to leave, water rising fast",
+    "issue": "flooding",
+    "verdict": "corroborated",
+    "because": "13.6 mm at Waiwhetu Stream at Seaview WWTP (3.4 km away) in the 3 h before",
+    "gauge": "Waiwhetu Stream at Seaview WWTP",
+    "gauge_distance_km": 3.4,
+    "rain_mm": 13.6,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.7766,
+     -41.29602
+    ]
+   },
+   "properties": {
+    "report_id": "R0074",
+    "received_at": "2026-04-20T17:45:00",
+    "channel": "partner",
+    "text": "Meter Reading. Fault 166 TARANAKI STREET, Te Aro. 166 Taranaki Street, Te Aro, Wellington, 6011. Do Not Display. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.84374,
+     -41.10699
+    ]
+   },
+   "properties": {
+    "report_id": "R0055",
+    "received_at": "2026-04-20T17:47:00",
+    "channel": "partner",
+    "text": "Leaking Pipes. Leaking Pipes 29 Dimock Street Titahi Bay, Porirua City 5022. 29 Dimock Street, Titahi Bay, Porirua, Wellington, 5022. In Progress. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.82849,
+     -41.13726
+    ]
+   },
+   "properties": {
+    "report_id": "R0071",
+    "received_at": "2026-04-20T17:52:00",
+    "channel": "partner",
+    "text": "Meter Reading. Meter Reading 21 Raiha Street Elsdon, Porirua City 5022. 21 Raiha Street, Elsdon, Porirua, Wellington, 5022. Do Not Display. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.77473,
+     -41.30365
+    ]
+   },
+   "properties": {
+    "report_id": "R0067",
+    "received_at": "2026-04-20T18:01:00",
+    "channel": "partner",
+    "text": "Blockage - Significant. 46 WALLACE STREET. 46 Wallace Street, Mount Cook, Wellington, 6021. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.93536,
+     -41.25457
+    ]
+   },
+   "properties": {
+    "report_id": "R0001",
+    "received_at": "2026-04-20T18:08:00",
+    "channel": "phone",
+    "text": "Residents on Konini Street, Wainuiomata being told to leave, water rising fast",
+    "issue": "flooding",
+    "verdict": "corroborated",
+    "because": "13.8 mm at Waiwhetu Stream at Seaview WWTP (3.1 km away) in the 3 h before",
+    "gauge": "Waiwhetu Stream at Seaview WWTP",
+    "gauge_distance_km": 3.1,
+    "rain_mm": 13.8,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.93755,
+     -41.25545
+    ]
+   },
+   "properties": {
+    "report_id": "R0004",
+    "received_at": "2026-04-20T18:14:00",
+    "channel": "phone",
+    "text": "Residents on Wetherby Street, Wainuiomata being told to leave, water rising fast",
+    "issue": "flooding",
+    "verdict": "corroborated",
+    "because": "13.4 mm at Waiwhetu Stream at Seaview WWTP (3.3 km away) in the 3 h before",
+    "gauge": "Waiwhetu Stream at Seaview WWTP",
+    "gauge_distance_km": 3.3,
+    "rain_mm": 13.4,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": null,
+   "properties": {
+    "report_id": "R0036",
+    "received_at": "2026-04-20T18:24:00",
+    "channel": "phone",
+    "text": "Something's come down across the road up the valley",
+    "issue": "unknown",
+    "verdict": "no_location",
+    "because": "no location could be resolved from the text",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.75933,
+     -41.29446
+    ]
+   },
+   "properties": {
+    "report_id": "R0062",
+    "received_at": "2026-04-20T18:32:00",
+    "channel": "partner",
+    "text": "General Fault. Hydrant siezed 25 Holloway Road, Aro Valley, Wellington 6021. 25 Holloway Road, Aro Valley, Wellington, 6021. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": null,
+   "properties": {
+    "report_id": "R0034",
+    "received_at": "2026-04-20T18:35:00",
+    "channel": "social",
+    "text": "Road's closed somewhere past the roundabout, big slip",
+    "issue": "unknown",
+    "verdict": "no_location",
+    "because": "no location could be resolved from the text",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.77418,
+     -41.32262
+    ]
+   },
+   "properties": {
+    "report_id": "R0012",
+    "received_at": "2026-04-20T18:40:00",
+    "channel": "social",
+    "text": "Reports of water through properties on Berhampore",
+    "issue": "flooding",
+    "verdict": "unsupported",
+    "because": "only 4.2 mm at Berhampore at Nursery (0.2 km away) in the 3 h before",
+    "gauge": "Berhampore at Nursery",
+    "gauge_distance_km": 0.2,
+    "rain_mm": 4.2,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.77418,
+     -41.32262
+    ]
+   },
+   "properties": {
+    "report_id": "R0013",
+    "received_at": "2026-04-20T18:53:00",
+    "channel": "phone",
+    "text": "Slip has come down across Berhampore, road blocked",
+    "issue": "slip",
+    "verdict": "unsupported",
+    "because": "only 4.2 mm at Berhampore at Nursery (0.2 km away) in the 3 h before",
+    "gauge": "Berhampore at Nursery",
+    "gauge_distance_km": 0.2,
+    "rain_mm": 4.2,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.73919,
+     -41.2913
+    ]
+   },
+   "properties": {
+    "report_id": "R0017",
+    "received_at": "2026-04-20T18:56:00",
+    "channel": "form",
+    "text": "Can't get through South Karori, it's underwater",
+    "issue": "flooding",
+    "verdict": "corroborated",
+    "because": "7.8 mm at Karori Stream at Samuel Marsden School (0.9 km away) in the 3 h before",
+    "gauge": "Karori Stream at Samuel Marsden School",
+    "gauge_distance_km": 0.9,
+    "rain_mm": 7.8,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.76573,
+     -41.31882
+    ]
+   },
+   "properties": {
+    "report_id": "R0015",
+    "received_at": "2026-04-20T19:05:00",
+    "channel": "phone",
+    "text": "Slip has come down across Mornington, road blocked",
+    "issue": "slip",
+    "verdict": "unsupported",
+    "because": "only 4.4 mm at Berhampore at Nursery (0.7 km away) in the 3 h before",
+    "gauge": "Berhampore at Nursery",
+    "gauge_distance_km": 0.7,
+    "rain_mm": 4.4,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.87315,
+     -41.10699
+    ]
+   },
+   "properties": {
+    "report_id": "R0047",
+    "received_at": "2026-04-20T19:14:00",
+    "channel": "partner",
+    "text": "Leaking Pipes. Leaking Pipes 15 Kahu Road Paremata, Porirua City 5024. 15 Kahu Road, Paremata, Porirua, Wellington, 5024. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.93755,
+     -41.25545
+    ]
+   },
+   "properties": {
+    "report_id": "R0006",
+    "received_at": "2026-04-20T19:20:00",
+    "channel": "social",
+    "text": "Emergency services door knocking Wetherby Street, Wainuiomata, everyone out",
+    "issue": "flooding",
+    "verdict": "corroborated",
+    "because": "16.6 mm at Waiwhetu Stream at Seaview WWTP (3.3 km away) in the 3 h before",
+    "gauge": "Waiwhetu Stream at Seaview WWTP",
+    "gauge_distance_km": 3.3,
+    "rain_mm": 16.6,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.93755,
+     -41.25545
+    ]
+   },
+   "properties": {
+    "report_id": "R0005",
+    "received_at": "2026-04-20T19:22:00",
+    "channel": "social",
+    "text": "Residents on Wetherby Street, Wainuiomata being told to leave, water rising fast",
+    "issue": "flooding",
+    "verdict": "corroborated",
+    "because": "16.6 mm at Waiwhetu Stream at Seaview WWTP (3.3 km away) in the 3 h before",
+    "gauge": "Waiwhetu Stream at Seaview WWTP",
+    "gauge_distance_km": 3.3,
+    "rain_mm": 16.6,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.76573,
+     -41.31882
+    ]
+   },
+   "properties": {
+    "report_id": "R0014",
+    "received_at": "2026-04-20T19:22:00",
+    "channel": "phone",
+    "text": "Surface flooding Mornington - about knee deep near the corner",
+    "issue": "flooding",
+    "verdict": "unsupported",
+    "because": "only 4.2 mm at Berhampore at Nursery (0.7 km away) in the 3 h before",
+    "gauge": "Berhampore at Nursery",
+    "gauge_distance_km": 0.7,
+    "rain_mm": 4.2,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.79037,
+     -41.31758
+    ]
+   },
+   "properties": {
+    "report_id": "R0040",
+    "received_at": "2026-04-20T19:37:00",
+    "channel": "partner",
+    "text": "General Fault. Fault 72 DUNCAN TERRACE, Kilbirnie. 72 Duncan Terrace, Kilbirnie, Wellington, 6022. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": null,
+   "properties": {
+    "report_id": "R0033",
+    "received_at": "2026-04-20T19:47:00",
+    "channel": "phone",
+    "text": "There's flooding at the bottom of the hill near the shops",
+    "issue": "unknown",
+    "verdict": "no_location",
+    "because": "no location could be resolved from the text",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.77418,
+     -41.32262
+    ]
+   },
+   "properties": {
+    "report_id": "R0010",
+    "received_at": "2026-04-20T20:04:00",
+    "channel": "phone",
+    "text": "Berhampore is flooding badly, cars are stuck",
+    "issue": "flooding",
+    "verdict": "unsupported",
+    "because": "only 3.6 mm at Berhampore at Nursery (0.2 km away) in the 3 h before",
+    "gauge": "Berhampore at Nursery",
+    "gauge_distance_km": 0.2,
+    "rain_mm": 3.6,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.77418,
+     -41.32262
+    ]
+   },
+   "properties": {
+    "report_id": "R0011",
+    "received_at": "2026-04-20T20:06:00",
+    "channel": "email",
+    "text": "Slip has come down across Berhampore, road blocked",
+    "issue": "slip",
+    "verdict": "unsupported",
+    "because": "only 3.4 mm at Berhampore at Nursery (0.2 km away) in the 3 h before",
+    "gauge": "Berhampore at Nursery",
+    "gauge_distance_km": 0.2,
+    "rain_mm": 3.4,
+    "rain_window_hours": 3,
+    "synthetic": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.7522,
+     -41.29531
+    ]
+   },
+   "properties": {
+    "report_id": "R0065",
+    "received_at": "2026-04-20T20:07:00",
+    "channel": "partner",
+    "text": "Leaky or Faulty Connection/Meter/Toby. RWL: Ridermain Gate Valve Leak @ 15 LPM: 63 Highbury Road, Highbury, Wellington 6012, New Zealand. 63 Highbury Road, Karori, Wellington, 6012. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.93761,
+     -41.19406
+    ]
+   },
+   "properties": {
+    "report_id": "R0056",
+    "received_at": "2026-04-20T20:16:00",
+    "channel": "partner",
+    "text": "General Fault. Leaking Pipes 49C Garden Road, UNIT 1, AVALON. 49C Garden Road, #1, Avalon, Lower Hutt, Wellington, 5011. In Queue. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.95001,
+     -41.25111
+    ]
+   },
+   "properties": {
+    "report_id": "R0045",
+    "received_at": "2026-04-20T20:26:00",
+    "channel": "partner",
+    "text": "Complaint. Complaint 48 Frederick Street, WAINUIOMATA. 48 Frederick Street, Wainuiomata, Lower Hutt, Wellington, 5014. In Queue. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.7484,
+     -41.28836
+    ]
+   },
+   "properties": {
+    "report_id": "R0044",
+    "received_at": "2026-04-20T20:42:00",
+    "channel": "partner",
+    "text": "General Fault. Fault 21 Tiro Street, Karori, Wellington 6012. 21 Tiro Street, Karori, Wellington, 6012. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.8201,
+     -41.33181
+    ]
+   },
+   "properties": {
+    "report_id": "R0054",
+    "received_at": "2026-04-20T20:45:00",
+    "channel": "partner",
+    "text": "General Fault. Fault 96 Monorgan Road, Strathmore Park, Wellington. 96 Monorgan Road, Strathmore Park, Wellington, 6022. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.83307,
+     -41.32323
+    ]
+   },
+   "properties": {
+    "report_id": "R0048",
+    "received_at": "2026-04-20T20:48:00",
+    "channel": "partner",
+    "text": "General Fault. Fault 50 DUNDAS STREET, Seatoun. 50 Dundas Street, Seatoun, Wellington, 6022. In Progress. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.71834,
+     -41.28616
+    ]
+   },
+   "properties": {
+    "report_id": "R0053",
+    "received_at": "2026-04-20T21:35:00",
+    "channel": "partner",
+    "text": "General Fault. Fault 11 PADDINGTON GROVE, Karori. 11 Paddington Grove, Karori, Wellington, 6012. In Queue. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.93519,
+     -41.19774
+    ]
+   },
+   "properties": {
+    "report_id": "R0058",
+    "received_at": "2026-04-20T21:54:00",
+    "channel": "partner",
+    "text": "Complaint. Blockage 9 Athlone Crescent BOULCOTT. 9 Athlone Crescent, Boulcott, Lower Hutt, Wellington, 5011. In Queue. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.79791,
+     -41.32125
+    ]
+   },
+   "properties": {
+    "report_id": "R0046",
+    "received_at": "2026-04-20T21:57:00",
+    "channel": "partner",
+    "text": "General Fault. Fault 47 ROSS STREET, Kilbirnie. 47 Ross Street, Kilbirnie, Wellington, 6022. In Progress. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.7781,
+     -41.26247
+    ]
+   },
+   "properties": {
+    "report_id": "R0051",
+    "received_at": "2026-04-20T22:00:00",
+    "channel": "partner",
+    "text": "General Fault. Fault 27 OBAN STREET, Wadestown. 27 Oban Street, Wadestown, Wellington, 6012. In Queue. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.91055,
+     -41.2077
+    ]
+   },
+   "properties": {
+    "report_id": "R0063",
+    "received_at": "2026-04-20T22:10:00",
+    "channel": "partner",
+    "text": "Blockage - Significant. Blockage 24 Raroa Road Hutt Central. 24 Raroa Road, Hutt Central, Lower Hutt, Wellington, 5010. Under Investigation. Reactive Maintenance",
+    "issue": "water_supply",
+    "verdict": "not_checked",
+    "because": "a water supply report is not evidenced by rainfall; checking it needs water_faults, which needs --live",
+    "gauge": null,
+    "gauge_distance_km": null,
+    "rain_mm": null,
+    "rain_window_hours": null,
+    "synthetic": false
+   }
+  }
+ ]
+}

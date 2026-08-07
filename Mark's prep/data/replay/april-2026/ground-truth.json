@@ -1,0 +1,55 @@
+{
+  "event": "Wellington region flooding, April 2026",
+  "declaration": {
+    "at": "2026-04-20T17:25:00+12:00",
+    "what": "State of emergency declared for the Wellington region",
+    "by": "Wellington CDEM Group joint committee"
+  },
+  "timeline": [
+    {
+      "at": "2026-04-20T02:00:00+12:00",
+      "what": "Fire crews begin responding to weather callouts"
+    },
+    {
+      "at": "2026-04-20T16:30:00+12:00",
+      "what": "Close to 200 weather-related callouts attended since 02:00"
+    },
+    {
+      "at": "2026-04-20T17:25:00+12:00",
+      "what": "State of emergency declared"
+    },
+    {
+      "at": "2026-04-20T18:00:00+12:00",
+      "what": "Emergency Assistance Centre opened, Wellington City Mission, Oxford Terrace"
+    }
+  ],
+  "evacuations": [
+    {
+      "street": "Konini Street (northern end)",
+      "suburb": "Wainuiomata"
+    },
+    {
+      "street": "Wetherby Street",
+      "suburb": "Wainuiomata"
+    },
+    {
+      "street": "Rata Street",
+      "suburb": "Wainuiomata"
+    }
+  ],
+  "uninhabitable_dwellings": {
+    "count_approx": 10,
+    "suburbs": [
+      "Berhampore",
+      "Mornington",
+      "South Karori"
+    ]
+  },
+  "reported_rainfall": "More than 70 mm in under an hour across parts of southern Wellington",
+  "sources": [
+    "https://www.rnz.co.nz/news/top/592870/weather-state-of-emergency-declared-for-wellington",
+    "https://www.rnz.co.nz/news/weather/592805/weather-state-of-emergency-in-wellington-as-more-rain-arrives-after-floods-slips",
+    "https://thespinoff.co.nz/society/20-04-2026/wellington-region-state-of-emergency-what-you-need-to-know"
+  ],
+  "caveat": "Timeline entries come from news reporting, not from a Council incident log. Treat times as approximate to the hour except the declaration, which is reported precisely."
+}

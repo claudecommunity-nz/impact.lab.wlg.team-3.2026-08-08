@@ -1,0 +1,18 @@
+{
+  "event": "Wellington region flooding, April 2026",
+  "window": {
+    "start": "2026-04-18",
+    "end": "2026-04-22"
+  },
+  "files": {
+    "movement.json": "hourly counts in the window, plus weekday/hour baseline",
+    "countlines.geojson": "sensor countline positions",
+    "rainfall.json": "hourly rainfall per reporting gauge",
+    "river.json": "river level per gauge",
+    "ground-truth.json": "what actually happened, for scoring"
+  },
+  "licences": {
+    "transport counts": "WCC open data",
+    "rainfall and river": "Greater Wellington Regional Council, Hilltop telemetry"
+  }
+}
