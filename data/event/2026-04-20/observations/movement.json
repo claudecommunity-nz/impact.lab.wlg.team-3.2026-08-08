@@ -3,6 +3,8 @@
  "date": "2026-04-20",
  "publisher": "Wellington City Council (Digital Innovation)",
  "source": "https://gis-snowflake-opendata-public-wcc-arcgis-prod.s3.ap-southeast-2.amazonaws.com/transport_sensors/countline_mobility/csv/2026/04/countline_mobility_2026_04.csv",
+ "frozen_at": "2026-08-08T10:33:07+12:00",
+ "provenance": "Frozen in the replay bundle under Mark's prep. That bundle does not record when it fetched from the source, so this is the date the frozen copy entered this repository, not the date of collection. Collection was necessarily after the observation window closed on 23 April 2026.",
  "countlines": 408,
  "day_total": 906725,
  "baseline_day_total": 1299396.5,

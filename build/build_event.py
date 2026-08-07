@@ -141,11 +141,14 @@ def build(summary: bool) -> int:
 
     def record(name: str, path: pathlib.Path, origin: str, holds: str,
                source: str, publisher: str, licence: str,
-               fetched_at: str | None = None, size: int = 0) -> None:
+               fetched_at: str | None = None, size: int = 0,
+               frozen_at: str | None = None,
+               provenance: str | None = None) -> None:
         files[name] = {
             "origin": origin, "holds": holds, "source": source,
             "publisher": publisher, "licence": licence,
-            "fetched_at": fetched_at, "bytes": size,
+            "fetched_at": fetched_at, "frozen_at": frozen_at,
+            "provenance": provenance, "bytes": size,
         }
 
     size = write_lines(OUT / "reports.jsonl", reports)
@@ -198,7 +201,8 @@ def build(summary: bool) -> int:
                payload["publisher"],
                "CC BY 4.0 (NEMA open data)" if name == "cap-alerts.json"
                else "publisher's open data terms",
-               payload.get("fetched_at"), size)
+               payload.get("fetched_at"), size,
+               payload.get("frozen_at"), payload.get("provenance"))
 
     for name, payload, holds in (
         ("water-faults.json", water, f"{len(water['features'])} generated "

@@ -4,6 +4,8 @@
  "date": "2026-04-20",
  "publisher": "Greater Wellington Regional Council",
  "source": "https://hilltop.gw.govt.nz/Telemetry.hts",
+ "frozen_at": "2026-08-08T10:33:07+12:00",
+ "provenance": "Frozen in the replay bundle under Mark's prep. That bundle does not record when it fetched from the source, so this is the date the frozen copy entered this repository, not the date of collection. Collection was necessarily after the observation window closed on 23 April 2026.",
  "gauges": {
   "Hutt River at Kaitoke": {
    "units": "mm",

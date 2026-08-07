@@ -20,7 +20,9 @@
    "publisher": "this prototype",
    "licence": "none - generated content",
    "fetched_at": null,
-   "bytes": 79810
+   "frozen_at": null,
+   "provenance": null,
+   "bytes": 80149
   },
   "answer-key.json": {
    "origin": "generated",
@@ -29,7 +31,9 @@
    "publisher": "this prototype",
    "licence": "none - generated content",
    "fetched_at": null,
-   "bytes": 130107
+   "frozen_at": null,
+   "provenance": null,
+   "bytes": 130108
   },
   "observations/rainfall.json": {
    "origin": "real",
@@ -38,7 +42,9 @@
    "publisher": "Greater Wellington Regional Council",
    "licence": "publisher's open data terms",
    "fetched_at": null,
-   "bytes": 346493
+   "frozen_at": "2026-08-08T10:33:07+12:00",
+   "provenance": "Frozen in the replay bundle under Mark's prep. That bundle does not record when it fetched from the source, so this is the date the frozen copy entered this repository, not the date of collection. Collection was necessarily after the observation window closed on 23 April 2026.",
+   "bytes": 346832
   },
   "observations/river.json": {
    "origin": "real",
@@ -47,7 +53,9 @@
    "publisher": "Greater Wellington Regional Council",
    "licence": "publisher's open data terms",
    "fetched_at": null,
-   "bytes": 62278
+   "frozen_at": "2026-08-08T10:33:07+12:00",
+   "provenance": "Frozen in the replay bundle under Mark's prep. That bundle does not record when it fetched from the source, so this is the date the frozen copy entered this repository, not the date of collection. Collection was necessarily after the observation window closed on 23 April 2026.",
+   "bytes": 62617
   },
   "observations/movement.json": {
    "origin": "real",
@@ -56,7 +64,9 @@
    "publisher": "Wellington City Council (Digital Innovation)",
    "licence": "publisher's open data terms",
    "fetched_at": null,
-   "bytes": 7508
+   "frozen_at": "2026-08-08T10:33:07+12:00",
+   "provenance": "Frozen in the replay bundle under Mark's prep. That bundle does not record when it fetched from the source, so this is the date the frozen copy entered this repository, not the date of collection. Collection was necessarily after the observation window closed on 23 April 2026.",
+   "bytes": 7847
   },
   "observations/cap-alerts.json": {
    "origin": "real",
@@ -65,6 +75,8 @@
    "publisher": "National Emergency Management Agency",
    "licence": "CC BY 4.0 (NEMA open data)",
    "fetched_at": "2026-08-07T23:36:50+00:00",
+   "frozen_at": null,
+   "provenance": null,
    "bytes": 8829
   },
   "feeds/water-faults.json": {
@@ -74,7 +86,9 @@
    "publisher": "Wellington Water",
    "licence": "Wellington Water open data (schema only)",
    "fetched_at": "2026-08-07T23:36:51+00:00",
-   "bytes": 51948
+   "frozen_at": null,
+   "provenance": null,
+   "bytes": 51959
   },
   "feeds/road-closures.json": {
    "origin": "generated",
@@ -83,7 +97,9 @@
    "publisher": "Wellington City Council",
    "licence": "WCC open data (schema only)",
    "fetched_at": "2026-08-07T23:36:51+00:00",
-   "bytes": 24708
+   "frozen_at": null,
+   "provenance": null,
+   "bytes": 24703
   },
   "feeds/outages.json": {
    "origin": "generated",
@@ -92,6 +108,8 @@
    "publisher": "National Emergency Management Agency",
    "licence": "CC BY 4.0 (NEMA open data) (schema only)",
    "fetched_at": "2026-08-07T23:36:52+00:00",
+   "frozen_at": null,
+   "provenance": null,
    "bytes": 5831
   }
  },

@@ -24,6 +24,20 @@ REPLAY = ROOT / "Mark's prep" / "data" / "replay" / "april-2026"
 
 DAY = datetime.date(2026, 4, 20)
 
+# Rainfall, river level and transport counts were fetched from Hilltop and WCC's
+# S3 CSVs when the replay bundle was built, and that bundle does not record the
+# date it did so. Rather than invent a fetch time, these files carry the date the
+# frozen bundle entered this repository and say what that date does and does not
+# mean. The observation window inside the data - 16 to 23 April 2026 - is the
+# part that is checkable, and it is carried through too.
+FROZEN_AT = "2026-08-08T10:33:07+12:00"
+FROZEN_NOTE = (
+    "Frozen in the replay bundle under Mark's prep. That bundle does not record "
+    "when it fetched from the source, so this is the date the frozen copy entered "
+    "this repository, not the date of collection. Collection was necessarily after "
+    "the observation window closed on 23 April 2026."
+)
+
 GWRC = "Greater Wellington Regional Council"
 HILLTOP = "https://hilltop.gw.govt.nz/Telemetry.hts"
 
@@ -74,6 +88,8 @@ def rainfall() -> dict:
         "date": DAY.isoformat(),
         "publisher": GWRC,
         "source": HILLTOP,
+        "frozen_at": FROZEN_AT,
+        "provenance": FROZEN_NOTE,
         "reporting": gauges,
         "listed_but_silent": sorted(raw.get("listed_but_silent", [])),
         "note": (
@@ -109,6 +125,8 @@ def river() -> dict:
         "date": DAY.isoformat(),
         "publisher": GWRC,
         "source": HILLTOP,
+        "frozen_at": FROZEN_AT,
+        "provenance": FROZEN_NOTE,
         "gauges": gauges,
         "no_data": sorted(raw.get("no_data", [])),
         "note": (
@@ -150,6 +168,8 @@ def movement() -> dict:
         "source": ("https://gis-snowflake-opendata-public-wcc-arcgis-prod.s3."
                    "ap-southeast-2.amazonaws.com/transport_sensors/"
                    "countline_mobility/csv/2026/04/countline_mobility_2026_04.csv"),
+        "frozen_at": FROZEN_AT,
+        "provenance": FROZEN_NOTE,
         "countlines": 408,
         "day_total": day_total,
         "baseline_day_total": baseline_total,

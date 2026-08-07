@@ -51,6 +51,9 @@ WATER_FAULT_FOR = {
     "other": ("General Fault", "Waste Water"),
 }
 
+# Marker kept in an incident's used-template set once an agency has filed on it.
+PARTNER_FILED = "\0partner"
+
 FENZ_TYPE_FOR = {
     "flooding": "Flooding - property", "slip": "Landslide",
     "road": "Hazardous conditions - roadway", "tree": "Tree down",
@@ -153,12 +156,18 @@ def fresh(rng, templates: list[str], used: set[str]) -> str:
 
 
 def realise(rng, incident: dict, when: datetime.datetime, late: bool,
-            used: set[str]) -> tuple[str, str, str | None, bool]:
-    """One report: its channel, text, source url and whether it named ambiguously."""
+            used: set[str], published: set[str]) -> tuple[str, str, str | None, bool]:
+    """One report: its channel, text, source url and whether it named ambiguously.
+
+    `used` is this incident's spent templates; `published` is every news headline
+    already run across the whole night. Headlines are shared rather than
+    per-incident because two articles do not carry the same sentence, however
+    many separate things they are about.
+    """
     phrase, ambiguous = rng.choice(place_phrases(incident))
 
     if incident["source_urls"] and rng.random() < 0.75:
-        return "news", fresh(rng, voice.NEWS, used), rng.choice(
+        return "news", fresh(rng, voice.NEWS, published), rng.choice(
             incident["source_urls"]), False
 
     channel = pick(rng, mix_for(when.hour))
@@ -166,10 +175,18 @@ def realise(rng, incident: dict, when: datetime.datetime, late: bool,
         channel = pick(rng, {"phone": 55, "social": 30, "form": 10, "email": 5})
 
     if channel == "partner":
-        # An agency record names the place properly. "the top end of Harper
-        # Street" is how a caller talks, not how a job gets logged.
-        canonical = place_phrases(incident)[0][0]
-        return channel, partner_text(rng, incident, canonical), None, False
+        # One agency record per incident. The job format is fixed, so a second
+        # one differs from the first only in its status field - which is not a
+        # duplicate worth detecting, it is the same record typed twice.
+        if PARTNER_FILED in used:
+            channel = pick(rng, {c: w for c, w in mix_for(when.hour).items()
+                                 if c != "partner"})
+        else:
+            used.add(PARTNER_FILED)
+            # An agency names the place properly. "the top end of Harper Street"
+            # is how a caller talks, not how a job gets logged.
+            canonical = place_phrases(incident)[0][0]
+            return channel, partner_text(rng, incident, canonical), None, False
 
     if late and channel in voice.LATE:
         return channel, fresh(rng, voice.LATE[channel], used).format(
@@ -209,15 +226,22 @@ def build(rng, incidents: list[dict], last_at: datetime.datetime) -> tuple[list,
     # identical. If they did, a tool that grouped them would be marked wrong for
     # doing the sensible thing, and the score would stop meaning anything.
     seen_texts: set[str] = set()
+    published: set[str] = set()
     for incident in incidents:
         used: set[str] = set()
         for when, late in times_for(rng, incident):
             if when > last_at:
                 when = last_at - datetime.timedelta(minutes=rng.randint(0, 40))
-            for _ in range(6):
-                channel, text, url, ambiguous = realise(rng, incident, when, late, used)
+            for _ in range(30):
+                channel, text, url, ambiguous = realise(
+                    rng, incident, when, late, used, published)
                 if text not in seen_texts:
                     break
+            if text in seen_texts:
+                raise RuntimeError(
+                    "ran out of distinct phrasings for "
+                    f"{incident['id']} ({incident['kind']}): {text!r}. "
+                    "Add templates to the relevant bank in voice.py.")
             seen_texts.add(text)
             pending.append({
                 "when": when, "channel": channel, "text": text,

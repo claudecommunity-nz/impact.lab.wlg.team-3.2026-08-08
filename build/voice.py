@@ -125,6 +125,8 @@ SOCIAL = {
     "tree": [
         "massive tree down at {place}",
         "tree across the road {place}, squeezed past on the footpath",
+        "half a tree came down on the lines at {place}. sparks everywhere",
+        "{place} blocked by a tree. council been told apparently",
     ],
     "evacuation": [
         "they're evacuating {place}. absolute chaos",
@@ -170,6 +172,8 @@ FORM = {
     "power": [
         "Power outage. {place}. Approximately 2 hours, no estimate given.",
         "Lines down. {place}. Hazard to pedestrians.",
+        "No electricity supply, {place}. Elderly resident in the property, no heating.",
+        "Street lighting out along {place}. Road is unlit and there is water across it.",
     ],
     "water": [
         "Suspected water main break. {place}. Water surfacing through the road.",
@@ -179,14 +183,20 @@ FORM = {
     "tree": [
         "Fallen tree. {place}. Across carriageway.",
         "Tree down on powerlines, {place}. Hazard.",
+        "Large branch blocking the footpath, {place}. Pedestrians walking on the road.",
+        "Tree leaning over the road at {place}. Ground around the base has moved.",
     ],
     "evacuation": [
         "Requesting advice. {place}. Have been told to evacuate, need somewhere to go.",
         "{place}. Evacuated the property at approximately 17:00. Reporting for the record.",
+        "Have left our house at {place}. Two adults, one dog. Staying with family.",
+        "Neighbours at {place} have been door knocked and asked to leave. We have not been. Should we?",
     ],
     "rumour": [
         "Requesting confirmation. Have seen reports that {place} is being evacuated. Cannot verify.",
         "Reporting information seen on social media regarding {place}. Not witnessed personally.",
+        "Second-hand report only. Told by a family member that {place} is under water. Unconfirmed.",
+        "Passing on what I have heard about {place}. I am not at the location and cannot confirm.",
     ],
     "vague": [
         "Flooding. Location: bottom of the hill by the shops. Water across the road.",
@@ -212,38 +222,69 @@ EMAIL = {
         "The road is impassable in both directions. We have not seen any contractors on site.",
         "I wish to report a landslip at {place}. There are cracks appearing in the ground "
         "above the affected area and in my view it has not finished moving.",
+        "We have had material come down onto the property boundary at {place}. Nobody is "
+        "hurt. I am concerned about what is still sitting above it.",
+        "The bank at {place} has failed and is now within a few metres of the dwelling. "
+        "Could someone advise who is responsible for assessing this.",
     ],
     "road": [
         "Advising that {place} is impassable. Several vehicles have turned back. "
         "There is no signage or cordon in place and it is dark.",
         "The access road at {place} is blocked. We have residents who cannot get home.",
+        "I would like to report that {place} has been closed since this morning with no "
+        "information about when it might reopen. This is the only route in for a number "
+        "of households.",
+        "Vehicles are still attempting to drive through the water at {place}. In my view "
+        "the closure needs to be physically enforced rather than signposted.",
     ],
     "power": [
         "Confirming loss of supply at {place}. We hold a list of residents on medical "
         "equipment and would appreciate an estimated restoration time.",
+        "Writing to advise that we have been without power at {place} since early this "
+        "morning. Our concern is the loss of refrigeration and heating for older residents.",
+        "Reporting lines down across the roadway at {place}. We have kept people away from "
+        "the area but there is no cordon and no crew has attended.",
     ],
     "water": [
         "Reporting a suspected main break at {place}. Water has been surfacing through "
         "the carriageway since early this morning.",
+        "We have had no water supply at {place} since this morning and have had no "
+        "notification. Could you confirm whether this is related to the weather.",
+        "The water coming from our taps at {place} is discoloured. We have stopped "
+        "drinking it. Please advise whether a boil water notice applies.",
     ],
     "tree": [
         "Advising a large tree has come down across {place} and is resting on the lines.",
+        "A tree on the verge at {place} has come down across the footpath. It is not "
+        "blocking the road but it is blocking pedestrian access entirely.",
+        "The large pine at {place} is leaning noticeably further than it was yesterday "
+        "and the ground at its base is lifting. I think it should be looked at today.",
     ],
     "evacuation": [
         "Writing on behalf of residents at {place}. A number of households have left "
         "their properties this evening. We would like to know where people should go.",
         "Our residents' association has been assisting households evacuating from {place}. "
         "Please advise the location of the assistance centre.",
+        "Confirming that our household has left {place} this evening on the advice of "
+        "emergency services. We can be contacted through this address if needed.",
     ],
     "rumour": [
         "I have seen reports circulating that {place} has been evacuated. I have not been "
         "able to confirm this from any official source and would appreciate clarification.",
+        "A neighbour has told me the stream has come over its banks at {place}. I have not "
+        "been down to look myself and I would rather not pass on something incorrect.",
+        "There is a photograph going around a local group said to show {place} this "
+        "morning. I cannot tell whether it is recent or even the right street.",
+        "Several people in our building are saying {place} is cut off. None of us has seen "
+        "it first hand. Is there an official source we should be watching?",
     ],
     "vague": [
         "Writing to report flooding in our area. I am reluctant to give the exact address "
         "but the water is across the road and into several properties.",
         "There is a slip somewhere on the main road out of the valley. I did not stop to "
         "look at exactly where.",
+        "I am writing about the flooding in our neighbourhood. I would rather not identify "
+        "the property. Several houses on the low side of the street have water through them.",
     ],
 }
 
@@ -272,6 +313,14 @@ NEWS = [
     "residents of several properties spending the night elsewhere.",
     "The Wellington region's state of emergency remains in place overnight as further "
     "rain is forecast, Civil Defence says.",
+    "Wellington Water says its crews have attended a large number of blockages and "
+    "overflows overnight and is asking people to report faults rather than clear them.",
+    "Slips have closed roads across the southern suburbs and the Hutt Valley, with "
+    "some routes not expected to reopen until they can be assessed in daylight.",
+    "Welfare support is available for people displaced by the flooding, Civil Defence "
+    "says, with the assistance centre open into the evening.",
+    "Residents are being warned that floodwater may be contaminated and told to avoid "
+    "contact with it where possible.",
 ]
 
 # ---------------------------------------------------------------- partner

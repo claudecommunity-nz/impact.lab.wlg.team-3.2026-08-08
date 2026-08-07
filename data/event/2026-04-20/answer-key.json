@@ -27,18 +27,6 @@
   },
   {
    "id": "R0002",
-   "incident": "I005",
-   "true_place": "Newtown",
-   "true_lat": -41.31491576847765,
-   "true_lon": 174.78390484466885,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "arrived before the instrument: Newtown at Carmichael Reservoir held 1.8 mm in the hour to 02:00 and 36.0 mm in the hour to 03:00"
-  },
-  {
-   "id": "R0003",
    "incident": "I004",
    "true_place": "Berhampore",
    "true_lat": -41.330315386901276,
@@ -48,6 +36,18 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "arrived before the instrument: Berhampore at Nursery held 3.0 mm in the hour to 02:00 and 77.0 mm in the hour to 03:00"
+  },
+  {
+   "id": "R0003",
+   "incident": "I005",
+   "true_place": "Newtown",
+   "true_lat": -41.31491576847765,
+   "true_lon": 174.78390484466885,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "arrived before the instrument: Newtown at Carmichael Reservoir held 1.8 mm in the hour to 02:00 and 36.0 mm in the hour to 03:00"
   },
   {
    "id": "R0004",
@@ -135,42 +135,18 @@
   },
   {
    "id": "R0011",
-   "incident": "I006",
-   "true_place": "Berhampore",
-   "true_lat": -41.325768046261054,
-   "true_lon": 174.764720429439,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "99.0 mm recorded at Berhampore at Nursery over the four hours to 06:00, peaking in the hour to 03:00"
-  },
-  {
-   "id": "R0012",
-   "incident": "I021",
-   "true_place": "Putnam Street, Karori",
-   "true_lat": -41.28496706269372,
-   "true_lon": 174.75536587133365,
-   "issue": "road",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 0.7 km from Kaiwharawhara Stream at Karori Reservoir, which recorded 54.2 mm over the four hours to 06:00"
-  },
-  {
-   "id": "R0013",
-   "incident": "I051",
-   "true_place": "Woodridge",
-   "true_lat": -41.20712948617507,
-   "true_lon": 174.83403975456093,
+   "incident": "I049",
+   "true_place": "Tawa",
+   "true_lat": -41.17156584795517,
+   "true_lon": 174.82769430095428,
    "issue": "flooding",
    "category": "verify",
    "unfounded": true,
    "ambiguous": false,
-   "basis": "only 9.8 mm at Porirua Stream at Woodridge in the four hours to 06:00, against 99.0 mm at the Berhampore gauge over the same window"
+   "basis": "only 4.8 mm at Porirua Stream at Tawa Junction in the four hours to 06:00, against 99.0 mm at the Berhampore gauge over the same window"
   },
   {
-   "id": "R0014",
+   "id": "R0012",
    "incident": "I103",
    "true_place": null,
    "true_lat": null,
@@ -182,19 +158,19 @@
    "basis": "no location stated or obtainable; needs a human or a call back"
   },
   {
-   "id": "R0015",
-   "incident": "I018",
-   "true_place": "Karori",
-   "true_lat": -41.2940548724008,
-   "true_lon": 174.74592630414378,
-   "issue": "flooding",
+   "id": "R0013",
+   "incident": "I021",
+   "true_place": "Putnam Street, Karori",
+   "true_lat": -41.28496706269372,
+   "true_lon": 174.75536587133365,
+   "issue": "road",
    "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "54.2 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the four hours to 06:00, peaking in the hour to 03:00"
+   "basis": "street 0.7 km from Kaiwharawhara Stream at Karori Reservoir, which recorded 54.2 mm over the four hours to 06:00"
   },
   {
-   "id": "R0016",
+   "id": "R0014",
    "incident": "I051",
    "true_place": "Woodridge",
    "true_lat": -41.20712948617507,
@@ -206,19 +182,19 @@
    "basis": "only 9.8 mm at Porirua Stream at Woodridge in the four hours to 06:00, against 99.0 mm at the Berhampore gauge over the same window"
   },
   {
-   "id": "R0017",
-   "incident": "I030",
-   "true_place": "Newtown",
-   "true_lat": -41.30954156702889,
-   "true_lon": 174.793156090332,
+   "id": "R0015",
+   "incident": "I049",
+   "true_place": "Tawa",
+   "true_lat": -41.17156584795517,
+   "true_lon": 174.82769430095428,
    "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
+   "category": "verify",
+   "unfounded": true,
    "ambiguous": false,
-   "basis": "54.0 mm recorded at Newtown at Carmichael Reservoir over the four hours to 06:00, peaking in the hour to 03:00"
+   "basis": "only 4.8 mm at Porirua Stream at Tawa Junction in the four hours to 06:00, against 99.0 mm at the Berhampore gauge over the same window"
   },
   {
-   "id": "R0018",
+   "id": "R0016",
    "incident": "I006",
    "true_place": "Berhampore",
    "true_lat": -41.325768046261054,
@@ -230,19 +206,19 @@
    "basis": "99.0 mm recorded at Berhampore at Nursery over the four hours to 06:00, peaking in the hour to 03:00"
   },
   {
-   "id": "R0019",
-   "incident": "I050",
-   "true_place": "Grenada Village",
-   "true_lat": -41.2159638537624,
-   "true_lon": 174.8238924269858,
+   "id": "R0017",
+   "incident": "I018",
+   "true_place": "Karori",
+   "true_lat": -41.2940548724008,
+   "true_lon": 174.74592630414378,
    "issue": "flooding",
-   "category": "verify",
-   "unfounded": true,
+   "category": "action",
+   "unfounded": false,
    "ambiguous": false,
-   "basis": "only 7.2 mm at Porirua Stream at Seton Nossiter Park in the four hours to 06:00, against 99.0 mm at the Berhampore gauge over the same window"
+   "basis": "54.2 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the four hours to 06:00, peaking in the hour to 03:00"
   },
   {
-   "id": "R0020",
+   "id": "R0018",
    "incident": "I051",
    "true_place": "Woodridge",
    "true_lat": -41.20712948617507,
@@ -254,7 +230,43 @@
    "basis": "only 9.8 mm at Porirua Stream at Woodridge in the four hours to 06:00, against 99.0 mm at the Berhampore gauge over the same window"
   },
   {
+   "id": "R0019",
+   "incident": "I030",
+   "true_place": "Newtown",
+   "true_lat": -41.30954156702889,
+   "true_lon": 174.793156090332,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "54.0 mm recorded at Newtown at Carmichael Reservoir over the four hours to 06:00, peaking in the hour to 03:00"
+  },
+  {
+   "id": "R0020",
+   "incident": "I050",
+   "true_place": "Grenada Village",
+   "true_lat": -41.2159638537624,
+   "true_lon": 174.8238924269858,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": true,
+   "ambiguous": false,
+   "basis": "only 7.2 mm at Porirua Stream at Seton Nossiter Park in the four hours to 06:00, against 99.0 mm at the Berhampore gauge over the same window"
+  },
+  {
    "id": "R0021",
+   "incident": "I051",
+   "true_place": "Woodridge",
+   "true_lat": -41.20712948617507,
+   "true_lon": 174.83403975456093,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": true,
+   "ambiguous": false,
+   "basis": "only 9.8 mm at Porirua Stream at Woodridge in the four hours to 06:00, against 99.0 mm at the Berhampore gauge over the same window"
+  },
+  {
+   "id": "R0022",
    "incident": "I083",
    "true_place": "Caroni Way, Woodridge",
    "true_lat": -41.20656806559295,
@@ -264,18 +276,6 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "generated fault, matched to a record in the generated feeds; the 82.0 mm recorded at Porirua Stream at Woodridge on the day is the only real part of this"
-  },
-  {
-   "id": "R0022",
-   "incident": "I049",
-   "true_place": "Tawa",
-   "true_lat": -41.17156584795517,
-   "true_lon": 174.82769430095428,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": true,
-   "ambiguous": false,
-   "basis": "only 4.8 mm at Porirua Stream at Tawa Junction in the four hours to 06:00, against 99.0 mm at the Berhampore gauge over the same window"
   },
   {
    "id": "R0023",
@@ -315,18 +315,6 @@
   },
   {
    "id": "R0026",
-   "incident": "I049",
-   "true_place": "Tawa",
-   "true_lat": -41.17156584795517,
-   "true_lon": 174.82769430095428,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": true,
-   "ambiguous": false,
-   "basis": "only 4.8 mm at Porirua Stream at Tawa Junction in the four hours to 06:00, against 99.0 mm at the Berhampore gauge over the same window"
-  },
-  {
-   "id": "R0027",
    "incident": "I024",
    "true_place": "Khandallah",
    "true_lat": -41.25749895075894,
@@ -338,7 +326,7 @@
    "basis": "13.4 mm recorded at Kaiwharawhara Stream at Ngaio Reservoir over the four hours to 06:00, peaking in the hour to 04:00"
   },
   {
-   "id": "R0028",
+   "id": "R0027",
    "incident": "I008",
    "true_place": "Harper Street, Berhampore",
    "true_lat": -41.314638174070446,
@@ -350,7 +338,31 @@
    "basis": "street 1.4 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
   },
   {
+   "id": "R0028",
+   "incident": "I006",
+   "true_place": "Berhampore",
+   "true_lat": -41.325768046261054,
+   "true_lon": 174.764720429439,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "99.0 mm recorded at Berhampore at Nursery over the four hours to 06:00, peaking in the hour to 03:00"
+  },
+  {
    "id": "R0029",
+   "incident": "I008",
+   "true_place": "Harper Street, Berhampore",
+   "true_lat": -41.314638174070446,
+   "true_lon": 174.78386140837148,
+   "issue": "slip",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 1.4 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
+  },
+  {
+   "id": "R0030",
    "incident": "I018",
    "true_place": "Karori",
    "true_lat": -41.2940548724008,
@@ -360,18 +372,6 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "54.2 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the four hours to 06:00, peaking in the hour to 03:00"
-  },
-  {
-   "id": "R0030",
-   "incident": "I008",
-   "true_place": "Harper Street, Berhampore",
-   "true_lat": -41.314638174070446,
-   "true_lon": 174.78386140837148,
-   "issue": "slip",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 1.4 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
   },
   {
    "id": "R0031",
@@ -387,18 +387,6 @@
   },
   {
    "id": "R0032",
-   "incident": "I083",
-   "true_place": "Caroni Way, Woodridge",
-   "true_lat": -41.20656806559295,
-   "true_lon": 174.82230779181197,
-   "issue": "slip",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 82.0 mm recorded at Porirua Stream at Woodridge on the day is the only real part of this"
-  },
-  {
-   "id": "R0033",
    "incident": "I007",
    "true_place": "Travers Street, Berhampore",
    "true_lat": -41.31525882826759,
@@ -410,7 +398,7 @@
    "basis": "street 0.9 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
   },
   {
-   "id": "R0034",
+   "id": "R0033",
    "incident": "I018",
    "true_place": "Karori",
    "true_lat": -41.2940548724008,
@@ -422,7 +410,7 @@
    "basis": "54.2 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the four hours to 06:00, peaking in the hour to 03:00"
   },
   {
-   "id": "R0035",
+   "id": "R0034",
    "incident": "I026",
    "true_place": "Miramar",
    "true_lat": -41.317027476430454,
@@ -434,7 +422,7 @@
    "basis": "13.2 mm recorded at Miramar at Miramar Bowling Club over the four hours to 06:00, peaking in the hour to 04:00"
   },
   {
-   "id": "R0036",
+   "id": "R0035",
    "incident": "I066",
    "true_place": "Beauchamp Street, Tawa",
    "true_lat": -41.15894094565193,
@@ -444,6 +432,18 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "generated fault, matched to a record in the generated feeds; the 57.0 mm recorded at Porirua Stream at Tawa Junction on the day is the only real part of this"
+  },
+  {
+   "id": "R0036",
+   "incident": "I008",
+   "true_place": "Harper Street, Berhampore",
+   "true_lat": -41.314638174070446,
+   "true_lon": 174.78386140837148,
+   "issue": "slip",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 1.4 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
   },
   {
    "id": "R0037",
@@ -531,6 +531,30 @@
   },
   {
    "id": "R0044",
+   "incident": "I006",
+   "true_place": "Berhampore",
+   "true_lat": -41.325768046261054,
+   "true_lon": 174.764720429439,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "99.0 mm recorded at Berhampore at Nursery over the four hours to 06:00, peaking in the hour to 03:00"
+  },
+  {
+   "id": "R0045",
+   "incident": "I007",
+   "true_place": "Travers Street, Berhampore",
+   "true_lat": -41.31525882826759,
+   "true_lon": 174.77091066234192,
+   "issue": "road",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 0.9 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
+  },
+  {
+   "id": "R0046",
    "incident": "I038",
    "true_place": "Te Aro",
    "true_lat": -41.29387930098506,
@@ -540,30 +564,6 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "39.8 mm recorded at Wellington at Te Papa over the four hours to 06:00, peaking in the hour to 04:00"
-  },
-  {
-   "id": "R0045",
-   "incident": "I009",
-   "true_place": "Burwah Street, Berhampore",
-   "true_lat": -41.3218596491146,
-   "true_lon": 174.7743335165686,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 0.3 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
-  },
-  {
-   "id": "R0046",
-   "incident": "I033",
-   "true_place": "Auckland Terrace, Newtown",
-   "true_lat": -41.325499722035836,
-   "true_lon": 174.78727543495978,
-   "issue": "slip",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 1.1 km from Newtown at Carmichael Reservoir, which recorded 54.0 mm over the four hours to 06:00"
   },
   {
    "id": "R0047",
@@ -579,6 +579,30 @@
   },
   {
    "id": "R0048",
+   "incident": "I009",
+   "true_place": "Burwah Street, Berhampore",
+   "true_lat": -41.3218596491146,
+   "true_lon": 174.7743335165686,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 0.3 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
+  },
+  {
+   "id": "R0049",
+   "incident": "I033",
+   "true_place": "Auckland Terrace, Newtown",
+   "true_lat": -41.325499722035836,
+   "true_lon": 174.78727543495978,
+   "issue": "slip",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 1.1 km from Newtown at Carmichael Reservoir, which recorded 54.0 mm over the four hours to 06:00"
+  },
+  {
+   "id": "R0050",
    "incident": "I051",
    "true_place": "Woodridge",
    "true_lat": -41.20712948617507,
@@ -590,40 +614,16 @@
    "basis": "only 9.8 mm at Porirua Stream at Woodridge in the four hours to 06:00, against 99.0 mm at the Berhampore gauge over the same window"
   },
   {
-   "id": "R0049",
-   "incident": "I026",
-   "true_place": "Miramar",
-   "true_lat": -41.317027476430454,
-   "true_lon": 174.8230231005136,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "13.2 mm recorded at Miramar at Miramar Bowling Club over the four hours to 06:00, peaking in the hour to 04:00"
-  },
-  {
-   "id": "R0050",
-   "incident": "I015",
-   "true_place": "Newtown Avenue, Hataitai",
-   "true_lat": -41.3140727336099,
-   "true_lon": 174.78127843423476,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 1.1 km from Hataitai at Hataitai Park, which recorded 38.4 mm over the four hours to 06:00"
-  },
-  {
    "id": "R0051",
-   "incident": "I020",
-   "true_place": "Adams Terrace, Karori",
-   "true_lat": -41.29334819909002,
-   "true_lon": 174.764369095336,
-   "issue": "flooding",
+   "incident": "I008",
+   "true_place": "Harper Street, Berhampore",
+   "true_lat": -41.314638174070446,
+   "true_lon": 174.78386140837148,
+   "issue": "slip",
    "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "street 1.0 km from Kaiwharawhara Stream at Karori Reservoir, which recorded 54.2 mm over the four hours to 06:00"
+   "basis": "street 1.4 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
   },
   {
    "id": "R0052",
@@ -639,66 +639,42 @@
   },
   {
    "id": "R0053",
-   "incident": "I007",
-   "true_place": "Travers Street, Berhampore",
-   "true_lat": -41.31525882826759,
-   "true_lon": 174.77091066234192,
-   "issue": "road",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 0.9 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
-  },
-  {
-   "id": "R0054",
-   "incident": "I038",
-   "true_place": "Te Aro",
-   "true_lat": -41.29387930098506,
-   "true_lon": 174.7784370327734,
+   "incident": "I015",
+   "true_place": "Newtown Avenue, Hataitai",
+   "true_lat": -41.3140727336099,
+   "true_lon": 174.78127843423476,
    "issue": "flooding",
    "category": "verify",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "39.8 mm recorded at Wellington at Te Papa over the four hours to 06:00, peaking in the hour to 04:00"
+   "basis": "street 1.1 km from Hataitai at Hataitai Park, which recorded 38.4 mm over the four hours to 06:00"
+  },
+  {
+   "id": "R0054",
+   "incident": "I020",
+   "true_place": "Adams Terrace, Karori",
+   "true_lat": -41.29334819909002,
+   "true_lon": 174.764369095336,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 1.0 km from Kaiwharawhara Stream at Karori Reservoir, which recorded 54.2 mm over the four hours to 06:00"
   },
   {
    "id": "R0055",
-   "incident": "I031",
-   "true_place": "Mudges Terrace, Newtown",
-   "true_lat": -41.31435302676531,
-   "true_lon": 174.77514983887082,
+   "incident": "I026",
+   "true_place": "Miramar",
+   "true_lat": -41.317027476430454,
+   "true_lon": 174.8230231005136,
    "issue": "flooding",
-   "category": "action",
+   "category": "verify",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "street 1.1 km from Newtown at Carmichael Reservoir, which recorded 54.0 mm over the four hours to 06:00"
+   "basis": "13.2 mm recorded at Miramar at Miramar Bowling Club over the four hours to 06:00, peaking in the hour to 04:00"
   },
   {
    "id": "R0056",
-   "incident": "I019",
-   "true_place": "Nottingham Street, Karori",
-   "true_lat": -41.27931033256349,
-   "true_lon": 174.7483193166616,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 1.3 km from Kaiwharawhara Stream at Karori Reservoir, which recorded 54.2 mm over the four hours to 06:00"
-  },
-  {
-   "id": "R0057",
-   "incident": "I032",
-   "true_place": "Regent Street, Newtown",
-   "true_lat": -41.31548273239366,
-   "true_lon": 174.78453337502307,
-   "issue": "slip",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 0.3 km from Newtown at Carmichael Reservoir, which recorded 54.0 mm over the four hours to 06:00"
-  },
-  {
-   "id": "R0058",
    "incident": "I008",
    "true_place": "Harper Street, Berhampore",
    "true_lat": -41.314638174070446,
@@ -710,7 +686,55 @@
    "basis": "street 1.4 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
   },
   {
+   "id": "R0057",
+   "incident": "I038",
+   "true_place": "Te Aro",
+   "true_lat": -41.29387930098506,
+   "true_lon": 174.7784370327734,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "39.8 mm recorded at Wellington at Te Papa over the four hours to 06:00, peaking in the hour to 04:00"
+  },
+  {
+   "id": "R0058",
+   "incident": "I031",
+   "true_place": "Mudges Terrace, Newtown",
+   "true_lat": -41.31435302676531,
+   "true_lon": 174.77514983887082,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 1.1 km from Newtown at Carmichael Reservoir, which recorded 54.0 mm over the four hours to 06:00"
+  },
+  {
    "id": "R0059",
+   "incident": "I019",
+   "true_place": "Nottingham Street, Karori",
+   "true_lat": -41.27931033256349,
+   "true_lon": 174.7483193166616,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 1.3 km from Kaiwharawhara Stream at Karori Reservoir, which recorded 54.2 mm over the four hours to 06:00"
+  },
+  {
+   "id": "R0060",
+   "incident": "I032",
+   "true_place": "Regent Street, Newtown",
+   "true_lat": -41.31548273239366,
+   "true_lon": 174.78453337502307,
+   "issue": "slip",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 0.3 km from Newtown at Carmichael Reservoir, which recorded 54.0 mm over the four hours to 06:00"
+  },
+  {
+   "id": "R0061",
    "incident": "I007",
    "true_place": "Travers Street, Berhampore",
    "true_lat": -41.31525882826759,
@@ -722,7 +746,7 @@
    "basis": "street 0.9 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
   },
   {
-   "id": "R0060",
+   "id": "R0062",
    "incident": "I033",
    "true_place": "Auckland Terrace, Newtown",
    "true_lat": -41.325499722035836,
@@ -734,7 +758,7 @@
    "basis": "street 1.1 km from Newtown at Carmichael Reservoir, which recorded 54.0 mm over the four hours to 06:00"
   },
   {
-   "id": "R0061",
+   "id": "R0063",
    "incident": "I078",
    "true_place": "Tavistock Road, Berhampore",
    "true_lat": -41.32568007356934,
@@ -744,30 +768,6 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "generated fault, matched to a record in the generated feeds; the 134.0 mm recorded at Berhampore at Nursery on the day is the only real part of this"
-  },
-  {
-   "id": "R0062",
-   "incident": "I014",
-   "true_place": "Hataitai",
-   "true_lat": -41.315246068805564,
-   "true_lon": 174.79151098404864,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "38.4 mm recorded at Hataitai at Hataitai Park over the four hours to 06:00, peaking in the hour to 04:00"
-  },
-  {
-   "id": "R0063",
-   "incident": "I020",
-   "true_place": "Adams Terrace, Karori",
-   "true_lat": -41.29334819909002,
-   "true_lon": 174.764369095336,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 1.0 km from Kaiwharawhara Stream at Karori Reservoir, which recorded 54.2 mm over the four hours to 06:00"
   },
   {
    "id": "R0064",
@@ -783,78 +783,18 @@
   },
   {
    "id": "R0065",
-   "incident": "I033",
-   "true_place": "Auckland Terrace, Newtown",
-   "true_lat": -41.325499722035836,
-   "true_lon": 174.78727543495978,
-   "issue": "slip",
+   "incident": "I020",
+   "true_place": "Adams Terrace, Karori",
+   "true_lat": -41.29334819909002,
+   "true_lon": 174.764369095336,
+   "issue": "flooding",
    "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "street 1.1 km from Newtown at Carmichael Reservoir, which recorded 54.0 mm over the four hours to 06:00"
+   "basis": "street 1.0 km from Kaiwharawhara Stream at Karori Reservoir, which recorded 54.2 mm over the four hours to 06:00"
   },
   {
    "id": "R0066",
-   "incident": "I015",
-   "true_place": "Newtown Avenue, Hataitai",
-   "true_lat": -41.3140727336099,
-   "true_lon": 174.78127843423476,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 1.1 km from Hataitai at Hataitai Park, which recorded 38.4 mm over the four hours to 06:00"
-  },
-  {
-   "id": "R0067",
-   "incident": "I044",
-   "true_place": "Roy Street, Berhampore",
-   "true_lat": -41.31897989872081,
-   "true_lon": 174.78284745087524,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": true,
-   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Berhampore, 1.0 km from Berhampore at Nursery"
-  },
-  {
-   "id": "R0068",
-   "incident": "I045",
-   "true_place": "Roy Street, Hataitai",
-   "true_lat": -41.31897989872081,
-   "true_lon": 174.78284745087524,
-   "issue": "slip",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Hataitai, 1.4 km from Hataitai at Hataitai Park"
-  },
-  {
-   "id": "R0069",
-   "incident": "I038",
-   "true_place": "Te Aro",
-   "true_lat": -41.29387930098506,
-   "true_lon": 174.7784370327734,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "39.8 mm recorded at Wellington at Te Papa over the four hours to 06:00, peaking in the hour to 04:00"
-  },
-  {
-   "id": "R0070",
-   "incident": "I007",
-   "true_place": "Travers Street, Berhampore",
-   "true_lat": -41.31525882826759,
-   "true_lon": 174.77091066234192,
-   "issue": "road",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 0.9 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
-  },
-  {
-   "id": "R0071",
    "incident": "I014",
    "true_place": "Hataitai",
    "true_lat": -41.315246068805564,
@@ -866,7 +806,19 @@
    "basis": "38.4 mm recorded at Hataitai at Hataitai Park over the four hours to 06:00, peaking in the hour to 04:00"
   },
   {
-   "id": "R0072",
+   "id": "R0067",
+   "incident": "I033",
+   "true_place": "Auckland Terrace, Newtown",
+   "true_lat": -41.325499722035836,
+   "true_lon": 174.78727543495978,
+   "issue": "slip",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 1.1 km from Newtown at Carmichael Reservoir, which recorded 54.0 mm over the four hours to 06:00"
+  },
+  {
+   "id": "R0068",
    "incident": "I006",
    "true_place": "Berhampore",
    "true_lat": -41.325768046261054,
@@ -878,7 +830,67 @@
    "basis": "99.0 mm recorded at Berhampore at Nursery over the four hours to 06:00, peaking in the hour to 03:00"
   },
   {
+   "id": "R0069",
+   "incident": "I015",
+   "true_place": "Newtown Avenue, Hataitai",
+   "true_lat": -41.3140727336099,
+   "true_lon": 174.78127843423476,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 1.1 km from Hataitai at Hataitai Park, which recorded 38.4 mm over the four hours to 06:00"
+  },
+  {
+   "id": "R0070",
+   "incident": "I044",
+   "true_place": "Roy Street, Berhampore",
+   "true_lat": -41.31897989872081,
+   "true_lon": 174.78284745087524,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": true,
+   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Berhampore, 1.0 km from Berhampore at Nursery"
+  },
+  {
+   "id": "R0071",
+   "incident": "I045",
+   "true_place": "Roy Street, Hataitai",
+   "true_lat": -41.31897989872081,
+   "true_lon": 174.78284745087524,
+   "issue": "slip",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Hataitai, 1.4 km from Hataitai at Hataitai Park"
+  },
+  {
+   "id": "R0072",
+   "incident": "I038",
+   "true_place": "Te Aro",
+   "true_lat": -41.29387930098506,
+   "true_lon": 174.7784370327734,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "39.8 mm recorded at Wellington at Te Papa over the four hours to 06:00, peaking in the hour to 04:00"
+  },
+  {
    "id": "R0073",
+   "incident": "I014",
+   "true_place": "Hataitai",
+   "true_lat": -41.315246068805564,
+   "true_lon": 174.79151098404864,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "38.4 mm recorded at Hataitai at Hataitai Park over the four hours to 06:00, peaking in the hour to 04:00"
+  },
+  {
+   "id": "R0074",
    "incident": "I027",
    "true_place": "Fettes Crescent, Miramar",
    "true_lat": -41.32091884514404,
@@ -888,18 +900,6 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "street 1.2 km from Miramar at Miramar Bowling Club, which recorded 13.2 mm over the four hours to 06:00"
-  },
-  {
-   "id": "R0074",
-   "incident": "I006",
-   "true_place": "Berhampore",
-   "true_lat": -41.325768046261054,
-   "true_lon": 174.764720429439,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "99.0 mm recorded at Berhampore at Nursery over the four hours to 06:00, peaking in the hour to 03:00"
   },
   {
    "id": "R0075",
@@ -915,18 +915,6 @@
   },
   {
    "id": "R0076",
-   "incident": "I044",
-   "true_place": "Roy Street, Berhampore",
-   "true_lat": -41.31897989872081,
-   "true_lon": 174.78284745087524,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": true,
-   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Berhampore, 1.0 km from Berhampore at Nursery"
-  },
-  {
-   "id": "R0077",
    "incident": "I077",
    "true_place": "Magdalen Street, Tawa",
    "true_lat": -41.17911788244211,
@@ -938,31 +926,7 @@
    "basis": "generated fault, matched to a record in the generated feeds; the 57.0 mm recorded at Porirua Stream at Tawa Junction on the day is the only real part of this"
   },
   {
-   "id": "R0078",
-   "incident": "I008",
-   "true_place": "Harper Street, Berhampore",
-   "true_lat": -41.314638174070446,
-   "true_lon": 174.78386140837148,
-   "issue": "slip",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 1.4 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
-  },
-  {
-   "id": "R0079",
-   "incident": "I008",
-   "true_place": "Harper Street, Berhampore",
-   "true_lat": -41.314638174070446,
-   "true_lon": 174.78386140837148,
-   "issue": "slip",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 1.4 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
-  },
-  {
-   "id": "R0080",
+   "id": "R0077",
    "incident": "I027",
    "true_place": "Fettes Crescent, Miramar",
    "true_lat": -41.32091884514404,
@@ -974,16 +938,52 @@
    "basis": "street 1.2 km from Miramar at Miramar Bowling Club, which recorded 13.2 mm over the four hours to 06:00"
   },
   {
-   "id": "R0081",
-   "incident": "I078",
-   "true_place": "Tavistock Road, Berhampore",
-   "true_lat": -41.32568007356934,
-   "true_lon": 174.79026505150242,
-   "issue": "road",
+   "id": "R0078",
+   "incident": "I031",
+   "true_place": "Mudges Terrace, Newtown",
+   "true_lat": -41.31435302676531,
+   "true_lon": 174.77514983887082,
+   "issue": "flooding",
    "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 134.0 mm recorded at Berhampore at Nursery on the day is the only real part of this"
+   "basis": "street 1.1 km from Newtown at Carmichael Reservoir, which recorded 54.0 mm over the four hours to 06:00"
+  },
+  {
+   "id": "R0079",
+   "incident": "I039",
+   "true_place": "Hadfield Terrace, Te Aro",
+   "true_lat": -41.29138499500289,
+   "true_lon": 174.76266135840734,
+   "issue": "slip",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 1.6 km from Wellington at Te Papa, which recorded 39.8 mm over the four hours to 06:00"
+  },
+  {
+   "id": "R0080",
+   "incident": "I018",
+   "true_place": "Karori",
+   "true_lat": -41.2940548724008,
+   "true_lon": 174.74592630414378,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "54.2 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the four hours to 06:00, peaking in the hour to 03:00"
+  },
+  {
+   "id": "R0081",
+   "incident": "I045",
+   "true_place": "Roy Street, Hataitai",
+   "true_lat": -41.31897989872081,
+   "true_lon": 174.78284745087524,
+   "issue": "slip",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": true,
+   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Hataitai, 1.4 km from Hataitai at Hataitai Park"
   },
   {
    "id": "R0082",
@@ -999,54 +999,18 @@
   },
   {
    "id": "R0083",
-   "incident": "I039",
-   "true_place": "Hadfield Terrace, Te Aro",
-   "true_lat": -41.29138499500289,
-   "true_lon": 174.76266135840734,
-   "issue": "slip",
+   "incident": "I044",
+   "true_place": "Roy Street, Berhampore",
+   "true_lat": -41.31897989872081,
+   "true_lon": 174.78284745087524,
+   "issue": "flooding",
    "category": "verify",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "street 1.6 km from Wellington at Te Papa, which recorded 39.8 mm over the four hours to 06:00"
+   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Berhampore, 1.0 km from Berhampore at Nursery"
   },
   {
    "id": "R0084",
-   "incident": "I018",
-   "true_place": "Karori",
-   "true_lat": -41.2940548724008,
-   "true_lon": 174.74592630414378,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "54.2 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the four hours to 06:00, peaking in the hour to 03:00"
-  },
-  {
-   "id": "R0085",
-   "incident": "I045",
-   "true_place": "Roy Street, Hataitai",
-   "true_lat": -41.31897989872081,
-   "true_lon": 174.78284745087524,
-   "issue": "slip",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": true,
-   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Hataitai, 1.4 km from Hataitai at Hataitai Park"
-  },
-  {
-   "id": "R0086",
-   "incident": "I031",
-   "true_place": "Mudges Terrace, Newtown",
-   "true_lat": -41.31435302676531,
-   "true_lon": 174.77514983887082,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 1.1 km from Newtown at Carmichael Reservoir, which recorded 54.0 mm over the four hours to 06:00"
-  },
-  {
-   "id": "R0087",
    "incident": "I067",
    "true_place": "Grove Road, Te Aro",
    "true_lat": -41.28968507531722,
@@ -1058,7 +1022,19 @@
    "basis": "generated fault, matched to a record in the generated feeds; the 84.0 mm recorded at Wellington at Te Papa on the day is the only real part of this"
   },
   {
-   "id": "R0088",
+   "id": "R0085",
+   "incident": "I083",
+   "true_place": "Caroni Way, Woodridge",
+   "true_lat": -41.20656806559295,
+   "true_lon": 174.82230779181197,
+   "issue": "slip",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "generated fault, matched to a record in the generated feeds; the 82.0 mm recorded at Porirua Stream at Woodridge on the day is the only real part of this"
+  },
+  {
+   "id": "R0086",
    "incident": "I025",
    "true_place": "Kohima Drive, Khandallah",
    "true_lat": -41.24098436896613,
@@ -1068,6 +1044,30 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "street 1.6 km from Kaiwharawhara Stream at Ngaio Reservoir, which recorded 13.4 mm over the four hours to 06:00"
+  },
+  {
+   "id": "R0087",
+   "incident": "I007",
+   "true_place": "Travers Street, Berhampore",
+   "true_lat": -41.31525882826759,
+   "true_lon": 174.77091066234192,
+   "issue": "road",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 0.9 km from Berhampore at Nursery, which recorded 99.0 mm over the four hours to 06:00"
+  },
+  {
+   "id": "R0088",
+   "incident": "I078",
+   "true_place": "Tavistock Road, Berhampore",
+   "true_lat": -41.32568007356934,
+   "true_lon": 174.79026505150242,
+   "issue": "road",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "generated fault, matched to a record in the generated feeds; the 134.0 mm recorded at Berhampore at Nursery on the day is the only real part of this"
   },
   {
    "id": "R0089",
@@ -1083,18 +1083,6 @@
   },
   {
    "id": "R0090",
-   "incident": "I045",
-   "true_place": "Roy Street, Hataitai",
-   "true_lat": -41.31897989872081,
-   "true_lon": 174.78284745087524,
-   "issue": "slip",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": true,
-   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Hataitai, 1.4 km from Hataitai at Hataitai Park"
-  },
-  {
-   "id": "R0091",
    "incident": "I014",
    "true_place": "Hataitai",
    "true_lat": -41.315246068805564,
@@ -1106,7 +1094,7 @@
    "basis": "38.4 mm recorded at Hataitai at Hataitai Park over the four hours to 06:00, peaking in the hour to 04:00"
   },
   {
-   "id": "R0092",
+   "id": "R0091",
    "incident": "I031",
    "true_place": "Mudges Terrace, Newtown",
    "true_lat": -41.31435302676531,
@@ -1118,7 +1106,7 @@
    "basis": "street 1.1 km from Newtown at Carmichael Reservoir, which recorded 54.0 mm over the four hours to 06:00"
   },
   {
-   "id": "R0093",
+   "id": "R0092",
    "incident": "I044",
    "true_place": "Roy Street, Berhampore",
    "true_lat": -41.31897989872081,
@@ -1126,23 +1114,11 @@
    "issue": "flooding",
    "category": "verify",
    "unfounded": false,
-   "ambiguous": false,
+   "ambiguous": true,
    "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Berhampore, 1.0 km from Berhampore at Nursery"
   },
   {
-   "id": "R0094",
-   "incident": "I084",
-   "true_place": "Riddiford Street, Newtown",
-   "true_lat": -41.31227110582326,
-   "true_lon": 174.77940152759322,
-   "issue": "slip",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 100.0 mm recorded at Newtown at Carmichael Reservoir on the day is the only real part of this"
-  },
-  {
-   "id": "R0095",
+   "id": "R0093",
    "incident": "I071",
    "true_place": "Dawson Street, Berhampore",
    "true_lat": -41.3231640101775,
@@ -1154,7 +1130,7 @@
    "basis": "generated fault, matched to a record in the generated feeds; the 134.0 mm recorded at Berhampore at Nursery on the day is the only real part of this"
   },
   {
-   "id": "R0096",
+   "id": "R0094",
    "incident": "I025",
    "true_place": "Kohima Drive, Khandallah",
    "true_lat": -41.24098436896613,
@@ -1166,16 +1142,40 @@
    "basis": "street 1.6 km from Kaiwharawhara Stream at Ngaio Reservoir, which recorded 13.4 mm over the four hours to 06:00"
   },
   {
+   "id": "R0095",
+   "incident": "I044",
+   "true_place": "Roy Street, Berhampore",
+   "true_lat": -41.31897989872081,
+   "true_lon": 174.78284745087524,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": true,
+   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Berhampore, 1.0 km from Berhampore at Nursery"
+  },
+  {
+   "id": "R0096",
+   "incident": "I027",
+   "true_place": "Fettes Crescent, Miramar",
+   "true_lat": -41.32091884514404,
+   "true_lon": 174.8272633548854,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 1.2 km from Miramar at Miramar Bowling Club, which recorded 13.2 mm over the four hours to 06:00"
+  },
+  {
    "id": "R0097",
-   "incident": "I071",
-   "true_place": "Dawson Street, Berhampore",
-   "true_lat": -41.3231640101775,
-   "true_lon": 174.77578884996785,
-   "issue": "power",
+   "incident": "I031",
+   "true_place": "Mudges Terrace, Newtown",
+   "true_lat": -41.31435302676531,
+   "true_lon": 174.77514983887082,
+   "issue": "flooding",
    "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 134.0 mm recorded at Berhampore at Nursery on the day is the only real part of this"
+   "basis": "street 1.1 km from Newtown at Carmichael Reservoir, which recorded 54.0 mm over the four hours to 06:00"
   },
   {
    "id": "R0098",
@@ -1191,42 +1191,6 @@
   },
   {
    "id": "R0099",
-   "incident": "I027",
-   "true_place": "Fettes Crescent, Miramar",
-   "true_lat": -41.32091884514404,
-   "true_lon": 174.8272633548854,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 1.2 km from Miramar at Miramar Bowling Club, which recorded 13.2 mm over the four hours to 06:00"
-  },
-  {
-   "id": "R0100",
-   "incident": "I031",
-   "true_place": "Mudges Terrace, Newtown",
-   "true_lat": -41.31435302676531,
-   "true_lon": 174.77514983887082,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 1.1 km from Newtown at Carmichael Reservoir, which recorded 54.0 mm over the four hours to 06:00"
-  },
-  {
-   "id": "R0101",
-   "incident": "I044",
-   "true_place": "Roy Street, Berhampore",
-   "true_lat": -41.31897989872081,
-   "true_lon": 174.78284745087524,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Berhampore, 1.0 km from Berhampore at Nursery"
-  },
-  {
-   "id": "R0102",
    "incident": "I071",
    "true_place": "Dawson Street, Berhampore",
    "true_lat": -41.3231640101775,
@@ -1236,6 +1200,42 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "generated fault, matched to a record in the generated feeds; the 134.0 mm recorded at Berhampore at Nursery on the day is the only real part of this"
+  },
+  {
+   "id": "R0100",
+   "incident": "I045",
+   "true_place": "Roy Street, Hataitai",
+   "true_lat": -41.31897989872081,
+   "true_lon": 174.78284745087524,
+   "issue": "slip",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": true,
+   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Hataitai, 1.4 km from Hataitai at Hataitai Park"
+  },
+  {
+   "id": "R0101",
+   "incident": "I071",
+   "true_place": "Dawson Street, Berhampore",
+   "true_lat": -41.3231640101775,
+   "true_lon": 174.77578884996785,
+   "issue": "power",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "generated fault, matched to a record in the generated feeds; the 134.0 mm recorded at Berhampore at Nursery on the day is the only real part of this"
+  },
+  {
+   "id": "R0102",
+   "incident": "I084",
+   "true_place": "Riddiford Street, Newtown",
+   "true_lat": -41.31227110582326,
+   "true_lon": 174.77940152759322,
+   "issue": "slip",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "generated fault, matched to a record in the generated feeds; the 100.0 mm recorded at Newtown at Carmichael Reservoir on the day is the only real part of this"
   },
   {
    "id": "R0103",
@@ -1263,18 +1263,6 @@
   },
   {
    "id": "R0105",
-   "incident": "I111",
-   "true_place": "Khandallah",
-   "true_lat": -41.25372727,
-   "true_lon": 174.78491319,
-   "issue": "road",
-   "category": "awareness",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "generated Metlink service disruption notified for the morning; no public record of the day's notices survives"
-  },
-  {
-   "id": "R0106",
    "incident": "I070",
    "true_place": "Upland Road, Karori",
    "true_lat": -41.28730561607886,
@@ -1286,7 +1274,7 @@
    "basis": "generated fault, matched to a record in the generated feeds; the 98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir on the day is the only real part of this"
   },
   {
-   "id": "R0107",
+   "id": "R0106",
    "incident": "I085",
    "true_place": "Hall Street, Newtown",
    "true_lat": -41.31052833200592,
@@ -1296,6 +1284,18 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "100.0 mm recorded at Newtown at Carmichael Reservoir over the day"
+  },
+  {
+   "id": "R0107",
+   "incident": "I111",
+   "true_place": "Khandallah",
+   "true_lat": -41.25372727,
+   "true_lon": 174.78491319,
+   "issue": "road",
+   "category": "awareness",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "generated Metlink service disruption notified for the morning; no public record of the day's notices survives"
   },
   {
    "id": "R0108",
@@ -1311,6 +1311,18 @@
   },
   {
    "id": "R0109",
+   "incident": "I081",
+   "true_place": "Salisbury Terrace, Hataitai",
+   "true_lat": -41.30607982700077,
+   "true_lon": 174.77339241676214,
+   "issue": "slip",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "generated fault, matched to a record in the generated feeds; the 66.8 mm recorded at Hataitai at Hataitai Park on the day is the only real part of this"
+  },
+  {
+   "id": "R0110",
    "incident": "I109",
    "true_place": "Te Aro",
    "true_lat": -41.29029822,
@@ -1322,7 +1334,7 @@
    "basis": "generated Wellington Water network-wide advisory issued through the day; no public record of the day's notices survives"
   },
   {
-   "id": "R0110",
+   "id": "R0111",
    "incident": "I081",
    "true_place": "Salisbury Terrace, Hataitai",
    "true_lat": -41.30607982700077,
@@ -1334,7 +1346,7 @@
    "basis": "generated fault, matched to a record in the generated feeds; the 66.8 mm recorded at Hataitai at Hataitai Park on the day is the only real part of this"
   },
   {
-   "id": "R0111",
+   "id": "R0112",
    "incident": "I086",
    "true_place": "Pringle Avenue, Te Aro",
    "true_lat": -41.29064496014257,
@@ -1344,18 +1356,6 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "84.0 mm recorded at Wellington at Te Papa over the day"
-  },
-  {
-   "id": "R0112",
-   "incident": "I081",
-   "true_place": "Salisbury Terrace, Hataitai",
-   "true_lat": -41.30607982700077,
-   "true_lon": 174.77339241676214,
-   "issue": "slip",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 66.8 mm recorded at Hataitai at Hataitai Park on the day is the only real part of this"
   },
   {
    "id": "R0113",
@@ -1371,18 +1371,6 @@
   },
   {
    "id": "R0114",
-   "incident": "I087",
-   "true_place": "Salisbury Avenue, Hataitai",
-   "true_lat": -41.306422965898896,
-   "true_lon": 174.7731617334603,
-   "issue": "water",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "66.8 mm recorded at Hataitai at Hataitai Park over the day"
-  },
-  {
-   "id": "R0115",
    "incident": "I086",
    "true_place": "Pringle Avenue, Te Aro",
    "true_lat": -41.29064496014257,
@@ -1394,19 +1382,19 @@
    "basis": "84.0 mm recorded at Wellington at Te Papa over the day"
   },
   {
-   "id": "R0116",
-   "incident": "I006",
-   "true_place": "Berhampore",
-   "true_lat": -41.325768046261054,
-   "true_lon": 174.764720429439,
-   "issue": "flooding",
+   "id": "R0115",
+   "incident": "I087",
+   "true_place": "Salisbury Avenue, Hataitai",
+   "true_lat": -41.306422965898896,
+   "true_lon": 174.7731617334603,
+   "issue": "water",
    "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "99.0 mm recorded at Berhampore at Nursery over the four hours to 06:00, peaking in the hour to 03:00; this report arrived hours after the incident"
+   "basis": "66.8 mm recorded at Hataitai at Hataitai Park over the day"
   },
   {
-   "id": "R0117",
+   "id": "R0116",
    "incident": "I089",
    "true_place": "Cluny Avenue, Karori",
    "true_lat": -41.28949299296639,
@@ -1418,7 +1406,7 @@
    "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
   },
   {
-   "id": "R0118",
+   "id": "R0117",
    "incident": "I088",
    "true_place": "Duppa Street, Berhampore",
    "true_lat": -41.32367807566537,
@@ -1428,6 +1416,18 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "134.0 mm recorded at Berhampore at Nursery over the day"
+  },
+  {
+   "id": "R0118",
+   "incident": "I089",
+   "true_place": "Cluny Avenue, Karori",
+   "true_lat": -41.28949299296639,
+   "true_lon": 174.75698249177353,
+   "issue": "slip",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
   },
   {
    "id": "R0119",
@@ -1443,6 +1443,18 @@
   },
   {
    "id": "R0120",
+   "incident": "I089",
+   "true_place": "Cluny Avenue, Karori",
+   "true_lat": -41.28949299296639,
+   "true_lon": 174.75698249177353,
+   "issue": "slip",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
+  },
+  {
+   "id": "R0121",
    "incident": "I110",
    "true_place": "Newtown",
    "true_lat": -41.31589434,
@@ -1454,7 +1466,7 @@
    "basis": "generated WCC facilities facility closure notified for the day; no public record of the day's notices survives"
   },
   {
-   "id": "R0121",
+   "id": "R0122",
    "incident": "I065",
    "true_place": "Church Avenue, Berhampore",
    "true_lat": -41.31013544904894,
@@ -1464,18 +1476,6 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "generated fault, matched to a record in the generated feeds; the 134.0 mm recorded at Berhampore at Nursery on the day is the only real part of this"
-  },
-  {
-   "id": "R0122",
-   "incident": "I089",
-   "true_place": "Cluny Avenue, Karori",
-   "true_lat": -41.28949299296639,
-   "true_lon": 174.75698249177353,
-   "issue": "slip",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
   },
   {
    "id": "R0123",
@@ -1503,30 +1503,6 @@
   },
   {
    "id": "R0125",
-   "incident": "I110",
-   "true_place": "Newtown",
-   "true_lat": -41.31589434,
-   "true_lon": 174.78786302,
-   "issue": "other",
-   "category": "awareness",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "generated WCC facilities facility closure notified for the day; no public record of the day's notices survives"
-  },
-  {
-   "id": "R0126",
-   "incident": "I089",
-   "true_place": "Cluny Avenue, Karori",
-   "true_lat": -41.28949299296639,
-   "true_lon": 174.75698249177353,
-   "issue": "slip",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
-  },
-  {
-   "id": "R0127",
    "incident": "I065",
    "true_place": "Church Avenue, Berhampore",
    "true_lat": -41.31013544904894,
@@ -1538,7 +1514,19 @@
    "basis": "generated fault, matched to a record in the generated feeds; the 134.0 mm recorded at Berhampore at Nursery on the day is the only real part of this"
   },
   {
-   "id": "R0128",
+   "id": "R0126",
+   "incident": "I110",
+   "true_place": "Newtown",
+   "true_lat": -41.31589434,
+   "true_lon": 174.78786302,
+   "issue": "other",
+   "category": "awareness",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "generated WCC facilities facility closure notified for the day; no public record of the day's notices survives"
+  },
+  {
+   "id": "R0127",
    "incident": "I091",
    "true_place": "Reading Street, Karori",
    "true_lat": -41.282909260061324,
@@ -1550,7 +1538,7 @@
    "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
   },
   {
-   "id": "R0129",
+   "id": "R0128",
    "incident": "I090",
    "true_place": "Cruickshank Street, Hataitai",
    "true_lat": -41.32091734903417,
@@ -1562,7 +1550,7 @@
    "basis": "66.8 mm recorded at Hataitai at Hataitai Park over the day"
   },
   {
-   "id": "R0130",
+   "id": "R0129",
    "incident": "I082",
    "true_place": "Baffin Grove, Berhampore",
    "true_lat": -41.32021892990768,
@@ -1572,6 +1560,18 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "generated fault, matched to a record in the generated feeds; the 134.0 mm recorded at Berhampore at Nursery on the day is the only real part of this"
+  },
+  {
+   "id": "R0130",
+   "incident": "I092",
+   "true_place": "Emmett Street, Hataitai",
+   "true_lat": -41.31166693243313,
+   "true_lon": 174.78020503342483,
+   "issue": "tree",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "66.8 mm recorded at Hataitai at Hataitai Park over the day"
   },
   {
    "id": "R0131",
@@ -1599,30 +1599,6 @@
   },
   {
    "id": "R0133",
-   "incident": "I092",
-   "true_place": "Emmett Street, Hataitai",
-   "true_lat": -41.31166693243313,
-   "true_lon": 174.78020503342483,
-   "issue": "tree",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "66.8 mm recorded at Hataitai at Hataitai Park over the day"
-  },
-  {
-   "id": "R0134",
-   "incident": "I028",
-   "true_place": "Miramar",
-   "true_lat": -41.306327127164884,
-   "true_lon": 174.82169876460094,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "14.2 mm recorded at Miramar at Miramar Bowling Club over the five hours to 15:00, peaking in the hour to 11:00"
-  },
-  {
-   "id": "R0135",
    "incident": "I082",
    "true_place": "Baffin Grove, Berhampore",
    "true_lat": -41.32021892990768,
@@ -1632,6 +1608,30 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "generated fault, matched to a record in the generated feeds; the 134.0 mm recorded at Berhampore at Nursery on the day is the only real part of this"
+  },
+  {
+   "id": "R0134",
+   "incident": "I006",
+   "true_place": "Berhampore",
+   "true_lat": -41.325768046261054,
+   "true_lon": 174.764720429439,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "99.0 mm recorded at Berhampore at Nursery over the four hours to 06:00, peaking in the hour to 03:00; this report arrived hours after the incident"
+  },
+  {
+   "id": "R0135",
+   "incident": "I028",
+   "true_place": "Miramar",
+   "true_lat": -41.306327127164884,
+   "true_lon": 174.82169876460094,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "14.2 mm recorded at Miramar at Miramar Bowling Club over the five hours to 15:00, peaking in the hour to 11:00"
   },
   {
    "id": "R0136",
@@ -1863,18 +1863,6 @@
   },
   {
    "id": "R0155",
-   "incident": "I010",
-   "true_place": "Berhampore",
-   "true_lat": -41.31724297023489,
-   "true_lon": 174.78213705841966,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "19.8 mm recorded at Berhampore at Nursery over the five hours to 15:00, peaking in the hour to 12:00"
-  },
-  {
-   "id": "R0156",
    "incident": "I048",
    "true_place": "Oxford Street, Tawa",
    "true_lat": -41.16936969044956,
@@ -1886,19 +1874,7 @@
    "basis": "Oxford Street exists in 2 places in the gazetteer; this one is in Tawa, 0.2 km from Porirua Stream at Tawa Junction"
   },
   {
-   "id": "R0157",
-   "incident": "I010",
-   "true_place": "Berhampore",
-   "true_lat": -41.31724297023489,
-   "true_lon": 174.78213705841966,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "19.8 mm recorded at Berhampore at Nursery over the five hours to 15:00, peaking in the hour to 12:00"
-  },
-  {
-   "id": "R0158",
+   "id": "R0156",
    "incident": "I035",
    "true_place": "Kemp Street, Newtown",
    "true_lat": -41.31658447251022,
@@ -1910,7 +1886,7 @@
    "basis": "street 0.8 km from Newtown at Carmichael Reservoir, which recorded 22.8 mm over the five hours to 15:00"
   },
   {
-   "id": "R0159",
+   "id": "R0157",
    "incident": "I011",
    "true_place": "Trevor Terrace, Berhampore",
    "true_lat": -41.31449193232582,
@@ -1922,7 +1898,7 @@
    "basis": "street 1.0 km from Berhampore at Nursery, which recorded 19.8 mm over the five hours to 15:00"
   },
   {
-   "id": "R0160",
+   "id": "R0158",
    "incident": "I022",
    "true_place": "Karori",
    "true_lat": -41.29695946458928,
@@ -1934,7 +1910,19 @@
    "basis": "23.6 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the five hours to 15:00, peaking in the hour to 12:00"
   },
   {
-   "id": "R0161",
+   "id": "R0159",
+   "incident": "I010",
+   "true_place": "Berhampore",
+   "true_lat": -41.31724297023489,
+   "true_lon": 174.78213705841966,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "19.8 mm recorded at Berhampore at Nursery over the five hours to 15:00, peaking in the hour to 12:00"
+  },
+  {
+   "id": "R0160",
    "incident": "I018",
    "true_place": "Karori",
    "true_lat": -41.2940548724008,
@@ -1946,19 +1934,7 @@
    "basis": "54.2 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the four hours to 06:00, peaking in the hour to 03:00; this report arrived hours after the incident"
   },
   {
-   "id": "R0162",
-   "incident": "I048",
-   "true_place": "Oxford Street, Tawa",
-   "true_lat": -41.16936969044956,
-   "true_lon": 174.8268080418258,
-   "issue": "road",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": true,
-   "basis": "Oxford Street exists in 2 places in the gazetteer; this one is in Tawa, 0.2 km from Porirua Stream at Tawa Junction"
-  },
-  {
-   "id": "R0163",
+   "id": "R0161",
    "incident": "I011",
    "true_place": "Trevor Terrace, Berhampore",
    "true_lat": -41.31449193232582,
@@ -1970,7 +1946,7 @@
    "basis": "street 1.0 km from Berhampore at Nursery, which recorded 19.8 mm over the five hours to 15:00"
   },
   {
-   "id": "R0164",
+   "id": "R0162",
    "incident": "I042",
    "true_place": "Woodridge",
    "true_lat": -41.21151266143993,
@@ -1982,19 +1958,7 @@
    "basis": "33.4 mm recorded at Porirua Stream at Woodridge over the five hours to 15:00, peaking in the hour to 13:00"
   },
   {
-   "id": "R0165",
-   "incident": "I010",
-   "true_place": "Berhampore",
-   "true_lat": -41.31724297023489,
-   "true_lon": 174.78213705841966,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "19.8 mm recorded at Berhampore at Nursery over the five hours to 15:00, peaking in the hour to 12:00"
-  },
-  {
-   "id": "R0166",
+   "id": "R0163",
    "incident": "I017",
    "true_place": "Waipapa Road, Hataitai",
    "true_lat": -41.30176007462009,
@@ -2006,7 +1970,7 @@
    "basis": "street 1.0 km from Hataitai at Hataitai Park, which recorded 15.2 mm over the five hours to 15:00"
   },
   {
-   "id": "R0167",
+   "id": "R0164",
    "incident": "I030",
    "true_place": "Newtown",
    "true_lat": -41.30954156702889,
@@ -2018,7 +1982,7 @@
    "basis": "54.0 mm recorded at Newtown at Carmichael Reservoir over the four hours to 06:00, peaking in the hour to 03:00; this report arrived hours after the incident"
   },
   {
-   "id": "R0168",
+   "id": "R0165",
    "incident": "I022",
    "true_place": "Karori",
    "true_lat": -41.29695946458928,
@@ -2030,7 +1994,7 @@
    "basis": "23.6 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the five hours to 15:00, peaking in the hour to 12:00"
   },
   {
-   "id": "R0169",
+   "id": "R0166",
    "incident": "I046",
    "true_place": "Main Road, Miramar",
    "true_lat": -41.294224857618225,
@@ -2042,7 +2006,7 @@
    "basis": "Main Road exists in 2 places in the gazetteer; this one is in Miramar, 1.8 km from Miramar at Miramar Bowling Club"
   },
   {
-   "id": "R0170",
+   "id": "R0167",
    "incident": "I022",
    "true_place": "Karori",
    "true_lat": -41.29695946458928,
@@ -2054,103 +2018,7 @@
    "basis": "23.6 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the five hours to 15:00, peaking in the hour to 12:00"
   },
   {
-   "id": "R0171",
-   "incident": "I048",
-   "true_place": "Oxford Street, Tawa",
-   "true_lat": -41.16936969044956,
-   "true_lon": 174.8268080418258,
-   "issue": "road",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "Oxford Street exists in 2 places in the gazetteer; this one is in Tawa, 0.2 km from Porirua Stream at Tawa Junction"
-  },
-  {
-   "id": "R0172",
-   "incident": "I041",
-   "true_place": "Gilmer Terrace, Te Aro",
-   "true_lat": -41.28544888965228,
-   "true_lon": 174.77455411426627,
-   "issue": "road",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 0.8 km from Wellington at Te Papa, which recorded 21.8 mm over the five hours to 15:00"
-  },
-  {
-   "id": "R0173",
-   "incident": "I042",
-   "true_place": "Woodridge",
-   "true_lat": -41.21151266143993,
-   "true_lon": 174.8241461533672,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "33.4 mm recorded at Porirua Stream at Woodridge over the five hours to 15:00, peaking in the hour to 13:00"
-  },
-  {
-   "id": "R0174",
-   "incident": "I017",
-   "true_place": "Waipapa Road, Hataitai",
-   "true_lat": -41.30176007462009,
-   "true_lon": 174.79943894318558,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 1.0 km from Hataitai at Hataitai Park, which recorded 15.2 mm over the five hours to 15:00"
-  },
-  {
-   "id": "R0175",
-   "incident": "I028",
-   "true_place": "Miramar",
-   "true_lat": -41.306327127164884,
-   "true_lon": 174.82169876460094,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "14.2 mm recorded at Miramar at Miramar Bowling Club over the five hours to 15:00, peaking in the hour to 11:00"
-  },
-  {
-   "id": "R0176",
-   "incident": "I036",
-   "true_place": "Tawa",
-   "true_lat": -41.17115046962302,
-   "true_lon": 174.8277157766773,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "29.0 mm recorded at Porirua Stream at Tawa Junction over the five hours to 15:00, peaking in the hour to 13:00"
-  },
-  {
-   "id": "R0177",
-   "incident": "I010",
-   "true_place": "Berhampore",
-   "true_lat": -41.31724297023489,
-   "true_lon": 174.78213705841966,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "19.8 mm recorded at Berhampore at Nursery over the five hours to 15:00, peaking in the hour to 12:00"
-  },
-  {
-   "id": "R0178",
-   "incident": "I012",
-   "true_place": "Grenada Village",
-   "true_lat": -41.20509055333508,
-   "true_lon": 174.81323213703587,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "26.6 mm recorded at Porirua Stream at Seton Nossiter Park over the five hours to 15:00, peaking in the hour to 13:00"
-  },
-  {
-   "id": "R0179",
+   "id": "R0168",
    "incident": "I048",
    "true_place": "Oxford Street, Tawa",
    "true_lat": -41.16936969044956,
@@ -2162,7 +2030,67 @@
    "basis": "Oxford Street exists in 2 places in the gazetteer; this one is in Tawa, 0.2 km from Porirua Stream at Tawa Junction"
   },
   {
-   "id": "R0180",
+   "id": "R0169",
+   "incident": "I010",
+   "true_place": "Berhampore",
+   "true_lat": -41.31724297023489,
+   "true_lon": 174.78213705841966,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "19.8 mm recorded at Berhampore at Nursery over the five hours to 15:00, peaking in the hour to 12:00"
+  },
+  {
+   "id": "R0170",
+   "incident": "I041",
+   "true_place": "Gilmer Terrace, Te Aro",
+   "true_lat": -41.28544888965228,
+   "true_lon": 174.77455411426627,
+   "issue": "road",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 0.8 km from Wellington at Te Papa, which recorded 21.8 mm over the five hours to 15:00"
+  },
+  {
+   "id": "R0171",
+   "incident": "I042",
+   "true_place": "Woodridge",
+   "true_lat": -41.21151266143993,
+   "true_lon": 174.8241461533672,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "33.4 mm recorded at Porirua Stream at Woodridge over the five hours to 15:00, peaking in the hour to 13:00"
+  },
+  {
+   "id": "R0172",
+   "incident": "I017",
+   "true_place": "Waipapa Road, Hataitai",
+   "true_lat": -41.30176007462009,
+   "true_lon": 174.79943894318558,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 1.0 km from Hataitai at Hataitai Park, which recorded 15.2 mm over the five hours to 15:00"
+  },
+  {
+   "id": "R0173",
+   "incident": "I028",
+   "true_place": "Miramar",
+   "true_lat": -41.306327127164884,
+   "true_lon": 174.82169876460094,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "14.2 mm recorded at Miramar at Miramar Bowling Club over the five hours to 15:00, peaking in the hour to 11:00"
+  },
+  {
+   "id": "R0174",
    "incident": "I036",
    "true_place": "Tawa",
    "true_lat": -41.17115046962302,
@@ -2174,19 +2102,7 @@
    "basis": "29.0 mm recorded at Porirua Stream at Tawa Junction over the five hours to 15:00, peaking in the hour to 13:00"
   },
   {
-   "id": "R0181",
-   "incident": "I013",
-   "true_place": "Maraval Crescent, Grenada Village",
-   "true_lat": -41.20747851338391,
-   "true_lon": 174.82301322380565,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 0.6 km from Porirua Stream at Seton Nossiter Park, which recorded 26.6 mm over the five hours to 15:00"
-  },
-  {
-   "id": "R0182",
+   "id": "R0175",
    "incident": "I012",
    "true_place": "Grenada Village",
    "true_lat": -41.20509055333508,
@@ -2198,7 +2114,67 @@
    "basis": "26.6 mm recorded at Porirua Stream at Seton Nossiter Park over the five hours to 15:00, peaking in the hour to 13:00"
   },
   {
-   "id": "R0183",
+   "id": "R0176",
+   "incident": "I048",
+   "true_place": "Oxford Street, Tawa",
+   "true_lat": -41.16936969044956,
+   "true_lon": 174.8268080418258,
+   "issue": "road",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "Oxford Street exists in 2 places in the gazetteer; this one is in Tawa, 0.2 km from Porirua Stream at Tawa Junction"
+  },
+  {
+   "id": "R0177",
+   "incident": "I036",
+   "true_place": "Tawa",
+   "true_lat": -41.17115046962302,
+   "true_lon": 174.8277157766773,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "29.0 mm recorded at Porirua Stream at Tawa Junction over the five hours to 15:00, peaking in the hour to 13:00"
+  },
+  {
+   "id": "R0178",
+   "incident": "I013",
+   "true_place": "Maraval Crescent, Grenada Village",
+   "true_lat": -41.20747851338391,
+   "true_lon": 174.82301322380565,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 0.6 km from Porirua Stream at Seton Nossiter Park, which recorded 26.6 mm over the five hours to 15:00"
+  },
+  {
+   "id": "R0179",
+   "incident": "I012",
+   "true_place": "Grenada Village",
+   "true_lat": -41.20509055333508,
+   "true_lon": 174.81323213703587,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "26.6 mm recorded at Porirua Stream at Seton Nossiter Park over the five hours to 15:00, peaking in the hour to 13:00"
+  },
+  {
+   "id": "R0180",
+   "incident": "I010",
+   "true_place": "Berhampore",
+   "true_lat": -41.31724297023489,
+   "true_lon": 174.78213705841966,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "19.8 mm recorded at Berhampore at Nursery over the five hours to 15:00, peaking in the hour to 12:00"
+  },
+  {
+   "id": "R0181",
    "incident": "I022",
    "true_place": "Karori",
    "true_lat": -41.29695946458928,
@@ -2210,7 +2186,7 @@
    "basis": "23.6 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the five hours to 15:00, peaking in the hour to 12:00"
   },
   {
-   "id": "R0184",
+   "id": "R0182",
    "incident": "I036",
    "true_place": "Tawa",
    "true_lat": -41.17115046962302,
@@ -2220,6 +2196,30 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "29.0 mm recorded at Porirua Stream at Tawa Junction over the five hours to 15:00, peaking in the hour to 13:00"
+  },
+  {
+   "id": "R0183",
+   "incident": "I010",
+   "true_place": "Berhampore",
+   "true_lat": -41.31724297023489,
+   "true_lon": 174.78213705841966,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "19.8 mm recorded at Berhampore at Nursery over the five hours to 15:00, peaking in the hour to 12:00"
+  },
+  {
+   "id": "R0184",
+   "incident": "I048",
+   "true_place": "Oxford Street, Tawa",
+   "true_lat": -41.16936969044956,
+   "true_lon": 174.8268080418258,
+   "issue": "road",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "Oxford Street exists in 2 places in the gazetteer; this one is in Tawa, 0.2 km from Porirua Stream at Tawa Junction"
   },
   {
    "id": "R0185",
@@ -2283,18 +2283,6 @@
   },
   {
    "id": "R0190",
-   "incident": "I068",
-   "true_place": "St Kitts Place, Woodridge",
-   "true_lat": -41.204927390749134,
-   "true_lon": 174.82484404188017,
-   "issue": "water",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 82.0 mm recorded at Porirua Stream at Woodridge on the day is the only real part of this"
-  },
-  {
-   "id": "R0191",
    "incident": "I079",
    "true_place": "Kelburn Parade, Te Aro",
    "true_lat": -41.29036165927769,
@@ -2306,7 +2294,7 @@
    "basis": "generated fault, matched to a record in the generated feeds; the 84.0 mm recorded at Wellington at Te Papa on the day is the only real part of this"
   },
   {
-   "id": "R0192",
+   "id": "R0191",
    "incident": "I073",
    "true_place": "Tapiri Street, Newtown",
    "true_lat": -41.306148399137776,
@@ -2316,6 +2304,18 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "generated fault, matched to a record in the generated feeds; the 100.0 mm recorded at Newtown at Carmichael Reservoir on the day is the only real part of this"
+  },
+  {
+   "id": "R0192",
+   "incident": "I068",
+   "true_place": "St Kitts Place, Woodridge",
+   "true_lat": -41.204927390749134,
+   "true_lon": 174.82484404188017,
+   "issue": "water",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "generated fault, matched to a record in the generated feeds; the 82.0 mm recorded at Porirua Stream at Woodridge on the day is the only real part of this"
   },
   {
    "id": "R0193",
@@ -2331,15 +2331,15 @@
   },
   {
    "id": "R0194",
-   "incident": "I073",
-   "true_place": "Tapiri Street, Newtown",
-   "true_lat": -41.306148399137776,
-   "true_lon": 174.79398649757402,
-   "issue": "power",
+   "incident": "I068",
+   "true_place": "St Kitts Place, Woodridge",
+   "true_lat": -41.204927390749134,
+   "true_lon": 174.82484404188017,
+   "issue": "water",
    "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 100.0 mm recorded at Newtown at Carmichael Reservoir on the day is the only real part of this"
+   "basis": "generated fault, matched to a record in the generated feeds; the 82.0 mm recorded at Porirua Stream at Woodridge on the day is the only real part of this"
   },
   {
    "id": "R0195",
@@ -2355,30 +2355,6 @@
   },
   {
    "id": "R0196",
-   "incident": "I023",
-   "true_place": "Levina Avenue, Karori",
-   "true_lat": -41.29706122248023,
-   "true_lon": 174.76638150510246,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 1.3 km from Kaiwharawhara Stream at Karori Reservoir, which recorded 23.6 mm over the five hours to 15:00"
-  },
-  {
-   "id": "R0197",
-   "incident": "I042",
-   "true_place": "Woodridge",
-   "true_lat": -41.21151266143993,
-   "true_lon": 174.8241461533672,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "33.4 mm recorded at Porirua Stream at Woodridge over the five hours to 15:00, peaking in the hour to 13:00"
-  },
-  {
-   "id": "R0198",
    "incident": "I079",
    "true_place": "Kelburn Parade, Te Aro",
    "true_lat": -41.29036165927769,
@@ -2390,7 +2366,43 @@
    "basis": "generated fault, matched to a record in the generated feeds; the 84.0 mm recorded at Wellington at Te Papa on the day is the only real part of this"
   },
   {
+   "id": "R0197",
+   "incident": "I073",
+   "true_place": "Tapiri Street, Newtown",
+   "true_lat": -41.306148399137776,
+   "true_lon": 174.79398649757402,
+   "issue": "power",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "generated fault, matched to a record in the generated feeds; the 100.0 mm recorded at Newtown at Carmichael Reservoir on the day is the only real part of this"
+  },
+  {
+   "id": "R0198",
+   "incident": "I023",
+   "true_place": "Levina Avenue, Karori",
+   "true_lat": -41.29706122248023,
+   "true_lon": 174.76638150510246,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 1.3 km from Kaiwharawhara Stream at Karori Reservoir, which recorded 23.6 mm over the five hours to 15:00"
+  },
+  {
    "id": "R0199",
+   "incident": "I042",
+   "true_place": "Woodridge",
+   "true_lat": -41.21151266143993,
+   "true_lon": 174.8241461533672,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "33.4 mm recorded at Porirua Stream at Woodridge over the five hours to 15:00, peaking in the hour to 13:00"
+  },
+  {
+   "id": "R0200",
    "incident": "I093",
    "true_place": "Ross Street, Newtown",
    "true_lat": -41.32147241360279,
@@ -2400,18 +2412,6 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "100.0 mm recorded at Newtown at Carmichael Reservoir over the day"
-  },
-  {
-   "id": "R0200",
-   "incident": "I094",
-   "true_place": "Harbour View Road, Karori",
-   "true_lat": -41.281934185218574,
-   "true_lon": 174.75978215314922,
-   "issue": "tree",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
   },
   {
    "id": "R0201",
@@ -2427,18 +2427,6 @@
   },
   {
    "id": "R0202",
-   "incident": "I043",
-   "true_place": "Horokiwi Road West, Woodridge",
-   "true_lat": -41.222329588306806,
-   "true_lon": 174.82815640799842,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "street 1.1 km from Porirua Stream at Woodridge, which recorded 33.4 mm over the five hours to 15:00"
-  },
-  {
-   "id": "R0203",
    "incident": "I093",
    "true_place": "Ross Street, Newtown",
    "true_lat": -41.32147241360279,
@@ -2450,19 +2438,7 @@
    "basis": "100.0 mm recorded at Newtown at Carmichael Reservoir over the day"
   },
   {
-   "id": "R0204",
-   "incident": "I036",
-   "true_place": "Tawa",
-   "true_lat": -41.17115046962302,
-   "true_lon": 174.8277157766773,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "29.0 mm recorded at Porirua Stream at Tawa Junction over the five hours to 15:00, peaking in the hour to 13:00"
-  },
-  {
-   "id": "R0205",
+   "id": "R0203",
    "incident": "I043",
    "true_place": "Horokiwi Road West, Woodridge",
    "true_lat": -41.222329588306806,
@@ -2474,16 +2450,40 @@
    "basis": "street 1.1 km from Porirua Stream at Woodridge, which recorded 33.4 mm over the five hours to 15:00"
   },
   {
-   "id": "R0206",
-   "incident": "I068",
-   "true_place": "St Kitts Place, Woodridge",
-   "true_lat": -41.204927390749134,
-   "true_lon": 174.82484404188017,
-   "issue": "water",
-   "category": "action",
+   "id": "R0204",
+   "incident": "I094",
+   "true_place": "Harbour View Road, Karori",
+   "true_lat": -41.281934185218574,
+   "true_lon": 174.75978215314922,
+   "issue": "tree",
+   "category": "verify",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 82.0 mm recorded at Porirua Stream at Woodridge on the day is the only real part of this"
+   "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
+  },
+  {
+   "id": "R0205",
+   "incident": "I036",
+   "true_place": "Tawa",
+   "true_lat": -41.17115046962302,
+   "true_lon": 174.8277157766773,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "29.0 mm recorded at Porirua Stream at Tawa Junction over the five hours to 15:00, peaking in the hour to 13:00"
+  },
+  {
+   "id": "R0206",
+   "incident": "I043",
+   "true_place": "Horokiwi Road West, Woodridge",
+   "true_lat": -41.222329588306806,
+   "true_lon": 174.82815640799842,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "street 1.1 km from Porirua Stream at Woodridge, which recorded 33.4 mm over the five hours to 15:00"
   },
   {
    "id": "R0207",
@@ -2559,42 +2559,18 @@
   },
   {
    "id": "R0213",
-   "incident": "I076",
-   "true_place": "Abel Smith Street, Te Aro",
-   "true_lat": -41.2954649024246,
-   "true_lon": 174.77167411712375,
-   "issue": "tree",
-   "category": "verify",
+   "incident": "I080",
+   "true_place": "Caroni Way, Woodridge",
+   "true_lat": -41.20656806559295,
+   "true_lon": 174.82230779181197,
+   "issue": "road",
+   "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 84.0 mm recorded at Wellington at Te Papa on the day is the only real part of this"
+   "basis": "generated fault, matched to a record in the generated feeds; the 82.0 mm recorded at Porirua Stream at Woodridge on the day is the only real part of this"
   },
   {
    "id": "R0214",
-   "incident": "I080",
-   "true_place": "Caroni Way, Woodridge",
-   "true_lat": -41.20656806559295,
-   "true_lon": 174.82230779181197,
-   "issue": "road",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 82.0 mm recorded at Porirua Stream at Woodridge on the day is the only real part of this"
-  },
-  {
-   "id": "R0215",
-   "incident": "I080",
-   "true_place": "Caroni Way, Woodridge",
-   "true_lat": -41.20656806559295,
-   "true_lon": 174.82230779181197,
-   "issue": "road",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 82.0 mm recorded at Porirua Stream at Woodridge on the day is the only real part of this"
-  },
-  {
-   "id": "R0216",
    "incident": "I074",
    "true_place": "Jasons Place, Grenada Village",
    "true_lat": -41.2124139917932,
@@ -2606,7 +2582,7 @@
    "basis": "generated fault, matched to a record in the generated feeds; the 59.4 mm recorded at Porirua Stream at Seton Nossiter Park on the day is the only real part of this"
   },
   {
-   "id": "R0217",
+   "id": "R0215",
    "incident": "I112",
    "true_place": "Berhampore",
    "true_lat": -41.32322479,
@@ -2618,16 +2594,40 @@
    "basis": "generated FENZ callout volume reported through the afternoon; no public record of the day's notices survives"
   },
   {
-   "id": "R0218",
-   "incident": "I112",
-   "true_place": "Berhampore",
-   "true_lat": -41.32322479,
-   "true_lon": 174.77164659,
-   "issue": "other",
-   "category": "awareness",
+   "id": "R0216",
+   "incident": "I076",
+   "true_place": "Abel Smith Street, Te Aro",
+   "true_lat": -41.2954649024246,
+   "true_lon": 174.77167411712375,
+   "issue": "tree",
+   "category": "verify",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "generated FENZ callout volume reported through the afternoon; no public record of the day's notices survives"
+   "basis": "generated fault, matched to a record in the generated feeds; the 84.0 mm recorded at Wellington at Te Papa on the day is the only real part of this"
+  },
+  {
+   "id": "R0217",
+   "incident": "I001",
+   "true_place": "Konini Street, Wainuiomata",
+   "true_lat": -41.2545707,
+   "true_lon": 174.935358,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": true,
+   "basis": "Konini Street (northern end), Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
+  },
+  {
+   "id": "R0218",
+   "incident": "I074",
+   "true_place": "Jasons Place, Grenada Village",
+   "true_lat": -41.2124139917932,
+   "true_lon": 174.80510537148803,
+   "issue": "power",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "generated fault, matched to a record in the generated feeds; the 59.4 mm recorded at Porirua Stream at Seton Nossiter Park on the day is the only real part of this"
   },
   {
    "id": "R0219",
@@ -2638,20 +2638,20 @@
    "issue": "flooding",
    "category": "action",
    "unfounded": false,
-   "ambiguous": true,
+   "ambiguous": false,
    "basis": "Konini Street (northern end), Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
   },
   {
    "id": "R0220",
-   "incident": "I001",
-   "true_place": "Konini Street, Wainuiomata",
-   "true_lat": -41.2545707,
-   "true_lon": 174.935358,
+   "incident": "I003",
+   "true_place": "Rata Street, Wainuiomata",
+   "true_lat": -41.2574347,
+   "true_lon": 174.9374983,
    "issue": "flooding",
    "category": "action",
    "unfounded": false,
-   "ambiguous": false,
-   "basis": "Konini Street (northern end), Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
+   "ambiguous": true,
+   "basis": "Rata Street, Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
   },
   {
    "id": "R0221",
@@ -2662,20 +2662,20 @@
    "issue": "flooding",
    "category": "action",
    "unfounded": false,
-   "ambiguous": true,
+   "ambiguous": false,
    "basis": "Rata Street, Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
   },
   {
    "id": "R0222",
-   "incident": "I003",
-   "true_place": "Rata Street, Wainuiomata",
-   "true_lat": -41.2574347,
-   "true_lon": 174.9374983,
-   "issue": "flooding",
-   "category": "action",
+   "incident": "I112",
+   "true_place": "Berhampore",
+   "true_lat": -41.32322479,
+   "true_lon": 174.77164659,
+   "issue": "other",
+   "category": "awareness",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "Rata Street, Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
+   "basis": "generated FENZ callout volume reported through the afternoon; no public record of the day's notices survives"
   },
   {
    "id": "R0223",
@@ -2691,18 +2691,6 @@
   },
   {
    "id": "R0224",
-   "incident": "I075",
-   "true_place": "Kake Tonu Way, Karori",
-   "true_lat": -41.292932353135704,
-   "true_lon": 174.7694398570469,
-   "issue": "tree",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir on the day is the only real part of this"
-  },
-  {
-   "id": "R0225",
    "incident": "I076",
    "true_place": "Abel Smith Street, Te Aro",
    "true_lat": -41.2954649024246,
@@ -2712,6 +2700,18 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "generated fault, matched to a record in the generated feeds; the 84.0 mm recorded at Wellington at Te Papa on the day is the only real part of this"
+  },
+  {
+   "id": "R0225",
+   "incident": "I075",
+   "true_place": "Kake Tonu Way, Karori",
+   "true_lat": -41.292932353135704,
+   "true_lon": 174.7694398570469,
+   "issue": "tree",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "generated fault, matched to a record in the generated feeds; the 98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir on the day is the only real part of this"
   },
   {
    "id": "R0226",
@@ -2727,15 +2727,15 @@
   },
   {
    "id": "R0227",
-   "incident": "I075",
-   "true_place": "Kake Tonu Way, Karori",
-   "true_lat": -41.292932353135704,
-   "true_lon": 174.7694398570469,
-   "issue": "tree",
-   "category": "verify",
+   "incident": "I080",
+   "true_place": "Caroni Way, Woodridge",
+   "true_lat": -41.20656806559295,
+   "true_lon": 174.82230779181197,
+   "issue": "road",
+   "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir on the day is the only real part of this"
+   "basis": "generated fault, matched to a record in the generated feeds; the 82.0 mm recorded at Porirua Stream at Woodridge on the day is the only real part of this"
   },
   {
    "id": "R0228",
@@ -2751,15 +2751,15 @@
   },
   {
    "id": "R0229",
-   "incident": "I080",
-   "true_place": "Caroni Way, Woodridge",
-   "true_lat": -41.20656806559295,
-   "true_lon": 174.82230779181197,
-   "issue": "road",
-   "category": "action",
+   "incident": "I117",
+   "true_place": "Wellington region",
+   "true_lat": null,
+   "true_lon": null,
+   "issue": "other",
+   "category": "awareness",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 82.0 mm recorded at Porirua Stream at Woodridge on the day is the only real part of this"
+   "basis": "close to 200 weather-related callouts attended from 02:00, as reported at 16:30"
   },
   {
    "id": "R0230",
@@ -2775,6 +2775,18 @@
   },
   {
    "id": "R0231",
+   "incident": "I080",
+   "true_place": "Caroni Way, Woodridge",
+   "true_lat": -41.20656806559295,
+   "true_lon": 174.82230779181197,
+   "issue": "road",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "generated fault, matched to a record in the generated feeds; the 82.0 mm recorded at Porirua Stream at Woodridge on the day is the only real part of this"
+  },
+  {
+   "id": "R0232",
    "incident": "I001",
    "true_place": "Konini Street, Wainuiomata",
    "true_lat": -41.2545707,
@@ -2786,43 +2798,7 @@
    "basis": "Konini Street (northern end), Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
   },
   {
-   "id": "R0232",
-   "incident": "I117",
-   "true_place": "Wellington region",
-   "true_lat": null,
-   "true_lon": null,
-   "issue": "other",
-   "category": "awareness",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "close to 200 weather-related callouts attended from 02:00, as reported at 16:30"
-  },
-  {
    "id": "R0233",
-   "incident": "I117",
-   "true_place": "Wellington region",
-   "true_lat": null,
-   "true_lon": null,
-   "issue": "other",
-   "category": "awareness",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "close to 200 weather-related callouts attended from 02:00, as reported at 16:30"
-  },
-  {
-   "id": "R0234",
-   "incident": "I074",
-   "true_place": "Jasons Place, Grenada Village",
-   "true_lat": -41.2124139917932,
-   "true_lon": 174.80510537148803,
-   "issue": "power",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 59.4 mm recorded at Porirua Stream at Seton Nossiter Park on the day is the only real part of this"
-  },
-  {
-   "id": "R0235",
    "incident": "I001",
    "true_place": "Konini Street, Wainuiomata",
    "true_lat": -41.2545707,
@@ -2834,7 +2810,7 @@
    "basis": "Konini Street (northern end), Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
   },
   {
-   "id": "R0236",
+   "id": "R0234",
    "incident": "I117",
    "true_place": "Wellington region",
    "true_lat": null,
@@ -2846,19 +2822,7 @@
    "basis": "close to 200 weather-related callouts attended from 02:00, as reported at 16:30"
   },
   {
-   "id": "R0237",
-   "incident": "I074",
-   "true_place": "Jasons Place, Grenada Village",
-   "true_lat": -41.2124139917932,
-   "true_lon": 174.80510537148803,
-   "issue": "power",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "generated fault, matched to a record in the generated feeds; the 59.4 mm recorded at Porirua Stream at Seton Nossiter Park on the day is the only real part of this"
-  },
-  {
-   "id": "R0238",
+   "id": "R0235",
    "incident": "I001",
    "true_place": "Konini Street, Wainuiomata",
    "true_lat": -41.2545707,
@@ -2868,6 +2832,42 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "Konini Street (northern end), Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
+  },
+  {
+   "id": "R0236",
+   "incident": "I054",
+   "true_place": "South Karori",
+   "true_lat": -41.29129588688946,
+   "true_lon": 174.73918714652956,
+   "issue": "slip",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "South Karori recorded as having dwellings left uninhabitable; around ten across the three suburbs"
+  },
+  {
+   "id": "R0237",
+   "incident": "I054",
+   "true_place": "South Karori",
+   "true_lat": -41.29129588688946,
+   "true_lon": 174.73918714652956,
+   "issue": "slip",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "South Karori recorded as having dwellings left uninhabitable; around ten across the three suburbs"
+  },
+  {
+   "id": "R0238",
+   "incident": "I002",
+   "true_place": "Wetherby Grove, Wainuiomata",
+   "true_lat": -41.2554487,
+   "true_lon": 174.9375455,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "Wetherby Street, Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
   },
   {
    "id": "R0239",
@@ -2883,15 +2883,15 @@
   },
   {
    "id": "R0240",
-   "incident": "I002",
-   "true_place": "Wetherby Grove, Wainuiomata",
-   "true_lat": -41.2554487,
-   "true_lon": 174.9375455,
-   "issue": "flooding",
-   "category": "action",
+   "incident": "I115",
+   "true_place": "Wellington region",
+   "true_lat": null,
+   "true_lon": null,
+   "issue": "other",
+   "category": "awareness",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "Wetherby Street, Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
+   "basis": "state of emergency declared 17:25 by the Wellington CDEM Group joint committee, as reported"
   },
   {
    "id": "R0241",
@@ -2907,18 +2907,6 @@
   },
   {
    "id": "R0242",
-   "incident": "I115",
-   "true_place": "Wellington region",
-   "true_lat": null,
-   "true_lon": null,
-   "issue": "other",
-   "category": "awareness",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "state of emergency declared 17:25 by the Wellington CDEM Group joint committee, as reported"
-  },
-  {
-   "id": "R0243",
    "incident": "I057",
    "true_place": "Gordon Street, Hataitai",
    "true_lat": -41.315872241085714,
@@ -2930,19 +2918,19 @@
    "basis": "reported after the 17:25 declaration; 66.8 mm fell at Hataitai at Hataitai Park over the day"
   },
   {
-   "id": "R0244",
-   "incident": "I115",
-   "true_place": "Wellington region",
-   "true_lat": null,
-   "true_lon": null,
-   "issue": "other",
-   "category": "awareness",
+   "id": "R0243",
+   "incident": "I075",
+   "true_place": "Kake Tonu Way, Karori",
+   "true_lat": -41.292932353135704,
+   "true_lon": 174.7694398570469,
+   "issue": "tree",
+   "category": "verify",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "state of emergency declared 17:25 by the Wellington CDEM Group joint committee, as reported"
+   "basis": "generated fault, matched to a record in the generated feeds; the 98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir on the day is the only real part of this"
   },
   {
-   "id": "R0245",
+   "id": "R0244",
    "incident": "I060",
    "true_place": "Cullen Place, Tawa",
    "true_lat": -41.16029552290916,
@@ -2954,20 +2942,8 @@
    "basis": "reported after the 17:25 declaration; 57.0 mm fell at Porirua Stream at Tawa Junction over the day"
   },
   {
-   "id": "R0246",
-   "incident": "I003",
-   "true_place": "Rata Street, Wainuiomata",
-   "true_lat": -41.2574347,
-   "true_lon": 174.9374983,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "Rata Street, Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
-  },
-  {
-   "id": "R0247",
-   "incident": "I115",
+   "id": "R0245",
+   "incident": "I117",
    "true_place": "Wellington region",
    "true_lat": null,
    "true_lon": null,
@@ -2975,34 +2951,22 @@
    "category": "awareness",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "state of emergency declared 17:25 by the Wellington CDEM Group joint committee, as reported"
+   "basis": "close to 200 weather-related callouts attended from 02:00, as reported at 16:30"
   },
   {
-   "id": "R0248",
-   "incident": "I056",
-   "true_place": "Padnell Crescent, Grenada Village",
-   "true_lat": -41.220593446919615,
-   "true_lon": 174.81902966466814,
-   "issue": "flooding",
+   "id": "R0246",
+   "incident": "I060",
+   "true_place": "Cullen Place, Tawa",
+   "true_lat": -41.16029552290916,
+   "true_lon": 174.82404636658188,
+   "issue": "road",
    "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 59.4 mm fell at Porirua Stream at Seton Nossiter Park over the day"
+   "basis": "reported after the 17:25 declaration; 57.0 mm fell at Porirua Stream at Tawa Junction over the day"
   },
   {
-   "id": "R0249",
-   "incident": "I054",
-   "true_place": "South Karori",
-   "true_lat": -41.29129588688946,
-   "true_lon": 174.73918714652956,
-   "issue": "slip",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "South Karori recorded as having dwellings left uninhabitable; around ten across the three suburbs"
-  },
-  {
-   "id": "R0250",
+   "id": "R0247",
    "incident": "I057",
    "true_place": "Gordon Street, Hataitai",
    "true_lat": -41.315872241085714,
@@ -3014,31 +2978,19 @@
    "basis": "reported after the 17:25 declaration; 66.8 mm fell at Hataitai at Hataitai Park over the day"
   },
   {
-   "id": "R0251",
-   "incident": "I115",
-   "true_place": "Wellington region",
-   "true_lat": null,
-   "true_lon": null,
-   "issue": "other",
-   "category": "awareness",
+   "id": "R0248",
+   "incident": "I074",
+   "true_place": "Jasons Place, Grenada Village",
+   "true_lat": -41.2124139917932,
+   "true_lon": 174.80510537148803,
+   "issue": "power",
+   "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "state of emergency declared 17:25 by the Wellington CDEM Group joint committee, as reported"
+   "basis": "generated fault, matched to a record in the generated feeds; the 59.4 mm recorded at Porirua Stream at Seton Nossiter Park on the day is the only real part of this"
   },
   {
-   "id": "R0252",
-   "incident": "I105",
-   "true_place": null,
-   "true_lat": null,
-   "true_lon": null,
-   "issue": "other",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "no location stated or obtainable; needs a human or a call back"
-  },
-  {
-   "id": "R0253",
+   "id": "R0249",
    "incident": "I003",
    "true_place": "Rata Street, Wainuiomata",
    "true_lat": -41.2574347,
@@ -3050,7 +3002,7 @@
    "basis": "Rata Street, Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
   },
   {
-   "id": "R0254",
+   "id": "R0250",
    "incident": "I056",
    "true_place": "Padnell Crescent, Grenada Village",
    "true_lat": -41.220593446919615,
@@ -3062,31 +3014,43 @@
    "basis": "reported after the 17:25 declaration; 59.4 mm fell at Porirua Stream at Seton Nossiter Park over the day"
   },
   {
-   "id": "R0255",
-   "incident": "I062",
-   "true_place": "Catherine Crescent, Woodridge",
-   "true_lat": -41.215916279212216,
-   "true_lon": 174.8182561698837,
-   "issue": "water",
+   "id": "R0251",
+   "incident": "I054",
+   "true_place": "South Karori",
+   "true_lat": -41.29129588688946,
+   "true_lon": 174.73918714652956,
+   "issue": "slip",
    "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 82.0 mm fell at Porirua Stream at Woodridge over the day"
+   "basis": "South Karori recorded as having dwellings left uninhabitable; around ten across the three suburbs"
   },
   {
-   "id": "R0256",
-   "incident": "I105",
-   "true_place": null,
-   "true_lat": null,
-   "true_lon": null,
-   "issue": "other",
-   "category": "verify",
+   "id": "R0252",
+   "incident": "I056",
+   "true_place": "Padnell Crescent, Grenada Village",
+   "true_lat": -41.220593446919615,
+   "true_lon": 174.81902966466814,
+   "issue": "flooding",
+   "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "no location stated or obtainable; needs a human or a call back"
+   "basis": "reported after the 17:25 declaration; 59.4 mm fell at Porirua Stream at Seton Nossiter Park over the day"
   },
   {
-   "id": "R0257",
+   "id": "R0253",
+   "incident": "I060",
+   "true_place": "Cullen Place, Tawa",
+   "true_lat": -41.16029552290916,
+   "true_lon": 174.82404636658188,
+   "issue": "road",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 57.0 mm fell at Porirua Stream at Tawa Junction over the day"
+  },
+  {
+   "id": "R0254",
    "incident": "I115",
    "true_place": "Wellington region",
    "true_lat": null,
@@ -3098,16 +3062,52 @@
    "basis": "state of emergency declared 17:25 by the Wellington CDEM Group joint committee, as reported"
   },
   {
-   "id": "R0258",
-   "incident": "I054",
-   "true_place": "South Karori",
-   "true_lat": -41.29129588688946,
-   "true_lon": 174.73918714652956,
-   "issue": "slip",
+   "id": "R0255",
+   "incident": "I105",
+   "true_place": null,
+   "true_lat": null,
+   "true_lon": null,
+   "issue": "other",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "no location stated or obtainable; needs a human or a call back"
+  },
+  {
+   "id": "R0256",
+   "incident": "I003",
+   "true_place": "Rata Street, Wainuiomata",
+   "true_lat": -41.2574347,
+   "true_lon": 174.9374983,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": true,
+   "basis": "Rata Street, Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
+  },
+  {
+   "id": "R0257",
+   "incident": "I062",
+   "true_place": "Catherine Crescent, Woodridge",
+   "true_lat": -41.215916279212216,
+   "true_lon": 174.8182561698837,
+   "issue": "water",
    "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "South Karori recorded as having dwellings left uninhabitable; around ten across the three suburbs"
+   "basis": "reported after the 17:25 declaration; 82.0 mm fell at Porirua Stream at Woodridge over the day"
+  },
+  {
+   "id": "R0258",
+   "incident": "I056",
+   "true_place": "Padnell Crescent, Grenada Village",
+   "true_lat": -41.220593446919615,
+   "true_lon": 174.81902966466814,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 59.4 mm fell at Porirua Stream at Seton Nossiter Park over the day"
   },
   {
    "id": "R0259",
@@ -3123,114 +3123,18 @@
   },
   {
    "id": "R0260",
-   "incident": "I060",
-   "true_place": "Cullen Place, Tawa",
-   "true_lat": -41.16029552290916,
-   "true_lon": 174.82404636658188,
-   "issue": "road",
-   "category": "action",
+   "incident": "I116",
+   "true_place": "Wellington City Mission, Oxford Terrace",
+   "true_lat": -41.303460371239176,
+   "true_lon": 174.7797874165606,
+   "issue": "other",
+   "category": "awareness",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 57.0 mm fell at Porirua Stream at Tawa Junction over the day"
+   "basis": "Emergency Assistance Centre opened 18:00 at the Wellington City Mission, Oxford Terrace, as reported"
   },
   {
    "id": "R0261",
-   "incident": "I115",
-   "true_place": "Wellington region",
-   "true_lat": null,
-   "true_lon": null,
-   "issue": "other",
-   "category": "awareness",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "state of emergency declared 17:25 by the Wellington CDEM Group joint committee, as reported"
-  },
-  {
-   "id": "R0262",
-   "incident": "I116",
-   "true_place": "Wellington City Mission, Oxford Terrace",
-   "true_lat": -41.303460371239176,
-   "true_lon": 174.7797874165606,
-   "issue": "other",
-   "category": "awareness",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "Emergency Assistance Centre opened 18:00 at the Wellington City Mission, Oxford Terrace, as reported"
-  },
-  {
-   "id": "R0263",
-   "incident": "I062",
-   "true_place": "Catherine Crescent, Woodridge",
-   "true_lat": -41.215916279212216,
-   "true_lon": 174.8182561698837,
-   "issue": "water",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 82.0 mm fell at Porirua Stream at Woodridge over the day"
-  },
-  {
-   "id": "R0264",
-   "incident": "I002",
-   "true_place": "Wetherby Grove, Wainuiomata",
-   "true_lat": -41.2554487,
-   "true_lon": 174.9375455,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "Wetherby Street, Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
-  },
-  {
-   "id": "R0265",
-   "incident": "I056",
-   "true_place": "Padnell Crescent, Grenada Village",
-   "true_lat": -41.220593446919615,
-   "true_lon": 174.81902966466814,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 59.4 mm fell at Porirua Stream at Seton Nossiter Park over the day"
-  },
-  {
-   "id": "R0266",
-   "incident": "I063",
-   "true_place": "The Parade, Berhampore",
-   "true_lat": -41.33588803315349,
-   "true_lon": 174.77255953941463,
-   "issue": "water",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 134.0 mm fell at Berhampore at Nursery over the day"
-  },
-  {
-   "id": "R0267",
-   "incident": "I054",
-   "true_place": "South Karori",
-   "true_lat": -41.29129588688946,
-   "true_lon": 174.73918714652956,
-   "issue": "slip",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "South Karori recorded as having dwellings left uninhabitable; around ten across the three suburbs"
-  },
-  {
-   "id": "R0268",
-   "incident": "I116",
-   "true_place": "Wellington City Mission, Oxford Terrace",
-   "true_lat": -41.303460371239176,
-   "true_lon": 174.7797874165606,
-   "issue": "other",
-   "category": "awareness",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "Emergency Assistance Centre opened 18:00 at the Wellington City Mission, Oxford Terrace, as reported"
-  },
-  {
-   "id": "R0269",
    "incident": "I057",
    "true_place": "Gordon Street, Hataitai",
    "true_lat": -41.315872241085714,
@@ -3242,7 +3146,19 @@
    "basis": "reported after the 17:25 declaration; 66.8 mm fell at Hataitai at Hataitai Park over the day"
   },
   {
-   "id": "R0270",
+   "id": "R0262",
+   "incident": "I002",
+   "true_place": "Wetherby Grove, Wainuiomata",
+   "true_lat": -41.2554487,
+   "true_lon": 174.9375455,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "Wetherby Street, Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
+  },
+  {
+   "id": "R0263",
    "incident": "I115",
    "true_place": "Wellington region",
    "true_lat": null,
@@ -3254,7 +3170,55 @@
    "basis": "state of emergency declared 17:25 by the Wellington CDEM Group joint committee, as reported"
   },
   {
-   "id": "R0271",
+   "id": "R0264",
+   "incident": "I105",
+   "true_place": null,
+   "true_lat": null,
+   "true_lon": null,
+   "issue": "other",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "no location stated or obtainable; needs a human or a call back"
+  },
+  {
+   "id": "R0265",
+   "incident": "I063",
+   "true_place": "The Parade, Berhampore",
+   "true_lat": -41.33588803315349,
+   "true_lon": 174.77255953941463,
+   "issue": "water",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 134.0 mm fell at Berhampore at Nursery over the day"
+  },
+  {
+   "id": "R0266",
+   "incident": "I056",
+   "true_place": "Padnell Crescent, Grenada Village",
+   "true_lat": -41.220593446919615,
+   "true_lon": 174.81902966466814,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 59.4 mm fell at Porirua Stream at Seton Nossiter Park over the day"
+  },
+  {
+   "id": "R0267",
+   "incident": "I062",
+   "true_place": "Catherine Crescent, Woodridge",
+   "true_lat": -41.215916279212216,
+   "true_lon": 174.8182561698837,
+   "issue": "water",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 82.0 mm fell at Porirua Stream at Woodridge over the day"
+  },
+  {
+   "id": "R0268",
    "incident": "I052",
    "true_place": "Berhampore",
    "true_lat": -41.322622748815164,
@@ -3266,7 +3230,7 @@
    "basis": "Berhampore recorded as having dwellings left uninhabitable; around ten across the three suburbs"
   },
   {
-   "id": "R0272",
+   "id": "R0269",
    "incident": "I053",
    "true_place": "Mornington",
    "true_lat": -41.318819999999995,
@@ -3278,7 +3242,7 @@
    "basis": "Mornington recorded as having dwellings left uninhabitable; around ten across the three suburbs"
   },
   {
-   "id": "R0273",
+   "id": "R0270",
    "incident": "I052",
    "true_place": "Berhampore",
    "true_lat": -41.322622748815164,
@@ -3288,6 +3252,42 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "Berhampore recorded as having dwellings left uninhabitable; around ten across the three suburbs"
+  },
+  {
+   "id": "R0271",
+   "incident": "I055",
+   "true_place": "Aranoni Street, Berhampore",
+   "true_lat": -41.33388650904933,
+   "true_lon": 174.77160276996239,
+   "issue": "water",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 134.0 mm fell at Berhampore at Nursery over the day"
+  },
+  {
+   "id": "R0272",
+   "incident": "I055",
+   "true_place": "Aranoni Street, Berhampore",
+   "true_lat": -41.33388650904933,
+   "true_lon": 174.77160276996239,
+   "issue": "water",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 134.0 mm fell at Berhampore at Nursery over the day"
+  },
+  {
+   "id": "R0273",
+   "incident": "I115",
+   "true_place": "Wellington region",
+   "true_lat": null,
+   "true_lon": null,
+   "issue": "other",
+   "category": "awareness",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "state of emergency declared 17:25 by the Wellington CDEM Group joint committee, as reported"
   },
   {
    "id": "R0274",
@@ -3303,42 +3303,6 @@
   },
   {
    "id": "R0275",
-   "incident": "I055",
-   "true_place": "Aranoni Street, Berhampore",
-   "true_lat": -41.33388650904933,
-   "true_lon": 174.77160276996239,
-   "issue": "water",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 134.0 mm fell at Berhampore at Nursery over the day"
-  },
-  {
-   "id": "R0276",
-   "incident": "I060",
-   "true_place": "Cullen Place, Tawa",
-   "true_lat": -41.16029552290916,
-   "true_lon": 174.82404636658188,
-   "issue": "road",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 57.0 mm fell at Porirua Stream at Tawa Junction over the day"
-  },
-  {
-   "id": "R0277",
-   "incident": "I058",
-   "true_place": "England Lane, Karori",
-   "true_lat": -41.28485979075903,
-   "true_lon": 174.73791967519423,
-   "issue": "flooding",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 98.0 mm fell at Kaiwharawhara Stream at Karori Reservoir over the day"
-  },
-  {
-   "id": "R0278",
    "incident": "I002",
    "true_place": "Wetherby Grove, Wainuiomata",
    "true_lat": -41.2554487,
@@ -3350,16 +3314,52 @@
    "basis": "Wetherby Street, Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
   },
   {
-   "id": "R0279",
-   "incident": "I054",
-   "true_place": "South Karori",
-   "true_lat": -41.29129588688946,
-   "true_lon": 174.73918714652956,
-   "issue": "slip",
+   "id": "R0276",
+   "incident": "I058",
+   "true_place": "England Lane, Karori",
+   "true_lat": -41.28485979075903,
+   "true_lon": 174.73791967519423,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 98.0 mm fell at Kaiwharawhara Stream at Karori Reservoir over the day"
+  },
+  {
+   "id": "R0277",
+   "incident": "I115",
+   "true_place": "Wellington region",
+   "true_lat": null,
+   "true_lon": null,
+   "issue": "other",
+   "category": "awareness",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "state of emergency declared 17:25 by the Wellington CDEM Group joint committee, as reported"
+  },
+  {
+   "id": "R0278",
+   "incident": "I053",
+   "true_place": "Mornington",
+   "true_lat": -41.318819999999995,
+   "true_lon": 174.76573085714284,
+   "issue": "flooding",
    "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "South Karori recorded as having dwellings left uninhabitable; around ten across the three suburbs"
+   "basis": "Mornington recorded as having dwellings left uninhabitable; around ten across the three suburbs"
+  },
+  {
+   "id": "R0279",
+   "incident": "I063",
+   "true_place": "The Parade, Berhampore",
+   "true_lat": -41.33588803315349,
+   "true_lon": 174.77255953941463,
+   "issue": "water",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 134.0 mm fell at Berhampore at Nursery over the day"
   },
   {
    "id": "R0280",
@@ -3375,6 +3375,18 @@
   },
   {
    "id": "R0281",
+   "incident": "I053",
+   "true_place": "Mornington",
+   "true_lat": -41.318819999999995,
+   "true_lon": 174.76573085714284,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "Mornington recorded as having dwellings left uninhabitable; around ten across the three suburbs"
+  },
+  {
+   "id": "R0282",
    "incident": "I116",
    "true_place": "Wellington City Mission, Oxford Terrace",
    "true_lat": -41.303460371239176,
@@ -3386,40 +3398,28 @@
    "basis": "Emergency Assistance Centre opened 18:00 at the Wellington City Mission, Oxford Terrace, as reported"
   },
   {
-   "id": "R0282",
-   "incident": "I063",
-   "true_place": "The Parade, Berhampore",
-   "true_lat": -41.33588803315349,
-   "true_lon": 174.77255953941463,
-   "issue": "water",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 134.0 mm fell at Berhampore at Nursery over the day"
-  },
-  {
    "id": "R0283",
-   "incident": "I058",
-   "true_place": "England Lane, Karori",
-   "true_lat": -41.28485979075903,
-   "true_lon": 174.73791967519423,
-   "issue": "flooding",
-   "category": "verify",
+   "incident": "I115",
+   "true_place": "Wellington region",
+   "true_lat": null,
+   "true_lon": null,
+   "issue": "other",
+   "category": "awareness",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 98.0 mm fell at Kaiwharawhara Stream at Karori Reservoir over the day"
+   "basis": "state of emergency declared 17:25 by the Wellington CDEM Group joint committee, as reported"
   },
   {
    "id": "R0284",
-   "incident": "I053",
-   "true_place": "Mornington",
-   "true_lat": -41.318819999999995,
-   "true_lon": 174.76573085714284,
+   "incident": "I001",
+   "true_place": "Konini Street, Wainuiomata",
+   "true_lat": -41.2545707,
+   "true_lon": 174.935358,
    "issue": "flooding",
    "category": "action",
    "unfounded": false,
-   "ambiguous": false,
-   "basis": "Mornington recorded as having dwellings left uninhabitable; around ten across the three suburbs"
+   "ambiguous": true,
+   "basis": "Konini Street (northern end), Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
   },
   {
    "id": "R0285",
@@ -3435,30 +3435,42 @@
   },
   {
    "id": "R0286",
-   "incident": "I055",
-   "true_place": "Aranoni Street, Berhampore",
-   "true_lat": -41.33388650904933,
-   "true_lon": 174.77160276996239,
+   "incident": "I062",
+   "true_place": "Catherine Crescent, Woodridge",
+   "true_lat": -41.215916279212216,
+   "true_lon": 174.8182561698837,
    "issue": "water",
-   "category": "verify",
+   "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 134.0 mm fell at Berhampore at Nursery over the day"
+   "basis": "reported after the 17:25 declaration; 82.0 mm fell at Porirua Stream at Woodridge over the day"
   },
   {
    "id": "R0287",
-   "incident": "I001",
-   "true_place": "Konini Street, Wainuiomata",
-   "true_lat": -41.2545707,
-   "true_lon": 174.935358,
-   "issue": "flooding",
-   "category": "action",
+   "incident": "I115",
+   "true_place": "Wellington region",
+   "true_lat": null,
+   "true_lon": null,
+   "issue": "other",
+   "category": "awareness",
    "unfounded": false,
-   "ambiguous": true,
-   "basis": "Konini Street (northern end), Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026"
+   "ambiguous": false,
+   "basis": "state of emergency declared 17:25 by the Wellington CDEM Group joint committee, as reported"
   },
   {
    "id": "R0288",
+   "incident": "I058",
+   "true_place": "England Lane, Karori",
+   "true_lat": -41.28485979075903,
+   "true_lon": 174.73791967519423,
+   "issue": "flooding",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 98.0 mm fell at Kaiwharawhara Stream at Karori Reservoir over the day"
+  },
+  {
+   "id": "R0289",
    "incident": "I059",
    "true_place": "Auckland Terrace, Newtown",
    "true_lat": -41.325499722035836,
@@ -3470,7 +3482,31 @@
    "basis": "reported after the 17:25 declaration; 100.0 mm fell at Newtown at Carmichael Reservoir over the day"
   },
   {
-   "id": "R0289",
+   "id": "R0290",
+   "incident": "I116",
+   "true_place": "Wellington City Mission, Oxford Terrace",
+   "true_lat": -41.303460371239176,
+   "true_lon": 174.7797874165606,
+   "issue": "other",
+   "category": "awareness",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "Emergency Assistance Centre opened 18:00 at the Wellington City Mission, Oxford Terrace, as reported"
+  },
+  {
+   "id": "R0291",
+   "incident": "I116",
+   "true_place": "Wellington City Mission, Oxford Terrace",
+   "true_lat": -41.303460371239176,
+   "true_lon": 174.7797874165606,
+   "issue": "other",
+   "category": "awareness",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "Emergency Assistance Centre opened 18:00 at the Wellington City Mission, Oxford Terrace, as reported"
+  },
+  {
+   "id": "R0292",
    "incident": "I047",
    "true_place": "Roy Street, Newtown",
    "true_lat": -41.31897989872081,
@@ -3480,42 +3516,6 @@
    "unfounded": false,
    "ambiguous": true,
    "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Newtown, 0.5 km from Newtown at Carmichael Reservoir"
-  },
-  {
-   "id": "R0290",
-   "incident": "I053",
-   "true_place": "Mornington",
-   "true_lat": -41.318819999999995,
-   "true_lon": 174.76573085714284,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "Mornington recorded as having dwellings left uninhabitable; around ten across the three suburbs"
-  },
-  {
-   "id": "R0291",
-   "incident": "I059",
-   "true_place": "Auckland Terrace, Newtown",
-   "true_lat": -41.325499722035836,
-   "true_lon": 174.78727543495978,
-   "issue": "slip",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 100.0 mm fell at Newtown at Carmichael Reservoir over the day"
-  },
-  {
-   "id": "R0292",
-   "incident": "I053",
-   "true_place": "Mornington",
-   "true_lat": -41.318819999999995,
-   "true_lon": 174.76573085714284,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "Mornington recorded as having dwellings left uninhabitable; around ten across the three suburbs"
   },
   {
    "id": "R0293",
@@ -3531,15 +3531,15 @@
   },
   {
    "id": "R0294",
-   "incident": "I047",
-   "true_place": "Roy Street, Newtown",
-   "true_lat": -41.31897989872081,
-   "true_lon": 174.78284745087524,
-   "issue": "road",
+   "incident": "I055",
+   "true_place": "Aranoni Street, Berhampore",
+   "true_lat": -41.33388650904933,
+   "true_lon": 174.77160276996239,
+   "issue": "water",
    "category": "verify",
    "unfounded": false,
-   "ambiguous": true,
-   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Newtown, 0.5 km from Newtown at Carmichael Reservoir"
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 134.0 mm fell at Berhampore at Nursery over the day"
   },
   {
    "id": "R0295",
@@ -3555,6 +3555,30 @@
   },
   {
    "id": "R0296",
+   "incident": "I047",
+   "true_place": "Roy Street, Newtown",
+   "true_lat": -41.31897989872081,
+   "true_lon": 174.78284745087524,
+   "issue": "road",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Newtown, 0.5 km from Newtown at Carmichael Reservoir"
+  },
+  {
+   "id": "R0297",
+   "incident": "I053",
+   "true_place": "Mornington",
+   "true_lat": -41.318819999999995,
+   "true_lon": 174.76573085714284,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "Mornington recorded as having dwellings left uninhabitable; around ten across the three suburbs"
+  },
+  {
+   "id": "R0298",
    "incident": "I064",
    "true_place": "Macaulay Street, Grenada Village",
    "true_lat": -41.222684632565745,
@@ -3566,7 +3590,7 @@
    "basis": "reported after the 17:25 declaration; 59.4 mm fell at Porirua Stream at Seton Nossiter Park over the day"
   },
   {
-   "id": "R0297",
+   "id": "R0299",
    "incident": "I052",
    "true_place": "Berhampore",
    "true_lat": -41.322622748815164,
@@ -3578,7 +3602,7 @@
    "basis": "Berhampore recorded as having dwellings left uninhabitable; around ten across the three suburbs"
   },
   {
-   "id": "R0298",
+   "id": "R0300",
    "incident": "I059",
    "true_place": "Auckland Terrace, Newtown",
    "true_lat": -41.325499722035836,
@@ -3590,19 +3614,19 @@
    "basis": "reported after the 17:25 declaration; 100.0 mm fell at Newtown at Carmichael Reservoir over the day"
   },
   {
-   "id": "R0299",
-   "incident": "I047",
-   "true_place": "Roy Street, Newtown",
-   "true_lat": -41.31897989872081,
-   "true_lon": 174.78284745087524,
-   "issue": "road",
+   "id": "R0301",
+   "incident": "I064",
+   "true_place": "Macaulay Street, Grenada Village",
+   "true_lat": -41.222684632565745,
+   "true_lon": 174.80921842472358,
+   "issue": "flooding",
    "category": "verify",
    "unfounded": false,
-   "ambiguous": true,
-   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Newtown, 0.5 km from Newtown at Carmichael Reservoir"
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 59.4 mm fell at Porirua Stream at Seton Nossiter Park over the day"
   },
   {
-   "id": "R0300",
+   "id": "R0302",
    "incident": "I095",
    "true_place": "Raroa Road, Karori",
    "true_lat": -41.29082135436747,
@@ -3612,30 +3636,6 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
-  },
-  {
-   "id": "R0301",
-   "incident": "I056",
-   "true_place": "Padnell Crescent, Grenada Village",
-   "true_lat": -41.220593446919615,
-   "true_lon": 174.81902966466814,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 59.4 mm fell at Porirua Stream at Seton Nossiter Park over the day"
-  },
-  {
-   "id": "R0302",
-   "incident": "I061",
-   "true_place": "Rosina Fell Lane, Te Aro",
-   "true_lat": -41.283280149882685,
-   "true_lon": 174.77408169584663,
-   "issue": "water",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 84.0 mm fell at Wellington at Te Papa over the day"
   },
   {
    "id": "R0303",
@@ -3651,18 +3651,6 @@
   },
   {
    "id": "R0304",
-   "incident": "I062",
-   "true_place": "Catherine Crescent, Woodridge",
-   "true_lat": -41.215916279212216,
-   "true_lon": 174.8182561698837,
-   "issue": "water",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 82.0 mm fell at Porirua Stream at Woodridge over the day"
-  },
-  {
-   "id": "R0305",
    "incident": "I095",
    "true_place": "Raroa Road, Karori",
    "true_lat": -41.29082135436747,
@@ -3672,6 +3660,18 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
+  },
+  {
+   "id": "R0305",
+   "incident": "I059",
+   "true_place": "Auckland Terrace, Newtown",
+   "true_lat": -41.325499722035836,
+   "true_lon": 174.78727543495978,
+   "issue": "slip",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 100.0 mm fell at Newtown at Carmichael Reservoir over the day"
   },
   {
    "id": "R0306",
@@ -3687,18 +3687,6 @@
   },
   {
    "id": "R0307",
-   "incident": "I116",
-   "true_place": "Wellington City Mission, Oxford Terrace",
-   "true_lat": -41.303460371239176,
-   "true_lon": 174.7797874165606,
-   "issue": "other",
-   "category": "awareness",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "Emergency Assistance Centre opened 18:00 at the Wellington City Mission, Oxford Terrace, as reported"
-  },
-  {
-   "id": "R0308",
    "incident": "I047",
    "true_place": "Roy Street, Newtown",
    "true_lat": -41.31897989872081,
@@ -3710,31 +3698,7 @@
    "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Newtown, 0.5 km from Newtown at Carmichael Reservoir"
   },
   {
-   "id": "R0309",
-   "incident": "I053",
-   "true_place": "Mornington",
-   "true_lat": -41.318819999999995,
-   "true_lon": 174.76573085714284,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "Mornington recorded as having dwellings left uninhabitable; around ten across the three suburbs"
-  },
-  {
-   "id": "R0310",
-   "incident": "I061",
-   "true_place": "Rosina Fell Lane, Te Aro",
-   "true_lat": -41.283280149882685,
-   "true_lon": 174.77408169584663,
-   "issue": "water",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 84.0 mm fell at Wellington at Te Papa over the day"
-  },
-  {
-   "id": "R0311",
+   "id": "R0308",
    "incident": "I064",
    "true_place": "Macaulay Street, Grenada Village",
    "true_lat": -41.222684632565745,
@@ -3746,7 +3710,7 @@
    "basis": "reported after the 17:25 declaration; 59.4 mm fell at Porirua Stream at Seton Nossiter Park over the day"
   },
   {
-   "id": "R0312",
+   "id": "R0309",
    "incident": "I072",
    "true_place": "Karo Drive, Te Aro",
    "true_lat": -41.29440617186136,
@@ -3758,19 +3722,31 @@
    "basis": "generated fault, matched to a record in the generated feeds; the 84.0 mm recorded at Wellington at Te Papa on the day is the only real part of this"
   },
   {
-   "id": "R0313",
-   "incident": "I055",
-   "true_place": "Aranoni Street, Berhampore",
-   "true_lat": -41.33388650904933,
-   "true_lon": 174.77160276996239,
-   "issue": "water",
-   "category": "verify",
+   "id": "R0310",
+   "incident": "I053",
+   "true_place": "Mornington",
+   "true_lat": -41.318819999999995,
+   "true_lon": 174.76573085714284,
+   "issue": "flooding",
+   "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 134.0 mm fell at Berhampore at Nursery over the day"
+   "basis": "Mornington recorded as having dwellings left uninhabitable; around ten across the three suburbs"
   },
   {
-   "id": "R0314",
+   "id": "R0311",
+   "incident": "I054",
+   "true_place": "South Karori",
+   "true_lat": -41.29129588688946,
+   "true_lon": 174.73918714652956,
+   "issue": "slip",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "South Karori recorded as having dwellings left uninhabitable; around ten across the three suburbs"
+  },
+  {
+   "id": "R0312",
    "incident": "I095",
    "true_place": "Raroa Road, Karori",
    "true_lat": -41.29082135436747,
@@ -3782,7 +3758,19 @@
    "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
   },
   {
-   "id": "R0315",
+   "id": "R0313",
+   "incident": "I061",
+   "true_place": "Rosina Fell Lane, Te Aro",
+   "true_lat": -41.283280149882685,
+   "true_lon": 174.77408169584663,
+   "issue": "water",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 84.0 mm fell at Wellington at Te Papa over the day"
+  },
+  {
+   "id": "R0314",
    "incident": "I054",
    "true_place": "South Karori",
    "true_lat": -41.29129588688946,
@@ -3792,6 +3780,18 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "South Karori recorded as having dwellings left uninhabitable; around ten across the three suburbs"
+  },
+  {
+   "id": "R0315",
+   "incident": "I047",
+   "true_place": "Roy Street, Newtown",
+   "true_lat": -41.31897989872081,
+   "true_lon": 174.78284745087524,
+   "issue": "road",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "Roy Street exists in 2 places in the gazetteer; this one is in Newtown, 0.5 km from Newtown at Carmichael Reservoir"
   },
   {
    "id": "R0316",
@@ -3807,6 +3807,18 @@
   },
   {
    "id": "R0317",
+   "incident": "I116",
+   "true_place": "Wellington City Mission, Oxford Terrace",
+   "true_lat": -41.303460371239176,
+   "true_lon": 174.7797874165606,
+   "issue": "other",
+   "category": "awareness",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "Emergency Assistance Centre opened 18:00 at the Wellington City Mission, Oxford Terrace, as reported"
+  },
+  {
+   "id": "R0318",
    "incident": "I053",
    "true_place": "Mornington",
    "true_lat": -41.318819999999995,
@@ -3818,7 +3830,7 @@
    "basis": "Mornington recorded as having dwellings left uninhabitable; around ten across the three suburbs"
   },
   {
-   "id": "R0318",
+   "id": "R0319",
    "incident": "I054",
    "true_place": "South Karori",
    "true_lat": -41.29129588688946,
@@ -3830,19 +3842,19 @@
    "basis": "South Karori recorded as having dwellings left uninhabitable; around ten across the three suburbs"
   },
   {
-   "id": "R0319",
-   "incident": "I064",
-   "true_place": "Macaulay Street, Grenada Village",
-   "true_lat": -41.222684632565745,
-   "true_lon": 174.80921842472358,
-   "issue": "flooding",
+   "id": "R0320",
+   "incident": "I061",
+   "true_place": "Rosina Fell Lane, Te Aro",
+   "true_lat": -41.283280149882685,
+   "true_lon": 174.77408169584663,
+   "issue": "water",
    "category": "verify",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 59.4 mm fell at Porirua Stream at Seton Nossiter Park over the day"
+   "basis": "reported after the 17:25 declaration; 84.0 mm fell at Wellington at Te Papa over the day"
   },
   {
-   "id": "R0320",
+   "id": "R0321",
    "incident": "I096",
    "true_place": "Wendouree Way, Karori",
    "true_lat": -41.28921638245846,
@@ -3854,28 +3866,16 @@
    "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
   },
   {
-   "id": "R0321",
-   "incident": "I052",
-   "true_place": "Berhampore",
-   "true_lat": -41.322622748815164,
-   "true_lon": 174.7741767772512,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "Berhampore recorded as having dwellings left uninhabitable; around ten across the three suburbs"
-  },
-  {
    "id": "R0322",
-   "incident": "I053",
-   "true_place": "Mornington",
-   "true_lat": -41.318819999999995,
-   "true_lon": 174.76573085714284,
-   "issue": "flooding",
-   "category": "action",
+   "incident": "I096",
+   "true_place": "Wendouree Way, Karori",
+   "true_lat": -41.28921638245846,
+   "true_lon": 174.74976392477566,
+   "issue": "road",
+   "category": "verify",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "Mornington recorded as having dwellings left uninhabitable; around ten across the three suburbs"
+   "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
   },
   {
    "id": "R0323",
@@ -3891,54 +3891,6 @@
   },
   {
    "id": "R0324",
-   "incident": "I096",
-   "true_place": "Wendouree Way, Karori",
-   "true_lat": -41.28921638245846,
-   "true_lon": 174.74976392477566,
-   "issue": "road",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
-  },
-  {
-   "id": "R0325",
-   "incident": "I096",
-   "true_place": "Wendouree Way, Karori",
-   "true_lat": -41.28921638245846,
-   "true_lon": 174.74976392477566,
-   "issue": "road",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
-  },
-  {
-   "id": "R0326",
-   "incident": "I053",
-   "true_place": "Mornington",
-   "true_lat": -41.318819999999995,
-   "true_lon": 174.76573085714284,
-   "issue": "flooding",
-   "category": "action",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "Mornington recorded as having dwellings left uninhabitable; around ten across the three suburbs"
-  },
-  {
-   "id": "R0327",
-   "incident": "I061",
-   "true_place": "Rosina Fell Lane, Te Aro",
-   "true_lat": -41.283280149882685,
-   "true_lon": 174.77408169584663,
-   "issue": "water",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "reported after the 17:25 declaration; 84.0 mm fell at Wellington at Te Papa over the day"
-  },
-  {
-   "id": "R0328",
    "incident": "I052",
    "true_place": "Berhampore",
    "true_lat": -41.322622748815164,
@@ -3950,7 +3902,31 @@
    "basis": "Berhampore recorded as having dwellings left uninhabitable; around ten across the three suburbs"
   },
   {
-   "id": "R0329",
+   "id": "R0325",
+   "incident": "I053",
+   "true_place": "Mornington",
+   "true_lat": -41.318819999999995,
+   "true_lon": 174.76573085714284,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "Mornington recorded as having dwellings left uninhabitable; around ten across the three suburbs"
+  },
+  {
+   "id": "R0326",
+   "incident": "I052",
+   "true_place": "Berhampore",
+   "true_lat": -41.322622748815164,
+   "true_lon": 174.7741767772512,
+   "issue": "flooding",
+   "category": "action",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "Berhampore recorded as having dwellings left uninhabitable; around ten across the three suburbs"
+  },
+  {
+   "id": "R0327",
    "incident": "I097",
    "true_place": "Ngaio Road, Karori",
    "true_lat": -41.2860780972212,
@@ -3960,33 +3936,33 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
+  },
+  {
+   "id": "R0328",
+   "incident": "I096",
+   "true_place": "Wendouree Way, Karori",
+   "true_lat": -41.28921638245846,
+   "true_lon": 174.74976392477566,
+   "issue": "road",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
+  },
+  {
+   "id": "R0329",
+   "incident": "I061",
+   "true_place": "Rosina Fell Lane, Te Aro",
+   "true_lat": -41.283280149882685,
+   "true_lon": 174.77408169584663,
+   "issue": "water",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "reported after the 17:25 declaration; 84.0 mm fell at Wellington at Te Papa over the day"
   },
   {
    "id": "R0330",
-   "incident": "I116",
-   "true_place": "Wellington City Mission, Oxford Terrace",
-   "true_lat": -41.303460371239176,
-   "true_lon": 174.7797874165606,
-   "issue": "other",
-   "category": "awareness",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "Emergency Assistance Centre opened 18:00 at the Wellington City Mission, Oxford Terrace, as reported"
-  },
-  {
-   "id": "R0331",
-   "incident": "I097",
-   "true_place": "Ngaio Road, Karori",
-   "true_lat": -41.2860780972212,
-   "true_lon": 174.7631819723497,
-   "issue": "water",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
-  },
-  {
-   "id": "R0332",
    "incident": "I098",
    "true_place": "Southgate Road, Berhampore",
    "true_lat": -41.334786517186586,
@@ -3996,6 +3972,30 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "134.0 mm recorded at Berhampore at Nursery over the day"
+  },
+  {
+   "id": "R0331",
+   "incident": "I113",
+   "true_place": "Newtown",
+   "true_lat": -41.31589434,
+   "true_lon": 174.78786302,
+   "issue": "road",
+   "category": "awareness",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "generated WCC roading reopening notified in the evening; no public record of the day's notices survives"
+  },
+  {
+   "id": "R0332",
+   "incident": "I097",
+   "true_place": "Ngaio Road, Karori",
+   "true_lat": -41.2860780972212,
+   "true_lon": 174.7631819723497,
+   "issue": "water",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
   },
   {
    "id": "R0333",
@@ -4035,42 +4035,30 @@
   },
   {
    "id": "R0336",
-   "incident": "I113",
-   "true_place": "Newtown",
-   "true_lat": -41.31589434,
-   "true_lon": 174.78786302,
-   "issue": "road",
-   "category": "awareness",
+   "incident": "I102",
+   "true_place": null,
+   "true_lat": null,
+   "true_lon": null,
+   "issue": "other",
+   "category": "verify",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "generated WCC roading reopening notified in the evening; no public record of the day's notices survives"
+   "basis": "no location stated or obtainable; needs a human or a call back"
   },
   {
    "id": "R0337",
-   "incident": "I102",
-   "true_place": null,
-   "true_lat": null,
-   "true_lon": null,
-   "issue": "other",
-   "category": "verify",
+   "incident": "I053",
+   "true_place": "Mornington",
+   "true_lat": -41.318819999999995,
+   "true_lon": 174.76573085714284,
+   "issue": "flooding",
+   "category": "action",
    "unfounded": false,
    "ambiguous": false,
-   "basis": "no location stated or obtainable; needs a human or a call back"
+   "basis": "Mornington recorded as having dwellings left uninhabitable; around ten across the three suburbs"
   },
   {
    "id": "R0338",
-   "incident": "I102",
-   "true_place": null,
-   "true_lat": null,
-   "true_lon": null,
-   "issue": "other",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "no location stated or obtainable; needs a human or a call back"
-  },
-  {
-   "id": "R0339",
    "incident": "I113",
    "true_place": "Newtown",
    "true_lat": -41.31589434,
@@ -4080,6 +4068,18 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "generated WCC roading reopening notified in the evening; no public record of the day's notices survives"
+  },
+  {
+   "id": "R0339",
+   "incident": "I102",
+   "true_place": null,
+   "true_lat": null,
+   "true_lon": null,
+   "issue": "other",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "no location stated or obtainable; needs a human or a call back"
   },
   {
    "id": "R0340",
@@ -4107,18 +4107,6 @@
   },
   {
    "id": "R0342",
-   "incident": "I100",
-   "true_place": "Pauline Way, Grenada Village",
-   "true_lat": -41.21447244898881,
-   "true_lon": 174.8203865111037,
-   "issue": "tree",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "59.4 mm recorded at Porirua Stream at Seton Nossiter Park over the day"
-  },
-  {
-   "id": "R0343",
    "incident": "I001",
    "true_place": "Konini Street, Wainuiomata",
    "true_lat": -41.2545707,
@@ -4130,7 +4118,31 @@
    "basis": "Konini Street (northern end), Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026; this report arrived hours after the incident"
   },
   {
+   "id": "R0343",
+   "incident": "I100",
+   "true_place": "Pauline Way, Grenada Village",
+   "true_lat": -41.21447244898881,
+   "true_lon": 174.8203865111037,
+   "issue": "tree",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "59.4 mm recorded at Porirua Stream at Seton Nossiter Park over the day"
+  },
+  {
    "id": "R0344",
+   "incident": "I100",
+   "true_place": "Pauline Way, Grenada Village",
+   "true_lat": -41.21447244898881,
+   "true_lon": 174.8203865111037,
+   "issue": "tree",
+   "category": "verify",
+   "unfounded": false,
+   "ambiguous": false,
+   "basis": "59.4 mm recorded at Porirua Stream at Seton Nossiter Park over the day"
+  },
+  {
+   "id": "R0345",
    "incident": "I099",
    "true_place": "Versailles Street, Karori",
    "true_lat": -41.29370146571115,
@@ -4142,7 +4154,7 @@
    "basis": "98.0 mm recorded at Kaiwharawhara Stream at Karori Reservoir over the day"
   },
   {
-   "id": "R0345",
+   "id": "R0346",
    "incident": "I002",
    "true_place": "Wetherby Grove, Wainuiomata",
    "true_lat": -41.2554487,
@@ -4154,7 +4166,7 @@
    "basis": "Wetherby Street, Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026; this report arrived hours after the incident"
   },
   {
-   "id": "R0346",
+   "id": "R0347",
    "incident": "I003",
    "true_place": "Rata Street, Wainuiomata",
    "true_lat": -41.2574347,
@@ -4166,7 +4178,7 @@
    "basis": "Rata Street, Wainuiomata recorded as evacuated in contemporaneous reporting of 20 April 2026; this report arrived hours after the incident"
   },
   {
-   "id": "R0347",
+   "id": "R0348",
    "incident": "I114",
    "true_place": "Hataitai",
    "true_lat": -41.307865,
@@ -4176,18 +4188,6 @@
    "unfounded": false,
    "ambiguous": false,
    "basis": "generated Wellington Electricity restoration notified in the evening; no public record of the day's notices survives"
-  },
-  {
-   "id": "R0348",
-   "incident": "I100",
-   "true_place": "Pauline Way, Grenada Village",
-   "true_lat": -41.21447244898881,
-   "true_lon": 174.8203865111037,
-   "issue": "tree",
-   "category": "verify",
-   "unfounded": false,
-   "ambiguous": false,
-   "basis": "59.4 mm recorded at Porirua Stream at Seton Nossiter Park over the day"
   }
  ]
 }
