@@ -15,12 +15,12 @@
     "coordinates": [
      [
       [
-       174.7708035,
-       -41.3160642
+       174.768023,
+       -41.3128014
       ],
       [
-       174.7710179,
-       -41.3144535
+       174.7737984,
+       -41.3177163
       ]
      ]
     ]
@@ -28,507 +28,11 @@
    "properties": {
     "OBJECTID": 1,
     "Event_Name": "Road closure - Travers Street, Berhampore",
-    "Start_Date": 1776619200000,
-    "End_Date": 1776727200000,
+    "Start_Date": 1776616500000,
+    "End_Date": 1776674100000,
     "EventType": 2,
     "Approved": 1,
     "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Travers Street, Berhampore. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 179.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.7803566,
-       -41.3151276
-      ],
-      [
-       174.7873662,
-       -41.3141488
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 2,
-    "Event_Name": "Road closure - Harper Street, Berhampore",
-    "Start_Date": 1776619680000,
-    "End_Date": 1776713280000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Harper Street, Berhampore. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 596.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.7523207,
-       -41.2852389
-      ],
-      [
-       174.7584111,
-       -41.2846952
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 3,
-    "Event_Name": "Road closure - Putnam Street, Karori",
-    "Start_Date": 1776614280000,
-    "End_Date": 1776653880000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Putnam Street, Karori. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 513.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.8138787,
-       -41.3234287
-      ],
-      [
-       174.8196878,
-       -41.3221764
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 4,
-    "Event_Name": "Road closure - Strathavon Road, Miramar",
-    "Start_Date": 1776648000000,
-    "End_Date": 1776730800000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Strathavon Road, Miramar. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 505.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.7831401,
-       -41.3171545
-      ],
-      [
-       174.7859267,
-       -41.313811
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 5,
-    "Event_Name": "Road closure - Regent Street, Newtown",
-    "Start_Date": 1776621360000,
-    "End_Date": 1776696960000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Regent Street, Newtown. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 437.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.7862819,
-       -41.3256134
-      ],
-      [
-       174.7882689,
-       -41.325386
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 6,
-    "Event_Name": "Road closure - Auckland Terrace, Newtown",
-    "Start_Date": 1776621180000,
-    "End_Date": 1776689580000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Auckland Terrace, Newtown. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 168.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.7953079,
-       -41.3190956
-      ],
-      [
-       174.7990156,
-       -41.3140733
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 7,
-    "Event_Name": "Road closure - Kemp Street, Newtown",
-    "Start_Date": 1776650760000,
-    "End_Date": 1776769560000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Kemp Street, Newtown. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 636.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.8164955,
-       -41.1793028
-      ],
-      [
-       174.8239755,
-       -41.1815212
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 8,
-    "Event_Name": "Road closure - Pembroke Street, Tawa",
-    "Start_Date": 1776656580000,
-    "End_Date": 1776768180000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Pembroke Street, Tawa. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 673.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.7618252,
-       -41.2927664
-      ],
-      [
-       174.7634975,
-       -41.2900036
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 9,
-    "Event_Name": "Road closure - Hadfield Terrace, Te Aro",
-    "Start_Date": 1776622920000,
-    "End_Date": 1776673320000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Hadfield Terrace, Te Aro. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 336.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.7736097,
-       -41.2863769
-      ],
-      [
-       174.7754985,
-       -41.2845209
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 10,
-    "Event_Name": "Road closure - Gilmer Terrace, Te Aro",
-    "Start_Date": 1776648600000,
-    "End_Date": 1776699000000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Gilmer Terrace, Te Aro. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 259.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.7820586,
-       -41.3189575
-      ],
-      [
-       174.7836363,
-       -41.3190023
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 11,
-    "Event_Name": "Road closure - Roy Street, Hataitai",
-    "Start_Date": 1776621000000,
-    "End_Date": 1776700200000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Roy Street, Hataitai. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 132.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.7815081,
-       -41.3226642
-      ],
-      [
-       174.7841868,
-       -41.3152956
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 12,
-    "Event_Name": "Road closure - Roy Street, Newtown",
-    "Start_Date": 1776671640000,
-    "End_Date": 1776704040000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Roy Street, Newtown. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 845.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.8233437,
-       -41.1698175
-      ],
-      [
-       174.8302724,
-       -41.1689219
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 13,
-    "Event_Name": "Road closure - Oxford Street, Tawa",
-    "Start_Date": 1776648840000,
-    "End_Date": 1776731640000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Oxford Street, Tawa. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 589.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.7384464,
-       -41.2899031
-      ],
-      [
-       174.7399279,
-       -41.2926887
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 14,
-    "Event_Name": "Road closure - South Karori",
-    "Start_Date": 1776662880000,
-    "End_Date": 1776691680000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at South Karori. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 332.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.7854843,
-       -41.3226888
-      ],
-      [
-       174.7890666,
-       -41.3283106
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 15,
-    "Event_Name": "Road closure - Auckland Terrace, Newtown",
-    "Start_Date": 1776669060000,
-    "End_Date": 1776784260000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Auckland Terrace, Newtown. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 690.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.8233942,
-       -41.1605602
-      ],
-      [
-       174.8246985,
-       -41.1600308
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 16,
-    "Event_Name": "Road closure - Cullen Place, Tawa",
-    "Start_Date": 1776666960000,
-    "End_Date": 1776803760000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Cullen Place, Tawa. Emergency services access maintained.",
-    "Shape": null,
-    "Shape.STLength()": 124.0,
-    "Symbology": null
-   }
-  },
-  {
-   "type": "Feature",
-   "generated": true,
-   "geometry": {
-    "type": "MultiLineString",
-    "coordinates": [
-     [
-      [
-       174.7873769,
-       -41.3232226
-      ],
-      [
-       174.7931532,
-       -41.3281375
-      ]
-     ]
-    ]
-   },
-   "properties": {
-    "OBJECTID": 17,
-    "Event_Name": "Road closure - Tavistock Road, Berhampore",
-    "Start_Date": 1776618900000,
-    "End_Date": 1776676500000,
-    "EventType": 2,
-    "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Tavistock Road, Berhampore. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 727.0,
     "Symbology": null
@@ -542,24 +46,24 @@
     "coordinates": [
      [
       [
-       174.7657205,
-       -41.2918883
+       174.7834997,
+       -41.3161649
       ],
       [
-       174.7664437,
-       -41.288835
+       174.7842231,
+       -41.3131115
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 18,
-    "Event_Name": "Road closure - Kelburn Parade, Te Aro",
-    "Start_Date": 1776655200000,
-    "End_Date": 1776763200000,
+    "OBJECTID": 2,
+    "Event_Name": "Road closure - Harper Street, Berhampore",
+    "Start_Date": 1776617400000,
+    "End_Date": 1776725400000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Kelburn Parade, Te Aro. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Harper Street, Berhampore. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 343.0,
     "Symbology": null
@@ -573,24 +77,24 @@
     "coordinates": [
      [
       [
-       174.8195885,
-       -41.2032428
+       174.7526434,
+       -41.2816418
       ],
       [
-       174.825027,
-       -41.2098933
+       174.7580884,
+       -41.2882923
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 19,
-    "Event_Name": "Road closure - Caroni Way, Woodridge",
-    "Start_Date": 1776659880000,
-    "End_Date": 1776753480000,
+    "OBJECTID": 3,
+    "Event_Name": "Road closure - Putnam Street, Karori",
+    "Start_Date": 1776614820000,
+    "End_Date": 1776708420000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Caroni Way, Woodridge. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Putnam Street, Karori. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 865.0,
     "Symbology": null
@@ -604,24 +108,24 @@
     "coordinates": [
      [
       [
-       174.7731281,
-       -41.3043732
+       174.8165189,
+       -41.3210959
       ],
       [
-       174.7736568,
-       -41.3077865
+       174.8170477,
+       -41.3245092
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 20,
-    "Event_Name": "Road closure - Salisbury Terrace, Hataitai",
-    "Start_Date": 1776632940000,
-    "End_Date": 1776715740000,
+    "OBJECTID": 4,
+    "Event_Name": "Road closure - Strathavon Road, Miramar",
+    "Start_Date": 1776649200000,
+    "End_Date": 1776732000000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Salisbury Terrace, Hataitai. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Strathavon Road, Miramar. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 380.0,
     "Symbology": null
@@ -635,24 +139,24 @@
     "coordinates": [
      [
       [
-       174.75926,
-       -41.3194026
+       174.7805323,
+       -41.3146664
       ],
       [
-       174.7672628,
-       -41.3210352
+       174.7885345,
+       -41.3162991
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 21,
-    "Event_Name": "Road closure - Baffin Grove, Berhampore",
-    "Start_Date": 1776643500000,
-    "End_Date": 1776672300000,
+    "OBJECTID": 5,
+    "Event_Name": "Road closure - Regent Street, Newtown",
+    "Start_Date": 1776621840000,
+    "End_Date": 1776650640000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Baffin Grove, Berhampore. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Regent Street, Newtown. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 693.0,
     "Symbology": null
@@ -666,24 +170,24 @@
     "coordinates": [
      [
       [
-       174.8181896,
-       -41.2063846
+       174.7831497,
+       -41.3253163
       ],
       [
-       174.826426,
-       -41.2067515
+       174.7914012,
+       -41.3256832
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 22,
-    "Event_Name": "Road closure - Caroni Way, Woodridge",
-    "Start_Date": 1776619740000,
-    "End_Date": 1776742140000,
+    "OBJECTID": 6,
+    "Event_Name": "Road closure - Auckland Terrace, Newtown",
+    "Start_Date": 1776622440000,
+    "End_Date": 1776744840000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Caroni Way, Woodridge. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Auckland Terrace, Newtown. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 691.0,
     "Symbology": null
@@ -697,24 +201,24 @@
     "coordinates": [
      [
       [
-       174.7786174,
-       -41.3106632
+       174.7963776,
+       -41.3149765
       ],
       [
-       174.7801856,
-       -41.313879
+       174.7979459,
+       -41.3181924
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 23,
-    "Event_Name": "Road closure - Riddiford Street, Newtown",
-    "Start_Date": 1776620760000,
-    "End_Date": 1776681960000,
+    "OBJECTID": 7,
+    "Event_Name": "Road closure - Kemp Street, Newtown",
+    "Start_Date": 1776647580000,
+    "End_Date": 1776708780000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Riddiford Street, Newtown. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Kemp Street, Newtown. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 379.0,
     "Symbology": null
@@ -728,24 +232,24 @@
     "coordinates": [
      [
       [
-       174.7766351,
-       -41.2870352
+       174.8190169,
+       -41.1768022
       ],
       [
-       174.7790765,
-       -41.2942547
+       174.8214542,
+       -41.1840218
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 24,
-    "Event_Name": "Road closure - Pringle Avenue, Te Aro",
-    "Start_Date": 1776630660000,
-    "End_Date": 1776763860000,
+    "OBJECTID": 8,
+    "Event_Name": "Road closure - Pembroke Street, Tawa",
+    "Start_Date": 1776653940000,
+    "End_Date": 1776787140000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Pringle Avenue, Te Aro. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Pembroke Street, Tawa. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 824.0,
     "Symbology": null
@@ -759,24 +263,24 @@
     "coordinates": [
      [
       [
-       174.772105,
-       -41.3199237
+       174.7607618,
+       -41.2876306
       ],
       [
-       174.7759059,
-       -41.3274324
+       174.7645609,
+       -41.2951394
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 25,
-    "Event_Name": "Road closure - Duppa Street, Berhampore",
-    "Start_Date": 1776635880000,
-    "End_Date": 1776747480000,
+    "OBJECTID": 9,
+    "Event_Name": "Road closure - Hadfield Terrace, Te Aro",
+    "Start_Date": 1776621840000,
+    "End_Date": 1776733440000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Duppa Street, Berhampore. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Hadfield Terrace, Te Aro. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 889.0,
     "Symbology": null
@@ -790,24 +294,24 @@
     "coordinates": [
      [
       [
-       174.7567901,
-       -41.2884176
+       174.7743617,
+       -41.2843734
       ],
       [
-       174.7571749,
-       -41.2905684
+       174.7747465,
+       -41.2865243
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 26,
-    "Event_Name": "Road closure - Cluny Avenue, Karori",
-    "Start_Date": 1776637080000,
-    "End_Date": 1776748680000,
+    "OBJECTID": 10,
+    "Event_Name": "Road closure - Gilmer Terrace, Te Aro",
+    "Start_Date": 1776650400000,
+    "End_Date": 1776762000000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Cluny Avenue, Karori. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Gilmer Terrace, Te Aro. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 240.0,
     "Symbology": null
@@ -821,24 +325,24 @@
     "coordinates": [
      [
       [
-       174.7921914,
-       -41.3208731
+       174.7802406,
+       -41.3189357
       ],
       [
-       174.7974051,
-       -41.3209616
+       174.7854543,
+       -41.3190241
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 27,
-    "Event_Name": "Road closure - Cruickshank Street, Hataitai",
-    "Start_Date": 1776641940000,
-    "End_Date": 1776706740000,
+    "OBJECTID": 11,
+    "Event_Name": "Road closure - Roy Street, Hataitai",
+    "Start_Date": 1776621420000,
+    "End_Date": 1776686220000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Cruickshank Street, Hataitai. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Roy Street, Hataitai. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 436.0,
     "Symbology": null
@@ -852,24 +356,24 @@
     "coordinates": [
      [
       [
-       174.7971182,
-       -41.3205752
+       174.7823841,
+       -41.3180827
       ],
       [
-       174.798045,
-       -41.3223696
+       174.7833108,
+       -41.3198771
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 28,
-    "Event_Name": "Road closure - Ross Street, Newtown",
-    "Start_Date": 1776655380000,
-    "End_Date": 1776694980000,
+    "OBJECTID": 12,
+    "Event_Name": "Road closure - Roy Street, Newtown",
+    "Start_Date": 1776668760000,
+    "End_Date": 1776708360000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Ross Street, Newtown. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Roy Street, Newtown. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 213.0,
     "Symbology": null
@@ -883,24 +387,24 @@
     "coordinates": [
      [
       [
-       174.7554985,
-       -41.2908073
+       174.8242126,
+       -41.1693557
       ],
       [
-       174.760699,
-       -41.2908354
+       174.8294035,
+       -41.1693837
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 29,
-    "Event_Name": "Road closure - Raroa Road, Karori",
-    "Start_Date": 1776669840000,
-    "End_Date": 1776695040000,
+    "OBJECTID": 13,
+    "Event_Name": "Road closure - Oxford Street, Tawa",
+    "Start_Date": 1776647460000,
+    "End_Date": 1776672660000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Raroa Road, Karori. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Oxford Street, Tawa. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 435.0,
     "Symbology": null
@@ -914,24 +418,24 @@
     "coordinates": [
      [
       [
-       174.7483875,
-       -41.2875422
+       174.7378107,
+       -41.2896217
       ],
       [
-       174.7511403,
-       -41.2908906
+       174.7405636,
+       -41.2929701
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 30,
-    "Event_Name": "Road closure - Wendouree Way, Karori",
-    "Start_Date": 1776676800000,
-    "End_Date": 1776792000000,
+    "OBJECTID": 14,
+    "Event_Name": "Road closure - South Karori",
+    "Start_Date": 1776667260000,
+    "End_Date": 1776782460000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Wendouree Way, Karori. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at South Karori. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 436.0,
     "Symbology": null
@@ -945,24 +449,24 @@
     "coordinates": [
      [
       [
-       174.7802897,
-       -41.3323966
+       174.7854181,
+       -41.3231098
       ],
       [
-       174.7840048,
-       -41.3371764
+       174.7891327,
+       -41.3278896
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 31,
-    "Event_Name": "Road closure - Southgate Road, Berhampore",
-    "Start_Date": 1776679560000,
-    "End_Date": 1776819960000,
+    "OBJECTID": 15,
+    "Event_Name": "Road closure - Auckland Terrace, Newtown",
+    "Start_Date": 1776672900000,
+    "End_Date": 1776813300000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Southgate Road, Berhampore. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Auckland Terrace, Newtown. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 613.0,
     "Symbology": null
@@ -976,24 +480,24 @@
     "coordinates": [
      [
       [
-       174.7458685,
-       -41.2914766
+       174.8232232,
+       -41.1580707
       ],
       [
-       174.7475182,
-       -41.2959263
+       174.8248695,
+       -41.1625204
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 32,
-    "Event_Name": "Road closure - Versailles Street, Karori",
-    "Start_Date": 1776682320000,
-    "End_Date": 1776793920000,
+    "OBJECTID": 16,
+    "Event_Name": "Road closure - Cullen Place, Tawa",
+    "Start_Date": 1776668760000,
+    "End_Date": 1776780360000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Versailles Street, Karori. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Cullen Place, Tawa. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 511.0,
     "Symbology": null
@@ -1007,24 +511,24 @@
     "coordinates": [
      [
       [
-       174.7845995,
-       -41.2544203
+       174.789951,
+       -41.3263731
       ],
       [
-       174.7852269,
-       -41.2530343
+       174.7905791,
+       -41.3249871
       ]
      ]
     ]
    },
    "properties": {
-    "OBJECTID": 33,
-    "Event_Name": "Road closure - Khandallah",
-    "Start_Date": 1776628620000,
-    "End_Date": 1776761820000,
+    "OBJECTID": 17,
+    "Event_Name": "Road closure - Tavistock Road, Berhampore",
+    "Start_Date": 1776621120000,
+    "End_Date": 1776754320000,
     "EventType": 2,
     "Approved": 1,
-    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Khandallah. Emergency services access maintained.",
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Tavistock Road, Berhampore. Emergency services access maintained.",
     "Shape": null,
     "Shape.STLength()": 162.0,
     "Symbology": null
@@ -1038,12 +542,508 @@
     "coordinates": [
      [
       [
-       174.7847381,
-       -41.3154193
+       174.7629584,
+       -41.2898866
       ],
       [
-       174.7909879,
-       -41.3163694
+       174.7692057,
+       -41.2908367
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 18,
+    "Event_Name": "Road closure - Kelburn Parade, Te Aro",
+    "Start_Date": 1776658320000,
+    "End_Date": 1776755520000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Kelburn Parade, Te Aro. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 533.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.8204326,
+       -41.2079935
+      ],
+      [
+       174.824183,
+       -41.2051426
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 19,
+    "Event_Name": "Road closure - Caroni Way, Woodridge",
+    "Start_Date": 1776658860000,
+    "End_Date": 1776763260000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Caroni Way, Woodridge. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 445.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.7692227,
+       -41.3078617
+      ],
+      [
+       174.7775621,
+       -41.3042979
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 20,
+    "Event_Name": "Road closure - Salisbury Terrace, Hataitai",
+    "Start_Date": 1776631260000,
+    "End_Date": 1776764460000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Salisbury Terrace, Hataitai. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 801.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.7630506,
+       -41.3179002
+      ],
+      [
+       174.7634723,
+       -41.3225377
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 21,
+    "Event_Name": "Road closure - Baffin Grove, Berhampore",
+    "Start_Date": 1776640500000,
+    "End_Date": 1776784500000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Baffin Grove, Berhampore. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 514.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.8204418,
+       -41.2058359
+      ],
+      [
+       174.8241737,
+       -41.2073002
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 22,
+    "Event_Name": "Road closure - Caroni Way, Woodridge",
+    "Start_Date": 1776617460000,
+    "End_Date": 1776660660000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Caroni Way, Woodridge. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 352.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.776508,
+       -41.3129401
+      ],
+      [
+       174.7822951,
+       -41.3116021
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 23,
+    "Event_Name": "Road closure - Riddiford Street, Newtown",
+    "Start_Date": 1776621060000,
+    "End_Date": 1776729060000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Riddiford Street, Newtown. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 506.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.7768769,
+       -41.2927812
+      ],
+      [
+       174.7788346,
+       -41.2885087
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 24,
+    "Event_Name": "Road closure - Pringle Avenue, Te Aro",
+    "Start_Date": 1776630960000,
+    "End_Date": 1776677760000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Pringle Avenue, Te Aro. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 500.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.7700927,
+       -41.3231388
+      ],
+      [
+       174.7779182,
+       -41.3242174
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 25,
+    "Event_Name": "Road closure - Duppa Street, Berhampore",
+    "Start_Date": 1776635880000,
+    "End_Date": 1776711480000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Duppa Street, Berhampore. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 665.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.7531794,
+       -41.2917084
+      ],
+      [
+       174.7607856,
+       -41.2872776
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 26,
+    "Event_Name": "Road closure - Cluny Avenue, Karori",
+    "Start_Date": 1776636720000,
+    "End_Date": 1776712320000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Cluny Avenue, Karori. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 803.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.7928446,
+       -41.3194593
+      ],
+      [
+       174.796752,
+       -41.3223754
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 27,
+    "Event_Name": "Road closure - Cruickshank Street, Hataitai",
+    "Start_Date": 1776642840000,
+    "End_Date": 1776758040000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Cruickshank Street, Hataitai. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 459.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.7958546,
+       -41.3219946
+      ],
+      [
+       174.7993086,
+       -41.3209502
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 28,
+    "Event_Name": "Road closure - Ross Street, Newtown",
+    "Start_Date": 1776657060000,
+    "End_Date": 1776743460000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Ross Street, Newtown. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 311.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.7570399,
+       -41.2920535
+      ],
+      [
+       174.7591576,
+       -41.2895892
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 29,
+    "Event_Name": "Road closure - Raroa Road, Karori",
+    "Start_Date": 1776673140000,
+    "End_Date": 1776752340000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Raroa Road, Karori. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 325.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.7492441,
+       -41.2899445
+      ],
+      [
+       174.7502838,
+       -41.2884883
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 30,
+    "Event_Name": "Road closure - Wendouree Way, Karori",
+    "Start_Date": 1776676860000,
+    "End_Date": 1776691260000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Wendouree Way, Karori. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 183.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.7809865,
+       -41.3337818
+      ],
+      [
+       174.783308,
+       -41.3357913
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 31,
+    "Event_Name": "Road closure - Southgate Road, Berhampore",
+    "Start_Date": 1776677220000,
+    "End_Date": 1776788820000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Southgate Road, Berhampore. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 295.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.7445533,
+       -41.2936837
+      ],
+      [
+       174.7488334,
+       -41.2937193
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 32,
+    "Event_Name": "Road closure - Versailles Street, Karori",
+    "Start_Date": 1776678060000,
+    "End_Date": 1776782460000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following a slip at Versailles Street, Karori. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 358.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.7846704,
+       -41.2550302
+      ],
+      [
+       174.785156,
+       -41.2524243
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 33,
+    "Event_Name": "Road closure - Khandallah",
+    "Start_Date": 1776627240000,
+    "End_Date": 1776749640000,
+    "EventType": 2,
+    "Approved": 1,
+    "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Khandallah. Emergency services access maintained.",
+    "Shape": null,
+    "Shape.STLength()": 291.0,
+    "Symbology": null
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       174.7865038,
+       -41.3155319
+      ],
+      [
+       174.7892222,
+       -41.3162567
       ]
      ]
     ]
@@ -1051,13 +1051,13 @@
    "properties": {
     "OBJECTID": 34,
     "Event_Name": "Road closure - Newtown",
-    "Start_Date": 1776679740000,
-    "End_Date": 1776776940000,
+    "Start_Date": 1776678960000,
+    "End_Date": 1776718560000,
     "EventType": 2,
     "Approved": 1,
     "EventDetails": "GENERATED RECORD - not a real Council or utility job. Road closed following surface flooding at Newtown. Emergency services access maintained.",
     "Shape": null,
-    "Shape.STLength()": 533.0,
+    "Shape.STLength()": 241.0,
     "Symbology": null
    }
   }

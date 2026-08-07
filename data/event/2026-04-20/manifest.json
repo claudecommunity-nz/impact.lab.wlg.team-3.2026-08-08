@@ -22,7 +22,7 @@
    "fetched_at": null,
    "frozen_at": null,
    "provenance": null,
-   "bytes": 80149
+   "bytes": 79239
   },
   "answer-key.json": {
    "origin": "generated",
@@ -33,7 +33,7 @@
    "fetched_at": null,
    "frozen_at": null,
    "provenance": null,
-   "bytes": 130108
+   "bytes": 130110
   },
   "observations/rainfall.json": {
    "origin": "real",
@@ -88,7 +88,7 @@
    "fetched_at": "2026-08-07T23:36:51+00:00",
    "frozen_at": null,
    "provenance": null,
-   "bytes": 51959
+   "bytes": 51939
   },
   "feeds/road-closures.json": {
    "origin": "generated",
@@ -99,7 +99,7 @@
    "fetched_at": "2026-08-07T23:36:51+00:00",
    "frozen_at": null,
    "provenance": null,
-   "bytes": 24703
+   "bytes": 24707
   },
   "feeds/outages.json": {
    "origin": "generated",

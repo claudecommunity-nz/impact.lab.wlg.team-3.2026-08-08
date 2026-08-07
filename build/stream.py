@@ -79,6 +79,11 @@ def place_phrases(incident: dict) -> list[tuple[str, bool]]:
 
     Returns (phrase, ambiguous) pairs. A bare street name that exists in several
     suburbs is ambiguous; the same name with its suburb attached is not.
+
+    Every variant has to read correctly after any preposition, because the
+    templates supply their own - "water over the road at {place}", "our street
+    in {place}". A phrase like "the top end of Roy Street" is natural on its own
+    and produces "our street in the top end of Roy Street" in half the bank.
     """
     name, suburb = incident["name"], incident["suburb"]
     if not name:
@@ -92,7 +97,6 @@ def place_phrases(incident: dict) -> list[tuple[str, bool]]:
             (f"{name.lower()} {suburb.lower()}", False),
             (name, multi),
             (short, multi),
-            (f"the top end of {name}", multi),
         ]
     # A suburb name barely varies in the wild. Nobody posting at 3am writes
     # "Newtown, Wellington" - they write "newtown". The variety in these reports
@@ -193,7 +197,19 @@ def realise(rng, incident: dict, when: datetime.datetime, late: bool,
             place=phrase), None, ambiguous
 
     rumour = rng.random() < incident["rumour_share"]
-    templates = voice.bank(channel, issue_bank(incident, rng, rumour))
+    wanted = issue_bank(incident, rng, rumour)
+
+    # A big cluster can exhaust one channel's phrasings for an issue - there are
+    # only so many ways to write a formal email about a flooded road. When that
+    # happens, move the report to another channel rather than reuse a template.
+    # A cluster spreading across channels is what a real one does anyway, and it
+    # keeps the fifth report from being the third one with different capitals.
+    for _ in range(4):
+        templates = voice.bank(channel, wanted)
+        if any(t not in used for t in templates):
+            break
+        channel = pick(rng, {c: w for c, w in mix_for(when.hour).items()
+                             if c != "partner"})
     return channel, fresh(rng, templates, used).format(place=phrase), None, ambiguous
 
 

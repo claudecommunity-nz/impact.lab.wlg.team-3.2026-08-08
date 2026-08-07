@@ -77,6 +77,13 @@ PHONE = {
         "{place} - caller says her son messaged that the river's over the banks there. not first hand",
         "caller heard on the radio that {place} is cut off, asking if that's right",
     ],
+    "other": [
+        "caller asking what the state of emergency means for {place}, wants to know whether she has to leave",
+        "caller wants to know where the assistance centre is and whether {place} is covered",
+        "{place} - caller asking whether it is safe to travel, elderly parent to collect",
+        "caller asking who to contact about damage at {place} now that it has been declared",
+        "caller wants to know if the schools in {place} will be open tomorrow",
+    ],
     "vague": [
         "caller reports flooding at the bottom of the valley, wouldn't give an address",
         "caller says the road's blocked past the roundabout, big slip. no street name",
@@ -141,6 +148,12 @@ SOCIAL = {
         "seen a photo going round of {place} but not sure its even from today",
         "is it true about {place}? seen three different things now",
     ],
+    "other": [
+        "state of emergency declared. what does that actually mean for those of us near {place}",
+        "so is anyone going to tell us what to do in {place} or do we just guess",
+        "anyone know if theres a centre open near {place} tonight",
+        "council page for {place} hasnt updated in hours",
+    ],
     "vague": [
         "the whole bottom of the valley is flooded",
         "road past the roundabout is blocked, big slip",
@@ -198,6 +211,11 @@ FORM = {
         "Second-hand report only. Told by a family member that {place} is under water. Unconfirmed.",
         "Passing on what I have heard about {place}. I am not at the location and cannot confirm.",
     ],
+    "other": [
+        "Requesting information. {place}. Where is the assistance centre and who is eligible to use it.",
+        "General enquiry. {place}. Property is damaged but habitable. Who carries out the assessment.",
+        "Requesting advice. {place}. Unclear whether the declaration changes anything for residents.",
+    ],
     "vague": [
         "Flooding. Location: bottom of the hill by the shops. Water across the road.",
         "Reporting a slip. Location not known exactly, past the roundabout on the main road.",
@@ -209,7 +227,7 @@ FORM = {
 # Formal, structured, often from a business, school or residents' group.
 EMAIL = {
     "flooding": [
-        "Good morning. I am writing to report significant surface flooding at {place}. "
+        "I am writing to report significant surface flooding at {place}. "
         "The water is now across the full width of the road and appears to be rising. "
         "Could someone advise whether the road is to be closed.",
         "To whom it may concern - we have water entering the building at {place}. "
@@ -277,6 +295,14 @@ EMAIL = {
         "morning. I cannot tell whether it is recent or even the right street.",
         "Several people in our building are saying {place} is cut off. None of us has seen "
         "it first hand. Is there an official source we should be watching?",
+    ],
+    "other": [
+        "Following the declaration this evening, could you confirm what support is available to "
+        "residents of {place} and where they should present.",
+        "We coordinate a community group covering {place} and can make our hall available if it "
+        "would be useful. Please advise who to speak to.",
+        "Could you confirm whether the declaration affects rubbish collection and other services "
+        "in {place} tomorrow.",
     ],
     "vague": [
         "Writing to report flooding in our area. I am reluctant to give the exact address "
