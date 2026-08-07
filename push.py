@@ -10,12 +10,15 @@ This owns the clock. The bundle is a flat file with timestamps in it and nothing
 that moves; what "realtime" means for this prototype is decided here and nowhere
 else. Ctrl-C stops it cleanly at any point.
 
-Idempotency, and why it works the way it does: `POST /api/reports` assigns its
-own id and ignores anything else you send, because it is a dumb store and the
-live intake form has no ids to offer. So a re-run cannot ask "do you already
-have R0042". It asks what the server already holds and skips reports whose text
-is already there. The build guarantees every report in the bundle has unique
-text, so that is exactly as precise as matching on id would have been.
+Each report is posted with its own id and its own `received_at`, so a report
+from 03:41 lands in the queue at 03:41 rather than at whatever the server thinks
+the time is. The server stores by id, so re-running this cannot duplicate
+anything - a second run replaces each record with an identical one. Reports
+already delivered are skipped anyway, which is what makes resuming after Ctrl-C
+quick rather than merely harmless.
+
+Run the server without `--replay`. With that flag it drives its own 76-report
+corpus from an internal clock, and the queue fills from both ends at once.
 
 Stdlib only. No pip install.
 """
@@ -55,7 +58,10 @@ def get_state() -> dict | None:
 
 
 def post(report: dict, timeout: int = 10) -> dict | None:
+    """Send one report, keeping its own id and its own moment in the event."""
     body = json.dumps({
+        "id": report["id"],
+        "received_at": report["received_at"],
         "channel": report["channel"],
         "text": report["text"],
         "source_url": report["source_url"],
@@ -83,29 +89,29 @@ def parse_from(value: str, day: datetime.datetime) -> datetime.datetime:
 
 
 def check_server(reports: list[dict]) -> set[str]:
-    """What the server already holds, and a warning if its own clock is running.
+    """Which report ids the server already holds, plus a warning about --replay.
 
-    The server has an internal replay clock that releases the old 76-report
-    corpus. If that is running while this is pushing, reports arrive from two
-    sources at once and the queue is a mixture of two different events. That is
-    worth stopping for rather than quietly working around - the pusher owns
-    time, and two clocks is one too many.
+    If the server was started with --replay it is releasing its own 76-report
+    corpus from an internal clock while this pushes. Two clocks feeding one queue
+    makes a demo that shows two different events at once, and the corpus reuses
+    the same R-numbered ids, so some of it would be overwritten mid-run. Worth
+    stopping for rather than quietly working around.
     """
     state = get_state()
     if state is None:
         sys.exit(f"Nothing answering at {SERVER}. Start it with: python3 server.py")
 
     if state.get("clock", {}).get("running"):
-        print("  WARNING: the server's own replay clock is running.")
-        print("  It is releasing its built-in corpus while this pushes, so the")
-        print("  queue will hold two events at once. Pause it before demoing.\n")
+        print("  WARNING: the server's internal replay clock is running, so it was")
+        print("  probably started with --replay. Restart it as plain `python3")
+        print("  server.py` or the queue will fill from both ends at once.\n")
 
-    existing = {r["text"] for r in state.get("reports", [])}
-    already = sum(1 for r in reports if r["text"] in existing)
+    delivered = {r["id"] for r in state.get("reports", [])}
+    already = sum(1 for r in reports if r["id"] in delivered)
     if already:
         print(f"  {already} of {len(reports)} reports are already on the server; "
               "skipping those.\n")
-    return existing
+    return delivered
 
 
 def ticker(report: dict, record: dict | None, index: int, total: int) -> None:
@@ -115,13 +121,16 @@ def ticker(report: dict, record: dict | None, index: int, total: int) -> None:
                                         else "unplaced")
     mark = CATEGORY_MARK.get(category, " ")
     text = report["text"][:58].replace("\n", " ")
+    # Flushed every line. Python buffers stdout when it is not a terminal, and
+    # the ticker piped to a file or a pager would otherwise show nothing until
+    # the run ended - or nothing at all, if it ended with Ctrl-C.
     print(f"  {report['received_at'][11:16]}  {report['id']}  {mark} "
           f"{report['channel']:7} {text:<58}  {category:9} {place[:24]:<24} "
-          f"{index}/{total}")
+          f"{index}/{total}", flush=True)
 
 
-def run(reports: list[dict], speed: float, once: bool, existing: set[str]) -> int:
-    pending = [r for r in reports if r["text"] not in existing]
+def run(reports: list[dict], speed: float, once: bool, delivered: set[str]) -> int:
+    pending = [r for r in reports if r["id"] not in delivered]
     if not pending:
         print("Everything in the bundle is already on the server. Nothing to do.")
         return 0
@@ -131,14 +140,15 @@ def run(reports: list[dict], speed: float, once: bool, existing: set[str]) -> in
     started = time.monotonic()
     sent = 0
 
-    print(f"Pushing {total} reports to {SERVER}/api/reports")
+    print(f"Pushing {total} reports to {SERVER}/api/reports", flush=True)
     if once:
-        print("  --once: no waiting, everything goes now.\n")
+        print("  --once: no waiting, everything goes now.\n", flush=True)
     else:
         span = (datetime.datetime.fromisoformat(pending[-1]["received_at"])
                 - first).total_seconds()
         print(f"  {speed:g}x - {span / 3600:.1f} event hours in "
-              f"{span / speed / 60:.1f} wall minutes. Ctrl-C to stop.\n")
+              f"{span / speed / 60:.1f} wall minutes. Ctrl-C to stop.\n",
+              flush=True)
 
     for report in pending:
         if not once:
@@ -181,9 +191,9 @@ def main() -> int:
             sys.exit(f"No reports at or after {args.start}.")
         print(f"Starting at {args.start} - {len(reports)} report(s) from there.\n")
 
-    existing = check_server(reports)
+    delivered = check_server(reports)
     try:
-        return run(reports, args.speed, args.once, existing)
+        return run(reports, args.speed, args.once, delivered)
     except KeyboardInterrupt:
         print("\n\nStopped. Re-run to carry on - reports already sent are skipped.")
         return 0
