@@ -55,7 +55,7 @@ forwarding:
 ui:
   # Which priorities are plotted on the map tab.
   map_priorities: [action_required, verification_required]
-  refresh_seconds: 10
+  refresh_seconds: 2
   map_centre: [-41.2865, 174.7762]
   map_zoom: 12
 

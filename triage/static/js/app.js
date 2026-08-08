@@ -84,7 +84,14 @@ async function boot() {
   }
   await queue.refresh();
 
-  const seconds = 10;
+  // config/settings.yaml owns this. It was hard-coded to 10 here, which is far
+  // too slow to watch a replay: the whole night arrives in under two minutes.
+  let seconds = 2;
+  try {
+    const cfg = await api.getConfig('settings');
+    const configured = Number(cfg?.parsed?.ui?.refresh_seconds);
+    if (Number.isFinite(configured) && configured > 0) seconds = configured;
+  } catch { /* the default above is fine */ }
   poll = setInterval(tick, seconds * 1000);
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) { clearInterval(poll); }
