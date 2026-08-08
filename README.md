@@ -1,111 +1,168 @@
-# Impact Lab Wellington — Team 3
+# Sightline — a live triage board for an Emergency Operations Centre
 
-**Wellington City Council Emergency Management × Claude Code Community NZ**
-Saturday 8 August 2026 · Waimanga Room, Wellington City Council
+**Impact Lab Wellington · Team 3 · Problem Statement 04**
+Wellington City Council Emergency Management × Claude Code Community NZ — Saturday 8 August 2026
 
----
+> **Hazard-planning exercise data. Not an operational emergency source.**
+> All reports, names and timings in this folder are synthetic. In an emergency, call 111.
 
-## Problem 04 — Help emergency staff sort and prioritise incoming information
+## Demo video
 
-> How might we help emergency staff rapidly sort incoming reports into information for awareness, information requiring verification, and information requiring action?
-
-During an event, information arrives through phone calls, emails, forms, social media, news reports and partner agencies. The challenge is not just collecting it. Staff must identify where it relates to, whether it is new or duplicated, how reliable it may be, and whether it requires action.
-
-A prototype could extract location, time, issue and potential urgency; group similar reports; preserve links to the original sources; and present a queue for human review.
-
-**Desired outcome:** Staff spend less time sorting information and more time checking significant reports and coordinating action.
-
-*The common theme is improving the flow and use of information between communities and Council before and during an event.*
+https://drive.google.com/file/d/1AxcZkZwVv3L2ePE4eSiHi0Vyy0EP4eW1/view?usp=drive_link
 
 ---
 
-## What we're building
+## The problem
 
-One working prototype, demoed in four minutes at 16:30.
+> **How might we help emergency staff rapidly sort incoming reports into information for
+> awareness, information requiring verification, and information requiring action?**
 
-Each team's module is meant to slot into a shared **common operating picture** —
-a live map of emergency signals that the ten prototypes feed together. Aim for
-something that can be pointed at a map, a feed or an API, rather than a
-closed-off demo.
+During an event, information arrives through phone calls, emails, forms, social media,
+news reports and partner agencies. Collecting it is not the hard part. Staff have to work
+out where it relates to, whether it is new or a duplicate of something already on the
+board, how reliable it might be, and whether it needs someone tasked to it.
 
-Two teams work each problem statement independently. That's deliberate: two
-honest attempts at the same problem tell WCC more than one.
+**Desired outcome:** staff spend less time sorting information and more time checking
+significant reports and coordinating action.
 
-## Data
+---
 
-The public GIS datasets Wellington City Council Emergency Management shared are
-catalogued, checked and made queryable here:
+## What Sightline is
 
-- **Catalogue + SDK** — https://github.com/claudecommunity-nz/wcc-emergency-gis-data
-- **Browse the datasets** — https://claudecommunity-nz.github.io/wcc-emergency-gis-data/
+A live triage board built around one test:
+**someone walks into the EOC cold and can answer: "what are the top three things that need to happen next, and why?" in under thirty seconds.**
 
-74 datasets: flood, landslide, earthquake, tsunami, coastal inundation and
-climate layers, plus emergency hubs, post-quake road reopening order, water
-tanks, deprivation by area, and live river-level and rainfall telemetry.
-`wcc_gis.py` is a single file with no dependencies — copy it and
-`catalogue.json` into your project.
+The board holds two time streams of action items in one view
 
-```python
-import wcc_gis
+- **Incoming event reports** — what the public, hubs, agencies and media are telling us.
+- **EOC plan obligations** — sit reps, handovers, public information releases and checkpoints that fall due at fixed times whether or not anything is happening.
 
-wcc_gis.ids("tsunami")                                    # find datasets
-wcc_gis.features("tsunami-evacuation-zones", at=(-41.2790, 174.7804))
-wcc_gis.geojson("footpaths", bbox=wcc_gis.WELLINGTON)     # straight into MapLibre
-wcc_gis.hilltop_data("Hutt River at Taita Gorge", "Flow")[-1]
-```
+### What the AI does
 
-Three traps worth knowing before you lose an hour to them:
+|                      |                                                                                                                                                                                     |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Triage**           | Sorts each report into _awareness_, _verification required_, or _action required_                                                                                                   |
+| **Consolidate**      | Groups reports about the same event into a single action item, so one thing that happened is one row on the board — not eight                                                       |
+| **Handover summary** | Writes the top paragraph and up to eight watch items over the shift briefing, badged as AI-generated. The lists underneath it are assembled deterministically and remain the record |
+| **Sit rep**          | _(not built yet)_ Draft a situational report from themes derived across the whole board, traceable back to the report IDs behind each claim                                         |
 
-- Everything is published in **NZTM2000, not lat/lng**. Request raw and your
-  pins land off the coast of Africa. Always ask for `outSR=4326`.
-- **A quarter of the layers are rasters** that advertise a query capability,
-  then refuse to answer. Ask them for a PNG instead.
-- **One query is silently capped** (`footpaths` has 8,130 features; a request
-  returns 2,000). Page properly, or check `exceededTransferLimit`.
+### What the human does
 
-## The prototype
+|                                                  |                                                                                                                                                                      |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Override the triage**                          | The machine assigns a priority, the operator can change it — with a reason, applied to every report in a consolidated row so the row and its sources cannot disagree |
+| **Complete and clear**                           | Mark an event done and take it off the action board. A group is not done while any member is still open                                                              |
+| **Acknowledge, note, assign, forward, rule out** | The rest of the operator vocabulary, each one audited                                                                                                                |
+| **Set a time due**                               | _(not built yet)_ Attach a deadline to an incident so it ages and escalates against the clock. Obligations already carry due times and countdowns; reports do not    |
 
-[`triage/`](triage/) — sorts incoming reportings into action required,
-verification required and situational awareness, audits every human decision
-against the shift it happened in, and turns that audit trail into a handover
-briefing so nothing received on one shift is lost at the changeover.
+Every one of those decisions is written to an **event log**, so the board can always say who did what, when, and why. Also what makes an after-action review or an OIA response possible.
+
+---
+
+## Running it
 
 ```bash
 cd triage && pip install -r requirements.txt && ./run.sh --seed
 ```
 
-See [triage/README.md](triage/README.md) for the input schema, the rule format,
-the GeoJSON feed other teams can consume, and the ingest contract for the
-social-media pipeline.
+`--seed` loads a Wellington storm scenario with a partly-worked night shift behind it.
+Board on <http://localhost:8000>, API docs at `/docs`, map feed at `/api/v1/geojson`.
 
-## Schedule
+FastAPI + SQLite. The front end is plain ES modules with no build step; MapLibre is
+vendored locally.
 
-| Time | What |
-|---|---|
-| 08:00 | Arrival and mingle |
-| 09:00 | Opening address & problem briefing |
-| 09:30 | Build begins |
-| 12:30 | Lunch + lightning talks |
-| 16:00 | Submissions close |
-| 16:30 | Demos + judging |
-| 17:45 | Awards + next steps |
+## How it works
 
-## Ground rules
+**Reports come in from anywhere.** Call centre, email, web form, social media, news and
+partner agencies each get an _adapter_ in `triage/config/sources.yaml` that maps their
+fields onto one canonical schema. Adding a feed is a YAML edit, not a code change. The
+social-media contract is `POST /api/v1/ingest?adapter=social_media`; re-posting the same
+`post_id` is a no-op, so replays are safe.
 
-- These are **hazard-planning layers, not live emergency information**.
-  In an emergency, call 111.
-- **The data is not ours.** Each dataset belongs to its publisher — WCC, Greater
-  Wellington, GNS Science, NIWA, Wellington Water, MBIE, NZTA, MetService.
-  Licence terms vary per dataset; check the dataset's page before publishing
-  anything derived from it, and credit the publisher.
-- Be considerate with request rates. These are council servers, and at least one
-  host throttles under concurrent load.
-- **Keep personal details out of this repo.** It is public. No participant
-  names, contact details or application material.
-- Treat public social content as a *signal to investigate*, never as verified
-  fact — surfacing something unverified as confirmed is the failure mode these
-  problem statements are most wary of.
+**Nothing inferred overwrites what was said.** The original permalink and the raw payload
+are always preserved, and everything the machine derived lives under `triage`, never mixed
+into the content — so the UI can always show _what came in_ separately from _what we think
+about it_.
 
-## Licence
+**Triage is assistive, not automatic.** A rule engine scores each report and shows its
+working: every point traces to a named rule. The model gives a second opinion. Where they
+disagree the higher priority is kept and the conflict is shown rather than resolved — a
+machine may escalate, only a human may de-escalate. Operator overrides survive re-triage.
 
-Code here is MIT unless stated otherwise. The data is not covered by it.
+**Consolidation** merges reports within 250 m, in the same register, about the same
+category. Wording overlap is a supporting signal, not the deciding one. The register test
+is what stops a rumour merging into a real incident — "is it true there's a tsunami
+warning" is speculative and never joins a report of an actual tsunami. On the demo corpus
+this collapses 26 reports into 19 rows: the Ngaio Gorge slip becomes one row with three
+sources (call, social post, roading confirmation).
+
+**Obligations share the queue** with the reports, on their own rows, because that is the
+screen the operator actually watches. They climb as their deadline runs down, and they can
+never outrank an action-required report — a hard ceiling on one numeric scale, not a
+weighting that a close deadline could eventually overcome. Someone is in the water right
+now; the sitrep waits.
+
+**Triage instructions for this event** are Markdown, written the way you would brief a
+colleague ("Ngaio Gorge Road is closed and a crew is on site — further reports are
+awareness only"). Handed to the model with every report. They steer it; they do not switch
+off the guard rails — social media stays capped at verification-required, and the
+instructions cannot lower a priority on their own.
+
+**The handover briefing** is the risk this system is built around: a call that came in at
+03:10, that nobody ever opened, still sitting in the queue when the next controller
+arrives and starts from the top. Assembled on demand from the live queue and the audit
+trail so it cannot drift from them, led by the reports **nobody has ever opened**, then
+open action-required work, stalled items, leads awaiting verification, forwards that got
+no reply, and what was ruled out this shift. Every line clicks through. Export as Markdown.
+
+## Feeding the common operating picture
+
+The map plots only what is operationally relevant. Pin opacity carries confidence: solid
+is a location we were given, faded is one inferred from the wording — an inferred pin must
+never look like a known one.
+
+The same data is a plain GeoJSON feed for the other Impact Lab modules:
+
+```
+GET /api/v1/geojson                                  # operationally relevant by default
+GET /api/v1/geojson?priorities=action_required
+GET /api/v1/geojson?all_priorities=true
+```
+
+Each feature carries its provenance, verification state, location method and whether the
+location is precise — so a consumer can tell an unverified public post from a confirmed
+partner-agency update without asking us.
+
+## Model provider
+
+`anthropic` by default (Claude API, `claude-opus-5`, needs `CLAUDE_API_KEY` in
+`triage/.env`, gitignored), or `ollama` for a local model with no network egress — the
+option if report content must not leave the building. One line in `settings.yaml`, no code
+change. Same prompts, same JSON schemas either way.
+
+## Not built yet
+
+Kept here deliberately so we know what is outstanding.
+
+- **Time due on a report.** Obligations have `due_at`, a live countdown and deadline-driven
+  ordering. Reports have no equivalent — an operator cannot attach a deadline to an
+  incident and watch it escalate against the clock.
+- **Sit rep drafting.** The model writes a summary and watch items over the handover
+  briefing today. It does not derive themes across the whole board or cite the report IDs
+  behind each claim.
+
+## Layout
+
+```
+triage/
+  app/       models, ingest adapters, append-only audit, handover assembly,
+             forwarding, GeoJSON feeds, consolidation, obligations, HTTP API
+  app/triage/ deterministic rules, LLM prompts and schemas, provider adapters
+             (Claude / Ollama), grouping, Wellington gazetteer, orchestration
+  config/    settings, sources, destinations, triage rules, instructions — all YAML,
+             hot-reloaded and editable from the Settings tab
+  static/    the board — plain ES modules, no build step
+```
+
+Full detail on the input schema, the rule format and the ingest contract is in
+[triage/README.md](triage/README.md).
