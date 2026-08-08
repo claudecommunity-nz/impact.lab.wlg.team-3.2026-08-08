@@ -10,6 +10,10 @@ Wellington City Council Emergency Management × Claude Code Community NZ — Sat
 
 https://drive.google.com/file/d/1AxcZkZwVv3L2ePE4eSiHi0Vyy0EP4eW1/view?usp=drive_link
 
+##
+
+Online demo temporarily available at https://queensland-physics-leaders-barely.trycloudflare.com
+
 ---
 
 ## The problem
