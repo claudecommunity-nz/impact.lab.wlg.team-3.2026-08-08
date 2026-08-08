@@ -1,0 +1,51 @@
+# Where an operator can forward a report to.
+# Add, remove or edit entries here (or from the Settings tab).
+#
+# type: email  -> sends via the SMTP block in settings.yaml
+# type: api    -> HTTP request with the report envelope as JSON body
+#
+# All addresses below are DUMMY placeholders for the prototype.
+
+destinations:
+  - id: fenz
+    name: Fire and Emergency NZ
+    type: email
+    address: fenz@mail.com
+    description: Fire, hazardous substances, urban search and rescue, extrication.
+    default_note: |
+      Forwarded from Wellington EOC triage. This report is UNVERIFIED unless
+      marked otherwise below. Original source link is included.
+    enabled: true
+
+  - id: wellington_water
+    name: Wellington Water — Faults
+    type: email
+    address: faults@mail.com
+    description: Water mains, wastewater overflow, stormwater and flooding assets.
+    enabled: true
+
+  - id: police
+    name: NZ Police — District Command Centre
+    type: email
+    address: dcc@mail.com
+    description: Life safety, cordons, evacuation enforcement, missing persons.
+    enabled: true
+
+  - id: wcc_roads
+    name: WCC Roading & Traffic
+    type: email
+    address: roads@mail.com
+    description: Slips on roads, road closures, debris, signage.
+    enabled: true
+
+  - id: cop_feed
+    name: Common Operating Picture (map feed)
+    type: api
+    url: http://localhost:8090/api/signals
+    method: POST
+    headers:
+      Content-Type: application/json
+    description: >
+      Pushes the report as a GeoJSON Feature to the shared common operating
+      picture used by the other Impact Lab teams.
+    enabled: true

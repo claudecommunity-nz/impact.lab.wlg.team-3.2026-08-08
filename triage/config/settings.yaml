@@ -1,0 +1,64 @@
+# Runtime settings for the triage prototype.
+# Edited live from the Settings tab, or by hand — the server reloads on change.
+
+engine:
+  # rules  = deterministic ruleset only (fast, fully explainable)
+  # llm    = ask the local model to classify each report
+  # hybrid = run rules first, then ask the LLM; disagreements are surfaced to
+  #          the operator instead of being resolved silently.
+  mode: hybrid
+
+  # In hybrid mode, ignore the LLM verdict below this confidence.
+  llm_min_confidence: 0.45
+
+  # The LLM is never allowed to *lower* a priority the ruleset raised.
+  # Machines may escalate; only a human may de-escalate.
+  llm_may_downgrade: false
+
+llm:
+  provider: ollama
+  base_url: http://localhost:11434
+  model: qwen3.5:4b
+  timeout_s: 90
+  temperature: 0
+  # Strip <think>...</think> blocks that reasoning models emit before JSON.
+  strip_think_tags: true
+
+dedupe:
+  enabled: true
+  # Token-overlap (Jaccard) score above which two reports are considered
+  # to describe the same thing.
+  similarity_threshold: 0.34
+  time_window_minutes: 240
+  distance_m: 700
+  # Reports with no location at all can still cluster on text alone.
+  allow_textonly_clustering: true
+
+geocode:
+  enabled: true
+  gazetteer: data/gazetteer.json
+  # Locations resolved from free text are always marked low confidence
+  # in the UI. We never present a guessed pin as a known one.
+
+forwarding:
+  # dry_run keeps everything local: nothing leaves the machine, the outbound
+  # payload is recorded in the audit log so you can show it on the demo.
+  dry_run: true
+  smtp:
+    host: localhost
+    port: 1025
+    use_tls: false
+    username: null
+    password: null
+    from_address: eoc-triage@wcc.example.nz
+
+ui:
+  # Which priorities are plotted on the map tab.
+  map_priorities: [action_required, verification_required]
+  refresh_seconds: 10
+  map_centre: [-41.2865, 174.7762]
+  map_zoom: 12
+
+audit:
+  # Who the UI attributes changes to until real auth exists.
+  default_actor: duty.controller

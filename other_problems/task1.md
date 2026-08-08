@@ -1,19 +1,19 @@
-# Impact Lab Wellington — Team 3
+# Impact Lab Wellington — Team 1
 
 **Wellington City Council Emergency Management × Claude Code Community NZ**
 Saturday 8 August 2026 · Waimanga Room, Wellington City Council
 
 ---
 
-## Problem 04 — Help emergency staff sort and prioritise incoming information
+## Problem 01 — Bring official warnings and local conditions into one clear community view
 
-> How might we help emergency staff rapidly sort incoming reports into information for awareness, information requiring verification, and information requiring action?
+> How might we give people a clear, location-specific picture of an emerging weather event by bringing together official warnings, Council information and trusted reports of local conditions?
 
-During an event, information arrives through phone calls, emails, forms, social media, news reports and partner agencies. The challenge is not just collecting it. Staff must identify where it relates to, whether it is new or duplicated, how reliable it may be, and whether it requires action.
+South coast events are often forecast by MetService and communicated through official channels. However, those sources do not always show what is happening at street or neighbourhood level — for example, the condition of roads, waves crossing the road, surface flooding or access becoming unsafe.
 
-A prototype could extract location, time, issue and potential urgency; group similar reports; preserve links to the original sources; and present a queue for human review.
+Residents may monitor MetService, WCC, WREMO, news media and local Facebook groups, without knowing which source to rely on or how the information fits together. A prototype could bring those sources into one view, identify the source and time of each item, and clearly distinguish official advice from unverified community reports.
 
-**Desired outcome:** Staff spend less time sorting information and more time checking significant reports and coordinating action.
+**Desired outcome:** People can quickly understand what is forecast, what is happening locally, and where to find authoritative advice.
 
 *The common theme is improving the flow and use of information between communities and Council before and during an event.*
 
@@ -62,21 +62,6 @@ Three traps worth knowing before you lose an hour to them:
   then refuse to answer. Ask them for a PNG instead.
 - **One query is silently capped** (`footpaths` has 8,130 features; a request
   returns 2,000). Page properly, or check `exceededTransferLimit`.
-
-## The prototype
-
-[`triage/`](triage/) — sorts incoming reportings into action required,
-verification required and situational awareness, audits every human decision
-against the shift it happened in, and turns that audit trail into a handover
-briefing so nothing received on one shift is lost at the changeover.
-
-```bash
-cd triage && pip install -r requirements.txt && ./run.sh --seed
-```
-
-See [triage/README.md](triage/README.md) for the input schema, the rule format,
-the GeoJSON feed other teams can consume, and the ingest contract for the
-social-media pipeline.
 
 ## Schedule
 

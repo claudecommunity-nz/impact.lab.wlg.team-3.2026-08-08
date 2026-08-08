@@ -1,19 +1,19 @@
-# Impact Lab Wellington — Team 3
+# Impact Lab Wellington — Team 7
 
 **Wellington City Council Emergency Management × Claude Code Community NZ**
 Saturday 8 August 2026 · Waimanga Room, Wellington City Council
 
 ---
 
-## Problem 04 — Help emergency staff sort and prioritise incoming information
+## Problem 05 — Detect unusual changes in movement around the city
 
-> How might we help emergency staff rapidly sort incoming reports into information for awareness, information requiring verification, and information requiring action?
+> How might we identify and map sudden changes in pedestrian or vehicle movement that could indicate disruption, unsafe conditions, evacuation or loss of access?
 
-During an event, information arrives through phone calls, emails, forms, social media, news reports and partner agencies. The challenge is not just collecting it. Staff must identify where it relates to, whether it is new or duplicated, how reliable it may be, and whether it requires action.
+A prototype could compare current or recent movement with usual patterns and flag significant changes for investigation. It could also compare movement changes with weather warnings, road closures or public reports.
 
-A prototype could extract location, time, issue and potential urgency; group similar reports; preserve links to the original sources; and present a queue for human review.
+This could build on Pōneke Travel Insights, which already allows users to examine movement patterns, busy periods and changes over time. The existing material notes that the data has limitations, which would need to be visible in any emergency use.
 
-**Desired outcome:** Staff spend less time sorting information and more time checking significant reports and coordinating action.
+**Desired outcome:** WCC receives another early indication of where an event may be affecting people, rather than relying only on individual reports.
 
 *The common theme is improving the flow and use of information between communities and Council before and during an event.*
 
@@ -62,21 +62,6 @@ Three traps worth knowing before you lose an hour to them:
   then refuse to answer. Ask them for a PNG instead.
 - **One query is silently capped** (`footpaths` has 8,130 features; a request
   returns 2,000). Page properly, or check `exceededTransferLimit`.
-
-## The prototype
-
-[`triage/`](triage/) — sorts incoming reportings into action required,
-verification required and situational awareness, audits every human decision
-against the shift it happened in, and turns that audit trail into a handover
-briefing so nothing received on one shift is lost at the changeover.
-
-```bash
-cd triage && pip install -r requirements.txt && ./run.sh --seed
-```
-
-See [triage/README.md](triage/README.md) for the input schema, the rule format,
-the GeoJSON feed other teams can consume, and the ingest contract for the
-social-media pipeline.
 
 ## Schedule
 

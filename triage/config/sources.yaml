@@ -1,0 +1,219 @@
+# ============================================================================
+# Input interface — source adapters
+# ============================================================================
+# The canonical shape a reporting must end up in is defined in app/models.py
+# (`Reporting`). Upstream systems rarely emit that shape, so each source gets
+# an adapter here that maps ITS field names onto ours.
+#
+# POST a payload to  /api/v1/ingest?adapter=<id>  and it is mapped, normalised,
+# geocoded, clustered and triaged. POST to /api/v1/ingest with no adapter and
+# the body must already be in canonical form.
+#
+# Mapping syntax:
+#   "<canonical.dotted.path>": "<source.dotted.path>"
+#   Use  a.b[0].c  for list indexing, and  "=literal"  to hard-code a value.
+#   Missing source paths are simply skipped.
+#
+# `collections` maps a repeated source array onto a canonical list.
+# ============================================================================
+
+version: 1
+
+adapters:
+
+  # -------------------------------------------------------------------------
+  # Call centre /
+  # Operators type or paste the call transcript. This is the highest-volume
+  # channel in a real event.
+  # -------------------------------------------------------------------------
+  - id: call_centre
+    name: WCC Contact Centre
+    channel: phone_call
+    description: Inbound calls logged by contact-centre operators.
+    mapping:
+      source.system: "=WCC Contact Centre"
+      source.external_id: call_id
+      source.received_at: call_started_at
+      source.permalink: recording_url
+      content.transcript: transcript
+      content.text: operator_notes
+      content.subject: call_reason
+      occurred_at: incident_time
+      location.text: caller_stated_location
+      location.lat: latitude
+      location.lon: longitude
+      location.method: "=operator"
+      reporter.name: caller_name
+      reporter.phone: caller_phone
+      reporter.is_official: caller_is_agency
+
+  # -------------------------------------------------------------------------
+  # Email into the EOC inbox
+  # -------------------------------------------------------------------------
+  - id: email_inbox
+    name: EOC Inbox
+    channel: email
+    description: Messages sent to the emergency operations centre inbox.
+    mapping:
+      source.system: "=EOC Inbox"
+      source.external_id: message_id
+      source.received_at: date
+      source.author_handle: from
+      content.subject: subject
+      content.text: body_text
+      location.text: stated_location
+      reporter.email: from
+      reporter.name: from_name
+      reporter.organisation: organisation
+    collections:
+      content.media:
+        from: attachments
+        item:
+          kind: "=image"
+          url: url
+          caption: filename
+          mime_type: content_type
+          caption_source: "=author"
+
+  # -------------------------------------------------------------------------
+  # Public web form (Council "report an issue" style)
+  # -------------------------------------------------------------------------
+  - id: web_form
+    name: Public Report Form
+    channel: web_form
+    description: Structured public submissions.
+    mapping:
+      source.system: "=wellington.govt.nz report form"
+      source.external_id: submission_id
+      source.received_at: submitted_at
+      content.text: description
+      content.subject: issue_type
+      occurred_at: observed_at
+      location.text: address
+      location.lat: geo.lat
+      location.lon: geo.lng
+      location.accuracy_m: geo.accuracy
+      location.method: "=device_gps"
+      reporter.name: contact_name
+      reporter.phone: contact_phone
+      reporter.email: contact_email
+    collections:
+      content.media:
+        from: photos
+        item:
+          kind: "=image"
+          url: url
+          caption: caption
+          caption_source: "=author"
+
+  # -------------------------------------------------------------------------
+  # SOCIAL MEDIA — the contract for the team parsing social feeds.
+  # -------------------------------------------------------------------------
+  # They POST batches to  /api/v1/ingest?adapter=social_media
+  # with a body of  {"items": [ ... ]}  where each item looks like:
+  #
+  #   {
+  #     "post_id":        "x_1829...",          # required, stable, unique
+  #     "platform":       "x" | "bluesky" | "facebook" | "instagram" | "mastodon",
+  #     "url":            "https://x.com/.../status/1829...",   # required
+  #     "posted_at":      "2026-08-08T09:14:00+12:00",          # ISO 8601
+  #     "text":           "Water over the road at ...",
+  #     "author": {
+  #        "handle":        "@someone",
+  #        "display_name":  "Someone",
+  #        "verified":      false,
+  #        "is_official":   false,      # true for @wgtncc, @FENZ_Wellington etc
+  #        "follower_count": 812,
+  #        "account_age_days": 2200
+  #     },
+  #     "media": [
+  #        {"type": "image"|"video", "url": "...", "thumbnail": "...",
+  #         "alt_text": "...", "model_caption": "..."}   # model_caption optional
+  #     ],
+  #     "geo": {                        # all optional
+  #        "lat": -41.29, "lng": 174.78,
+  #        "place_name": "Oriental Bay, Wellington",
+  #        "source": "post_geotag" | "profile" | "text_inference"
+  #     },
+  #     "engagement": {"reposts": 12, "likes": 40, "replies": 3},
+  #     "credibility": 0.35,            # optional 0..1 from their scoring
+  #     "matched_query": "wellington flood",
+  #     "language": "en"
+  #   }
+  #
+  # Anything extra they send is preserved verbatim under `raw` and shown in the
+  # reporting detail pane, so nothing is lost if we haven't mapped it yet.
+  # -------------------------------------------------------------------------
+  - id: social_media
+    name: Social Media Listener
+    channel: social_media
+    description: Public posts matched by the social listening pipeline (Team - TBC).
+    batch_key: items          # body may be a bare list, a single object, or {"items": [...]}
+    mapping:
+      source.system: platform
+      source.external_id: post_id
+      source.permalink: url
+      source.received_at: posted_at
+      source.author_handle: author.handle
+      source.author_display_name: author.display_name
+      source.credibility_hint: credibility
+      source.ingested_by: "=social-listening-pipeline"
+      content.text: text
+      content.language: language
+      occurred_at: posted_at
+      location.text: geo.place_name
+      location.lat: geo.lat
+      location.lon: geo.lng
+      location.method: geo.source
+      reporter.is_official: author.is_official
+    collections:
+      content.media:
+        from: media
+        item:
+          kind: type
+          url: url
+          thumbnail_url: thumbnail
+          caption: alt_text
+          model_caption: model_caption
+          caption_source: "=author"
+
+  # -------------------------------------------------------------------------
+  # Partner agencies (FENZ, Police, Wellington Water, GWRC)
+  # -------------------------------------------------------------------------
+  - id: partner_agency
+    name: Partner Agency Feed
+    channel: partner_agency
+    description: Structured situation updates from partner agencies.
+    batch_key: updates
+    mapping:
+      source.system: agency
+      source.external_id: reference
+      source.received_at: issued_at
+      source.permalink: link
+      content.subject: title
+      content.text: detail
+      occurred_at: effective_from
+      location.text: location_description
+      location.lat: location.lat
+      location.lon: location.lon
+      location.method: "=operator"
+      reporter.organisation: agency
+      reporter.name: contact
+      reporter.is_official: "=true"
+
+  # -------------------------------------------------------------------------
+  # News monitoring
+  # -------------------------------------------------------------------------
+  - id: news
+    name: News Monitoring
+    channel: news
+    description: Items picked up from news wires and outlets.
+    batch_key: articles
+    mapping:
+      source.system: outlet
+      source.external_id: guid
+      source.permalink: link
+      source.received_at: published_at
+      content.subject: headline
+      content.text: summary
+      location.text: dateline

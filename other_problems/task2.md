@@ -1,19 +1,19 @@
-# Impact Lab Wellington — Team 3
+# Impact Lab Wellington — Team 5
 
 **Wellington City Council Emergency Management × Claude Code Community NZ**
 Saturday 8 August 2026 · Waimanga Room, Wellington City Council
 
 ---
 
-## Problem 04 — Help emergency staff sort and prioritise incoming information
+## Problem 02 — Create a two-way information channel between communities and WCC
 
-> How might we help emergency staff rapidly sort incoming reports into information for awareness, information requiring verification, and information requiring action?
+> How might communities provide WCC with timely, structured information about local conditions, impacts and needs — before and during an emergency — and see that their information has been received?
 
-During an event, information arrives through phone calls, emails, forms, social media, news reports and partner agencies. The challenge is not just collecting it. Staff must identify where it relates to, whether it is new or duplicated, how reliable it may be, and whether it requires action.
+The current flow is inconsistent and largely one-way. WCC sends information out, while reports from communities arrive through several unrelated channels and may not reach the people who can use them.
 
-A prototype could extract location, time, issue and potential urgency; group similar reports; preserve links to the original sources; and present a queue for human review.
+A prototype could allow residents, community groups or Community Emergency Hubs to report an issue using a simple form or message. Reports could include location, time, issue type, description and an image. WCC could group similar reports, acknowledge receipt and show whether an issue is being checked or acted on.
 
-**Desired outcome:** Staff spend less time sorting information and more time checking significant reports and coordinating action.
+**Desired outcome:** WCC gains better local awareness, while communities have a clearer and more dependable route into Council.
 
 *The common theme is improving the flow and use of information between communities and Council before and during an event.*
 
@@ -62,21 +62,6 @@ Three traps worth knowing before you lose an hour to them:
   then refuse to answer. Ask them for a PNG instead.
 - **One query is silently capped** (`footpaths` has 8,130 features; a request
   returns 2,000). Page properly, or check `exceededTransferLimit`.
-
-## The prototype
-
-[`triage/`](triage/) — sorts incoming reportings into action required,
-verification required and situational awareness, audits every human decision
-against the shift it happened in, and turns that audit trail into a handover
-briefing so nothing received on one shift is lost at the changeover.
-
-```bash
-cd triage && pip install -r requirements.txt && ./run.sh --seed
-```
-
-See [triage/README.md](triage/README.md) for the input schema, the rule format,
-the GeoJSON feed other teams can consume, and the ingest contract for the
-social-media pipeline.
 
 ## Schedule
 

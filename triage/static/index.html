@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EOC Triage — Wellington</title>
+<link rel="stylesheet" href="/static/vendor/maplibre-gl.css">
+<link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <div>
+      <div class="brand-title">EOC Reporting Triage</div>
+      <div class="brand-sub">Wellington Emergency Operations Centre &middot; prototype</div>
+    </div>
+  </div>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab is-active" data-tab="queue" role="tab">Queue <span class="tab-count" id="tabCountQueue"></span></button>
+    <button class="tab" data-tab="map" role="tab">Map</button>
+    <button class="tab" data-tab="handover" role="tab">Handover <span class="tab-badge" id="tabBadgeHandover" hidden></span></button>
+    <button class="tab" data-tab="audit" role="tab">Audit</button>
+    <button class="tab" data-tab="settings" role="tab">Settings</button>
+  </nav>
+
+  <div class="shiftbar">
+    <div class="shift-meta">
+      <span class="shift-label">On shift</span>
+      <button class="shift-operator" id="shiftOperator" title="Change operator">—</button>
+    </div>
+    <div class="shift-since" id="shiftSince"></div>
+  </div>
+</header>
+
+<div class="disclaimer" role="note">
+  Prototype built for Impact Lab Wellington. Reportings shown are simulated.
+  <strong>Not an operational emergency system — in an emergency, call 111.</strong>
+</div>
+
+<main>
+
+  <!-- ================= QUEUE ================= -->
+  <section class="panel is-active" id="panel-queue">
+    <div class="queue-layout">
+      <div class="queue-main">
+        <div class="toolbar">
+          <div class="stat-row" id="statRow"></div>
+          <div class="filters">
+            <input type="search" id="searchBox" placeholder="Search reportings…" autocomplete="off">
+            <select id="filterPriority">
+              <option value="">All priorities</option>
+              <option value="action_required">Action required</option>
+              <option value="verification_required">Verification required</option>
+              <option value="situational_awareness">Situational awareness</option>
+            </select>
+            <select id="filterChannel">
+              <option value="">All channels</option>
+              <option value="phone_call">Call centre</option>
+              <option value="email">Email</option>
+              <option value="web_form">Web form</option>
+              <option value="social_media">Social media</option>
+              <option value="news">News</option>
+              <option value="partner_agency">Partner agency</option>
+            </select>
+            <label class="check"><input type="checkbox" id="filterUnack"> Never opened</label>
+            <label class="check"><input type="checkbox" id="filterFalse"> Show false</label>
+            <button class="btn btn-ghost" id="btnRefresh" title="Refresh">↻</button>
+          </div>
+        </div>
+        <div class="queue-list" id="queueList"></div>
+      </div>
+
+      <aside class="detail" id="detail">
+        <div class="detail-empty" id="detailEmpty">
+          <div class="detail-empty-inner">
+            <p><strong>Select a reporting</strong></p>
+            <p>Its full audit trail, source link, triage reasoning and related
+               reportings open here. Every action you take is recorded against
+               your name and this shift.</p>
+          </div>
+        </div>
+        <div class="detail-body" id="detailBody" hidden></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= MAP ================= -->
+  <section class="panel" id="panel-map">
+    <div class="map-wrap">
+      <div id="map"></div>
+      <div class="map-legend">
+        <div class="map-legend-title">Showing operational reportings only</div>
+        <div class="legend-row"><span class="dot dot-action"></span> Action required</div>
+        <div class="legend-row"><span class="dot dot-verify"></span> Verification required</div>
+        <hr>
+        <div class="legend-row"><span class="ring ring-solid"></span> Solid — location we were given</div>
+        <div class="legend-row"><span class="ring ring-faded"></span> Faded — inferred from the wording</div>
+        <label class="check map-check"><input type="checkbox" id="mapShowAwareness"> Include situational awareness</label>
+        <label class="check map-check"><input type="checkbox" id="mapShowFalse"> Include assessed-false</label>
+        <a class="map-feed" id="mapFeedLink" href="/api/v1/geojson" target="_blank" rel="noopener">Open the GeoJSON feed →</a>
+      </div>
+      <div class="map-empty" id="mapEmpty" hidden>No reportings with a location match the current filter.</div>
+    </div>
+  </section>
+
+  <!-- ================= HANDOVER ================= -->
+  <section class="panel" id="panel-handover">
+    <div class="handover-wrap">
+      <div class="handover-actions">
+        <div>
+          <h2>Shift handover briefing</h2>
+          <p class="muted">
+            Built from the live queue and the audit trail. Optional — the queue
+            and each reporting's own audit trail carry the same information.
+            This exists so nothing received on your shift dies at the changeover.
+          </p>
+        </div>
+        <div class="handover-buttons">
+          <label class="check"><input type="checkbox" id="handoverLLM"> Add an AI summary paragraph</label>
+          <button class="btn btn-ghost" id="btnHandoverPreview">Preview</button>
+          <button class="btn btn-primary" id="btnHandoverSave">Generate &amp; save</button>
+          <button class="btn btn-warn" id="btnEndShift">End shift &amp; hand over</button>
+        </div>
+      </div>
+      <div class="handover-body" id="handoverBody">
+        <p class="muted pad">Press <strong>Preview</strong> to build the briefing for the current shift.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AUDIT ================= -->
+  <section class="panel" id="panel-audit">
+    <div class="audit-wrap">
+      <div class="toolbar">
+        <div class="filters">
+          <select id="auditShift"><option value="">All activity (most recent first)</option></select>
+          <select id="auditAction"><option value="">All actions</option></select>
+          <label class="check"><input type="checkbox" id="auditHumans" checked> Human decisions only</label>
+          <button class="btn btn-ghost" id="btnAuditRefresh">↻</button>
+        </div>
+      </div>
+      <div class="audit-list" id="auditList"></div>
+    </div>
+  </section>
+
+  <!-- ================= SETTINGS ================= -->
+  <section class="panel" id="panel-settings">
+    <div class="settings-wrap">
+
+      <div class="card">
+        <h3>Triage engine</h3>
+        <div class="kv" id="engineStatus"></div>
+      </div>
+
+      <div class="card">
+        <h3>Generate a ruleset from the event</h3>
+        <p class="muted">
+          Describe the event and your response timeline. The local model drafts a
+          ruleset; you review and edit it before it takes effect. The rules do the
+          triage, so every live decision stays explainable.
+        </p>
+        <label class="field">
+          <span>Hazard / event type</span>
+          <input type="text" id="genHazard" placeholder="e.g. Severe southerly storm with coastal inundation">
+        </label>
+        <label class="field">
+          <span>Your response timeline</span>
+          <textarea id="genTimeline" rows="3" placeholder="e.g. Crews tasked in 2-hour blocks. Anything I can't action within 6 hours goes to the morning plan. Welfare callbacks before 22:00."></textarea>
+        </label>
+        <label class="field">
+          <span>Anything else the ruleset should know (optional)</span>
+          <textarea id="genExtra" rows="2" placeholder="e.g. Ngaio Gorge is already closed; don't re-escalate reports about it."></textarea>
+        </label>
+        <div class="row">
+          <button class="btn btn-primary" id="btnGenRules">Draft ruleset</button>
+          <span class="muted" id="genStatus"></span>
+        </div>
+        <div id="genResult" hidden>
+          <div class="row row-between">
+            <strong>Draft — review before applying</strong>
+            <button class="btn btn-warn" id="btnApplyRules">Apply &amp; re-triage the queue</button>
+          </div>
+          <pre class="code" id="genYaml"></pre>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Forwarding destinations</h3>
+        <p class="muted">Where an operator can send a reporting. Edit
+          <code>destinations.yaml</code> below to add one.</p>
+        <div id="destList"></div>
+      </div>
+
+      <div class="card">
+        <h3>Input interface</h3>
+        <p class="muted">Each source is mapped onto the canonical reporting schema
+          by an adapter in <code>sources.yaml</code>. Point an upstream system at
+          its endpoint and it appears in the queue.</p>
+        <div id="adapterList"></div>
+      </div>
+
+      <div class="card">
+        <h3>Configuration files</h3>
+        <div class="config-tabs" id="configTabs"></div>
+        <textarea class="config-editor" id="configEditor" spellcheck="false"></textarea>
+        <div class="row">
+          <button class="btn btn-primary" id="btnSaveConfig">Save</button>
+          <button class="btn btn-ghost" id="btnRetriage">Re-triage the queue</button>
+          <button class="btn btn-ghost" id="btnReseed">Reload demo data</button>
+          <span class="muted" id="configStatus"></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="/static/vendor/maplibre-gl.js"></script>
+<script type="module" src="/static/js/app.js"></script>
+</body>
+</html>

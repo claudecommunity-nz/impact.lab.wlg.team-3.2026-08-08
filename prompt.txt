@@ -1,0 +1,19 @@
+I want to build an application to triage incoming reportings during disaster events.
+
+The input has a defined interface that can cater for call center reportings, email reporting, social media input (these are parsed from a different team but i want you to suggest an interface for these) and then carry on with the following process.
+
+The input scheme should contrain the source of the information, content, image if available, text captions, call center (text of the call). 
+
+the system has to have the following
+1. input interface to take in input ( you define the schemas and make it configurable for us to edit later) potential sources are 
+2. using this input data, i want to traiage the reportings based on a (here the triaging can be done by a defined heuristic where the intended user can define a rule set (an emergency responder can tell what the disaster is, what is his timeline) or use an LLM to do the prioritizing use ollama( i have qwen 3.5 locally)  or when the responder gives his timeline and the type of disaster we generate a rule base using the LLM and prioritize the incoming reports. This is the triaging engine. the task of the triaging is not to directly automate but to assist the responder the UI is important.
+3. auditing and tracking engine, this is also important to keep track of changes made on the status of incoming reports. the report can be marked as false reporting by a human (end user controller) and all incoming reportings can be flagged saying a similar report was already made and its false. Or a user can transfer the report to another partner department like fire and emergency NZ (use dummy elai fenz@mail.com). make the trigaing logic configurable (later we will change). The priorities should be ( action needed, verification needed, just situation awareness)
+3.  The UI is the third compoenent and the most important. The UI should present all incoming reports in one tab, in another tab it should show in a map the reportings (based on the location if available in the incoming data). The map should show only requires verification reportings or requires action reports. Also the the reportings list tab prioritisises the reportings based on the triaging logic, the user can override the priority status, (audit all changes), then also the user can forward a reporting to a relavent party (currently user email
+
+
+
+One thing i couldn't mention is these audits are very important.
+To give you context, the end user of this application changes (shift basis) so the prioritization, audits should all be used to build a briefing report, and then within the report we need to list the disaster reportings. Whats important is the the next person who comes in to shift does miss a tip that was received when during the previous responder was in the shift. So this report generation is optional because the priority list contants whats important at the along with the audits ( the person should be able to click on a reporting from the list thats sorted according to priority and see the audit log for a reporting)
+
+
+i use reporting for a disaster reporting like a call center call in most cases 

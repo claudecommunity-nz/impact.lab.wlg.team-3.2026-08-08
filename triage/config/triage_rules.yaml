@@ -1,0 +1,264 @@
+# ============================================================================
+# Triage ruleset
+# ============================================================================
+# Every reporting starts at `base_score`. Each rule whose condition matches adds
+# its `score`. The total is compared against `thresholds` to pick a priority.
+#
+# A rule may also:
+#   force_priority: <priority>   always at least this priority (escalate)
+#   cap_priority:   <priority>   never above this priority (hold back)
+#
+# force_ beats cap_ only when the forced priority is *higher*. Caps exist so
+# that e.g. an unverified social post can never jump straight to "act on this"
+# without a human looking at it.
+#
+# Condition keys available to `when`:
+#   any_keywords / all_keywords / none_keywords   (case-insensitive substrings)
+#   channel: [phone_call, email, web_form, social_media, news,
+#             partner_agency, sensor, other]
+#   has_media: true|false            reporting carries image/video/audio
+#   has_location: true|false         any location at all
+#   has_precise_location: true|false GPS or operator-placed pin
+#   reporter_is_official: true|false
+#   credibility_at_least: 0.0-1.0    upstream credibility hint
+#   cluster_size_min: <int>          N independent reportings say the same thing
+#   cluster_flagged_false: true|false someone already called this a hoax
+#   within_minutes: <int>            fresher than N minutes
+#   older_than_minutes: <int>
+#
+# This file is hot-reloaded. The Settings tab can also regenerate it from a
+# hazard type + response timeline using the local LLM.
+# ============================================================================
+
+version: 3
+name: All-hazards default
+generated_by: manual
+notes: >
+  Starting point tuned for a Wellington storm/flood or earthquake response.
+  Regenerate from the Settings tab once the controller declares the event type.
+
+event:
+  hazard_type: all_hazards
+  # Free text the controller entered; fed to the LLM when regenerating.
+  response_timeline: null
+
+defaults:
+  base_score: 10
+  priority: situational_awareness
+
+thresholds:
+  action_required: 62
+  verification_required: 30
+  # anything below verification_required falls through to situational_awareness
+
+# ---------------------------------------------------------------------------
+# Hazard categorisation — first match wins, used for grouping and map icons.
+# ---------------------------------------------------------------------------
+categories:
+  - id: life_safety
+    label: Life safety
+    match: [trapped, unconscious, "not breathing", drowning, buried, "person in the water",
+            "collapsed on", cpr, bleeding, "people inside", "missing child"]
+  - id: structural
+    label: Structural damage
+    match: [collapse, collapsed, facade, unreinforced, "cracked wall", rubble,
+            "partial collapse", chimney, "ceiling came down"]
+  - id: flooding
+    label: Flooding
+    match: [flood, flooding, "surface water", "water rising", inundat, stormwater,
+            "river burst", overflow, "knee deep", "up to the door"]
+  - id: landslide
+    label: Landslide / slip
+    match: [slip, landslide, hillside, "debris flow", "bank has come down", "mud across"]
+  - id: fire
+    label: Fire
+    match: [fire, smoke, burning, alight, flames, "gas leak", "smell of gas"]
+  - id: roads
+    label: Roads & access
+    match: ["road closed", blocked, "tree down", debris, cordon, "cannot get through",
+            "car stuck", bridge]
+  - id: utilities
+    label: Utilities
+    match: ["power out", outage, "no water", "water main", "burst pipe", sewage,
+            "no cell", "lines down"]
+  - id: marine
+    label: Coastal / tsunami
+    match: [tsunami, surge, "sea wall", wave, coastal, harbour, "king tide"]
+  - id: welfare
+    label: Welfare & shelter
+    match: [elderly, medication, oxygen, insulin, stranded, "nowhere to stay",
+            "evacuation centre", hub, "no food", disabled]
+  - id: general
+    label: General
+    match: []
+
+# ---------------------------------------------------------------------------
+# Scoring rules
+# ---------------------------------------------------------------------------
+rules:
+  # ---- escalators --------------------------------------------------------
+  - id: life_safety_language
+    label: Life-safety language in reporting
+    when:
+      any_keywords: [trapped, unconscious, "not breathing", drowning, buried,
+                     "person in the water", cpr, "people inside", "help me",
+                     "can't get out", "cant get out", "severe bleeding"]
+    score: 55
+    force_priority: action_required
+    rationale: Explicit risk to life. Goes to the top of the queue regardless of source.
+
+  - id: children_or_dependants
+    label: Children, elderly or dependants at risk
+    when:
+      any_keywords: [child, children, baby, toddler, elderly, "rest home", disabled,
+                     wheelchair, oxygen, dialysis]
+    score: 18
+
+  - id: power_dependent_medical
+    label: Person dependent on powered medical equipment
+    when:
+      any_keywords: [oxygen, concentrator, ventilator, dialysis, insulin,
+                     "life support", nebuliser, cpap, "fridge for my medicine"]
+    score: 30
+    rationale: >
+      Loss of power or access becomes a life-safety problem on a timer for
+      these people. Treated as action, not welfare-later. Kept narrow to
+      powered or cold-chain dependencies — the general word "medication" is
+      covered by the dependants rule instead.
+
+  - id: structural_collapse
+    label: Reported structural collapse
+    when:
+      any_keywords: [collapse, collapsed, rubble, "facade fell", "building came down"]
+    score: 35
+
+  - id: rapid_worsening
+    label: Situation described as worsening
+    when:
+      any_keywords: ["rising fast", "getting worse", spreading, "faster now",
+                     "still coming up", "worse than", escalating]
+    score: 20
+
+  - id: hazard_to_public
+    label: Hazard at a public or sensitive place
+    when:
+      any_keywords: [school, hospital, "rest home", supermarket, "main road", motorway,
+                     "state highway", railway, "ferry terminal", airport]
+    score: 14
+
+  - id: fire_or_gas
+    label: Fire or gas
+    when:
+      any_keywords: [fire, flames, "smell of gas", "gas leak", burning, "smoke pouring"]
+    score: 30
+
+  - id: blocked_access_route
+    label: Blocked route affecting access
+    when:
+      any_keywords: ["road closed", blocked, "tree down", "slip across",
+                     "cannot get through", impassable, cordon]
+    score: 16
+
+  # ---- credibility -------------------------------------------------------
+  - id: official_partner
+    label: From an official partner agency
+    when:
+      channel: [partner_agency]
+    score: 22
+    rationale: Partner agencies are treated as pre-verified sources.
+
+  - id: official_reporter
+    label: Reporter identified as an official
+    when:
+      reporter_is_official: true
+    score: 15
+
+  - id: emergency_call
+    label: Came through the call centre
+    when:
+      channel: [phone_call]
+    score: 12
+    rationale: Someone chose to pick up the phone — usually a stronger signal than a post.
+
+  - id: has_evidence_media
+    label: Photo or video attached
+    when:
+      has_media: true
+    score: 8
+
+  - id: precise_location
+    label: Precise location supplied
+    when:
+      has_precise_location: true
+    score: 6
+
+  - id: corroborated
+    label: Corroborated by 3+ independent reportings
+    when:
+      cluster_size_min: 3
+    score: 18
+    rationale: Independent people describing the same thing raises confidence.
+
+  - id: fresh
+    label: Received in the last 30 minutes
+    when:
+      within_minutes: 30
+    score: 6
+
+  # ---- brakes ------------------------------------------------------------
+  - id: unverified_social
+    label: Social media — unverified by default
+    when:
+      channel: [social_media]
+    score: 0
+    cap_priority: verification_required
+    rationale: >
+      A public post is a signal to investigate, never a confirmed fact. It can
+      reach "needs verification" on its own but a human must promote it further.
+
+  - id: news_secondary
+    label: News reporting — secondary source
+    when:
+      channel: [news]
+    score: 4
+    cap_priority: verification_required
+
+  - id: hearsay
+    label: Second-hand or rumour language
+    when:
+      any_keywords: ["i heard", "someone said", apparently, rumour, rumor, allegedly,
+                     "my mate said", "saw on facebook", "someone posted"]
+    score: -12
+    cap_priority: verification_required
+
+  - id: no_location
+    label: No location given
+    when:
+      has_location: false
+    score: -8
+    rationale: Cannot be tasked to a crew without a location; needs a callback first.
+
+  - id: previously_false
+    label: Matches a cluster already marked FALSE
+    when:
+      cluster_flagged_false: true
+    score: -45
+    cap_priority: situational_awareness
+    rationale: >
+      A duty controller has already assessed this cluster as a false reporting.
+      New matches are held back and flagged rather than silently dropped.
+
+  - id: stale
+    label: Older than 12 hours
+    when:
+      older_than_minutes: 720
+    score: -10
+
+  - id: general_chatter
+    label: General commentary, no incident described
+    when:
+      any_keywords: ["thoughts and prayers", "stay safe everyone", "hope everyone",
+                     "great work", "thank you to", "praying for"]
+      none_keywords: [trapped, flood, fire, slip, collapse, injured]
+    score: -20
+    cap_priority: situational_awareness

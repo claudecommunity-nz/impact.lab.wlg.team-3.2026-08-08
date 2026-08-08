@@ -63,21 +63,6 @@ Three traps worth knowing before you lose an hour to them:
 - **One query is silently capped** (`footpaths` has 8,130 features; a request
   returns 2,000). Page properly, or check `exceededTransferLimit`.
 
-## The prototype
-
-[`triage/`](triage/) — sorts incoming reportings into action required,
-verification required and situational awareness, audits every human decision
-against the shift it happened in, and turns that audit trail into a handover
-briefing so nothing received on one shift is lost at the changeover.
-
-```bash
-cd triage && pip install -r requirements.txt && ./run.sh --seed
-```
-
-See [triage/README.md](triage/README.md) for the input schema, the rule format,
-the GeoJSON feed other teams can consume, and the ingest contract for the
-social-media pipeline.
-
 ## Schedule
 
 | Time | What |
