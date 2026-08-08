@@ -1,0 +1,119 @@
+{
+  "_readme": "Example administrative timetable. Upload from Settings → Administrative timetable, or PUT to /api/v1/obligations. Only `due_at` is required (ISO 8601 with an offset); everything else is optional and shown in the row when present.",
+  "obligations": [
+    {
+      "id": "BR-001",
+      "type": "handover",
+      "short_label": "handover",
+      "label": "Shift handover briefing — day to night (OP-1)",
+      "due_at": "2026-08-07T18:45:00+12:00",
+      "owner_role": "Control",
+      "audience": "internal",
+      "score_bearing": false,
+      "shift_ref": "SH-N1",
+      "notes": "Previous evening. Included because the crew on duty at 00:00 on the sim day came on here."
+    },
+    {
+      "id": "BR-002",
+      "type": "shift_start",
+      "short_label": "shift start",
+      "label": "Night shift on duty — Operational Period 1",
+      "due_at": "2026-08-07T19:00:00+12:00",
+      "owner_role": "Control",
+      "audience": "internal",
+      "score_bearing": false,
+      "shift_ref": "SH-N1"
+    },
+    {
+      "id": "BR-003",
+      "type": "sitrep",
+      "short_label": "sitrep",
+      "label": "Situation report to Regional EOC — OP-1",
+      "due_at": "2026-08-08T06:00:00+12:00",
+      "owner_role": "Intelligence",
+      "audience": "external",
+      "score_bearing": true,
+      "shift_ref": "SH-N1",
+      "notes": "Regional expects this by 06:00 sharp. Late submission is scored."
+    },
+    {
+      "id": "BR-004",
+      "type": "handover",
+      "short_label": "handover",
+      "label": "Shift handover briefing — night to day (OP-2)",
+      "due_at": "2026-08-08T06:45:00+12:00",
+      "owner_role": "Control",
+      "audience": "internal",
+      "score_bearing": false,
+      "shift_ref": "SH-D1"
+    },
+    {
+      "id": "BR-005",
+      "type": "public_update",
+      "short_label": "public update",
+      "label": "Public information update — road closures and evacuation centres",
+      "due_at": "2026-08-08T08:00:00+12:00",
+      "owner_role": "PIM",
+      "audience": "public",
+      "score_bearing": true,
+      "shift_ref": "SH-D1",
+      "notes": "Coordinate wording with Roading before release."
+    },
+    {
+      "id": "BR-006",
+      "type": "briefing",
+      "short_label": "briefing",
+      "label": "All-of-EOC briefing — OP-2 objectives",
+      "due_at": "2026-08-08T09:00:00+12:00",
+      "owner_role": "Control",
+      "audience": "internal",
+      "score_bearing": false,
+      "shift_ref": "SH-D1"
+    },
+    {
+      "id": "BR-007",
+      "type": "sitrep",
+      "short_label": "sitrep",
+      "label": "Situation report to Regional EOC — OP-2",
+      "due_at": "2026-08-08T14:00:00+12:00",
+      "owner_role": "Intelligence",
+      "audience": "external",
+      "score_bearing": true,
+      "shift_ref": "SH-D1"
+    },
+    {
+      "id": "BR-008",
+      "type": "welfare_check",
+      "short_label": "welfare",
+      "label": "Welfare status roll-up from community hubs",
+      "due_at": "2026-08-08T15:30:00+12:00",
+      "owner_role": "Welfare",
+      "audience": "internal",
+      "score_bearing": true,
+      "shift_ref": "SH-D1",
+      "notes": "Kilbirnie, Brooklyn and Island Bay hubs to report headcount and unmet needs."
+    },
+    {
+      "id": "BR-009",
+      "type": "public_update",
+      "short_label": "public update",
+      "label": "Public information update — evening",
+      "due_at": "2026-08-08T17:30:00+12:00",
+      "owner_role": "PIM",
+      "audience": "public",
+      "score_bearing": true,
+      "shift_ref": "SH-D1"
+    },
+    {
+      "id": "BR-010",
+      "type": "handover",
+      "short_label": "handover",
+      "label": "Shift handover briefing — day to night (OP-3)",
+      "due_at": "2026-08-08T18:45:00+12:00",
+      "owner_role": "Control",
+      "audience": "internal",
+      "score_bearing": false,
+      "shift_ref": "SH-N2"
+    }
+  ]
+}

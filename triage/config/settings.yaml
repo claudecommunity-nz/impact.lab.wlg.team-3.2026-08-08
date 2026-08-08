@@ -22,28 +22,44 @@ engine:
   llm_workers: 8
 
 llm:
-  # anthropic | ollama
+  # anthropic = Claude API (needs CLAUDE_API_KEY in triage/.env)
+  # ollama    = local model, no API key, nothing leaves the machine
   provider: anthropic
+
+  # --- Claude API -----------------------------------------------------------
   model: claude-sonnet-5
-  # Triage is a short, scoped judgement and hundreds arrive in a couple of
-  # minutes, so keep effort low. Raise it if the verdicts look shallow.
-  effort: low
-  max_tokens: 2048
-  timeout_s: 60
-  # Ollama only, kept so the local provider still works.
+  timeout_s: 180
+  # On a policy decline the API re-runs the request on Anthropic's recommended
+  # fallback model in the same call, so a false positive on emergency content
+  # (injury, fire, entrapment) doesn't cost us the reporting.
+  refusal_fallbacks: true
+  # Effort per job. Classification is high-volume and wants to be quick;
+  # drafting a ruleset is the one genuinely hard reasoning task here.
+  classify_effort: low
+  classify_max_tokens: 4096
+  ruleset_effort: high
+  ruleset_max_tokens: 32000
+  handover_effort: high
+  handover_max_tokens: 8000
+
+  # --- Ollama (used only when provider: ollama) -----------------------------
   base_url: http://localhost:11434
+  ollama_model: qwen3.5:4b
   temperature: 0
   # Strip <think>...</think> blocks that reasoning models emit before JSON.
   strip_think_tags: true
 
 dedupe:
+  # Consolidation: reportings about the same event collapse into one queue row.
+  # The test is location proximity + sentiment + category (see dedupe.py).
   enabled: true
-  # Token-overlap (Jaccard) score above which two reports are considered
-  # to describe the same thing.
-  similarity_threshold: 0.34
+  # "Very close proximity" — two reportings must be within this many metres of
+  # each other to be the same event. Gazetteer-inferred pins sit at a suburb
+  # centroid, so this also stops two ends of a suburb merging.
+  distance_m: 250
   time_window_minutes: 240
-  distance_m: 700
-  # Reports with no location at all can still cluster on text alone.
+  # Reportings with no location at all can still consolidate, but only on a
+  # strong wording match (>= 50%) standing in for the missing place.
   allow_textonly_clustering: true
 
 geocode:

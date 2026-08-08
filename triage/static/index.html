@@ -26,6 +26,11 @@
     <button class="tab" data-tab="settings" role="tab">Settings</button>
   </nav>
 
+  <div class="clockbar" title="Local time — Pacific/Auckland">
+    <span class="clock-time" id="clockTime">--:--:--</span>
+    <span class="clock-date" id="clockDate"></span>
+  </div>
+
   <div class="shiftbar">
     <div class="shift-meta">
       <span class="shift-label">On shift</span>
@@ -49,28 +54,37 @@
         <div class="toolbar">
           <div class="stat-row" id="statRow"></div>
           <div class="filters">
-            <input type="search" id="searchBox" placeholder="Search reportings…" autocomplete="off">
+            <input type="search" id="searchBox" placeholder="Search location, category or text…" autocomplete="off">
             <select id="filterPriority">
               <option value="">All priorities</option>
               <option value="action_required">Action required</option>
               <option value="verification_required">Verification required</option>
               <option value="situational_awareness">Situational awareness</option>
             </select>
-            <select id="filterChannel">
-              <option value="">All channels</option>
-              <option value="phone_call">Call centre</option>
-              <option value="email">Email</option>
-              <option value="web_form">Web form</option>
-              <option value="social_media">Social media</option>
-              <option value="news">News</option>
-              <option value="partner_agency">Partner agency</option>
-            </select>
             <label class="check"><input type="checkbox" id="filterUnack"> Never opened</label>
-            <label class="check"><input type="checkbox" id="filterFalse"> Show false</label>
+            <label class="check"><input type="checkbox" id="filterDone"> Show done</label>
+            <span class="queue-counts" id="queueCounts"></span>
+            <button class="btn btn-ghost" id="btnCsv" title="Download these rows as CSV">CSV ↓</button>
             <button class="btn btn-ghost" id="btnRefresh" title="Refresh">↻</button>
           </div>
         </div>
-        <div class="queue-list" id="queueList"></div>
+        <div class="queue-scroll">
+          <table class="qtable">
+            <thead>
+              <tr>
+                <th class="c-expand"></th>
+                <th class="c-time">Date-time received</th>
+                <th class="c-loc">Location</th>
+                <th class="c-cat">Category</th>
+                <th class="c-risk">Potential loss of life</th>
+                <th class="c-pri">Triage status</th>
+                <th class="c-flags"></th>
+                <th class="c-act">Action</th>
+              </tr>
+            </thead>
+            <tbody id="queueBody"></tbody>
+          </table>
+        </div>
       </div>
 
       <aside class="detail" id="detail">
@@ -156,35 +170,50 @@
       </div>
 
       <div class="card">
-        <h3>Generate a ruleset from the event</h3>
+        <h3>Triage instructions for this event</h3>
         <p class="muted">
-          Describe the event and your response timeline. The local model drafts a
-          ruleset; you review and edit it before it takes effect. The rules do the
-          triage, so every live decision stays explainable.
+          Write or upload a Markdown file describing how <em>this</em> event should
+          be triaged — what counts as urgent tonight, what is already known, what to
+          hold back. It is given to the model with every reporting. The scoring rules
+          below still run underneath; this is your guidance on top, in the words you
+          would use for a colleague coming on shift.
         </p>
-        <label class="field">
-          <span>Hazard / event type</span>
-          <input type="text" id="genHazard" placeholder="e.g. Severe southerly storm with coastal inundation">
-        </label>
-        <label class="field">
-          <span>Your response timeline</span>
-          <textarea id="genTimeline" rows="3" placeholder="e.g. Crews tasked in 2-hour blocks. Anything I can't action within 6 hours goes to the morning plan. Welfare callbacks before 22:00."></textarea>
-        </label>
-        <label class="field">
-          <span>Anything else the ruleset should know (optional)</span>
-          <textarea id="genExtra" rows="2" placeholder="e.g. Ngaio Gorge is already closed; don't re-escalate reports about it."></textarea>
-        </label>
         <div class="row">
-          <button class="btn btn-primary" id="btnGenRules">Draft ruleset</button>
-          <span class="muted" id="genStatus"></span>
+          <label class="btn btn-primary" for="instrFile">Upload instruction.md</label>
+          <input type="file" id="instrFile" accept=".md,.markdown,.txt" hidden>
+          <button class="btn btn-ghost" id="btnInstrTemplate">Insert template</button>
+          <button class="btn btn-ghost" id="btnInstrClear">Remove</button>
+          <span class="muted" id="instrStatus"></span>
         </div>
-        <div id="genResult" hidden>
-          <div class="row row-between">
-            <strong>Draft — review before applying</strong>
-            <button class="btn btn-warn" id="btnApplyRules">Apply &amp; re-triage the queue</button>
-          </div>
-          <pre class="code" id="genYaml"></pre>
+        <textarea class="config-editor" id="instrEditor" spellcheck="false"
+                  placeholder="# Triage instructions&#10;&#10;Upload a file, insert the template, or just type here."></textarea>
+        <div class="row">
+          <button class="btn btn-primary" id="btnInstrSave">Save instructions</button>
+          <button class="btn btn-ghost" id="btnInstrRetriage">Save &amp; re-triage the queue</button>
         </div>
+      </div>
+
+      <div class="card">
+        <h3>Administrative timetable</h3>
+        <p class="muted">
+          A JSON list of the obligations you are held to — handovers, sitreps,
+          public updates. They appear in the queue as pink rows and climb as their
+          deadline approaches, but are never placed above an action-required
+          reporting.
+        </p>
+        <div class="row">
+          <label class="btn btn-primary" for="obFile">Upload timetable JSON</label>
+          <input type="file" id="obFile" accept=".json,.txt" hidden>
+          <button class="btn btn-ghost" id="btnObExample">Load the example</button>
+          <button class="btn btn-ghost" id="btnObClear">Remove</button>
+          <span class="muted" id="obStatus"></span>
+        </div>
+        <div id="obList"></div>
+        <details class="ob-raw">
+          <summary>Edit the raw JSON</summary>
+          <textarea class="config-editor" id="obEditor" spellcheck="false"></textarea>
+          <button class="btn btn-primary" id="btnObSave">Save timetable</button>
+        </details>
       </div>
 
       <div class="card">

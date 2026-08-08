@@ -228,15 +228,9 @@ def build(shift: Shift | None = None, *, use_llm: bool = False) -> dict:
     }
 
     if use_llm:
-        summary = llm.summarise_shift({
-            "shift": briefing["shift"],
-            "totals": briefing["totals"],
-            "never_acknowledged": briefing["never_acknowledged"][:15],
-            "open_action_required": briefing["open_action_required"][:15],
-            "stalled": briefing["stalled"][:10],
-            "forwarded_awaiting_reply": briefing["forwarded_awaiting_reply"][:10],
-            "priority_overrides": overrides[:10],
-        })
+        # The whole briefing goes over; llm.summarise_shift trims it to the
+        # fields the summary needs, so the shape lives in one place.
+        summary = llm.summarise_shift(briefing)
         briefing["llm_summary"] = summary
 
     return briefing

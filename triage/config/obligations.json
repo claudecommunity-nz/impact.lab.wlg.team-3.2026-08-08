@@ -1,0 +1,85 @@
+{
+  "obligations": [
+    {
+      "id": "BR-001",
+      "type": "handover",
+      "short_label": "handover",
+      "label": "Shift handover briefing \u2014 day to night (OP-1)",
+      "due_at": "2026-08-08T11:21:09.214362+12:00",
+      "owner_role": "Control",
+      "audience": "internal",
+      "score_bearing": false,
+      "shift_ref": "SH-N1",
+      "notes": "Previous shift. The crew on duty now came on here."
+    },
+    {
+      "id": "BR-002",
+      "type": "sitrep",
+      "short_label": "sitrep",
+      "label": "Situation report to Regional EOC \u2014 OP-1",
+      "due_at": "2026-08-08T14:18:09.214366+12:00",
+      "owner_role": "Intelligence",
+      "audience": "external",
+      "score_bearing": true,
+      "shift_ref": "SH-N1",
+      "notes": "Regional expects this on the hour. Late submission is scored."
+    },
+    {
+      "id": "BR-003",
+      "type": "public_update",
+      "short_label": "public update",
+      "label": "Public information update \u2014 road closures and evacuation centres",
+      "due_at": "2026-08-08T15:05:09.214368+12:00",
+      "owner_role": "PIM",
+      "audience": "public",
+      "score_bearing": true,
+      "shift_ref": "SH-N1",
+      "notes": "Coordinate wording with Roading before release. Ngaio Gorge and Oriental Parade both need a line."
+    },
+    {
+      "id": "BR-004",
+      "type": "welfare_check",
+      "short_label": "welfare",
+      "label": "Welfare status roll-up from community hubs",
+      "due_at": "2026-08-08T15:43:09.214369+12:00",
+      "owner_role": "Welfare",
+      "audience": "internal",
+      "score_bearing": true,
+      "shift_ref": "SH-N1",
+      "notes": "Kilbirnie, Brooklyn and Island Bay to report headcount and unmet needs."
+    },
+    {
+      "id": "BR-005",
+      "type": "briefing",
+      "short_label": "briefing",
+      "label": "All-of-EOC briefing \u2014 next operational period objectives",
+      "due_at": "2026-08-08T16:31:09.214371+12:00",
+      "owner_role": "Control",
+      "audience": "internal",
+      "score_bearing": false,
+      "shift_ref": "SH-N1"
+    },
+    {
+      "id": "BR-006",
+      "type": "sitrep",
+      "short_label": "sitrep",
+      "label": "Situation report to Regional EOC \u2014 OP-2",
+      "due_at": "2026-08-08T18:16:09.214372+12:00",
+      "owner_role": "Intelligence",
+      "audience": "external",
+      "score_bearing": true,
+      "shift_ref": "SH-D1"
+    },
+    {
+      "id": "BR-007",
+      "type": "handover",
+      "short_label": "handover",
+      "label": "Shift handover briefing \u2014 night to day (OP-2)",
+      "due_at": "2026-08-08T20:16:09.214373+12:00",
+      "owner_role": "Control",
+      "audience": "internal",
+      "score_bearing": false,
+      "shift_ref": "SH-D1"
+    }
+  ]
+}

@@ -21,11 +21,8 @@ from .models import (AuditEvent, Forward, Priority, Reporting, Shift, Status)
 DB_PATH = Path(DATA_DIR) / "triage.db"
 _lock = threading.RLock()
 _local = threading.local()
-# Every connection handed out, so reset() can close them all. The generation
-# is bumped on reset so other threads notice their connection is stale and
-# open a fresh one, instead of writing into the deleted database.
+# Every connection handed out, so a caller can close them all if it needs to.
 _connections: list[sqlite3.Connection] = []
-_generation = 0
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS reportings (
@@ -101,6 +98,16 @@ CREATE TABLE IF NOT EXISTS forwards (
 CREATE INDEX IF NOT EXISTS ix_fwd_rpt   ON forwards(reporting_id);
 CREATE INDEX IF NOT EXISTS ix_fwd_shift ON forwards(shift_id);
 
+-- Which timetable obligations have been discharged. The timetable itself is
+-- uploaded reference data; whether a thing was *done* is state, and belongs
+-- here with the rest of the audit trail.
+CREATE TABLE IF NOT EXISTS obligation_state (
+    id        TEXT PRIMARY KEY,
+    done_at   TEXT NOT NULL,
+    done_by   TEXT,
+    note      TEXT
+);
+
 CREATE TABLE IF NOT EXISTS handovers (
     id           TEXT PRIMARY KEY,
     shift_id     TEXT,
@@ -126,15 +133,7 @@ def connect() -> sqlite3.Connection:
     the one writer, and busy_timeout makes a writer wait its turn rather than
     raising "database is locked".
     """
-    with _lock:
-        generation = _generation
     conn = getattr(_local, "conn", None)
-    if conn is not None and getattr(_local, "generation", -1) != generation:
-        try:
-            conn.close()
-        except sqlite3.Error:
-            pass
-        conn = None
     if conn is None:
         with _lock:
             DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -145,34 +144,33 @@ def connect() -> sqlite3.Connection:
             fresh.executescript(SCHEMA)
             fresh.commit()
         _local.conn = fresh
-        _local.generation = generation
         with _lock:
             _connections.append(fresh)
         conn = fresh
     return conn
 
 
-def reset() -> None:
-    """Wipe everything. Used by the demo seeder."""
-    global _generation
-    with _lock:
-        _generation += 1
-        for conn in _connections:
-            try:
-                conn.close()
-            except sqlite3.Error:
-                pass          # already closed, or owned by a dead thread
-        _connections.clear()
-    if hasattr(_local, "conn"):
-        del _local.conn
+TABLES = ("reportings", "audit_events", "shifts", "clusters", "forwards",
+          "handovers", "obligation_state")
 
-    if DB_PATH.exists():
-        DB_PATH.unlink()
-    for suffix in ("-wal", "-shm"):
-        side = DB_PATH.with_name(DB_PATH.name + suffix)
-        if side.exists():
-            side.unlink()
-    connect()
+
+def reset() -> None:
+    """Wipe everything. Used by the demo seeder.
+
+    Empties the tables rather than deleting the database file. Unlinking it
+    corrupts any connection another process still holds open — running the
+    seeder from a shell while the server is up did exactly that, and SQLite
+    came back with "database disk image is malformed" until the connection was
+    re-established. Truncating leaves every open connection valid.
+    """
+    conn = connect()
+    with _lock:
+        for table in TABLES:
+            conn.execute(f"DELETE FROM {table}")
+        conn.commit()
+        # Return the freed pages to the filesystem; also a cheap integrity poke.
+        conn.execute("VACUUM")
+        conn.commit()
 
 
 def _iso(value: datetime | None) -> str | None:
@@ -507,3 +505,29 @@ def get_handover(hid: str) -> dict | None:
     out = dict(row)
     out["doc"] = json.loads(out["doc"])
     return out
+
+
+# ---------------------------------------------------------------------------
+# obligations
+# ---------------------------------------------------------------------------
+
+
+def obligation_states() -> dict[str, dict]:
+    rows = connect().execute("SELECT * FROM obligation_state").fetchall()
+    return {r["id"]: dict(r) for r in rows}
+
+
+def set_obligation_done(oid: str, done: bool, actor: str,
+                        note: str | None = None) -> None:
+    conn = connect()
+    with _lock:
+        if done:
+            conn.execute(
+                """INSERT INTO obligation_state (id, done_at, done_by, note)
+                   VALUES (?,?,?,?)
+                   ON CONFLICT(id) DO UPDATE SET done_at=excluded.done_at,
+                       done_by=excluded.done_by, note=excluded.note""",
+                (oid, datetime.now().astimezone().isoformat(), actor, note))
+        else:
+            conn.execute("DELETE FROM obligation_state WHERE id=?", (oid,))
+        conn.commit()

@@ -107,12 +107,19 @@ def warm() -> None:
     """
     from . import llm
 
-    if llm.provider() != "anthropic":
+    if llm.provider_name() not in ("anthropic", "claude"):
         return
     try:
         started = time.monotonic()
-        llm.generate("Reply with the single word: ready.",
-                     system=llm.CLASSIFY_SYSTEM, json_mode=False, timeout=180)
+        # Same system prompt the classifier uses, so this writes the cache
+        # entry the real calls will read.
+        llm.provider().complete_json(
+            system=llm.CLASSIFY_SYSTEM,
+            prompt="Reply with ready set to true. This is a warm-up, not a reporting.",
+            schema={"type": "object",
+                    "properties": {"ready": {"type": "boolean"}},
+                    "required": ["ready"], "additionalProperties": False},
+            cfg=llm._cfg(), max_tokens=256, effort="low", cache_system=True)
         print(f"  model cache warmed in {time.monotonic() - started:.0f}s "
               f"({llm.model_name()})", flush=True)
     except Exception as exc:

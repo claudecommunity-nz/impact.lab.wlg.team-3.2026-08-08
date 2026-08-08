@@ -122,6 +122,60 @@ class EngineMode(str, Enum):
     hybrid = "hybrid"
 
 
+class LifeRisk(str, Enum):
+    """Potential loss of life, kept separate from priority on purpose.
+
+    Priority answers "what do I work on next"; this answers "could someone die".
+    They usually agree, but not always — a confirmed road closure is action
+    required with no life risk, and a vague third-hand report of someone in the
+    water is only verification required while still carrying the highest
+    possible consequence. An operator scanning a queue needs both.
+    """
+    none = "none"          # no indication anyone is at risk
+    possible = "possible"  # could involve injury or risk to life
+    likely = "likely"      # someone is described as in immediate danger
+    confirmed = "confirmed"  # injury or death stated by a credible source
+
+
+LIFE_RISK_RANK = {
+    LifeRisk.none: 0, LifeRisk.possible: 1,
+    LifeRisk.likely: 2, LifeRisk.confirmed: 3,
+}
+
+LIFE_RISK_LABEL = {
+    LifeRisk.none: "None indicated",
+    LifeRisk.possible: "Possible",
+    LifeRisk.likely: "Likely",
+    LifeRisk.confirmed: "Confirmed",
+}
+
+
+class Sentiment(str, Enum):
+    """The register the reporting is written in.
+
+    Used with location proximity to consolidate reportings about one event:
+    three people in distress at the same corner are one incident, whereas a
+    distress call and a piece of general commentary from the same street are
+    not, even though the words overlap.
+    """
+    distress = "distress"            # first-hand, someone needs help now
+    urgent = "urgent"                # reporting something serious, not in danger themselves
+    concerned = "concerned"          # worried, wants someone to look
+    informational = "informational"  # passing on facts, no emotional load
+    supportive = "supportive"        # commentary, thanks, well-wishing
+    speculative = "speculative"      # rumour, hearsay, asking whether X is true
+
+
+SENTIMENT_LABEL = {
+    Sentiment.distress: "Distress",
+    Sentiment.urgent: "Urgent",
+    Sentiment.concerned: "Concerned",
+    Sentiment.informational: "Informational",
+    Sentiment.supportive: "Supportive",
+    Sentiment.speculative: "Speculative",
+}
+
+
 # ---------------------------------------------------------------------------
 # Input envelope
 # ---------------------------------------------------------------------------
@@ -222,6 +276,8 @@ class TriageResult(BaseModel):
     score: float = 0.0
     category: str = "general"
     category_label: str = "General"
+    life_risk: LifeRisk = LifeRisk.none
+    sentiment: Sentiment = Sentiment.informational
     confidence: float = 0.5
     rationale: str = ""
     signals: list[Signal] = Field(default_factory=list)

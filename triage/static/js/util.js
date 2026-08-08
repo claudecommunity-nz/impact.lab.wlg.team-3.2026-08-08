@@ -91,3 +91,53 @@ export function toast(message, kind = '') {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => { node.hidden = true; }, kind === 'err' ? 6500 : 3800);
 }
+
+
+// --------------------------------------------------------------- live time
+
+/** Wall-clock time in Wellington, for the topbar. */
+export function clockNow() {
+  return new Date().toLocaleTimeString('en-NZ', {
+    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+  });
+}
+
+export function dateNow() {
+  return new Date().toLocaleDateString('en-NZ', {
+    weekday: 'short', day: '2-digit', month: 'short',
+  });
+}
+
+/**
+ * "in 14 min" / "22 min overdue", recomputed client-side so the countdown
+ * ticks between server polls rather than freezing at whatever the last
+ * response said.
+ */
+export function countdown(iso) {
+  if (!iso) return '';
+  const mins = (new Date(iso).getTime() - Date.now()) / 60000;
+  const late = mins < 0;
+  const m = Math.floor(Math.abs(mins));
+  let text;
+  if (m < 60) text = `${m} min`;
+  else if (m < 1440) text = `${Math.floor(m / 60)}h ${String(m % 60).padStart(2, '0')}m`;
+  else text = `${Math.floor(m / 1440)}d ${Math.floor((m % 1440) / 60)}h`;
+  return late ? `${text} overdue` : `in ${text}`;
+}
+
+/** Urgency band from the due time — mirrors obligations.BANDS on the server. */
+export function urgencyOf(iso) {
+  if (!iso) return 'later';
+  const mins = (new Date(iso).getTime() - Date.now()) / 60000;
+  if (mins < 0) return 'overdue';
+  if (mins <= 15) return 'due_now';
+  if (mins <= 60) return 'soon';
+  if (mins <= 120) return 'approaching';
+  if (mins <= 240) return 'upcoming';
+  return 'later';
+}
+
+export const URGENCY_LABEL = {
+  overdue: 'Overdue', due_now: 'Due now', soon: 'Due soon',
+  approaching: 'Approaching', upcoming: 'Upcoming', later: 'Later', done: 'Done',
+};

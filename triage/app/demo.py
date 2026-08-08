@@ -352,6 +352,57 @@ def _find(reportings: list, needle: str):
     return None
 
 
+def _demo_timetable() -> str:
+    """An administrative timetable anchored to the present moment.
+
+    The static example in data/obligations.example.json carries real dates and
+    is the documented shape. For a demo, absolute dates land as a wall of
+    overdue rows, which shows the styling but not the behaviour — so the seeded
+    one is spread around now: a couple already missed, one due in minutes, the
+    rest ahead.
+    """
+    import json
+
+    def at(minutes: int) -> str:
+        return (datetime.now(NZ) + timedelta(minutes=minutes)).isoformat()
+
+    return json.dumps({"obligations": [
+        {"id": "BR-001", "type": "handover", "short_label": "handover",
+         "label": "Shift handover briefing — day to night (OP-1)",
+         "due_at": at(-215), "owner_role": "Control", "audience": "internal",
+         "score_bearing": False, "shift_ref": "SH-N1",
+         "notes": "Previous shift. The crew on duty now came on here."},
+        {"id": "BR-002", "type": "sitrep", "short_label": "sitrep",
+         "label": "Situation report to Regional EOC — OP-1",
+         "due_at": at(-38), "owner_role": "Intelligence", "audience": "external",
+         "score_bearing": True, "shift_ref": "SH-N1",
+         "notes": "Regional expects this on the hour. Late submission is scored."},
+        {"id": "BR-003", "type": "public_update", "short_label": "public update",
+         "label": "Public information update — road closures and evacuation centres",
+         "due_at": at(9), "owner_role": "PIM", "audience": "public",
+         "score_bearing": True, "shift_ref": "SH-N1",
+         "notes": "Coordinate wording with Roading before release. "
+                  "Ngaio Gorge and Oriental Parade both need a line."},
+        {"id": "BR-004", "type": "welfare_check", "short_label": "welfare",
+         "label": "Welfare status roll-up from community hubs",
+         "due_at": at(47), "owner_role": "Welfare", "audience": "internal",
+         "score_bearing": True, "shift_ref": "SH-N1",
+         "notes": "Kilbirnie, Brooklyn and Island Bay to report headcount and unmet needs."},
+        {"id": "BR-005", "type": "briefing", "short_label": "briefing",
+         "label": "All-of-EOC briefing — next operational period objectives",
+         "due_at": at(95), "owner_role": "Control", "audience": "internal",
+         "score_bearing": False, "shift_ref": "SH-N1"},
+        {"id": "BR-006", "type": "sitrep", "short_label": "sitrep",
+         "label": "Situation report to Regional EOC — OP-2",
+         "due_at": at(200), "owner_role": "Intelligence", "audience": "external",
+         "score_bearing": True, "shift_ref": "SH-D1"},
+        {"id": "BR-007", "type": "handover", "short_label": "handover",
+         "label": "Shift handover briefing — night to day (OP-2)",
+         "due_at": at(320), "owner_role": "Control", "audience": "internal",
+         "score_bearing": False, "shift_ref": "SH-D1"},
+    ]}, indent=2)
+
+
 def seed_demo(reset: bool = True, use_llm: bool = False,
               scenario: str = "storm") -> dict:
     """Load the corpus and replay a partly-worked night shift over it."""
@@ -456,6 +507,12 @@ def seed_demo(reset: bool = True, use_llm: bool = False,
     }, "social_media")
     engine.ingest(late, actor="social_media", use_llm=use_llm)
     loaded.append(late)
+
+    from . import obligations as _obligations
+    try:
+        _obligations.save(_demo_timetable())
+    except Exception as exc:            # never let the timetable break a seed
+        errors.append(f"obligations: {type(exc).__name__}: {exc}")
 
     stats = {
         "scenario": scenario,

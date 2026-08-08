@@ -4,3 +4,8 @@ data/triage.db-shm
 __pycache__/
 *.pyc
 .venv/
+.env
+.env.*
+!.env.example
+server.log
+serve.py
