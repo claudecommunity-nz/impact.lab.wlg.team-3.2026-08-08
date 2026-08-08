@@ -1,0 +1,538 @@
+{
+ "note": "What a triage prototype sees. Synthetic reports are flagged. Do not read the answer key from here.",
+ "event": "Wellington region flooding, April 2026",
+ "reports": [
+  {
+   "id": "R0020",
+   "received_at": "2026-04-20T03:36:00",
+   "channel": "social",
+   "text": "Mud and debris across Berhampore after the rain",
+   "synthetic": true
+  },
+  {
+   "id": "R0031",
+   "received_at": "2026-04-20T03:41:00",
+   "channel": "social",
+   "text": "Word going round that the river's broken its banks at Remutaka Forest Park",
+   "synthetic": true
+  },
+  {
+   "id": "R0029",
+   "received_at": "2026-04-20T04:13:00",
+   "channel": "phone",
+   "text": "Someone posted that Seaview WWTP has been evacuated - can anyone confirm?",
+   "synthetic": true
+  },
+  {
+   "id": "R0023",
+   "received_at": "2026-04-20T04:19:00",
+   "channel": "form",
+   "text": "Water coming up over the road at Hataitai, getting deeper",
+   "synthetic": true
+  },
+  {
+   "id": "R0032",
+   "received_at": "2026-04-20T04:24:00",
+   "channel": "phone",
+   "text": "Someone posted that Shandon Golf Club has been evacuated - can anyone confirm?",
+   "synthetic": true
+  },
+  {
+   "id": "R0028",
+   "received_at": "2026-04-20T04:33:00",
+   "channel": "form",
+   "text": "Reports of water through properties on Karori",
+   "synthetic": true
+  },
+  {
+   "id": "R0024",
+   "received_at": "2026-04-20T04:46:00",
+   "channel": "form",
+   "text": "Mud and debris across Hataitai after the rain",
+   "synthetic": true
+  },
+  {
+   "id": "R0026",
+   "received_at": "2026-04-20T04:52:00",
+   "channel": "phone",
+   "text": "Landslip at Te Aro - looks like it's still moving",
+   "synthetic": true
+  },
+  {
+   "id": "R0030",
+   "received_at": "2026-04-20T05:00:00",
+   "channel": "social",
+   "text": "Word going round that the river's broken its banks at Regent Street",
+   "synthetic": true
+  },
+  {
+   "id": "R0027",
+   "received_at": "2026-04-20T05:02:00",
+   "channel": "news",
+   "text": "Flooding at Karori. Been rising for the last hour",
+   "synthetic": true
+  },
+  {
+   "id": "R0025",
+   "received_at": "2026-04-20T05:17:00",
+   "channel": "news",
+   "text": "Mud and debris across Te Aro after the rain",
+   "synthetic": true
+  },
+  {
+   "id": "R0019",
+   "received_at": "2026-04-20T05:50:00",
+   "channel": "email",
+   "text": "Can't get through Berhampore, it's underwater",
+   "synthetic": true
+  },
+  {
+   "id": "R0021",
+   "received_at": "2026-04-20T05:50:00",
+   "channel": "email",
+   "text": "Can't get through Newtown, it's underwater",
+   "synthetic": true
+  },
+  {
+   "id": "R0022",
+   "received_at": "2026-04-20T05:55:00",
+   "channel": "form",
+   "text": "Reports of water through properties on Karori",
+   "synthetic": true
+  },
+  {
+   "id": "R0060",
+   "received_at": "2026-04-20T12:31:00",
+   "channel": "partner",
+   "text": "General Fault. Fault 9 Fitzroy Street, Wadestown, Wellington 6012. 9 Fitzroy Street, Wadestown, Wellington, 6012. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0049",
+   "received_at": "2026-04-20T12:43:00",
+   "channel": "partner",
+   "text": "General Fault. TC/CP Fault 14 Frankmoore Avenue, Johnsonville, Wellington 6037. 14 Frankmoore Avenue, Johnsonville, Wellington, 6037. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0038",
+   "received_at": "2026-04-20T13:21:00",
+   "channel": "partner",
+   "text": "General Fault. Fault 25 WELD STREET, Wadestown. 25 Weld Street, Wadestown, Wellington, 6012. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0016",
+   "received_at": "2026-04-20T13:25:00",
+   "channel": "email",
+   "text": "Reports of water through properties on Mornington",
+   "synthetic": true
+  },
+  {
+   "id": "R0070",
+   "received_at": "2026-04-20T13:45:00",
+   "channel": "partner",
+   "text": "Meter Reading. Fault 171 WILLIS STREET, Te Aro. 171 Willis Street, Te Aro, Wellington, 6011. Do Not Display. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0064",
+   "received_at": "2026-04-20T13:58:00",
+   "channel": "partner",
+   "text": "Information Request Public. Public Info Request 38 KENT TERRACE, Mount Victoria. 38 Kent Terrace, Mount Victoria, Wellington, 6011. In Queue. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0043",
+   "received_at": "2026-04-20T14:16:00",
+   "channel": "partner",
+   "text": "Leaky or Faulty Connection/Meter/Toby. Fault 9 Jean Batten Street, Rongotai, Wellington, 6022. 9 Jean Batten Street, Wellington, 6022, Wellington. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0042",
+   "received_at": "2026-04-20T14:23:00",
+   "channel": "partner",
+   "text": "Blockage - Significant. Blockage 21 Thornley Street Titahi Bay, Porirua City 5022. 21 Thornley Street, Titahi Bay, Porirua, Wellington, 5022. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0041",
+   "received_at": "2026-04-20T14:27:00",
+   "channel": "partner",
+   "text": "Leaking Pipes. Leaking Pipes 14 Thompson Grove Ranui, Porirua City 5024. 14 Thompson Grove, Ranui, Porirua, Wellington, 5024. In Queue. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0018",
+   "received_at": "2026-04-20T14:29:00",
+   "channel": "form",
+   "text": "Landslip at South Karori - looks like it's still moving",
+   "synthetic": true
+  },
+  {
+   "id": "R0037",
+   "received_at": "2026-04-20T14:37:00",
+   "channel": "partner",
+   "text": "Blockage - Significant. Blockage 19 Pringle Street, TAITA. 19 Pringle Street, Taita, Lower Hutt, Wellington, 5011. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0066",
+   "received_at": "2026-04-20T14:47:00",
+   "channel": "partner",
+   "text": "General Fault. Fault 12 MAULDETH TERRACE, Churton Park. 12 Mauldeth Terrace, Churton Park, Wellington, 6037. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0072",
+   "received_at": "2026-04-20T14:54:00",
+   "channel": "partner",
+   "text": "General Fault. Fault 100 HEKE STREET, Ngaio. 100 Heke Street, Ngaio, Wellington, 6035. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0057",
+   "received_at": "2026-04-20T15:07:00",
+   "channel": "partner",
+   "text": "General Fault. Fault 107 UPLAND ROAD, Kelburn. 107 Upland Road, Kelburn, Wellington, 6012. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0075",
+   "received_at": "2026-04-20T15:15:00",
+   "channel": "partner",
+   "text": "General Fault. Fault - 52 FRIEND STREET, Karori. 52 Friend Street, Karori, Wellington, 6012. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0076",
+   "received_at": "2026-04-20T15:19:00",
+   "channel": "partner",
+   "text": "Meter Reading. Fault 147 LAMBTON QUAY, Wellington Central. 147 Lambton Quay, Wellington Central, Wellington, 6011. Do Not Display. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0052",
+   "received_at": "2026-04-20T15:30:00",
+   "channel": "partner",
+   "text": "Information Request Public. Public Info Request 157 KARORI ROAD, Karori. 157 Karori Road, Karori, Wellington, 6012. In Queue. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0061",
+   "received_at": "2026-04-20T15:44:00",
+   "channel": "partner",
+   "text": "Leaking Pipes. Rider main leak @ 15 LPM:  1202 Fergusson Drive. 1202 Fergusson Drive, Brown Owl, Upper Hutt, Wellington, 5018. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0050",
+   "received_at": "2026-04-20T15:54:00",
+   "channel": "partner",
+   "text": "Blockage - Significant. Blockage 55 Biddle Crescent, TAITA. 55 Biddle Crescent, Taita, Lower Hutt, Wellington, 5011. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0069",
+   "received_at": "2026-04-20T16:15:00",
+   "channel": "partner",
+   "text": "General Fault. Fault Unit 1, 78 Hutt Road, Pipitea, Wellington 6035. 78 Hutt Road, #1, Pipitea, Wellington, 6035. In Queue. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0068",
+   "received_at": "2026-04-20T16:27:00",
+   "channel": "partner",
+   "text": "Blockage - Significant. Blockage 46 Bledisloe Crescent, WAINUIOMATA. 46 Bledisloe Crescent, Wainuiomata, Lower Hutt, Wellington, 5014. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0039",
+   "received_at": "2026-04-20T16:44:00",
+   "channel": "partner",
+   "text": "General Fault. Fault 8 MARSDEN AVENUE, Karori. 8 Marsden Avenue, Karori, Wellington, 6012. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0073",
+   "received_at": "2026-04-20T16:58:00",
+   "channel": "partner",
+   "text": "Leaky or Faulty Connection/Meter/Toby. Leaking Valve Opp 42 MOORHOUSE STREET, Wadestown. 42 Moorhouse Street, Wadestown, Wellington, 6012. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0007",
+   "received_at": "2026-04-20T17:09:00",
+   "channel": "phone",
+   "text": "Emergency services door knocking Rata Street, Wainuiomata, everyone out",
+   "synthetic": true
+  },
+  {
+   "id": "R0003",
+   "received_at": "2026-04-20T17:13:00",
+   "channel": "partner",
+   "text": "Emergency services door knocking Konini Street, Wainuiomata, everyone out",
+   "synthetic": true
+  },
+  {
+   "id": "R0008",
+   "received_at": "2026-04-20T17:18:00",
+   "channel": "social",
+   "text": "Emergency services door knocking Rata Street, Wainuiomata, everyone out",
+   "synthetic": true
+  },
+  {
+   "id": "R0059",
+   "received_at": "2026-04-20T17:30:00",
+   "channel": "partner",
+   "text": "Leaking Pipes. Leaking Pipes 9 Radiata Grove. 9 Radiata Grove, Brown Owl, Upper Hutt, Wellington, 5018. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0002",
+   "received_at": "2026-04-20T17:34:00",
+   "channel": "phone",
+   "text": "We've evacuated our house on Konini Street, Wainuiomata, whole street is going",
+   "synthetic": true
+  },
+  {
+   "id": "R0035",
+   "received_at": "2026-04-20T17:35:00",
+   "channel": "social",
+   "text": "Water everywhere down our street, been like it for hours",
+   "synthetic": true
+  },
+  {
+   "id": "R0009",
+   "received_at": "2026-04-20T17:40:00",
+   "channel": "social",
+   "text": "Residents on Rata Street, Wainuiomata being told to leave, water rising fast",
+   "synthetic": true
+  },
+  {
+   "id": "R0074",
+   "received_at": "2026-04-20T17:45:00",
+   "channel": "partner",
+   "text": "Meter Reading. Fault 166 TARANAKI STREET, Te Aro. 166 Taranaki Street, Te Aro, Wellington, 6011. Do Not Display. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0055",
+   "received_at": "2026-04-20T17:47:00",
+   "channel": "partner",
+   "text": "Leaking Pipes. Leaking Pipes 29 Dimock Street Titahi Bay, Porirua City 5022. 29 Dimock Street, Titahi Bay, Porirua, Wellington, 5022. In Progress. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0071",
+   "received_at": "2026-04-20T17:52:00",
+   "channel": "partner",
+   "text": "Meter Reading. Meter Reading 21 Raiha Street Elsdon, Porirua City 5022. 21 Raiha Street, Elsdon, Porirua, Wellington, 5022. Do Not Display. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0067",
+   "received_at": "2026-04-20T18:01:00",
+   "channel": "partner",
+   "text": "Blockage - Significant. 46 WALLACE STREET. 46 Wallace Street, Mount Cook, Wellington, 6021. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0001",
+   "received_at": "2026-04-20T18:08:00",
+   "channel": "phone",
+   "text": "Residents on Konini Street, Wainuiomata being told to leave, water rising fast",
+   "synthetic": true
+  },
+  {
+   "id": "R0004",
+   "received_at": "2026-04-20T18:14:00",
+   "channel": "phone",
+   "text": "Residents on Wetherby Street, Wainuiomata being told to leave, water rising fast",
+   "synthetic": true
+  },
+  {
+   "id": "R0036",
+   "received_at": "2026-04-20T18:24:00",
+   "channel": "phone",
+   "text": "Something's come down across the road up the valley",
+   "synthetic": true
+  },
+  {
+   "id": "R0062",
+   "received_at": "2026-04-20T18:32:00",
+   "channel": "partner",
+   "text": "General Fault. Hydrant siezed 25 Holloway Road, Aro Valley, Wellington 6021. 25 Holloway Road, Aro Valley, Wellington, 6021. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0034",
+   "received_at": "2026-04-20T18:35:00",
+   "channel": "social",
+   "text": "Road's closed somewhere past the roundabout, big slip",
+   "synthetic": true
+  },
+  {
+   "id": "R0012",
+   "received_at": "2026-04-20T18:40:00",
+   "channel": "social",
+   "text": "Reports of water through properties on Berhampore",
+   "synthetic": true
+  },
+  {
+   "id": "R0013",
+   "received_at": "2026-04-20T18:53:00",
+   "channel": "phone",
+   "text": "Slip has come down across Berhampore, road blocked",
+   "synthetic": true
+  },
+  {
+   "id": "R0017",
+   "received_at": "2026-04-20T18:56:00",
+   "channel": "form",
+   "text": "Can't get through South Karori, it's underwater",
+   "synthetic": true
+  },
+  {
+   "id": "R0015",
+   "received_at": "2026-04-20T19:05:00",
+   "channel": "phone",
+   "text": "Slip has come down across Mornington, road blocked",
+   "synthetic": true
+  },
+  {
+   "id": "R0047",
+   "received_at": "2026-04-20T19:14:00",
+   "channel": "partner",
+   "text": "Leaking Pipes. Leaking Pipes 15 Kahu Road Paremata, Porirua City 5024. 15 Kahu Road, Paremata, Porirua, Wellington, 5024. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0006",
+   "received_at": "2026-04-20T19:20:00",
+   "channel": "social",
+   "text": "Emergency services door knocking Wetherby Street, Wainuiomata, everyone out",
+   "synthetic": true
+  },
+  {
+   "id": "R0005",
+   "received_at": "2026-04-20T19:22:00",
+   "channel": "social",
+   "text": "Residents on Wetherby Street, Wainuiomata being told to leave, water rising fast",
+   "synthetic": true
+  },
+  {
+   "id": "R0014",
+   "received_at": "2026-04-20T19:22:00",
+   "channel": "phone",
+   "text": "Surface flooding Mornington - about knee deep near the corner",
+   "synthetic": true
+  },
+  {
+   "id": "R0040",
+   "received_at": "2026-04-20T19:37:00",
+   "channel": "partner",
+   "text": "General Fault. Fault 72 DUNCAN TERRACE, Kilbirnie. 72 Duncan Terrace, Kilbirnie, Wellington, 6022. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0033",
+   "received_at": "2026-04-20T19:47:00",
+   "channel": "phone",
+   "text": "There's flooding at the bottom of the hill near the shops",
+   "synthetic": true
+  },
+  {
+   "id": "R0010",
+   "received_at": "2026-04-20T20:04:00",
+   "channel": "phone",
+   "text": "Berhampore is flooding badly, cars are stuck",
+   "synthetic": true
+  },
+  {
+   "id": "R0011",
+   "received_at": "2026-04-20T20:06:00",
+   "channel": "email",
+   "text": "Slip has come down across Berhampore, road blocked",
+   "synthetic": true
+  },
+  {
+   "id": "R0065",
+   "received_at": "2026-04-20T20:07:00",
+   "channel": "partner",
+   "text": "Leaky or Faulty Connection/Meter/Toby. RWL: Ridermain Gate Valve Leak @ 15 LPM: 63 Highbury Road, Highbury, Wellington 6012, New Zealand. 63 Highbury Road, Karori, Wellington, 6012. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0056",
+   "received_at": "2026-04-20T20:16:00",
+   "channel": "partner",
+   "text": "General Fault. Leaking Pipes 49C Garden Road, UNIT 1, AVALON. 49C Garden Road, #1, Avalon, Lower Hutt, Wellington, 5011. In Queue. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0045",
+   "received_at": "2026-04-20T20:26:00",
+   "channel": "partner",
+   "text": "Complaint. Complaint 48 Frederick Street, WAINUIOMATA. 48 Frederick Street, Wainuiomata, Lower Hutt, Wellington, 5014. In Queue. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0044",
+   "received_at": "2026-04-20T20:42:00",
+   "channel": "partner",
+   "text": "General Fault. Fault 21 Tiro Street, Karori, Wellington 6012. 21 Tiro Street, Karori, Wellington, 6012. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0054",
+   "received_at": "2026-04-20T20:45:00",
+   "channel": "partner",
+   "text": "General Fault. Fault 96 Monorgan Road, Strathmore Park, Wellington. 96 Monorgan Road, Strathmore Park, Wellington, 6022. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0048",
+   "received_at": "2026-04-20T20:48:00",
+   "channel": "partner",
+   "text": "General Fault. Fault 50 DUNDAS STREET, Seatoun. 50 Dundas Street, Seatoun, Wellington, 6022. In Progress. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0053",
+   "received_at": "2026-04-20T21:35:00",
+   "channel": "partner",
+   "text": "General Fault. Fault 11 PADDINGTON GROVE, Karori. 11 Paddington Grove, Karori, Wellington, 6012. In Queue. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0058",
+   "received_at": "2026-04-20T21:54:00",
+   "channel": "partner",
+   "text": "Complaint. Blockage 9 Athlone Crescent BOULCOTT. 9 Athlone Crescent, Boulcott, Lower Hutt, Wellington, 5011. In Queue. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0046",
+   "received_at": "2026-04-20T21:57:00",
+   "channel": "partner",
+   "text": "General Fault. Fault 47 ROSS STREET, Kilbirnie. 47 Ross Street, Kilbirnie, Wellington, 6022. In Progress. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0051",
+   "received_at": "2026-04-20T22:00:00",
+   "channel": "partner",
+   "text": "General Fault. Fault 27 OBAN STREET, Wadestown. 27 Oban Street, Wadestown, Wellington, 6012. In Queue. Reactive Maintenance",
+   "synthetic": false
+  },
+  {
+   "id": "R0063",
+   "received_at": "2026-04-20T22:10:00",
+   "channel": "partner",
+   "text": "Blockage - Significant. Blockage 24 Raroa Road Hutt Central. 24 Raroa Road, Hutt Central, Lower Hutt, Wellington, 5010. Under Investigation. Reactive Maintenance",
+   "synthetic": false
+  }
+ ]
+}

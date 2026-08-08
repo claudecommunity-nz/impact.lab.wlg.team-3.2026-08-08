@@ -1,0 +1,200 @@
+{
+ "type": "FeatureCollection",
+ "origin": "generated",
+ "schema_source": "https://services5.arcgis.com/cJn6oR1QqErYBL5d/arcgis/rest/services/electricity_outages_read_only/FeatureServer/0?f=json",
+ "schema_publisher": "National Emergency Management Agency",
+ "schema_licence": "CC BY 4.0 (NEMA open data)",
+ "schema_fetched_at": "2026-08-07T23:36:52+00:00",
+ "note": "Generated electricity outages for 20 April 2026 in NEMA's 14-field outage schema. The schema is real. The outages are generated. numaffected counts addresses inside an area, not customers off supply.",
+ "features": [
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.841725,
+     -41.1632636
+    ]
+   },
+   "properties": {
+    "OBJECTID": 1,
+    "startdate": 1776651000000,
+    "enddate": 1776658200000,
+    "locationname": "Peckham Grove, Tawa",
+    "numaffected": 55,
+    "details": "GENERATED RECORD - not a real Council or utility job. Unplanned outage attributed to weather damage at Peckham Grove, Tawa.",
+    "status": "Current",
+    "outagetype": "Unplanned",
+    "distributor": "Wellington Electricity",
+    "distributoroutageid": "GEN-0001",
+    "link": null,
+    "GlobalID": null,
+    "numaffected_source": "Number of addresses within polygon",
+    "numaffected_precision": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.7625821,
+     -41.2873056
+    ]
+   },
+   "properties": {
+    "OBJECTID": 2,
+    "startdate": 1776625680000,
+    "enddate": 1776650880000,
+    "locationname": "Upland Road, Karori",
+    "numaffected": 210,
+    "details": "GENERATED RECORD - not a real Council or utility job. Unplanned outage attributed to weather damage at Upland Road, Karori.",
+    "status": "Current",
+    "outagetype": "Unplanned",
+    "distributor": "Wellington Electricity",
+    "distributoroutageid": "GEN-0002",
+    "link": null,
+    "GlobalID": null,
+    "numaffected_source": "Number of addresses within polygon",
+    "numaffected_precision": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.7757888,
+     -41.323164
+    ]
+   },
+   "properties": {
+    "OBJECTID": 3,
+    "startdate": 1776620400000,
+    "enddate": 1776667200000,
+    "locationname": "Dawson Street, Berhampore",
+    "numaffected": 55,
+    "details": "GENERATED RECORD - not a real Council or utility job. Unplanned outage attributed to weather damage at Dawson Street, Berhampore.",
+    "status": "Current",
+    "outagetype": "Unplanned",
+    "distributor": "Wellington Electricity",
+    "distributoroutageid": "GEN-0003",
+    "link": null,
+    "GlobalID": null,
+    "numaffected_source": "Number of addresses within polygon",
+    "numaffected_precision": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.7716698,
+     -41.2944062
+    ]
+   },
+   "properties": {
+    "OBJECTID": 4,
+    "startdate": 1776669480000,
+    "enddate": 1776683880000,
+    "locationname": "Karo Drive, Te Aro",
+    "numaffected": 12,
+    "details": "GENERATED RECORD - not a real Council or utility job. Unplanned outage attributed to weather damage at Karo Drive, Te Aro.",
+    "status": "Current",
+    "outagetype": "Unplanned",
+    "distributor": "Wellington Electricity",
+    "distributoroutageid": "GEN-0004",
+    "link": null,
+    "GlobalID": null,
+    "numaffected_source": "Number of addresses within polygon",
+    "numaffected_precision": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.7939865,
+     -41.3061484
+    ]
+   },
+   "properties": {
+    "OBJECTID": 5,
+    "startdate": 1776651780000,
+    "enddate": 1776676980000,
+    "locationname": "Tapiri Street, Newtown",
+    "numaffected": 140,
+    "details": "GENERATED RECORD - not a real Council or utility job. Unplanned outage attributed to weather damage at Tapiri Street, Newtown.",
+    "status": "Current",
+    "outagetype": "Unplanned",
+    "distributor": "Wellington Electricity",
+    "distributoroutageid": "GEN-0005",
+    "link": null,
+    "GlobalID": null,
+    "numaffected_source": "Number of addresses within polygon",
+    "numaffected_precision": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.8051054,
+     -41.212414
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6,
+    "startdate": 1776656340000,
+    "enddate": 1776692340000,
+    "locationname": "Jasons Place, Grenada Village",
+    "numaffected": 12,
+    "details": "GENERATED RECORD - not a real Council or utility job. Unplanned outage attributed to weather damage at Jasons Place, Grenada Village.",
+    "status": "Current",
+    "outagetype": "Unplanned",
+    "distributor": "Wellington Electricity",
+    "distributoroutageid": "GEN-0006",
+    "link": null,
+    "GlobalID": null,
+    "numaffected_source": "Number of addresses within polygon",
+    "numaffected_precision": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "generated": true,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     174.7910122,
+     -41.307865
+    ]
+   },
+   "properties": {
+    "OBJECTID": 7,
+    "startdate": 1776676680000,
+    "enddate": 1776698280000,
+    "locationname": "Hataitai",
+    "numaffected": 140,
+    "details": "GENERATED RECORD - not a real Council or utility job. Unplanned outage attributed to weather damage at Hataitai.",
+    "status": "Current",
+    "outagetype": "Unplanned",
+    "distributor": "Wellington Electricity",
+    "distributoroutageid": "GEN-0007",
+    "link": null,
+    "GlobalID": null,
+    "numaffected_source": "Number of addresses within polygon",
+    "numaffected_precision": 2
+   }
+  }
+ ]
+}

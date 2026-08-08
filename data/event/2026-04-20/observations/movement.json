@@ -1,0 +1,411 @@
+{
+ "origin": "real",
+ "date": "2026-04-20",
+ "publisher": "Wellington City Council (Digital Innovation)",
+ "source": "https://gis-snowflake-opendata-public-wcc-arcgis-prod.s3.ap-southeast-2.amazonaws.com/transport_sensors/countline_mobility/csv/2026/04/countline_mobility_2026_04.csv",
+ "frozen_at": "2026-08-08T10:33:07+12:00",
+ "provenance": "Frozen in the replay bundle under Mark's prep. That bundle does not record when it fetched from the source, so this is the date the frozen copy entered this repository, not the date of collection. Collection was necessarily after the observation window closed on 23 April 2026.",
+ "countlines": 408,
+ "day_total": 906725,
+ "baseline_day_total": 1299396.5,
+ "pct_of_baseline": 70,
+ "exposed_modes": [
+  "Cyclist",
+  "E-scooter",
+  "Motorbike"
+ ],
+ "enclosed_modes": [
+  "Car",
+  "Bus",
+  "LGV",
+  "OGV1",
+  "OGV2"
+ ],
+ "hourly": {
+  "0": {
+   "total": 4835,
+   "by_class": {
+    "Bus": 26,
+    "Car": 3578,
+    "Cyclist": 254,
+    "E-scooter": 8,
+    "LGV": 138,
+    "Motorbike": 25,
+    "OGV1": 59,
+    "OGV2": 9,
+    "Pedestrian": 738
+   },
+   "baseline_median": 5242.0,
+   "pct_of_baseline": 92
+  },
+  "1": {
+   "total": 3174,
+   "by_class": {
+    "Bus": 30,
+    "Car": 2209,
+    "Cyclist": 269,
+    "E-scooter": 9,
+    "LGV": 121,
+    "Motorbike": 17,
+    "OGV1": 52,
+    "OGV2": 16,
+    "Pedestrian": 451
+   },
+   "baseline_median": 3293.0,
+   "pct_of_baseline": 96
+  },
+  "2": {
+   "total": 2245,
+   "by_class": {
+    "Bus": 34,
+    "Car": 1562,
+    "Cyclist": 162,
+    "E-scooter": 4,
+    "LGV": 116,
+    "Motorbike": 15,
+    "OGV1": 102,
+    "OGV2": 28,
+    "Pedestrian": 222
+   },
+   "baseline_median": 2292.5,
+   "pct_of_baseline": 98
+  },
+  "3": {
+   "total": 2617,
+   "by_class": {
+    "Bus": 34,
+    "Car": 1809,
+    "Cyclist": 189,
+    "E-scooter": 15,
+    "LGV": 162,
+    "Motorbike": 48,
+    "OGV1": 122,
+    "OGV2": 28,
+    "Pedestrian": 210
+   },
+   "baseline_median": 2878.5,
+   "pct_of_baseline": 91
+  },
+  "4": {
+   "total": 4786,
+   "by_class": {
+    "Bus": 67,
+    "Car": 3512,
+    "Cyclist": 314,
+    "E-scooter": 22,
+    "LGV": 273,
+    "Motorbike": 34,
+    "OGV1": 213,
+    "OGV2": 38,
+    "Pedestrian": 313
+   },
+   "baseline_median": 4917.0,
+   "pct_of_baseline": 97
+  },
+  "5": {
+   "total": 11756,
+   "by_class": {
+    "Bus": 237,
+    "Car": 9299,
+    "Cyclist": 451,
+    "E-scooter": 25,
+    "LGV": 569,
+    "Motorbike": 52,
+    "OGV1": 294,
+    "OGV2": 64,
+    "Pedestrian": 765
+   },
+   "baseline_median": 11700.5,
+   "pct_of_baseline": 100
+  },
+  "6": {
+   "total": 27002,
+   "by_class": {
+    "Bus": 928,
+    "Car": 21041,
+    "Cyclist": 601,
+    "E-scooter": 33,
+    "LGV": 1545,
+    "Motorbike": 162,
+    "OGV1": 460,
+    "OGV2": 88,
+    "Pedestrian": 2144
+   },
+   "baseline_median": 29506.5,
+   "pct_of_baseline": 92
+  },
+  "7": {
+   "total": 64289,
+   "by_class": {
+    "Bus": 2555,
+    "Car": 45075,
+    "Cyclist": 1846,
+    "E-scooter": 126,
+    "LGV": 3173,
+    "Motorbike": 500,
+    "OGV1": 747,
+    "OGV2": 144,
+    "Pedestrian": 10123
+   },
+   "baseline_median": 79215.0,
+   "pct_of_baseline": 81
+  },
+  "8": {
+   "total": 89405,
+   "by_class": {
+    "Bus": 3095,
+    "Car": 57711,
+    "Cyclist": 2842,
+    "E-scooter": 276,
+    "LGV": 3406,
+    "Motorbike": 708,
+    "OGV1": 890,
+    "OGV2": 247,
+    "Pedestrian": 20230
+   },
+   "baseline_median": 109706.0,
+   "pct_of_baseline": 81
+  },
+  "9": {
+   "total": 66139,
+   "by_class": {
+    "Bus": 2922,
+    "Car": 42720,
+    "Cyclist": 990,
+    "E-scooter": 134,
+    "LGV": 4179,
+    "Motorbike": 363,
+    "OGV1": 1036,
+    "OGV2": 327,
+    "Pedestrian": 13468
+   },
+   "baseline_median": 74345.5,
+   "pct_of_baseline": 89
+  },
+  "10": {
+   "total": 57243,
+   "by_class": {
+    "Bus": 2334,
+    "Car": 37523,
+    "Cyclist": 431,
+    "E-scooter": 61,
+    "LGV": 3610,
+    "Motorbike": 197,
+    "OGV1": 1038,
+    "OGV2": 286,
+    "Pedestrian": 11763
+   },
+   "baseline_median": 67718.0,
+   "pct_of_baseline": 85
+  },
+  "11": {
+   "total": 58622,
+   "by_class": {
+    "Bus": 2306,
+    "Car": 38212,
+    "Cyclist": 341,
+    "E-scooter": 51,
+    "LGV": 3920,
+    "Motorbike": 164,
+    "OGV1": 988,
+    "OGV2": 255,
+    "Pedestrian": 12385
+   },
+   "baseline_median": 75450.5,
+   "pct_of_baseline": 78
+  },
+  "12": {
+   "total": 66357,
+   "by_class": {
+    "Bus": 2159,
+    "Car": 41844,
+    "Cyclist": 590,
+    "E-scooter": 109,
+    "LGV": 3700,
+    "Motorbike": 179,
+    "OGV1": 875,
+    "OGV2": 186,
+    "Pedestrian": 16715
+   },
+   "baseline_median": 98237.0,
+   "pct_of_baseline": 68
+  },
+  "13": {
+   "total": 66256,
+   "by_class": {
+    "Bus": 2198,
+    "Car": 43850,
+    "Cyclist": 584,
+    "E-scooter": 92,
+    "LGV": 3599,
+    "Motorbike": 228,
+    "OGV1": 820,
+    "OGV2": 173,
+    "Pedestrian": 14712
+   },
+   "baseline_median": 88181.5,
+   "pct_of_baseline": 75
+  },
+  "14": {
+   "total": 73403,
+   "by_class": {
+    "Bus": 2081,
+    "Car": 50502,
+    "Cyclist": 1034,
+    "E-scooter": 114,
+    "LGV": 3289,
+    "Motorbike": 333,
+    "OGV1": 605,
+    "OGV2": 149,
+    "Pedestrian": 15296
+   },
+   "baseline_median": 85129.5,
+   "pct_of_baseline": 86
+  },
+  "15": {
+   "total": 85507,
+   "by_class": {
+    "Bus": 2364,
+    "Car": 59779,
+    "Cyclist": 1404,
+    "E-scooter": 192,
+    "LGV": 3024,
+    "Motorbike": 490,
+    "OGV1": 384,
+    "OGV2": 99,
+    "Pedestrian": 17771
+   },
+   "baseline_median": 96609.0,
+   "pct_of_baseline": 89
+  },
+  "16": {
+   "total": 73293,
+   "by_class": {
+    "Bus": 2794,
+    "Car": 51717,
+    "Cyclist": 1591,
+    "E-scooter": 189,
+    "LGV": 2440,
+    "Motorbike": 367,
+    "OGV1": 264,
+    "OGV2": 78,
+    "Pedestrian": 13853
+   },
+   "baseline_median": 111887.5,
+   "pct_of_baseline": 66
+  },
+  "17": {
+   "total": 53495,
+   "by_class": {
+    "Bus": 2449,
+    "Car": 39031,
+    "Cyclist": 1351,
+    "E-scooter": 136,
+    "LGV": 1383,
+    "Motorbike": 377,
+    "OGV1": 259,
+    "OGV2": 64,
+    "Pedestrian": 8445
+   },
+   "baseline_median": 119160.0,
+   "pct_of_baseline": 45
+  },
+  "18": {
+   "total": 30952,
+   "by_class": {
+    "Bus": 1529,
+    "Car": 23689,
+    "Cyclist": 850,
+    "E-scooter": 42,
+    "LGV": 678,
+    "Motorbike": 148,
+    "OGV1": 108,
+    "OGV2": 45,
+    "Pedestrian": 3863
+   },
+   "baseline_median": 77442.5,
+   "pct_of_baseline": 40
+  },
+  "19": {
+   "total": 22906,
+   "by_class": {
+    "Bus": 1159,
+    "Car": 17372,
+    "Cyclist": 423,
+    "E-scooter": 43,
+    "LGV": 526,
+    "Motorbike": 93,
+    "OGV1": 74,
+    "OGV2": 38,
+    "Pedestrian": 3178
+   },
+   "baseline_median": 56910.5,
+   "pct_of_baseline": 40
+  },
+  "20": {
+   "total": 16726,
+   "by_class": {
+    "Bus": 844,
+    "Car": 12722,
+    "Cyclist": 262,
+    "E-scooter": 45,
+    "LGV": 288,
+    "Motorbike": 80,
+    "OGV1": 84,
+    "OGV2": 26,
+    "Pedestrian": 2375
+   },
+   "baseline_median": 42455.5,
+   "pct_of_baseline": 39
+  },
+  "21": {
+   "total": 11341,
+   "by_class": {
+    "Bus": 634,
+    "Car": 8629,
+    "Cyclist": 303,
+    "E-scooter": 27,
+    "LGV": 299,
+    "Motorbike": 59,
+    "OGV1": 37,
+    "OGV2": 17,
+    "Pedestrian": 1336
+   },
+   "baseline_median": 30251.5,
+   "pct_of_baseline": 37
+  },
+  "22": {
+   "total": 8305,
+   "by_class": {
+    "Bus": 605,
+    "Car": 6270,
+    "Cyclist": 365,
+    "E-scooter": 20,
+    "LGV": 217,
+    "Motorbike": 20,
+    "OGV1": 54,
+    "OGV2": 20,
+    "Pedestrian": 734
+   },
+   "baseline_median": 17296.0,
+   "pct_of_baseline": 48
+  },
+  "23": {
+   "total": 6071,
+   "by_class": {
+    "Bus": 507,
+    "Car": 4350,
+    "Cyclist": 468,
+    "E-scooter": 14,
+    "LGV": 198,
+    "Motorbike": 20,
+    "OGV1": 47,
+    "OGV2": 13,
+    "Pedestrian": 454
+   },
+   "baseline_median": 9571.0,
+   "pct_of_baseline": 63
+  }
+ },
+ "note": "Baseline is the median for the same weekday and hour across February to May, excluding public holidays. A sensor knocked out by the storm and a street nobody used look identical in this data."
+}

@@ -1,0 +1,62 @@
+{
+ "fetched_at": "2026-08-07T23:36:51+00:00",
+ "licence": "WCC open data",
+ "payload": {
+  "fields": [
+   {
+    "alias": "OBJECTID",
+    "name": "OBJECTID",
+    "type": "esriFieldTypeOID"
+   },
+   {
+    "alias": "Event_Name",
+    "name": "Event_Name",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Start_Date",
+    "name": "Start_Date",
+    "type": "esriFieldTypeDate"
+   },
+   {
+    "alias": "End_Date",
+    "name": "End_Date",
+    "type": "esriFieldTypeDate"
+   },
+   {
+    "alias": "Event Type",
+    "name": "EventType",
+    "type": "esriFieldTypeInteger"
+   },
+   {
+    "alias": "Approved",
+    "name": "Approved",
+    "type": "esriFieldTypeSmallInteger"
+   },
+   {
+    "alias": "Event Details",
+    "name": "EventDetails",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Shape",
+    "name": "Shape",
+    "type": "esriFieldTypeGeometry"
+   },
+   {
+    "alias": "Shape.STLength()",
+    "name": "Shape.STLength()",
+    "type": "esriFieldTypeDouble"
+   },
+   {
+    "alias": "Symbology",
+    "name": "Symbology",
+    "type": "esriFieldTypeString"
+   }
+  ],
+  "geometryType": "esriGeometryPolyline",
+  "name": "street_events_and_road_closures"
+ },
+ "publisher": "Wellington City Council",
+ "url": "https://gis.wcc.govt.nz/arcgis/rest/services/Transportation/StreetEventsAndRoadClosures/MapServer/1?f=json"
+}

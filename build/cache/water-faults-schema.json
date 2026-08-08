@@ -1,0 +1,162 @@
+{
+ "fetched_at": "2026-08-07T23:36:51+00:00",
+ "licence": "Wellington Water open data",
+ "payload": {
+  "fields": [
+   {
+    "alias": "Work Order Number",
+    "name": "wonum",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Request ID",
+    "name": "externalrefid",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Job Status",
+    "name": "status",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Commodity Group",
+    "name": "commoditygroup",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Person Group",
+    "name": "persongroup",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Description",
+    "name": "description",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Job Created Date",
+    "name": "reportdate",
+    "type": "esriFieldTypeDate"
+   },
+   {
+    "alias": "Job In Progress Date",
+    "name": "actstart",
+    "type": "esriFieldTypeDate"
+   },
+   {
+    "alias": "Job Completed Date",
+    "name": "actfinish",
+    "type": "esriFieldTypeDate"
+   },
+   {
+    "alias": "Address",
+    "name": "wsadd_formattedaddress",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Type",
+    "name": "type",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Work Type Description",
+    "name": "wtypedesc",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Request Type",
+    "name": "comm_description",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Service Group",
+    "name": "comgr_description",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Priority",
+    "name": "priority",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Created Source User",
+    "name": "sourcecode",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Work Order Status",
+    "name": "id_wostatus",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Work Order Status Group",
+    "name": "id_wogrstatus",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Source",
+    "name": "source",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Council",
+    "name": "councilid",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Water Type",
+    "name": "watertype",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Location",
+    "name": "location",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Private Job Check",
+    "name": "privatecheck",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Customer Service Request Check",
+    "name": "custservrequestcheck",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "Completion Date",
+    "name": "compdate",
+    "type": "esriFieldTypeDate"
+   },
+   {
+    "alias": "Completion Date Status",
+    "name": "compdatestatus",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "OBJECTID",
+    "name": "OBJECTID",
+    "type": "esriFieldTypeOID"
+   },
+   {
+    "alias": "Status Description",
+    "name": "StatusDescription",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "pluspactdeliverydate",
+    "name": "pluspactdeliverydate",
+    "type": "esriFieldTypeDate"
+   },
+   {
+    "alias": "fh_affecteddate",
+    "name": "fh_affecteddate",
+    "type": "esriFieldTypeDate"
+   }
+  ],
+  "geometryType": "esriGeometryPoint",
+  "name": "Job Status"
+ },
+ "publisher": "Wellington Water",
+ "url": "https://services7.arcgis.com/2ECs938g489DMWjt/arcgis/rest/services/Job_Status_Public_View/FeatureServer/5?f=json"
+}

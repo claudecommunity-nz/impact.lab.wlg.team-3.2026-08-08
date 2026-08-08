@@ -1,0 +1,82 @@
+{
+ "fetched_at": "2026-08-07T23:36:52+00:00",
+ "licence": "CC BY 4.0 (NEMA open data)",
+ "payload": {
+  "fields": [
+   {
+    "alias": "OBJECTID",
+    "name": "OBJECTID",
+    "type": "esriFieldTypeOID"
+   },
+   {
+    "alias": "startdate",
+    "name": "startdate",
+    "type": "esriFieldTypeDate"
+   },
+   {
+    "alias": "enddate",
+    "name": "enddate",
+    "type": "esriFieldTypeDate"
+   },
+   {
+    "alias": "locationname",
+    "name": "locationname",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "numaffected",
+    "name": "numaffected",
+    "type": "esriFieldTypeInteger"
+   },
+   {
+    "alias": "details",
+    "name": "details",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "status",
+    "name": "status",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "outagetype",
+    "name": "outagetype",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "distributor",
+    "name": "distributor",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "distributoroutageid",
+    "name": "distributoroutageid",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "link",
+    "name": "link",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "GlobalID",
+    "name": "GlobalID",
+    "type": "esriFieldTypeGlobalID"
+   },
+   {
+    "alias": "numaffected_source",
+    "name": "numaffected_source",
+    "type": "esriFieldTypeString"
+   },
+   {
+    "alias": "numaffected_precision",
+    "name": "numaffected_precision",
+    "type": "esriFieldTypeInteger"
+   }
+  ],
+  "geometryType": "esriGeometryPoint",
+  "name": "outage_points"
+ },
+ "publisher": "National Emergency Management Agency",
+ "url": "https://services5.arcgis.com/cJn6oR1QqErYBL5d/arcgis/rest/services/electricity_outages_read_only/FeatureServer/0?f=json"
+}
