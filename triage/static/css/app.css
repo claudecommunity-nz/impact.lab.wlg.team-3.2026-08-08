@@ -212,6 +212,12 @@ main { flex: 1; min-height: 0; position: relative; }
 /* ---------------------------------------------------------------- detail */
 
 .detail { display: flex; flex-direction: column; min-height: 0; background: var(--bg-raised); }
+/* Any class rule that sets `display` outranks the browser's own
+   [hidden] { display: none } from the UA stylesheet, so an element hidden in
+   JS stays on screen. .detail-empty did exactly that: the placeholder kept
+   its space and pushed the real detail below the fold. */
+[hidden] { display: none !important; }
+
 .detail-empty { display: flex; align-items: center; justify-content: center; height: 100%; padding: 40px; }
 .detail-empty-inner { max-width: 300px; color: var(--text-faint); font-size: 13px; text-align: center; }
 .detail-empty-inner strong { color: var(--text-dim); }
