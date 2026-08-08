@@ -210,10 +210,14 @@ def _corpus() -> list[tuple[str, dict[str, Any]]]:
         ("call_centre", {
             "call_id": "CC-4515", "call_started_at": _t(58),
             "call_reason": "Welfare — power dependent",
+            # The one reporting in the corpus that states its own deadline.
+            # The queue reads "in about three hours" off this transcript and
+            # puts it in the Due by column instead of the default half hour.
             "transcript": ("I'm calling about my mother in Island Bay, she's on "
                            "oxygen at home and the power has been out for two "
-                           "hours. The concentrator has a battery but it won't "
-                           "last the night. She's 84 and on her own."),
+                           "hours. The concentrator runs on battery now and it "
+                           "goes flat in about three hours. She's 84 and on "
+                           "her own."),
             "caller_stated_location": "Island Bay",
             "caller_name": "H. Mataira", "caller_phone": "021 555 0187",
         }),

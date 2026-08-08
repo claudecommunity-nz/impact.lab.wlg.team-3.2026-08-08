@@ -1,21 +1,29 @@
 // The queue: one row per event, in the column order an operator scans.
 //
-// Received · Location · Category · Potential loss of life · Triage status.
-// Deliberately no description column — it is per-reporting, it is long, and a
-// consolidated row has several of them. It lives in the expanded view instead,
-// which is the only place the individual reportings appear.
+// Received · Due by · Location · Category · Potential loss of life · Triage
+// status. Deliberately no description column — it is per-reporting, it is
+// long, and a consolidated row has several of them. It lives in the expanded
+// view instead, which is the only place the individual reportings appear.
 //
 // Rows that consolidate several reportings carry a disclosure caret. Expanding
 // one shows the event description and every source under it.
+//
+// Two rules about movement, because a queue that rearranges itself under the
+// cursor is one people lose their place in:
+//
+// * Clicking a row never moves it. Reading something is not a fact about the
+//   event, so it does not enter the ordering (see consolidate.queue_score).
+// * Ticking a row done moves it once, to the bottom, where it stays visible
+//   and greyed rather than vanishing.
 
 import * as api from './api.js';
 import { CHANNELS, PRIORITIES, URGENCY_LABEL, countdown, esc, stamp,
          timeAgo, toast, urgencyOf, $ } from './util.js';
 import { openDetail } from './detail.js';
 
-const LIFE_RISK_ORDER = ['confirmed', 'likely', 'possible', 'none'];
 const expanded = new Set();
 let rows = [];
+let selectedCluster = null;
 
 export function init() {
   const f = api.state.filters;
@@ -122,6 +130,35 @@ function lifeRiskCell(g) {
   return `<span class="risk risk-${g.life_risk}">${esc(g.life_risk_label)}</span>`;
 }
 
+/**
+ * When this row has to be dealt with by.
+ *
+ * Obligations are due at a time by definition. Action-required events get one
+ * from the wording where a reporter gave an interval, and the default half
+ * hour otherwise — which is labelled as a default, because a deadline nobody
+ * chose should not read like one somebody did. Everything else has no
+ * deadline and says so.
+ *
+ * The countdown and the overdue badge are recomputed client-side every second
+ * by tickCountdowns(), so a row goes overdue on screen rather than at the next
+ * poll.
+ */
+function dueCell(r) {
+  if (!r.due_at) return '<span class="dim">—</span>';
+  const late = new Date(r.due_at).getTime() < Date.now();
+  const why = r.due_source === 'extracted'
+    ? `Read from the reporting: “${r.due_phrase}”`
+    : (r.due_source === 'default'
+        ? 'No time given in the reporting — default 30 minutes from arrival'
+        : `Due ${stamp(r.due_at)}`);
+  return `<span class="due-when" title="${esc(why)}">${esc(stamp(r.due_at))}</span>
+    <span class="ago countdown" data-due="${esc(r.due_at)}">${esc(countdown(r.due_at))}</span>
+    <span class="badge-overdue"${late ? '' : ' hidden'}>Overdue</span>
+    ${r.due_source === 'default'
+      ? '<span class="due-assumed" title="Assumed, not stated by the reporter">assumed</span>'
+      : ''}`;
+}
+
 function prioritySelect(g) {
   const opts = Object.entries(PRIORITIES).map(([k, v]) =>
     `<option value="${k}" ${k === g.priority ? 'selected' : ''}>${esc(v.label)}</option>`
@@ -132,18 +169,31 @@ function prioritySelect(g) {
     + (g.priority_overridden ? '<span class="by-hand" title="Overridden by an operator">✓</span>' : '');
 }
 
+// What is true about the row beyond its columns. The "never opened" chip that
+// used to live here has gone with its column: it changed on every click, which
+// made the busiest column on the screen the least informative one.
 function flags(g) {
   const out = [];
-  if (!g.acknowledged) out.push('<span class="chip chip-unseen">Never opened</span>');
   if (g.flagged_false) out.push('<span class="chip chip-alert">Assessed false</span>');
   if (g.assigned_to) out.push(`<span class="chip">→ ${esc(g.assigned_to)}</span>`);
   return out.join('');
 }
 
+// A tick, not a sentence: the column is scanned, not read, and a checked tick
+// says "handled" in every language in the room. Ticking it again reopens.
+function doneButton(attr, id, done) {
+  const what = done ? 'Ticked done — click to reopen' : 'Mark it done';
+  return `<button class="tick${done ? ' is-done' : ''}" ${attr}="${esc(id)}"
+            data-done="${done}" aria-pressed="${done}"
+            title="${what}" aria-label="${what}">✓</button>`;
+}
+
 function row(g) {
   const open = expanded.has(g.cluster_id);
+  const chips = flags(g);
   const tr = document.createElement('tr');
-  tr.className = 'qrow' + (g.done ? ' is-done' : '') + (open ? ' is-open' : '');
+  tr.className = 'qrow' + (g.done ? ' is-done' : '') + (open ? ' is-open' : '')
+               + (g.cluster_id === selectedCluster ? ' is-selected' : '');
   tr.dataset.priority = g.priority;
   tr.dataset.cluster = g.cluster_id;
 
@@ -160,16 +210,12 @@ function row(g) {
     <td class="c-time" title="${esc(stamp(g.received_at))}">
       ${esc(stamp(g.received_at))}<span class="ago">${esc(timeAgo(g.received_at))}</span>
     </td>
-    <td class="c-loc">${locationCell(g)}</td>
+    <td class="c-due" data-due="${esc(g.due_at || '')}">${dueCell(g)}</td>
+    <td class="c-loc">${locationCell(g)}${chips ? `<div class="row-flags">${chips}</div>` : ''}</td>
     <td class="c-cat">${esc(g.category_label)}</td>
     <td class="c-risk">${lifeRiskCell(g)}</td>
     <td class="c-pri">${prioritySelect(g)}</td>
-    <td class="c-flags">${flags(g)}</td>
-    <td class="c-act">
-      <button class="btn btn-sm ${g.done ? 'btn-ghost' : 'btn-done'}"
-              data-done-for="${esc(g.cluster_id)}" data-done="${g.done}">
-        ${g.done ? 'Reopen' : 'Mark done'}</button>
-    </td>`;
+    <td class="c-act">${doneButton('data-done-for', g.cluster_id, g.done)}</td>`;
   return tr;
 }
 
@@ -246,7 +292,8 @@ function renderTable(list) {
 function obligationRow(o) {
   const open = expanded.has(o.cluster_id);
   const tr = document.createElement('tr');
-  tr.className = 'qrow qrow-ob' + (o.done ? ' is-done' : '') + (open ? ' is-open' : '');
+  tr.className = 'qrow qrow-ob' + (o.done ? ' is-done' : '') + (open ? ' is-open' : '')
+               + (o.cluster_id === selectedCluster ? ' is-selected' : '');
   tr.dataset.urgency = o.urgency;
   tr.dataset.cluster = o.cluster_id;
   tr.dataset.due = o.due_at || '';
@@ -256,13 +303,17 @@ function obligationRow(o) {
       <button class="caret" data-toggle="${esc(o.cluster_id)}"
               title="Click for the detail" aria-expanded="${open}">${open ? '▾' : '▸'}</button>
     </td>
-    <td class="c-time" title="Due ${esc(stamp(o.due_at))}">
-      ${esc(stamp(o.due_at))}
-      <span class="ago countdown" data-due="${esc(o.due_at || '')}">${esc(o.countdown)}</span>
-    </td>
+    <td class="c-time"><span class="dim" title="An obligation is due at a time rather than received at one — its time is in the Due by column">—</span></td>
+    <td class="c-due" data-due="${esc(o.due_at || '')}">${dueCell(o)}</td>
     <td class="c-loc">
       <span class="ob-tag">${esc(o.short_label)}</span>
       ${esc(o.label)}
+      <div class="row-flags">
+        ${o.score_bearing ? '<span class="chip chip-alert">Scored</span>' : ''}
+        ${o.audience && o.audience !== 'internal'
+          ? `<span class="chip">${esc(o.audience)}</span>` : ''}
+        ${o.shift_ref ? `<span class="chip">${esc(o.shift_ref)}</span>` : ''}
+      </div>
     </td>
     <td class="c-cat">${esc(o.owner_role || '—')}</td>
     <td class="c-risk">
@@ -270,17 +321,7 @@ function obligationRow(o) {
         esc(o.urgency_label)}</span>
     </td>
     <td class="c-pri"><span class="ob-kind">Administrative obligation</span></td>
-    <td class="c-flags">
-      ${o.score_bearing ? '<span class="chip chip-alert">Scored</span>' : ''}
-      ${o.audience && o.audience !== 'internal'
-        ? `<span class="chip">${esc(o.audience)}</span>` : ''}
-      ${o.shift_ref ? `<span class="chip">${esc(o.shift_ref)}</span>` : ''}
-    </td>
-    <td class="c-act">
-      <button class="btn btn-sm ${o.done ? 'btn-ghost' : 'btn-done'}"
-              data-ob-done="${esc(o.id)}" data-done="${o.done}">
-        ${o.done ? 'Reopen' : 'Mark done'}</button>
-    </td>`;
+    <td class="c-act">${doneButton('data-ob-done', o.id, o.done)}</td>`;
   return tr;
 }
 
@@ -313,12 +354,24 @@ function obligationDetail(o) {
   return tr;
 }
 
-/** Re-render the countdown text every second without refetching. */
+/**
+ * Re-render the countdowns every second without refetching, and raise the
+ * overdue badge the moment a due time passes rather than at the next poll.
+ */
 export function tickCountdowns() {
   document.querySelectorAll('.countdown[data-due]').forEach((el) => {
     const due = el.dataset.due;
     if (!due) return;
     el.textContent = countdown(due);
+  });
+
+  document.querySelectorAll('.c-due[data-due]').forEach((td) => {
+    const due = td.dataset.due;
+    const badge = td.querySelector('.badge-overdue');
+    if (!due || !badge) return;
+    const late = new Date(due).getTime() < Date.now();
+    badge.hidden = !late;
+    td.classList.toggle('is-overdue', late);
   });
   document.querySelectorAll('.qrow-ob[data-due]').forEach((tr) => {
     const urg = urgencyOf(tr.dataset.due);
@@ -381,7 +434,8 @@ function wire(body) {
                   + 'Add a note (optional):');
       if (note === null) return;
       await api.setGroupDone(id, !wasDone, note || null);
-      toast(wasDone ? 'Reopened.' : 'Marked done.', 'ok');
+      toast(wasDone ? 'Reopened — back in the queue.'
+                    : 'Ticked done — moved to the bottom of the queue.', 'ok');
       refresh();
     });
   });
@@ -396,7 +450,8 @@ function wire(body) {
         : 'Mark this obligation discharged. Add a note (optional):');
       if (note === null) return;
       await api.setObligationDone(id, !wasDone, note || null);
-      toast(wasDone ? 'Obligation reopened.' : 'Obligation discharged.', 'ok');
+      toast(wasDone ? 'Obligation reopened — back in the queue.'
+                    : 'Obligation discharged — moved to the bottom.', 'ok');
       refresh();
     });
   });
@@ -410,6 +465,7 @@ function wire(body) {
     tr.addEventListener('click', () => {
       const r = rows.find((x) => x.cluster_id === tr.dataset.cluster);
       if (!r) return;
+      markSelected(r.cluster_id);
       if (r.kind === 'obligation') {
         // Nothing to open in the detail pane — expand it in place instead.
         const btn = tr.querySelector('[data-toggle]');
@@ -421,13 +477,23 @@ function wire(body) {
   });
 }
 
+/**
+ * Shade the row the operator is on. It stays shaded across refreshes — the
+ * queue repaints every couple of seconds, and losing your place each time is
+ * the whole problem this is here to solve.
+ */
+function markSelected(clusterId) {
+  selectedCluster = clusterId;
+  document.querySelectorAll('.qrow').forEach((n) => {
+    n.classList.toggle('is-selected', n.dataset.cluster === clusterId);
+  });
+}
+
 export async function select(id) {
   api.state.selectedId = id;
-  document.querySelectorAll('.qrow').forEach((n) => {
-    const g = rows.find((x) => x.cluster_id === n.dataset.cluster);
-    n.classList.toggle('is-selected',
-      !!g && g.kind === 'event' && g.members.some((m) => m.id === id));
-  });
+  const g = rows.find((x) => x.kind === 'event'
+                          && x.members.some((m) => m.id === id));
+  markSelected(g ? g.cluster_id : selectedCluster);
   await openDetail(id);
 }
 

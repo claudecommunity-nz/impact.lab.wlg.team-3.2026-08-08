@@ -242,8 +242,14 @@ main { flex: 1; min-height: 0; position: relative; }
 
 .qrow { cursor: pointer; }
 .qrow:hover > td { background: var(--bg-raised); }
-.qrow.is-selected > td { background: #141c28; }
-.qrow.is-done { opacity: .5; }
+/* The row you are on darkens a shade — enough to hold your place while you
+   read the detail pane, not enough to shout. It was near-black here, left over
+   from the dark theme, which read as a selection you could not see through. */
+.qrow.is-selected > td { background: #e2e4e7; }
+.qrow.is-selected:hover > td { background: #dcdee2; }
+/* Done rows stay on the bottom of the queue, legible but plainly finished. */
+.qrow.is-done > td { background: var(--bg-sunk); color: var(--text-faint); }
+.qrow.is-done .c-loc, .qrow.is-done .c-cat { text-decoration: line-through; }
 .qrow.is-open > td { background: var(--bg-raised); border-bottom-color: transparent; }
 
 /* Priority stripe on the leading cell — the only strong colour in the table. */
@@ -253,16 +259,55 @@ main { flex: 1; min-height: 0; position: relative; }
 .qrow[data-priority=situational_awareness] > td:first-child { border-left-color: var(--aware); }
 
 .c-expand { width: 46px; }
-.c-time   { width: 132px; }
+.c-time   { width: 122px; }
+.c-due    { width: 128px; }
 .c-risk   { width: 132px; }
 .c-pri    { width: 186px; }
 .c-cat    { width: 130px; }
-.c-act    { width: 106px; text-align: right; }
+.c-act    { width: 62px; text-align: center; }
 
-.c-time { font-family: var(--mono); font-size: 11.5px; color: var(--text-dim);
-          white-space: nowrap; }
-.c-time .ago { display: block; color: var(--text-faint); font-size: 10.5px; }
+.c-time, .c-due { font-family: var(--mono); font-size: 11.5px; color: var(--text-dim);
+                  white-space: nowrap; }
+.c-time .ago, .c-due .ago { display: block; color: var(--text-faint); font-size: 10.5px; }
 .c-loc { overflow-wrap: anywhere; }
+
+/* ------------------------------------------------------------ due by */
+
+/* Overdue is the one state in this column worth a colour: everything else is
+   a time you read, this is a time you have already missed. */
+.c-due.is-overdue { color: var(--action); }
+.c-due.is-overdue .ago { color: var(--action); font-weight: 600; }
+.badge-overdue {
+  display: inline-block; margin-top: 3px; padding: 1px 7px;
+  background: var(--action); color: #fff; border-radius: var(--radius-pill);
+  font-family: var(--sans); font-size: 10px; font-weight: 700;
+  letter-spacing: .04em; text-transform: uppercase;
+}
+/* A due time nobody stated. Said out loud rather than left to look decided. */
+.due-assumed { display: inline-block; margin-top: 3px; font-family: var(--sans);
+               font-size: 10px; color: var(--text-faint); }
+.qrow.is-done .badge-overdue { background: var(--false); }
+
+/* Row annotations that used to have a column of their own. */
+.row-flags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+.row-flags .chip {
+  font-size: 10px; padding: 1px 7px; border-radius: var(--radius-pill);
+  background: var(--bg-sunk); border: 1px solid var(--line); color: var(--text-dim);
+  white-space: nowrap;
+}
+.row-flags .chip-alert { background: var(--action-bg); border-color: var(--action-line);
+                         color: var(--action); }
+
+/* The done tick. A control, so it is round, per the council's shape rule. */
+.tick {
+  width: 26px; height: 26px; border-radius: var(--radius-pill);
+  border: 2px solid var(--line); background: #fff; color: var(--line);
+  font-size: 13px; line-height: 1; cursor: pointer; padding: 0;
+}
+.tick:hover { border-color: var(--ok); color: var(--ok); }
+.tick:focus-visible { outline: 2px solid var(--wcc-blue); outline-offset: 2px; }
+.tick.is-done { background: var(--ok); border-color: var(--ok); color: #fff; }
+.tick.is-done:hover { background: #17612a; border-color: #17612a; color: #fff; }
 .dim { color: var(--text-faint); }
 .inferred { font-size: 10px; color: var(--verify); border: 1px solid #4a3a12;
             border-radius: 3px; padding: 0 4px; white-space: nowrap; }
@@ -292,9 +337,6 @@ main { flex: 1; min-height: 0; position: relative; }
 .pri-select.pri-verification_required { color: var(--verify); border-color: #4a3a12; }
 .pri-select.pri-situational_awareness { color: var(--aware); border-color: #1e3550; }
 .by-hand { color: #c0a8ee; font-size: 11px; margin-left: 5px; }
-
-.btn-done { background: #14301f; border-color: #235437; color: #9fe0b8; }
-.btn-done:hover { background: #1a3d28; }
 
 /* -------------------------------------------------- expanded event detail */
 
@@ -634,11 +676,15 @@ code { font-family: var(--mono); font-size: 12px; background: var(--bg-sunk);
    event. Pink so they never read as a reporting, and never scored above an
    action-required row (the cap lives in obligations.queue_score). */
 
+/* These were still the dark-theme values after the console went to council
+   livery, which painted a row of near-black bars across a light queue. Same
+   hue, inverted for paper-white: the ink is dark enough to read as small text,
+   the wash is light enough to sit under it. */
 :root {
-  --ob:        #ff87c2;
-  --ob-bg:     #2a1220;
-  --ob-bg-hi:  #3a1a2c;
-  --ob-line:   #4d2138;
+  --ob:        #a3006a;
+  --ob-bg:     #fdeaf4;
+  --ob-bg-hi:  #fbd8ea;
+  --ob-line:   #f0b2d3;
 }
 
 .qrow-ob > td { background: var(--ob-bg); }
@@ -647,12 +693,16 @@ code { font-family: var(--mono); font-size: 12px; background: var(--bg-sunk);
 .qrow-ob[data-urgency=overdue] > td,
 .qrow-ob[data-urgency=due_now] > td { background: var(--ob-bg-hi); }
 .qrow-ob[data-urgency=overdue] > td:first-child { border-left-width: 4px; }
-.qrow-ob .c-time { color: var(--ob); }
+.qrow-ob .c-due { color: var(--ob); }
+.qrow-ob .c-due.is-overdue { color: var(--action); }
+/* Both of these have to out-specify the urgency backgrounds above. */
+.qrow-ob.is-selected > td { background: #eadde3; }
+.qrow-ob.is-done > td { background: var(--bg-sunk); color: var(--text-faint); }
 
 .ob-tag {
   display: inline-block; font-size: 10px; text-transform: uppercase;
   letter-spacing: .06em; font-weight: 700; color: var(--ob);
-  background: rgba(255,135,194,.12); border: 1px solid var(--ob-line);
+  background: #fff; border: 1px solid var(--ob-line);
   border-radius: 4px; padding: 1px 6px; margin-right: 7px; white-space: nowrap;
 }
 .ob-kind { font-size: 11.5px; color: var(--ob); opacity: .85; }
@@ -660,11 +710,11 @@ code { font-family: var(--mono); font-size: 12px; background: var(--bg-sunk);
 .urg { font-size: 10.5px; font-weight: 600; padding: 2px 7px; border-radius: 4px;
        white-space: nowrap; }
 .urg-later, .urg-upcoming { background: var(--bg-sunk); color: var(--text-faint); }
-.urg-approaching { background: rgba(255,135,194,.10); color: #d69ab8; }
-.urg-soon    { background: rgba(255,135,194,.18); color: var(--ob); }
-.urg-due_now { background: var(--ob); color: #2a1220; }
+.urg-approaching { background: #fff; border: 1px solid var(--ob-line); color: var(--ob); }
+.urg-soon    { background: var(--ob-bg-hi); color: var(--ob); }
+.urg-due_now { background: var(--ob); color: #fff; }
 .urg-overdue { background: var(--action); color: #fff; }
-.urg-done    { background: #10261a; color: var(--ok); }
+.urg-done    { background: #e4f2e6; color: var(--ok); }
 
 .ob-count { color: var(--ob); }
 .ob-count.is-late { color: var(--action); font-weight: 600; }

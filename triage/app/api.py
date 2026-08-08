@@ -486,11 +486,49 @@ def end_shift(shift_id: str, request: Request,
 # ---------------------------------------------------------------------------
 
 
+def _shift_to_report(shift_id: Optional[str]):
+    """The shift a briefing is about.
+
+    Named explicitly, else the open one, else the most recent — a handover is
+    usually written for the shift that has just ended, and by then there is no
+    open shift to fall back to.
+    """
+    if shift_id:
+        shift = db.get_shift(shift_id)
+        if shift is None:
+            raise HTTPException(404, f"no shift '{shift_id}'")
+        return shift
+    return db.open_shift() or next(iter(db.list_shifts(1)), None)
+
+
 @router.get("/handover/preview")
 def handover_preview(shift_id: Optional[str] = None, use_llm: bool = False) -> dict:
-    shift = db.get_shift(shift_id) if shift_id else db.open_shift()
-    briefing = handover.build(shift, use_llm=use_llm)
+    briefing = handover.build(_shift_to_report(shift_id), use_llm=use_llm)
     return {"briefing": briefing, "markdown": handover.to_markdown(briefing)}
+
+
+def _pdf_response(briefing: dict) -> Response:
+    """Render a briefing to PDF, with the obligations still outstanding."""
+    try:
+        from . import shiftpdf
+    except ImportError:
+        raise HTTPException(
+            503, "PDF export needs reportlab — pip install -r requirements.txt")
+    body = shiftpdf.build(briefing, obligations.rows())
+    return Response(
+        content=body, media_type="application/pdf",
+        headers={"Content-Disposition":
+                 f'attachment; filename="{shiftpdf.filename(briefing)}"'})
+
+
+@router.get("/handover/pdf")
+def handover_pdf(shift_id: Optional[str] = None, use_llm: bool = False) -> Response:
+    """The shift report as a PDF: what to pick up, then what the shift did.
+
+    Built from the same briefing the Handover tab shows — which is itself built
+    from the audit trail — so the paper and the screen cannot disagree.
+    """
+    return _pdf_response(handover.build(_shift_to_report(shift_id), use_llm=use_llm))
 
 
 class HandoverBody(BaseModel):
@@ -533,6 +571,15 @@ def get_handover_markdown(hid: str) -> str:
     if row is None:
         raise HTTPException(404, f"no handover '{hid}'")
     return row["markdown"]
+
+
+@router.get("/handover/{hid}/pdf")
+def get_handover_pdf(hid: str) -> Response:
+    """A saved briefing as a PDF — the one that was filed, not a fresh build."""
+    row = db.get_handover(hid)
+    if row is None:
+        raise HTTPException(404, f"no handover '{hid}'")
+    return _pdf_response(row["doc"])
 
 
 # ---------------------------------------------------------------------------

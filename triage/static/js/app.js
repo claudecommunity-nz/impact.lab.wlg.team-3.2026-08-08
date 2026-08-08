@@ -58,6 +58,7 @@ async function changeOperator() {
   await refreshShift();
   toast(`${name.trim()} is on shift. Any previous shift was closed.`, 'ok');
   auditView.loadShifts();
+  handover.loadShifts();
 }
 
 /** One-second heartbeat: wall clock, plus obligation countdowns. */

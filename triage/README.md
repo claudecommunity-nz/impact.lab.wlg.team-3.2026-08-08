@@ -62,13 +62,41 @@ what the handover briefing exists to surface.
 
 One row per **event**, not per reporting, in the order an operator scans:
 
-| Date-time received | Location | Category | Potential loss of life | Triage status |
-|---|---|---|---|---|
+| Date-time received | Due by | Location | Category | Potential loss of life | Triage status | Done |
+|---|---|---|---|---|---|---|
 
 There is deliberately no description column: it is per-reporting, it is long,
 and a consolidated row has several of them. The description lives in the
 expanded view, which is the only place the individual reportings appear.
 Download the same rows as CSV from the toolbar, or `GET /api/v1/consolidated.csv`.
+
+**Nothing moves under the cursor.** Opening a row does not reorder it — being
+read is not a fact about the event, so it is not in the ordering. The only
+thing that moves a row is ticking it **Done**, which sends it to the bottom of
+the queue where it stays visible and struck through rather than vanishing.
+Untick to bring it back.
+
+### Due by
+
+*When does this have to be dealt with?* — the question the received time cannot
+answer.
+
+- **Action-required events** get one. If the reporting states an interval —
+  "the concentrator goes flat in about three hours" — that is the deadline,
+  counted from when that reporting arrived, and the row shows the phrase it was
+  read from. Otherwise the row gets **30 minutes** from arrival, tagged
+  `assumed`, because a deadline nobody chose should not read like one somebody
+  did.
+- **Obligations** are due at a time by definition; theirs is the time from the
+  timetable. Their received column is blank — they were never received.
+- **Everything else** shows an em dash. Awareness and verification rows have no
+  deadline to miss, and a clock on every row is a clock nobody reads.
+
+The countdown ticks client-side and an **Overdue** badge appears the moment the
+time passes, rather than at the next poll. Extraction is deliberately narrow
+(`app/duetime.py`): explicit relative intervals only, nothing in a past-tense
+clause, nothing over three days. A due time that is wrong is worse than none,
+because it moves a row for a reason nobody can see.
 
 **Potential loss of life is a separate column from priority on purpose.**
 Priority answers *what do I work on next*; life risk answers *could someone
@@ -97,7 +125,8 @@ everything else is shown in the row when present.
 They appear in the same queue as the reportings, on pink rows, because that is
 the screen the operator actually watches — a handover missed because it was on
 another tab is missed just the same. Each one carries a live countdown and a
-**Mark done** action, and discharging one is audited like any other decision.
+**Done** tick, and discharging one is audited like any other decision — it
+drops to the bottom of the queue rather than disappearing.
 
 **They climb as the deadline runs down** — overdue and due-now rows sit near the
 top, a four-hour-out obligation sits near the bottom.
@@ -138,8 +167,9 @@ every source under it; each source clicks through to its full record.
 
 ### Row actions
 
-- **Mark done** closes the whole event. A group is not done while any member is
-  still open, and every member gets its own audit event.
+- **The Done tick** closes the whole event and sends the row to the bottom of
+  the queue. A group is not done while any member is still open, and every
+  member gets its own audit event.
 - **The priority dropdown** overrides the automated triage. It applies to every
   reporting in the group so the row and its sources cannot disagree, and asks
   for a reason that goes into the audit trail and the handover briefing.
@@ -175,9 +205,17 @@ information the way an incoming controller needs it:
 6. **Ruled out this shift** — already assessed false, so nobody redoes the work.
 7. **Every operator decision**, with the reason given.
 
-Every line clicks through to the reporting. Export as Markdown at
-`/api/v1/handover/{id}/markdown`. The model can add a summary paragraph on
-top; the lists remain the record.
+Every line clicks through to the reporting. The shift picker beside the buttons
+chooses which shift the briefing is about — usually the one that just ended.
+The model can add a summary paragraph on top; the lists remain the record.
+
+**Export.** Markdown at `/api/v1/handover/{id}/markdown`, or **Export PDF** for
+the A4 shift report the outgoing controller hands over: the same briefing, with
+part 1 for what to pick up first and part 2 for every decision the last shift
+made and the reason given, read straight off the audit trail. Built from the
+same object the screen renders, so the paper and the screen cannot disagree.
+`GET /api/v1/handover/pdf?shift_id=…` builds one fresh for any shift;
+`GET /api/v1/handover/{id}/pdf` renders a briefing that was already filed.
 
 ---
 
@@ -382,6 +420,7 @@ Forwards with no reply are a headline section in the handover briefing.
 | `GET /api/v1/audit` | Audit stream, filterable by shift, actor, action |
 | `POST /api/v1/shifts/start`, `POST /api/v1/shifts/{id}/end` | Shift management |
 | `GET /api/v1/handover/preview`, `POST /api/v1/handover` | Briefing |
+| `GET /api/v1/handover/pdf`, `GET /api/v1/handover/{id}/pdf` | The shift report as an A4 PDF |
 | `GET/PUT /api/v1/config/{name}` | Live configuration |
 | `GET /api/v1/consolidated` | The queue, one row per event |
 | `GET /api/v1/consolidated.csv` | The same rows as CSV |

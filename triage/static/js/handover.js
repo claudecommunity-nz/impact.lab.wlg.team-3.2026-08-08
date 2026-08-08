@@ -16,7 +16,30 @@ export function init(handlers = {}) {
 
   $('#btnHandoverPreview').addEventListener('click', () => build(false));
   $('#btnHandoverSave').addEventListener('click', () => build(true));
+  $('#btnHandoverPdf').addEventListener('click', exportPdf);
   $('#btnEndShift').addEventListener('click', endShiftFlow);
+  $('#handoverShift').addEventListener('change', () => build(false));
+  loadShifts();
+}
+
+/** Which shift the briefing is about — the open one unless a past one is picked. */
+const chosenShift = () => $('#handoverShift').value || null;
+
+/**
+ * The shift picker. A handover is usually written about the shift that has
+ * just ended, so the list has to reach back past the open one.
+ */
+export async function loadShifts() {
+  const { shifts } = await api.shifts();
+  const sel = $('#handoverShift');
+  const keep = sel.value;
+  sel.replaceChildren(new Option('Current shift', ''));
+  shifts.forEach((s) => {
+    sel.appendChild(new Option(
+      `${s.operator} · ${stamp(s.started_at)}`
+      + (s.ended_at ? ` → ${stamp(s.ended_at)}` : ' (open)'), s.id));
+  });
+  sel.value = keep;
 }
 
 async function build(save) {
@@ -25,14 +48,29 @@ async function build(save) {
   body.innerHTML = `<p class="muted pad">Building the briefing${useLLM ? ' and asking the local model for a summary — this takes a moment' : ''}…</p>`;
   try {
     const res = save
-      ? await api.handoverGenerate({ use_llm: useLLM })
-      : await api.handoverPreview(useLLM);
+      ? await api.handoverGenerate({ use_llm: useLLM, shift_id: chosenShift() })
+      : await api.handoverPreview(useLLM, chosenShift());
     latest = res;
     render(res.briefing, res.id);
     if (save) toast('Briefing saved and recorded in the audit trail.', 'ok');
   } catch {
     body.innerHTML = '<p class="muted pad">Could not build the briefing.</p>';
   }
+}
+
+/**
+ * The shift report as an A4 PDF: what the incoming controller picks up first,
+ * then every decision the outgoing shift made, read straight off the audit
+ * trail. Saved briefings export the document that was filed; anything else is
+ * built fresh for the selected shift.
+ */
+function exportPdf() {
+  const useLLM = $('#handoverLLM').checked;
+  const url = latest && latest.id
+    ? `/api/v1/handover/${encodeURIComponent(latest.id)}/pdf`
+    : api.handoverPdfUrl(useLLM, chosenShift());
+  window.open(url, '_blank');
+  toast('Building the shift report…');
 }
 
 async function endShiftFlow() {
@@ -45,6 +83,10 @@ async function endShiftFlow() {
   latest = res;
   render(res.briefing, res.id);
   toast('Shift closed and the briefing saved. Set the incoming operator in the top right.', 'ok');
+  await loadShifts();
+  // Leave the picker on the shift that just ended: that is the one the
+  // incoming controller wants the report for.
+  if (res.briefing?.shift?.id) $('#handoverShift').value = res.briefing.shift.id;
   const { refreshShift } = await import('./app.js');
   refreshShift();
 }

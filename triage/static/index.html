@@ -69,7 +69,7 @@
               <option value="situational_awareness">Situational awareness</option>
             </select>
             <label class="check"><input type="checkbox" id="filterUnack"> Never opened</label>
-            <label class="check"><input type="checkbox" id="filterDone"> Show done</label>
+            <label class="check"><input type="checkbox" id="filterDone" checked> Show done</label>
             <span class="queue-counts" id="queueCounts"></span>
             <button class="btn btn-ghost" id="btnCsv" title="Download these rows as CSV">CSV ↓</button>
             <button class="btn btn-ghost" id="btnRefresh" title="Refresh">↻</button>
@@ -81,12 +81,12 @@
               <tr>
                 <th class="c-expand"></th>
                 <th class="c-time">Date-time received</th>
+                <th class="c-due">Due by</th>
                 <th class="c-loc">Location</th>
                 <th class="c-cat">Category</th>
                 <th class="c-risk">Potential loss of life</th>
                 <th class="c-pri">Triage status</th>
-                <th class="c-flags"></th>
-                <th class="c-act">Action</th>
+                <th class="c-act">Done</th>
               </tr>
             </thead>
             <tbody id="queueBody"></tbody>
@@ -140,8 +140,12 @@
           </p>
         </div>
         <div class="handover-buttons">
+          <select id="handoverShift" title="Which shift this briefing is about">
+            <option value="">Current shift</option>
+          </select>
           <label class="check"><input type="checkbox" id="handoverLLM"> Add an AI summary paragraph</label>
           <button class="btn btn-ghost" id="btnHandoverPreview">Preview</button>
+          <button class="btn btn-ghost" id="btnHandoverPdf" title="A4 shift report — what to pick up, then every decision the shift made">Export PDF ↓</button>
           <button class="btn btn-primary" id="btnHandoverSave">Generate &amp; save</button>
           <button class="btn btn-warn" id="btnEndShift">End shift &amp; hand over</button>
         </div>

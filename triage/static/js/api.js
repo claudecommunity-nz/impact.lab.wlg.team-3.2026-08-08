@@ -12,7 +12,10 @@ export const state = {
   selectedId: null,
   reportings: [],
   groups: [],
-  filters: { q: '', priority: '', unacknowledged: false, includeDone: false },
+  // Done rows are shown by default: ticking one moves it to the bottom of the
+  // queue rather than making it disappear, which is how an operator sees that
+  // the tick registered and how the next shift sees what this one closed.
+  filters: { q: '', priority: '', unacknowledged: false, includeDone: true },
 };
 
 export function setOperator(name) {
@@ -162,10 +165,19 @@ export const retriageOne = (id)              => call(`/reportings/${id}/retriage
 export const startShift = (operator, role, note) => call('/shifts/start', { method: 'POST', body: { operator, role, note } });
 export const endShift   = (id, note)             => call(`/shifts/${id}/end`, { method: 'POST', body: { note } });
 
-export const handoverPreview = (useLLM) =>
-  call(`/handover/preview?use_llm=${useLLM ? 'true' : 'false'}`);
+const handoverQuery = (useLLM, shiftId) => {
+  const p = new URLSearchParams({ use_llm: useLLM ? 'true' : 'false' });
+  if (shiftId) p.set('shift_id', shiftId);
+  return p.toString();
+};
+
+export const handoverPreview = (useLLM, shiftId) =>
+  call(`/handover/preview?${handoverQuery(useLLM, shiftId)}`);
 export const handoverGenerate = (body) =>
   call('/handover', { method: 'POST', body });
+/** The PDF is a download, not JSON — the browser fetches it itself. */
+export const handoverPdfUrl = (useLLM, shiftId) =>
+  `${BASE}/handover/pdf?${handoverQuery(useLLM, shiftId)}`;
 
 export const saveConfig = (name, text) => call(`/config/${name}`, { method: 'PUT', body: { text } });
 export const retriageAll = () => call('/retriage', { method: 'POST', body: {} });
