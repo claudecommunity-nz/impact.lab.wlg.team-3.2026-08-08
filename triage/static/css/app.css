@@ -101,7 +101,11 @@ main { flex: 1; min-height: 0; position: relative; }
 /* ----------------------------------------------------------------- queue */
 
 .queue-layout { display: grid; grid-template-columns: minmax(0,1fr) 470px; height: 100%; }
-.queue-main { display: flex; flex-direction: column; min-width: 0; border-right: 1px solid var(--line); }
+/* min-height: 0 is load-bearing. Without it this flex column keeps its
+   content's full height, .queue-list never gets shorter than its rows, and
+   its overflow-y: auto has nothing to overflow - so a long queue silently
+   clips against body{overflow:hidden} and will not scroll at all. */
+.queue-main { display: flex; flex-direction: column; min-width: 0; min-height: 0; border-right: 1px solid var(--line); }
 
 .toolbar {
   flex: 0 0 auto; padding: 11px 14px; border-bottom: 1px solid var(--line);
