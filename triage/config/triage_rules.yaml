@@ -26,8 +26,9 @@
 #   within_minutes: <int>            fresher than N minutes
 #   older_than_minutes: <int>
 #
-# This file is hot-reloaded. The Settings tab can also regenerate it from a
-# hazard type + response timeline using the local LLM.
+# This file is hot-reloaded. Event-specific guidance in the controller's own
+# words goes in config/instructions.md instead (Settings tab); these rules are
+# the deterministic layer underneath it.
 # ============================================================================
 
 version: 3
@@ -35,12 +36,10 @@ name: All-hazards default
 generated_by: manual
 notes: >
   Starting point tuned for a Wellington storm/flood or earthquake response.
-  Regenerate from the Settings tab once the controller declares the event type.
+  Add event-specific guidance in config/instructions.md from the Settings tab.
 
 event:
   hazard_type: all_hazards
-  # Free text the controller entered; fed to the LLM when regenerating.
-  response_timeline: null
 
 defaults:
   base_score: 10
@@ -91,6 +90,129 @@ categories:
   - id: general
     label: General
     match: []
+
+# ---------------------------------------------------------------------------
+# Potential loss of life — shown as its own column in the queue.
+# Highest band that matches wins. This is NOT the priority: a confirmed road
+# closure is urgent with no life risk, and a vague report of someone in the
+# water is only worth verifying while carrying the worst possible consequence.
+# ---------------------------------------------------------------------------
+life_risk:
+  confirmed:
+    - "has died"
+    - "is dead"
+    - fatality
+    - "not breathing"
+    - unconscious
+    - "no pulse"
+    - "seriously injured"
+    - "badly hurt"
+  likely:
+    - trapped
+    - drowning
+    - "in the water"
+    - buried
+    - "can't get out"
+    - "cant get out"
+    - "still inside"
+    - "people inside"
+    - "swept away"
+    - "on the roof"
+    - "severe bleeding"
+    - "on oxygen"
+    - "life support"
+    - ventilator
+  possible:
+    - injured
+    - hurt
+    - elderly
+    - "rest home"
+    - child
+    - children
+    - baby
+    - disabled
+    - wheelchair
+    - "gas leak"
+    - "smell of gas"
+    - fire
+    - collapse
+    - collapsed
+    - "power line down"
+    - "lines are down"
+    - evacuat
+    - stranded
+    - medication
+    - dialysis
+    - insulin
+
+# ---------------------------------------------------------------------------
+# Sentiment — the register a reporting is written in.
+# Used with location proximity to decide what consolidates with what: three
+# people in distress at one corner are one incident; a distress call and a
+# piece of commentary from the same street are not.
+# First band in the engine's order that matches wins.
+# ---------------------------------------------------------------------------
+sentiment:
+  distress:
+    - "help me"
+    - "please hurry"
+    - "we need help"
+    - "i need help"
+    - "can't get out"
+    - "cant get out"
+    - "we're trapped"
+    - "still inside"
+    - "please send"
+    - "come quickly"
+  speculative:
+    - "i heard"
+    - "someone said"
+    - apparently
+    - rumour
+    - rumor
+    - allegedly
+    - "can anyone confirm"
+    - "is it true"
+    - "people are saying"
+    - "are saying"
+    - "are still saying"
+    - "anyone know"
+    - "my mate said"
+    - "saw on facebook"
+    - "not sure if"
+  supportive:
+    - "thoughts and prayers"
+    - "stay safe"
+    - "hope everyone"
+    - "great work"
+    - "thank you to"
+    - "praying for"
+    - "kia kaha"
+  urgent:
+    - "getting worse"
+    - "rising fast"
+    - "right now"
+    - urgent
+    - immediately
+    - "straight away"
+    - "spreading"
+    - "still coming up"
+  concerned:
+    - worried
+    - concerned
+    - "someone should"
+    - "can someone"
+    - "please check"
+    - "keep an eye"
+    - "not safe"
+  informational:
+    - "for your awareness"
+    - "passing on"
+    - "advising"
+    - "update:"
+    - "situation report"
+    - "confirmed by"
+    - "road closed"
 
 # ---------------------------------------------------------------------------
 # Scoring rules

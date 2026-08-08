@@ -12,6 +12,7 @@ nothing received on one shift dies at the changeover.
 
 ```bash
 pip install -r requirements.txt
+echo "CLAUDE_API_KEY=sk-ant-..." > .env   # gitignored; or use provider: ollama
 ./run.sh --seed          # loads a Wellington storm scenario and starts on :8000
 ```
 
@@ -27,17 +28,18 @@ media, news and partner agencies each get an *adapter* in
 canonical schema. Adding a feed is a YAML edit, not a code change.
 
 **2. Triages assistively, not automatically.** A rule engine scores each
-reporting and shows its working — every point traces to a named rule. A local
-LLM can give a second opinion, or draft a whole ruleset from the controller's
-declared hazard and response timeline. The machine orders the queue; the human
-decides.
+reporting and shows its working — every point traces to a named rule. An LLM
+gives a second opinion, or drafts a whole ruleset from the controller's declared
+hazard and response timeline. The machine orders the queue; the human decides.
 
 **3. Records everything.** Every acknowledgement, override, note, status change
 and forward is an append-only audit event, stamped with the operator and the
 shift. Click any reporting to see its full history.
 
-**4. Hands over cleanly.** The briefing is assembled from the live queue and the
-audit trail, led by the reportings **nobody has ever opened**.
+**4. Consolidates duplicates.** Reportings about one event collapse into a
+single queue row — see below. **5. Hands over cleanly.** The briefing is
+assembled from the live queue and the audit trail, led by the reportings
+**nobody has ever opened**.
 
 ---
 
@@ -55,6 +57,94 @@ Priority is separate from **status** (`new`, `acknowledged`, `in_review`,
 what the handover briefing exists to surface.
 
 ---
+
+## The queue
+
+One row per **event**, not per reporting, in the order an operator scans:
+
+| Date-time received | Location | Category | Potential loss of life | Triage status |
+|---|---|---|---|---|
+
+There is deliberately no description column: it is per-reporting, it is long,
+and a consolidated row has several of them. The description lives in the
+expanded view, which is the only place the individual reportings appear.
+Download the same rows as CSV from the toolbar, or `GET /api/v1/consolidated.csv`.
+
+**Potential loss of life is a separate column from priority on purpose.**
+Priority answers *what do I work on next*; life risk answers *could someone
+die*. They usually agree and sometimes don't — a confirmed road closure is
+action-required with no life risk, and a vague third-hand report of someone in
+the water is only verification-required while carrying the worst possible
+consequence. An operator scanning a queue needs both.
+
+### Administrative obligations
+
+Upload a timetable of the admin obligations a responder is held to — handovers,
+sitreps, public updates — in Settings → **Administrative timetable**, or
+`PUT /api/v1/obligations`. Only `due_at` is required (ISO 8601 with an offset);
+everything else is shown in the row when present.
+
+```json
+{"obligations": [
+  {"id": "BR-001", "type": "handover", "short_label": "handover",
+   "label": "Shift handover briefing — day to night (OP-1)",
+   "due_at": "2026-08-07T18:45:00+12:00",
+   "owner_role": "Control", "audience": "internal",
+   "score_bearing": false, "shift_ref": "SH-N1", "notes": "..."}
+]}
+```
+
+They appear in the same queue as the reportings, on pink rows, because that is
+the screen the operator actually watches — a handover missed because it was on
+another tab is missed just the same. Each one carries a live countdown and a
+**Mark done** action, and discharging one is audited like any other decision.
+
+**They climb as the deadline runs down** — overdue and due-now rows sit near the
+top, a four-hour-out obligation sits near the bottom.
+
+**They can never outrank an action-required reporting.** Someone is in the water
+right now; the sitrep waits. This is a hard ceiling, not a weighting: everything
+in the queue is placed on one numeric scale, action-required reportings start at
+1000, and `obligations.queue_score` caps below that. A close deadline cannot
+overcome it, and no amount of tuning the bands can accidentally break it.
+
+Between those two rules, obligations do interleave with verification-required
+and situational-awareness reportings — an overdue sitrep outranks a social post
+that needs checking, which is the point.
+
+The completion state lives in the database, not written back into the uploaded
+file: the timetable is reference data, whether a thing was *done* is state.
+
+### Consolidation
+
+Reportings merge into one row when they are **in very close proximity
+(250 m), in the same register, and about the same category**. Wording overlap
+is a supporting signal, not the deciding one — people describe the same event in
+completely different words, and different events on one street in very similar
+ones.
+
+The register test (`sentiment`) is what stops a rumour being merged into a real
+incident. A caller sounds *distressed*, the crew confirming the same slip sounds
+*informational*, a bystander sounds *concerned* — all three are one event. But
+"is it true there's a tsunami warning" is *speculative*, and never merges into a
+report of an actual tsunami. Commentary is likewise kept apart.
+
+On the demo corpus this collapses 26 reportings into 19 rows: the Ngaio Gorge
+slip becomes one row with three sources (call, social post, roading confirmation)
+and the tsunami rumour becomes one row with four.
+
+Consolidated rows carry a caret. Expanding one shows the event description and
+every source under it; each source clicks through to its full record.
+
+### Row actions
+
+- **Mark done** closes the whole event. A group is not done while any member is
+  still open, and every member gets its own audit event.
+- **The priority dropdown** overrides the automated triage. It applies to every
+  reporting in the group so the row and its sources cannot disagree, and asks
+  for a reason that goes into the audit trail and the handover briefing.
+- **Opening a consolidated row** acknowledges everything under it — which is
+  what keeps "never opened" honest.
 
 ## The audit trail and shift handover
 
@@ -86,7 +176,7 @@ information the way an incoming controller needs it:
 7. **Every operator decision**, with the reason given.
 
 Every line clicks through to the reporting. Export as Markdown at
-`/api/v1/handover/{id}/markdown`. A local model can add a summary paragraph on
+`/api/v1/handover/{id}/markdown`. The model can add a summary paragraph on
 top; the lists remain the record.
 
 ---
@@ -98,7 +188,6 @@ editable from the Settings tab.
 
 | File | What |
 |---|---|
-| [`triage_rules.yaml`](config/triage_rules.yaml) | Scoring rules, thresholds, hazard categories |
 | [`settings.yaml`](config/settings.yaml) | Engine mode, LLM, dedupe, geocoding, forwarding |
 | [`destinations.yaml`](config/destinations.yaml) | Where reportings can be forwarded |
 | [`sources.yaml`](config/sources.yaml) | Input adapters and field mappings |
@@ -129,14 +218,64 @@ A cap holds a reporting back unless a rule explicitly forced it higher — so a
 social post saying someone is trapped still reaches *action required*, while an
 ordinary post cannot climb past *verification required* without a human.
 
-### Generating a ruleset from the event
+## Model provider
 
-In Settings, describe the hazard and your response timeline ("crews tasked in
-2-hour blocks; anything I can't action within 6 hours goes to the morning
-plan"). The local model drafts a ruleset. **You review and edit it before it
-takes effect** — it is written to `triage_rules.yaml` and shown to you first.
-The model writes rules; the rules do the triage, which keeps every live
-decision explainable.
+Set `llm.provider` in [`settings.yaml`](config/settings.yaml):
+
+| | |
+|---|---|
+| `anthropic` (default) | Claude API — `claude-opus-5`. Needs `CLAUDE_API_KEY` in `triage/.env` (gitignored). |
+| `ollama` | A local model. No API key, no network egress — the option if reporting content must not leave the building. |
+
+Everything works either way; the difference is quality and where the data goes.
+Both are exercised by the same prompts and the same JSON schemas, so switching
+is a one-line config change with no code edit.
+
+Three things the Claude path does that the local path can't:
+
+- **Schema-enforced output.** `output_config.format` makes the API guarantee the
+  response shape, so there is no fence-stripping or brace-matching to go wrong —
+  and for ruleset drafting it constrains the model to valid condition keys.
+- **Prompt caching.** The classification system prompt is identical for every
+  reporting, so it is marked cacheable and paid for once per event rather than
+  once per reporting.
+- **Refusal handling.** Emergency content (entrapment, fire, injury) is exactly
+  the sort of material that can trip a safety classifier. `stop_reason` is
+  checked before the response body is read, and `refusal_fallbacks: true` lets
+  the API re-run a declined request on a fallback model in the same call rather
+  than dropping the reporting.
+
+Effort is set per job in `settings.yaml` — classification is high-volume and runs
+at `low` (~4-5s per reporting); ruleset drafting is the one genuinely hard
+reasoning task and runs at `high`.
+
+### Triage instructions for the event
+
+Settings → **Triage instructions**. Write or upload a Markdown file describing
+how *this* event should be triaged, in the words you would use for a colleague:
+
+```markdown
+## Already known — do not escalate
+- Ngaio Gorge Road is closed and a crew is on site. Further reports are awareness only.
+
+## Treat as action required
+- Anyone dependent on powered medical equipment while the power is out.
+```
+
+It is handed to the model with every reporting, and it works — a post about the
+Ngaio slip comes back *"already known with a crew on site, so further reports
+are awareness only"*, and a report of a home dialysis machine with no power
+comes back action-required citing the instruction.
+
+The scoring rules still run underneath and still produce the explainable score.
+The instructions steer the model; they do not switch off the guard rails —
+social media is still capped at verification-required, and clusters a controller
+marked false are still held back, whatever the Markdown says. The instructions
+also cannot *lower* a priority on their own, because the model may escalate but
+not de-escalate; a human can, per row, from the queue.
+
+Stored at `config/instructions.md`. Empty is a valid state — with no file the
+system behaves exactly as it did before.
 
 ---
 
@@ -244,7 +383,13 @@ Forwards with no reply are a headline section in the handover briefing.
 | `POST /api/v1/shifts/start`, `POST /api/v1/shifts/{id}/end` | Shift management |
 | `GET /api/v1/handover/preview`, `POST /api/v1/handover` | Briefing |
 | `GET/PUT /api/v1/config/{name}` | Live configuration |
-| `POST /api/v1/rules/generate` | Draft a ruleset from the event declaration |
+| `GET /api/v1/consolidated` | The queue, one row per event |
+| `GET /api/v1/consolidated.csv` | The same rows as CSV |
+| `POST /api/v1/consolidated/{id}/{done,priority,acknowledge}` | Whole-event actions |
+| `GET/PUT/DELETE /api/v1/instructions` | The controller's triage instructions |
+| `GET/PUT/DELETE /api/v1/obligations` | The administrative timetable |
+| `POST /api/v1/obligations/{id}/done` | Discharge or reopen an obligation |
+| `POST /api/v1/instructions/upload` | Upload an instruction.md |
 | `POST /api/v1/retriage` | Re-run triage (operator overrides are preserved) |
 
 ---
@@ -254,6 +399,9 @@ Forwards with no reply are a headline section in the handover briefing.
 - **A machine may escalate, only a human may de-escalate.** In hybrid mode the
   LLM can raise a priority but not lower one (`engine.llm_may_downgrade`).
   Quietly demoting a reporting has the worst consequences of any error here.
+  A worked example: on a social post saying someone is trapped in a car, the
+  rules force *action required* and the model says *verification required*
+  (unverified source). The higher is kept and the disagreement is shown.
 - **Disagreements are surfaced, not resolved.** When the rules and the model
   disagree the higher priority is kept and the conflict is shown to the operator.
 - **Operator overrides survive re-triage.** Changing the ruleset never silently
@@ -273,10 +421,14 @@ app/
   forward.py     email / API forwarding
   feeds.py       GeoJSON for the map and the COP
   api.py         HTTP API
+  consolidate.py rolls clusters up into one queue row per event
+  instructions.py the controller's instructions.md
+  obligations.py the administrative timetable and its due-time banding
   demo.py        Wellington storm corpus + a partly-worked night shift
   triage/
     rules.py     deterministic scoring
-    llm.py       Ollama: classify, draft rulesets, summarise a shift
+    llm.py       prompts + JSON schemas: classify, draft rulesets, summarise
+    providers/   claude.py (Claude API) and ollama.py, one interface
     dedupe.py    grouping
     geocode.py   Wellington gazetteer
     engine.py    orchestration and merge policy

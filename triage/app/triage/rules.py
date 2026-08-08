@@ -11,8 +11,8 @@ from datetime import timedelta
 from typing import Any
 
 from .. import config
-from ..models import (PRIORITY_RANK, EngineMode, Priority, Reporting, Signal,
-                      TriageResult, utcnow)
+from ..models import (PRIORITY_RANK, Channel, EngineMode, LifeRisk, Priority,
+                      Reporting, Sentiment, Signal, TriageResult, utcnow)
 
 
 def _haystack(r: Reporting) -> str:
@@ -147,6 +147,45 @@ def categorise(r: Reporting, hay: str, ruleset: dict) -> tuple[str, str]:
     return "general", "General"
 
 
+def assess_life_risk(hay: str, ruleset: dict) -> LifeRisk:
+    """Could someone die? Answered from the words, highest band wins.
+
+    Deliberately independent of priority: a confirmed road closure is urgent
+    with no life risk, and a vague third-hand report of someone in the water is
+    only worth verifying while still carrying the worst possible consequence.
+    """
+    bands = ruleset.get("life_risk", {}) or {}
+    for level in ("confirmed", "likely", "possible"):
+        for needle in bands.get(level, []) or []:
+            if str(needle).lower() in hay:
+                return LifeRisk(level)
+    return LifeRisk.none
+
+
+def assess_sentiment(r: Reporting, hay: str, ruleset: dict) -> Sentiment:
+    """The register the reporting is written in.
+
+    Used with location proximity to decide what consolidates with what, so it
+    has to separate "help me" from "is it true that…" even when both mention
+    the same street.
+    """
+    bands = ruleset.get("sentiment", {}) or {}
+    order = ("distress", "speculative", "supportive", "urgent",
+             "concerned", "informational")
+    for level in order:
+        for needle in bands.get(level, []) or []:
+            if str(needle).lower() in hay:
+                return Sentiment(level)
+
+    # Fall back on the channel: an official filing a situation report and a
+    # member of the public phoning in are not the same register.
+    if r.source.channel in (Channel.partner_agency, Channel.news, Channel.sensor):
+        return Sentiment.informational
+    if r.source.channel == Channel.phone_call:
+        return Sentiment.concerned
+    return Sentiment.informational
+
+
 def _priority_for(score: float, thresholds: dict) -> Priority:
     if score >= float(thresholds.get("action_required", 62)):
         return Priority.action_required
@@ -199,6 +238,8 @@ def evaluate(r: Reporting, ctx: dict | None = None,
         priority = forced
 
     category, category_label = categorise(r, hay, ruleset)
+    life_risk = assess_life_risk(hay, ruleset)
+    sentiment = assess_sentiment(r, hay, ruleset)
 
     top = sorted(signals, key=lambda s: abs(s.score), reverse=True)[:3]
     if top:
@@ -216,6 +257,8 @@ def evaluate(r: Reporting, ctx: dict | None = None,
         score=round(score, 1),
         category=category,
         category_label=category_label,
+        life_risk=life_risk,
+        sentiment=sentiment,
         confidence=round(confidence, 2),
         rationale=rationale,
         signals=signals,

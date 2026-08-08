@@ -9,17 +9,20 @@ other Impact Lab modules rather than trapping its data behind a screen:
 
 from __future__ import annotations
 
+from json import JSONDecodeError
 from typing import Any, Optional
 
 import yaml
 from fastapi import APIRouter, Body, HTTPException, Query, Request
-from fastapi.responses import JSONResponse, PlainTextResponse
+from fastapi import UploadFile, File
+from fastapi.responses import JSONResponse, PlainTextResponse, Response
 from pydantic import BaseModel
 
 from . import audit as audit_mod
-from . import config, db, feeds, forward, handover, ingest
-from .models import (PRIORITY_LABEL, PRIORITY_RANK, AuditAction, Priority,
-                     Reporting, Status, utcnow)
+from . import (config, consolidate, db, feeds, forward, handover, ingest,
+               instructions, obligations)
+from .models import (LIFE_RISK_LABEL, PRIORITY_LABEL, PRIORITY_RANK,
+                     AuditAction, Priority, Reporting, Status, utcnow)
 from .triage import dedupe, engine, geocode, llm, rules
 
 router = APIRouter(prefix="/api/v1")
@@ -151,6 +154,9 @@ def _card(r: Reporting) -> dict:
         "score": t.score if t else 0,
         "category": t.category if t else "general",
         "category_label": t.category_label if t else "General",
+        "life_risk": t.life_risk.value if t else "none",
+        "life_risk_label": LIFE_RISK_LABEL[t.life_risk] if t else "None indicated",
+        "sentiment": t.sentiment.value if t else "informational",
         "confidence": t.confidence if t else None,
         "rationale": t.rationale if t else "",
         "disagreement": t.disagreement if t else None,
@@ -575,53 +581,321 @@ def get_rules() -> dict:
     return rules.summary()
 
 
-class GenerateRulesBody(BaseModel):
-    hazard_type: str
-    response_timeline: str
-    extra: Optional[str] = None
+# ---------------------------------------------------------------------------
+# controller instructions (config/instructions.md)
+# ---------------------------------------------------------------------------
+
+
+@router.get("/instructions")
+def get_instructions() -> dict:
+    return instructions.info()
+
+
+class InstructionsBody(BaseModel):
+    text: str
     actor: Optional[str] = None
-    apply: bool = False
-    retriage: bool = True
 
 
-@router.post("/rules/generate")
-def generate_rules(request: Request, body: GenerateRulesBody):
-    """Draft a ruleset from the controller's declaration.
+@router.put("/instructions")
+def put_instructions(request: Request, body: InstructionsBody):
+    """Replace the controller's triage instructions."""
+    actor = actor_from(request, body.actor)
+    before = instructions.info()
+    try:
+        after = instructions.write(body.text, actor)
+    except ValueError as exc:
+        raise HTTPException(400, str(exc))
+    audit_mod.record(
+        AuditAction.config_changed, actor=actor, field="instructions.md",
+        note="Triage instructions updated.",
+        detail={"chars_before": before.get("chars"), "chars_after": after.get("chars")})
+    return {"ok": True, **after}
 
-    With `apply=false` (the default) it returns YAML for review — the model
-    proposes, a human disposes. With `apply=true` it writes the file and, unless
-    told otherwise, re-triages the queue so the effect is immediately visible.
+
+@router.post("/instructions/upload")
+async def upload_instructions(request: Request, file: UploadFile = File(...),
+                              actor: Optional[str] = None):
+    """Upload an instructions Markdown file."""
+    name = (file.filename or "").lower()
+    if name and not name.endswith((".md", ".markdown", ".txt")):
+        raise HTTPException(400, "expected a Markdown (.md) or text file")
+    raw = await file.read()
+    try:
+        text = raw.decode("utf-8")
+    except UnicodeDecodeError:
+        raise HTTPException(400, "file must be UTF-8 text")
+
+    who = actor_from(request, actor)
+    before = instructions.info()
+    try:
+        after = instructions.write(text, who)
+    except ValueError as exc:
+        raise HTTPException(400, str(exc))
+    audit_mod.record(
+        AuditAction.config_changed, actor=who, field="instructions.md",
+        note=f"Triage instructions uploaded from {file.filename}.",
+        detail={"filename": file.filename, "chars_before": before.get("chars"),
+                "chars_after": after.get("chars")})
+    return {"ok": True, "filename": file.filename, **after}
+
+
+@router.delete("/instructions")
+def delete_instructions(request: Request):
+    actor = actor_from(request, None)
+    instructions.clear()
+    audit_mod.record(AuditAction.config_changed, actor=actor,
+                     field="instructions.md", note="Triage instructions removed.")
+    return {"ok": True, **instructions.info()}
+
+
+# ---------------------------------------------------------------------------
+# consolidated queue
+# ---------------------------------------------------------------------------
+
+
+def _consolidated_rows(priority: Optional[str], q: Optional[str],
+                       include_done: bool, hide_false: bool,
+                       unacknowledged: bool) -> list[dict]:
+    rows = db.all_reportings()
+    if hide_false:
+        rows = [r for r in rows if r.status != Status.false_reporting]
+    groups = consolidate.build(rows, include_done=include_done)
+    if priority:
+        groups = [g for g in groups if g["priority"] == priority]
+    if unacknowledged:
+        groups = [g for g in groups if not g["acknowledged"]]
+    if q:
+        needle = q.lower()
+        groups = [g for g in groups
+                  if needle in (g.get("description") or "").lower()
+                  or needle in (g.get("location") or "").lower()
+                  or needle in (g.get("category_label") or "").lower()
+                  or any(needle in (m.get("description") or "").lower()
+                         for m in g["members"])]
+    return groups
+
+
+@router.get("/consolidated")
+def consolidated_queue(
+    priority: Optional[str] = None,
+    q: Optional[str] = None,
+    include_done: bool = False,
+    hide_false: bool = True,
+    unacknowledged: bool = False,
+    include_obligations: bool = True,
+) -> dict:
+    """The queue as an operator works it: one row per event.
+
+    Each event row rolls its members up (highest priority, highest life risk,
+    earliest received) and carries them in `members` for the expanded view.
+    Administrative obligations from the uploaded timetable are interleaved by
+    how close their deadline is — never above an action-required reporting.
     """
+    groups = _consolidated_rows(priority, q, include_done, hide_false, unacknowledged)
+
+    due: list[dict] = []
+    if include_obligations and not priority and not unacknowledged:
+        # A priority filter is about reportings; obligations have no priority,
+        # so they drop out rather than being shoehorned into a band.
+        due = obligations.rows(include_done=include_done)
+        if q:
+            needle = q.lower()
+            due = [o for o in due
+                   if needle in (o["label"] or "").lower()
+                   or needle in (o["short_label"] or "").lower()
+                   or needle in (o.get("owner_role") or "").lower()]
+
+    rows = consolidate.merge_rows(groups, due)
+    return {
+        "count": len(groups),
+        "reportings": sum(g["sources"] for g in groups),
+        "obligations": len(due),
+        "server_time": utcnow().isoformat(),
+        "columns": [{"key": k, "header": h} for k, h in consolidate.CSV_COLUMNS],
+        "groups": groups,
+        "rows": rows,
+        "obligation_summary": obligations.summary(),
+    }
+
+
+# ---------------------------------------------------------------------------
+# administrative obligations (config/obligations.json)
+# ---------------------------------------------------------------------------
+
+
+@router.get("/obligations")
+def list_obligations(include_done: bool = True) -> dict:
+    return {**obligations.info(),
+            "summary": obligations.summary(),
+            "rows": obligations.rows(include_done=include_done)}
+
+
+class ObligationsBody(BaseModel):
+    text: str
+    actor: Optional[str] = None
+
+
+@router.put("/obligations")
+def put_obligations(request: Request, body: ObligationsBody):
     actor = actor_from(request, body.actor)
     try:
-        ruleset = llm.generate_ruleset(body.hazard_type, body.response_timeline,
-                                       body.extra)
-    except Exception as exc:
-        raise HTTPException(502, f"ruleset generation failed: {exc}")
+        after = obligations.save(body.text)
+    except (ValueError, JSONDecodeError) as exc:
+        raise HTTPException(400, f"invalid timetable: {exc}")
+    audit_mod.record(AuditAction.config_changed, actor=actor,
+                     field="obligations.json",
+                     note=f"Obligations timetable updated ({after['count']} entries).")
+    return {"ok": True, **after}
 
-    text = llm.ruleset_to_yaml(ruleset)
-    result: dict[str, Any] = {"applied": False, "yaml": text, "ruleset": ruleset}
 
-    if body.apply:
-        config.save_text("triage_rules", text)
-        audit_mod.record(
-            AuditAction.ruleset_generated, actor=actor, field="triage_rules",
-            to_value=f"v{ruleset['version']}",
-            note=f"Ruleset generated for '{body.hazard_type}' "
-                 f"(timeline: {body.response_timeline}) and applied.",
-            detail={"hazard_type": body.hazard_type,
-                    "response_timeline": body.response_timeline,
-                    "rule_count": len(ruleset["rules"]),
-                    "model": llm.model_name()})
-        result["applied"] = True
-        if body.retriage:
-            result["retriage"] = engine.retriage_all(actor)
-    else:
-        audit_mod.record(
-            AuditAction.ruleset_generated, actor=actor, field="triage_rules",
-            note=f"Ruleset drafted for '{body.hazard_type}' — not applied.",
-            detail={"hazard_type": body.hazard_type, "model": llm.model_name()})
-    return result
+@router.post("/obligations/upload")
+async def upload_obligations(request: Request, file: UploadFile = File(...),
+                             actor: Optional[str] = None):
+    name = (file.filename or "").lower()
+    if name and not name.endswith((".json", ".txt")):
+        raise HTTPException(400, "expected a JSON file")
+    raw = await file.read()
+    try:
+        text = raw.decode("utf-8")
+    except UnicodeDecodeError:
+        raise HTTPException(400, "file must be UTF-8 text")
+    who = actor_from(request, actor)
+    try:
+        after = obligations.save(text)
+    except (ValueError, JSONDecodeError) as exc:
+        raise HTTPException(400, f"invalid timetable: {exc}")
+    audit_mod.record(AuditAction.config_changed, actor=who,
+                     field="obligations.json",
+                     note=f"Obligations timetable uploaded from {file.filename} "
+                          f"({after['count']} entries).",
+                     detail={"filename": file.filename})
+    return {"ok": True, "filename": file.filename, **after}
+
+
+@router.delete("/obligations")
+def delete_obligations(request: Request):
+    actor = actor_from(request, None)
+    obligations.clear()
+    audit_mod.record(AuditAction.config_changed, actor=actor,
+                     field="obligations.json", note="Obligations timetable removed.")
+    return {"ok": True, **obligations.info()}
+
+
+class ObligationDoneBody(ActorBody):
+    done: bool = True
+
+
+@router.post("/obligations/{oid}/done")
+def set_obligation_done(oid: str, request: Request,
+                        body: ObligationDoneBody = Body(default=ObligationDoneBody())):
+    """Discharge (or reopen) an obligation. Audited like any other decision."""
+    known = {o["id"] for o in obligations.load()}
+    if oid not in known:
+        raise HTTPException(404, f"no obligation '{oid}' in the timetable")
+    actor = actor_from(request, body.actor)
+    db.set_obligation_done(oid, body.done, actor, body.note)
+    audit_mod.record(
+        AuditAction.status_changed, actor=actor, field="obligation",
+        from_value=oid, to_value="done" if body.done else "outstanding",
+        note=body.note or ("Obligation discharged." if body.done
+                           else "Obligation reopened."),
+        detail={"obligation_id": oid})
+    row = next((o for o in obligations.rows(include_done=True) if o["id"] == oid), None)
+    return {"ok": True, "obligation": row}
+
+
+@router.get("/consolidated.csv")
+def consolidated_csv(
+    priority: Optional[str] = None,
+    q: Optional[str] = None,
+    include_done: bool = True,
+    hide_false: bool = True,
+    unacknowledged: bool = False,
+    include_description: bool = False,
+) -> Response:
+    """The same rows as CSV, for handing to someone outside the tool."""
+    groups = _consolidated_rows(priority, q, include_done, hide_false, unacknowledged)
+    body = consolidate.to_csv(groups, include_description=include_description)
+    stamp = utcnow().strftime("%Y%m%d-%H%M")
+    return Response(
+        content=body, media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition":
+                 f'attachment; filename="eoc-triage-{stamp}.csv"'})
+
+
+def _cluster_members(cluster_id: str) -> list[Reporting]:
+    members = db.cluster_members(cluster_id)
+    if not members:
+        # A single unconsolidated reporting is addressed by its own id.
+        one = db.get_reporting(cluster_id)
+        if one is None:
+            raise HTTPException(404, f"no consolidated reporting '{cluster_id}'")
+        members = [one]
+    return members
+
+
+@router.get("/consolidated/{cluster_id}")
+def get_consolidated(cluster_id: str) -> dict:
+    return consolidate.group(_cluster_members(cluster_id))
+
+
+class GroupPriorityBody(ActorBody):
+    priority: Priority
+    reason: Optional[str] = None
+
+
+@router.post("/consolidated/{cluster_id}/priority")
+def set_group_priority(cluster_id: str, request: Request, body: GroupPriorityBody):
+    """Override the priority for the whole event.
+
+    Applied to every member so the row and its sources cannot disagree, and
+    audited once per reporting — the override is a human decision about each of
+    them, and the handover briefing reads it off the individual trails.
+    """
+    actor = actor_from(request, body.actor)
+    reason = body.reason or body.note
+    changed = []
+    for m in _cluster_members(cluster_id):
+        m = audit_mod.acknowledge(m, actor)
+        before = m.priority
+        audit_mod.set_priority(m, body.priority, actor, reason)
+        if before != body.priority:
+            changed.append(m.id)
+    return {"ok": True, "changed": changed,
+            "group": consolidate.group(_cluster_members(cluster_id))}
+
+
+class GroupDoneBody(ActorBody):
+    done: bool = True
+
+
+@router.post("/consolidated/{cluster_id}/done")
+def set_group_done(cluster_id: str, request: Request,
+                   body: GroupDoneBody = Body(default=GroupDoneBody())):
+    """Mark the event actioned (or reopen it)."""
+    actor = actor_from(request, body.actor)
+    target = Status.actioned if body.done else Status.in_review
+    note = body.note or ("Marked done on the consolidated queue."
+                         if body.done else "Reopened from the consolidated queue.")
+    changed = []
+    for m in _cluster_members(cluster_id):
+        if body.done and m.status in consolidate.DONE_STATUSES:
+            continue
+        m = audit_mod.acknowledge(m, actor)
+        audit_mod.set_status(m, target, actor, note)
+        changed.append(m.id)
+    return {"ok": True, "changed": changed,
+            "group": consolidate.group(_cluster_members(cluster_id))}
+
+
+@router.post("/consolidated/{cluster_id}/acknowledge")
+def acknowledge_group(cluster_id: str, request: Request,
+                      body: ActorBody = Body(default=ActorBody())):
+    """Opening a consolidated row counts as opening everything under it."""
+    actor = actor_from(request, body.actor)
+    for m in _cluster_members(cluster_id):
+        audit_mod.acknowledge(m, actor, body.note)
+    return {"ok": True, "group": consolidate.group(_cluster_members(cluster_id))}
 
 
 class RetriageBody(BaseModel):

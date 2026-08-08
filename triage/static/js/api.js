@@ -11,7 +11,8 @@ export const state = {
   shift: null,
   selectedId: null,
   reportings: [],
-  filters: { q: '', priority: '', channel: '', unacknowledged: false, showFalse: false },
+  groups: [],
+  filters: { q: '', priority: '', unacknowledged: false, includeDone: false },
 };
 
 export function setOperator(name) {
@@ -56,6 +57,67 @@ export const destinations = ()  => call('/destinations');
 export const shifts   = ()      => call('/shifts');
 export const getReporting = (id)=> call(`/reportings/${id}`);
 export const getConfig = (name) => call(`/config/${name}`);
+
+export function consolidated() {
+  const f = state.filters;
+  const p = new URLSearchParams();
+  if (f.q) p.set('q', f.q);
+  if (f.priority) p.set('priority', f.priority);
+  if (f.unacknowledged) p.set('unacknowledged', 'true');
+  if (f.includeDone) p.set('include_done', 'true');
+  return call('/consolidated?' + p.toString());
+}
+
+export const setGroupPriority = (id, priority, reason) =>
+  call(`/consolidated/${id}/priority`, { method: 'POST', body: { priority, reason } });
+export const setGroupDone = (id, done, note) =>
+  call(`/consolidated/${id}/done`, { method: 'POST', body: { done, note } });
+export const acknowledgeGroup = (id) =>
+  call(`/consolidated/${id}/acknowledge`, { method: 'POST', body: {} });
+
+export const getObligations = () => call('/obligations');
+export const putObligations = (text) =>
+  call('/obligations', { method: 'PUT', body: { text } });
+export const deleteObligations = () => call('/obligations', { method: 'DELETE' });
+export const setObligationDone = (id, done, note) =>
+  call(`/obligations/${id}/done`, { method: 'POST', body: { done, note } });
+
+export async function uploadObligations(file) {
+  const form = new FormData();
+  form.append('file', file);
+  const res = await fetch('/api/v1/obligations/upload', {
+    method: 'POST', headers: { 'X-Operator': state.operator }, body: form,
+  });
+  const data = await res.json().catch(() => null);
+  if (!res.ok) {
+    const msg = (data && data.detail) || res.statusText;
+    toast(typeof msg === 'string' ? msg : 'upload failed', 'err');
+    throw new Error(msg);
+  }
+  return data;
+}
+
+// --- controller instructions ------------------------------------------------
+
+export const getInstructions = () => call('/instructions');
+export const putInstructions = (text) =>
+  call('/instructions', { method: 'PUT', body: { text } });
+export const deleteInstructions = () => call('/instructions', { method: 'DELETE' });
+
+export async function uploadInstructions(file) {
+  const form = new FormData();
+  form.append('file', file);
+  const res = await fetch('/api/v1/instructions/upload', {
+    method: 'POST', headers: { 'X-Operator': state.operator }, body: form,
+  });
+  const data = await res.json().catch(() => null);
+  if (!res.ok) {
+    const msg = (data && data.detail) || res.statusText;
+    toast(typeof msg === 'string' ? msg : 'upload failed', 'err');
+    throw new Error(msg);
+  }
+  return data;
+}
 
 export function listReportings() {
   const f = state.filters;
@@ -107,5 +169,4 @@ export const handoverGenerate = (body) =>
 
 export const saveConfig = (name, text) => call(`/config/${name}`, { method: 'PUT', body: { text } });
 export const retriageAll = () => call('/retriage', { method: 'POST', body: {} });
-export const generateRules = (body) => call('/rules/generate', { method: 'POST', body });
 export const reseed = () => call('/demo/seed', { method: 'POST', body: { reset: true } });

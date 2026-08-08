@@ -15,8 +15,8 @@ from __future__ import annotations
 
 from .. import audit as audit_mod
 from .. import config, db
-from ..models import (PRIORITY_RANK, AuditAction, EngineMode, Priority,
-                      Reporting, Signal, Status, utcnow)
+from ..models import (LIFE_RISK_RANK, PRIORITY_RANK, AuditAction, EngineMode,
+                      Priority, Reporting, Signal, Status, utcnow)
 from . import dedupe, geocode, llm, rules
 
 
@@ -68,6 +68,8 @@ def triage(r: Reporting, *, use_llm: bool | None = None) -> Reporting:
                 if trusted:
                     result.priority = verdict["priority"]
                     result.category = verdict["category"]
+                    result.life_risk = verdict["life_risk"]
+                    result.sentiment = verdict["sentiment"]
                     result.confidence = verdict["confidence"]
                     result.rationale = verdict["reason"] or result.rationale
                 result.engine = EngineMode.llm
@@ -91,6 +93,15 @@ def triage(r: Reporting, *, use_llm: bool | None = None) -> Reporting:
                             rule_id="llm_downgrade", label="Model de-escalated",
                             score=0.0, rationale=verdict["reason"]))
                     # otherwise: kept high, disagreement surfaced to the operator
+                # Life risk is a consequence judgement, so take the *higher* of
+                # the two. A machine may raise the stated consequence; it never
+                # quietly lowers it.
+                if LIFE_RISK_RANK[verdict["life_risk"]] > LIFE_RISK_RANK[result.life_risk]:
+                    result.life_risk = verdict["life_risk"]
+                # Sentiment is a reading of tone, which the model does better
+                # than a keyword table — and it only affects consolidation.
+                if verdict.get("sentiment"):
+                    result.sentiment = verdict["sentiment"]
                 if result.category == "general" and verdict["category"] != "general":
                     result.category = verdict["category"]
                     for cat in config.rules().get("categories", []):
@@ -136,6 +147,11 @@ def ingest(r: Reporting, *, actor: str = "ingest", use_llm: bool | None = None) 
     r.location = geocode.enrich(
         r.location, r.content.text, r.content.transcript, r.content.subject)
 
+    # Consolidation keys off sentiment and category, but full triage wants to
+    # know how big the group is — so run the cheap deterministic pass first to
+    # get those two, consolidate, then triage properly with the group context.
+    # The rules pass costs nothing and is thrown away a line later.
+    r.triage = rules.evaluate(r, {})
     cluster_info = dedupe.assign_cluster(r)
     triage(r, use_llm=use_llm)
 

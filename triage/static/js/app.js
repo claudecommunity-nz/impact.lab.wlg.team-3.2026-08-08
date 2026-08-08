@@ -7,7 +7,7 @@ import * as mapView from './map.js';
 import * as handover from './handover.js';
 import * as auditView from './audit.js';
 import * as settings from './settings.js';
-import { stamp, timeAgo, toast, $, $$ } from './util.js';
+import { clockNow, dateNow, stamp, timeAgo, toast, $, $$ } from './util.js';
 
 let activeTab = 'queue';
 let poll = null;
@@ -16,8 +16,8 @@ let poll = null;
 // lands in the same place: the queue, with the detail pane open.
 async function openReporting(id) {
   showTab('queue');
-  await queue.select(id);
-  document.querySelector(`.rep[data-id="${id}"]`)
+  await queue.focusReporting(id);
+  document.querySelector('.qrow.is-selected')
     ?.scrollIntoView({ block: 'center', behavior: 'smooth' });
 }
 
@@ -60,6 +60,17 @@ async function changeOperator() {
   auditView.loadShifts();
 }
 
+/** One-second heartbeat: wall clock, plus obligation countdowns. */
+function startClock() {
+  const paint = () => {
+    $('#clockTime').textContent = clockNow();
+    $('#clockDate').textContent = dateNow();
+    if (activeTab === 'queue') queue.tickCountdowns();
+  };
+  paint();
+  setInterval(paint, 1000);
+}
+
 async function tick() {
   if (activeTab === 'queue') await queue.refresh();
   else if (activeTab === 'map') await mapView.refresh();
@@ -76,6 +87,7 @@ async function boot() {
   auditView.init({ onOpen: openReporting });
   settings.init();
 
+  startClock();
   await refreshShift();
 
   const health = await api.health();

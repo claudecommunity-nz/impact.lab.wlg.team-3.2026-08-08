@@ -1,16 +1,25 @@
-"""Group reportings that describe the same real-world thing.
+"""Consolidate reportings that describe the same event.
 
 Three people phoning about one slip is one incident with three sources, not
-three incidents. Clustering does two jobs here:
+three rows in the queue. Consolidation does two jobs:
 
-* it stops the queue filling with the same event, and
+* it collapses the queue to one row per event, with the individual reportings
+  underneath; and
 * it carries a decision across sources — mark one member a false reporting and
   every future match arrives pre-flagged with that assessment attached.
 
-Similarity is token overlap (Jaccard) with a location and time gate. No
-embeddings: it is inspectable, has no dependencies, and an operator can be told
-in one sentence why two things were grouped. The grouping is always visible and
-always reversible from the UI.
+**The consolidation test is location proximity + sentiment + category.** Two
+reportings merge when they are physically close, written in the same register,
+and about the same kind of hazard. Wording overlap is a supporting signal, not
+the deciding one — people describe the same event in completely different words,
+and different events on the same street in very similar ones.
+
+Sentiment is what stops a distress call being merged with commentary from the
+same corner. Category is what stops a fire and a flood at one intersection
+becoming a single row.
+
+No embeddings: an operator can be told in one sentence why two things were
+grouped, the grouping is always visible, and it is always reversible.
 """
 
 from __future__ import annotations
@@ -19,8 +28,8 @@ import re
 from datetime import timedelta
 
 from .. import config, db
-from ..models import Reporting, new_id, utcnow
-from . import geocode, rules
+from ..models import Reporting, Sentiment, new_id, utcnow
+from . import geocode
 
 STOPWORDS = {
     "the", "a", "an", "and", "or", "but", "is", "are", "was", "were", "be",
@@ -29,12 +38,32 @@ STOPWORDS = {
     "he", "she", "my", "our", "your", "their", "have", "has", "had", "do",
     "does", "did", "not", "no", "yes", "so", "if", "then", "than", "just",
     "about", "up", "down", "out", "over", "very", "can", "cant", "will",
-    "would", "should", "could", "get", "got", "im", "its", "hi", "hello",
+    "would", "should", "could", "get", "got", "im", "hi", "hello",
     "please", "thanks", "thank", "like", "looks", "look", "seems", "some",
     "now", "still", "also", "one", "two", "all", "any", "more", "much",
 }
 
 _WORD = re.compile(r"[a-z0-9']+")
+
+# Registers that count as "the same sentiment" for consolidation.
+#
+# The split that matters operationally is not how agitated someone sounds — it
+# is whether they are reporting an incident, repeating a rumour, or making
+# conversation. A caller describing a slip sounds urgent, the roading crew
+# confirming the same slip sounds informational, and a bystander sounds
+# concerned; all three are the same event and belong on one row. Keeping those
+# apart split obvious duplicates across three rows, which is the problem this
+# feature exists to solve.
+#
+# What must never merge into an incident is a rumour about it — "is it true
+# there's a tsunami warning" is not a report of a tsunami — or commentary.
+# Those stay in families of their own.
+SENTIMENT_FAMILIES = [
+    {Sentiment.distress, Sentiment.urgent,
+     Sentiment.concerned, Sentiment.informational},   # someone reporting something
+    {Sentiment.speculative},                          # rumour, hearsay, asking
+    {Sentiment.supportive},                           # commentary
+]
 
 
 def tokens(text: str) -> set[str]:
@@ -48,45 +77,78 @@ def jaccard(a: set[str], b: set[str]) -> float:
     return len(a & b) / len(a | b)
 
 
-def similarity(new: Reporting, other: Reporting) -> tuple[float, list[str]]:
-    """Returns (score 0..1, human-readable reasons)."""
+def _sentiment_of(r: Reporting) -> Sentiment:
+    return r.triage.sentiment if r.triage else Sentiment.informational
+
+
+def _same_register(a: Sentiment, b: Sentiment) -> bool:
+    if a == b:
+        return True
+    return any(a in family and b in family for family in SENTIMENT_FAMILIES)
+
+
+def _same_category(a: Reporting, b: Reporting) -> bool:
+    if not (a.triage and b.triage):
+        return False
+    if a.triage.category == "general" or b.triage.category == "general":
+        return True          # uncategorised doesn't block a merge
+    return a.triage.category == b.triage.category
+
+
+def consolidates(new: Reporting, other: Reporting) -> tuple[bool, list[str]]:
+    """Should these two be one row? Returns (verdict, human-readable reasons)."""
     reasons: list[str] = []
-    text_score = jaccard(tokens(new.effective_text()), tokens(other.effective_text()))
-    score = text_score
-    if text_score > 0:
-        reasons.append(f"{int(text_score * 100)}% wording overlap")
+    cfg = config.get("settings", "dedupe", {}) or {}
+    radius = float(cfg.get("distance_m", 250))
 
-    same_category = (new.triage and other.triage
-                     and new.triage.category == other.triage.category
-                     and new.triage.category != "general")
-    if same_category:
-        score += 0.10
-        reasons.append(f"both categorised {new.triage.category_label}")
-
+    # --- 1. same place -----------------------------------------------------
     distance = geocode.distance_m(new.location, other.location)
-    radius = float(config.get("settings", "dedupe.distance_m", 700))
     if distance is not None:
-        if distance <= radius:
-            score += 0.18
-            reasons.append(f"{int(distance)} m apart")
+        if distance > radius:
+            return False, [f"{int(distance)} m apart — beyond the {int(radius)} m radius"]
+        reasons.append(f"{int(distance)} m apart")
+    else:
+        # No coordinates on one or both. Fall back to the suburb, and only if
+        # both actually name one.
+        a = (new.location.suburb if new.location else None)
+        b = (other.location.suburb if other.location else None)
+        if a and b and a == b:
+            reasons.append(f"both in {a}")
+        elif not bool(cfg.get("allow_textonly_clustering", True)):
+            return False, ["no location on one or both"]
         else:
-            # Same words, different side of the city: almost certainly separate.
-            score -= 0.30
-            reasons.append(f"{int(distance / 100) / 10} km apart")
-    elif (new.location and other.location and new.location.suburb
-          and new.location.suburb == other.location.suburb):
-        score += 0.12
-        reasons.append(f"both in {new.location.suburb}")
+            # Text-only: demand a strong wording match to stand in for place.
+            overlap = jaccard(tokens(new.effective_text()),
+                              tokens(other.effective_text()))
+            if overlap < 0.5:
+                return False, ["no shared location, and wording differs"]
+            reasons.append(f"no location, but {int(overlap * 100)}% wording overlap")
 
-    return max(0.0, min(1.0, score)), reasons
+    # --- 2. same register --------------------------------------------------
+    sa, sb = _sentiment_of(new), _sentiment_of(other)
+    if not _same_register(sa, sb):
+        return False, [f"different register ({sa.value} vs {sb.value})"]
+    reasons.append(f"both {sa.value}" if sa == sb
+                   else f"{sa.value} / {sb.value} — same register")
+
+    # --- 3. same kind of thing ---------------------------------------------
+    if not _same_category(new, other):
+        return False, [f"different category "
+                       f"({new.triage.category} vs {other.triage.category})"]
+    if new.triage and new.triage.category != "general":
+        reasons.append(f"both {new.triage.category_label}")
+
+    # --- supporting signal --------------------------------------------------
+    overlap = jaccard(tokens(new.effective_text()), tokens(other.effective_text()))
+    if overlap:
+        reasons.append(f"{int(overlap * 100)}% wording overlap")
+
+    return True, reasons
 
 
 def _recent_candidates(new: Reporting) -> list[Reporting]:
     window = int(config.get("settings", "dedupe.time_window_minutes", 240))
-    # Against the scenario clock, not the wall clock. Replaying a past event,
-    # every candidate is months outside a wall-clock window and nothing ever
-    # clusters - four people reporting one slip stay four separate rows.
-    cutoff = rules.scenario_now() - timedelta(minutes=window)
+    cutoff = utcnow() - timedelta(minutes=window)
     out = []
     for r in db.all_reportings():
         if r.id == new.id:
@@ -99,35 +161,30 @@ def _recent_candidates(new: Reporting) -> list[Reporting]:
 
 
 def assign_cluster(new: Reporting) -> dict:
-    """Attach `new` to an existing cluster or open a fresh one.
+    """Attach `new` to an existing consolidated reporting, or open a new one.
 
-    Returns a summary the UI shows in the reporting detail pane, so the operator
-    can see what it was grouped with and undo it.
+    Runs *after* triage, because it needs `sentiment` and `category`.
     """
     empty = {"cluster_id": new.cluster_id, "matched": [], "size": 1,
-             "flagged_false": False, "best_score": 0.0}
+             "flagged_false": False}
 
     if not config.get("settings", "dedupe.enabled", True):
         return empty
 
-    threshold = float(config.get("settings", "dedupe.similarity_threshold", 0.34))
-    allow_textonly = bool(config.get("settings", "dedupe.allow_textonly_clustering", True))
-
-    best: tuple[float, Reporting, list[str]] | None = None
+    best: Reporting | None = None
+    best_reasons: list[str] = []
     matched: list[dict] = []
 
     for other in _recent_candidates(new):
-        score, reasons = similarity(new, other)
-        if score < threshold:
+        ok, reasons = consolidates(new, other)
+        if not ok:
             continue
-        located = (new.location and new.location.has_coords)
-        if not located and not allow_textonly:
-            continue
-        matched.append({"id": other.id, "score": round(score, 3),
-                        "reasons": reasons,
+        matched.append({"id": other.id, "reasons": reasons,
                         "excerpt": (other.effective_text() or "")[:140]})
-        if best is None or score > best[0]:
-            best = (score, other, reasons)
+        # Prefer the earliest match — the consolidated row keeps the identity
+        # of the first reporting that described the event.
+        if best is None or (other.source.received_at < best.source.received_at):
+            best, best_reasons = other, reasons
 
     if best is None:
         cluster_id = new.cluster_id or new_id("clu")
@@ -136,17 +193,15 @@ def assign_cluster(new: Reporting) -> dict:
         new.cluster_id = cluster_id
         return {**empty, "cluster_id": cluster_id}
 
-    score, other, reasons = best
-    cluster_id = other.cluster_id or new_id("clu")
-    db.ensure_cluster(cluster_id, (other.effective_text() or "")[:80],
+    cluster_id = best.cluster_id or new_id("clu")
+    db.ensure_cluster(cluster_id, (best.effective_text() or "")[:80],
                       utcnow().isoformat())
-    if not other.cluster_id:
-        other.cluster_id = cluster_id
-        db.save_reporting(other)
+    if not best.cluster_id:
+        best.cluster_id = cluster_id
+        db.save_reporting(best)
     new.cluster_id = cluster_id
 
     cluster = db.get_cluster(cluster_id) or {}
-    matched.sort(key=lambda m: m["score"], reverse=True)
     return {
         "cluster_id": cluster_id,
         "matched": matched,
@@ -154,14 +209,13 @@ def assign_cluster(new: Reporting) -> dict:
         "flagged_false": bool(cluster.get("flagged_false")),
         "flagged_by": cluster.get("flagged_by"),
         "flag_reason": cluster.get("flag_reason"),
-        "best_score": round(score, 3),
-        "best_match_id": other.id,
-        "why": reasons,
+        "best_match_id": best.id,
+        "why": best_reasons,
     }
 
 
 def cluster_summary(cluster_id: str | None, exclude: str | None = None) -> dict:
-    """Everything the detail pane needs to explain a grouping."""
+    """Everything the detail pane needs to explain a consolidation."""
     if not cluster_id:
         return {"cluster_id": None, "size": 0, "members": [], "flagged_false": False}
     cluster = db.get_cluster(cluster_id) or {}
