@@ -12,10 +12,13 @@
 import * as api from './api.js';
 import { CHANNELS, PRIORITIES, esc, timeAgo, $ } from './util.js';
 
+// Council brand hues, undarkened. These are pins rather than text, so they
+// only have to clear 3:1 against the basemap. The .dot-* swatches in the map
+// legend are painted from the same three values.
 const COLOURS = {
-  action_required: '#ff5c5c',
-  verification_required: '#ffb020',
-  situational_awareness: '#4a9eff',
+  action_required: '#ff0039',
+  verification_required: '#f07000',
+  situational_awareness: '#006cd4',
 };
 
 let map = null;
@@ -27,14 +30,16 @@ const STYLE = {
   sources: {
     base: {
       type: 'raster',
-      tiles: ['https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png'],
+      tiles: ['https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png'],
       tileSize: 256,
       attribution: '© OpenStreetMap contributors © CARTO',
     },
   },
   layers: [
-    { id: 'bg', type: 'background', paint: { 'background-color': '#0a0d12' } },
-    { id: 'base', type: 'raster', source: 'base', paint: { 'raster-opacity': 0.85 } },
+    { id: 'bg', type: 'background', paint: { 'background-color': '#f1f1f1' } },
+    // Held back from full strength so the pins stay the loudest thing on the
+    // map; any lighter and the street names stop being readable.
+    { id: 'base', type: 'raster', source: 'base', paint: { 'raster-opacity': 0.9 } },
   ],
 };
 
@@ -77,7 +82,7 @@ function ensureMap() {
           'action_required', COLOURS.action_required,
           'verification_required', COLOURS.verification_required,
           COLOURS.situational_awareness],
-        'circle-opacity': 0.14,
+        'circle-opacity': 0.2,
       },
     });
 
@@ -90,11 +95,14 @@ function ensureMap() {
           'action_required', COLOURS.action_required,
           'verification_required', COLOURS.verification_required,
           COLOURS.situational_awareness],
-        // Faded = we inferred the location rather than being told it.
-        'circle-opacity': ['case', ['get', 'location_precise'], 0.95, 0.4],
-        'circle-stroke-width': ['case', ['get', 'location_precise'], 2, 1.2],
+        // Faded = we inferred the location rather than being told it. A pale
+        // basemap washes a faded pin out far more than a dark one did, so the
+        // inferred pins sit higher than they used to and still read as faded
+        // against a neighbouring solid one.
+        'circle-opacity': ['case', ['get', 'location_precise'], 0.95, 0.55],
+        'circle-stroke-width': ['case', ['get', 'location_precise'], 2, 1.5],
         'circle-stroke-color': ['case', ['get', 'location_precise'],
-          '#ffffff', 'rgba(255,255,255,0.45)'],
+          '#ffffff', 'rgba(255,255,255,0.85)'],
       },
     });
 
