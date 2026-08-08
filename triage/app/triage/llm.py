@@ -32,25 +32,56 @@ def _cfg() -> dict:
     return config.get("settings", "llm", {}) or {}
 
 
+def provider() -> str:
+    return str(_cfg().get("provider", "ollama")).strip().lower()
+
+
 def base_url() -> str:
     return str(_cfg().get("base_url", "http://localhost:11434")).rstrip("/")
 
 
 def model_name() -> str:
-    return str(_cfg().get("model", "qwen3.5:4b"))
+    default = "claude-opus-5" if provider() == "anthropic" else "qwen3.5:4b"
+    return str(_cfg().get("model", default))
+
+
+_client = None
+
+
+def _anthropic():
+    """The Anthropic client, built once.
+
+    Credentials resolve the way the SDK resolves them - ANTHROPIC_API_KEY, or
+    an `ant auth login` profile. Nothing is read from settings.yaml, because
+    this repo is public and a key must never end up in it.
+    """
+    global _client
+    if _client is None:
+        import anthropic
+        _client = anthropic.Anthropic()
+    return _client
 
 
 def status() -> dict:
     """Used by the Settings tab to show a green/red dot."""
+    if provider() == "anthropic":
+        try:
+            _anthropic().models.retrieve(model_name())
+            return {"available": True, "provider": "anthropic",
+                    "model": model_name(), "model_present": True}
+        except Exception as exc:
+            return {"available": False, "provider": "anthropic",
+                    "model": model_name(), "error": str(exc)}
     try:
         r = httpx.get(f"{base_url()}/api/tags", timeout=3.0)
         r.raise_for_status()
         models = [m.get("name") for m in r.json().get("models", [])]
-        return {"available": True, "base_url": base_url(), "model": model_name(),
+        return {"available": True, "provider": "ollama", "base_url": base_url(),
+                "model": model_name(),
                 "model_present": model_name() in models, "models": models}
     except Exception as exc:
-        return {"available": False, "base_url": base_url(), "model": model_name(),
-                "error": str(exc)}
+        return {"available": False, "provider": "ollama", "base_url": base_url(),
+                "model": model_name(), "error": str(exc)}
 
 
 def available() -> bool:
@@ -90,7 +121,18 @@ def _extract_json(text: str) -> Any:
 
 
 def generate(prompt: str, *, system: str | None = None,
-             json_mode: bool = True, timeout: float | None = None) -> str:
+             json_mode: bool = True, timeout: float | None = None,
+             schema: dict | None = None) -> str:
+    """Ask the configured model for one response, returned as text.
+
+    `schema` is honoured by the Anthropic provider, which constrains the reply
+    to that JSON Schema so it cannot come back malformed. Ollama only has a
+    blunt "must be JSON" mode, so the schema is advisory there and the caller
+    still has to cope with a wrong shape.
+    """
+    if provider() == "anthropic":
+        return _generate_anthropic(prompt, system, timeout, schema)
+
     cfg = _cfg()
     body: dict[str, Any] = {
         "model": model_name(),
@@ -109,6 +151,42 @@ def generate(prompt: str, *, system: str | None = None,
     return r.json().get("response", "")
 
 
+def _generate_anthropic(prompt: str, system: str | None,
+                        timeout: float | None, schema: dict | None) -> str:
+    cfg = _cfg()
+    request: dict[str, Any] = {
+        "model": model_name(),
+        "max_tokens": int(cfg.get("max_tokens", 2048)),
+        "messages": [{"role": "user", "content": prompt}],
+    }
+    if system:
+        # Cached: the rubric is identical on every reporting, and there are
+        # hundreds of them in a replay. After the first call the cached span
+        # bills at a tenth of the input rate.
+        request["system"] = [{
+            "type": "text",
+            "text": system,
+            "cache_control": {"type": "ephemeral"},
+        }]
+
+    # Triage is a short, scoped judgement, and hundreds of them arrive in a
+    # couple of minutes. Low effort is the latency lever the model is designed
+    # for - lower than turning thinking off, which has its own failure modes.
+    output_config: dict[str, Any] = {"effort": str(cfg.get("effort", "low"))}
+    if schema:
+        output_config["format"] = {"type": "json_schema", "schema": schema}
+    request["output_config"] = output_config
+
+    client = _anthropic()
+    seconds = timeout or float(cfg.get("timeout_s", 60))
+    response = client.with_options(timeout=seconds).messages.create(**request)
+
+    if response.stop_reason == "refusal":
+        raise ValueError("the model declined to assess this reporting")
+
+    return "".join(b.text for b in response.content if b.type == "text")
+
+
 # ---------------------------------------------------------------------------
 # 1. classify one reporting
 # ---------------------------------------------------------------------------
@@ -117,15 +195,28 @@ CLASSIFY_SYSTEM = """You are assisting a duty controller in the Wellington \
 Emergency Operations Centre during a live event. You DO NOT make decisions; you \
 sort an incoming queue so a human looks at the right things first.
 
-Assign exactly one priority:
-- "action_required": credible and specific, and something needs to be done or \
-tasked now. Risk to life, injury, entrapment, fire, active flooding of occupied \
-buildings, blocked critical access.
-- "verification_required": plausible and significant, but the source or the \
-detail is not solid enough to task a crew on. Anything from social media or \
-second-hand accounts belongs here at most.
-- "situational_awareness": useful background, commentary, minor or historic \
-detail, or something already known.
+Three things drive escalation, in this order: impact to human life, scale of \
+impact, and how quickly a response is needed.
+
+Assign exactly one priority. These tests are Wellington City Council's own, \
+from emergency-event-report-examples.md - apply them as written:
+
+- "action_required": confirmed or highly credible, life safety or critical \
+infrastructure at risk, and the response window is measured in minutes to \
+hours. The next step is to respond and decide.
+- "verification_required": potential for significant impact, but the source is \
+single, unconfirmed, or contradicted by other data. The next step is to confirm \
+the facts. Consequence-if-true can be severe and this is still the right \
+bucket - severity does not by itself make something actionable.
+- "situational_awareness": known state, no immediate life safety risk, and the \
+impact is either contained or already owned by another party. The next step is \
+to log and monitor.
+
+Judging these well means reading past the wording. "Can't get out of the \
+driveway, water up to the wheel arches" describes a person trapped by rising \
+water, whoever calm they sound. A formal agency email about a scheduled \
+inspection is not urgent however official it looks. Weigh what is happening to \
+people, not which words were used.
 
 Rules you must follow:
 - An unverified public post is a signal to investigate, never a confirmed fact.
@@ -172,6 +263,25 @@ def _describe(r: Reporting, ctx: dict | None = None) -> str:
     return "\n".join(lines)
 
 
+def _verdict_schema(categories: list[str]) -> dict:
+    """The shape a verdict must take. Enforced by the Anthropic provider."""
+    return {
+        "type": "object",
+        "properties": {
+            "priority": {"type": "string", "enum": [p.value for p in Priority]},
+            "category": {"type": "string", "enum": categories or ["general"]},
+            "confidence": {"type": "number"},
+            "reason": {"type": "string"},
+            "summary": {"type": "string"},
+            "location_text": {"type": ["string", "null"]},
+            "needs_callback": {"type": "boolean"},
+        },
+        "required": ["priority", "category", "confidence", "reason", "summary",
+                     "location_text", "needs_callback"],
+        "additionalProperties": False,
+    }
+
+
 def classify(r: Reporting, ctx: dict | None = None) -> dict | None:
     """Returns a normalised verdict dict, or None if the model was unusable."""
     categories = [c.get("id") for c in (config.rules().get("categories") or [])]
@@ -181,7 +291,8 @@ def classify(r: Reporting, ctx: dict | None = None) -> dict | None:
         "Return the JSON object now."
     )
     try:
-        raw = generate(prompt, system=CLASSIFY_SYSTEM)
+        raw = generate(prompt, system=CLASSIFY_SYSTEM,
+                       schema=_verdict_schema(categories))
         data = _extract_json(raw)
     except Exception as exc:
         return {"error": str(exc)}

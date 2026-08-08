@@ -15,11 +15,23 @@ engine:
   # Machines may escalate; only a human may de-escalate.
   llm_may_downgrade: false
 
+  # The model is asked after the reporting is already queued and scored by the
+  # rules, not before. A model call takes seconds; reportings arrive faster
+  # than that, and a controller needs the queue now, not in four minutes.
+  llm_async: true
+  llm_workers: 8
+
 llm:
-  provider: ollama
+  # anthropic | ollama
+  provider: anthropic
+  model: claude-sonnet-5
+  # Triage is a short, scoped judgement and hundreds arrive in a couple of
+  # minutes, so keep effort low. Raise it if the verdicts look shallow.
+  effort: low
+  max_tokens: 2048
+  timeout_s: 60
+  # Ollama only, kept so the local provider still works.
   base_url: http://localhost:11434
-  model: qwen3.5:4b
-  timeout_s: 90
   temperature: 0
   # Strip <think>...</think> blocks that reasoning models emit before JSON.
   strip_think_tags: true

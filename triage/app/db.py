@@ -20,7 +20,12 @@ from .models import (AuditEvent, Forward, Priority, Reporting, Shift, Status)
 
 DB_PATH = Path(DATA_DIR) / "triage.db"
 _lock = threading.RLock()
-_conn: sqlite3.Connection | None = None
+_local = threading.local()
+# Every connection handed out, so reset() can close them all. The generation
+# is bumped on reset so other threads notice their connection is stale and
+# open a fresh one, instead of writing into the deleted database.
+_connections: list[sqlite3.Connection] = []
+_generation = 0
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS reportings (
@@ -108,31 +113,65 @@ CREATE TABLE IF NOT EXISTS handovers (
 
 
 def connect() -> sqlite3.Connection:
-    global _conn
+    """One connection per thread, all onto the same WAL database.
+
+    A single shared connection with check_same_thread=False is only safe if
+    every caller serialises access itself, and this one does not - queries run
+    inline as `connect().execute(...)` from request threads and from the model
+    workers at once. Concurrent use of one connection corrupts cursor state:
+    it surfaces as "bad parameter or other API misuse" and "tuple index out of
+    range" from inside sqlite3, on maybe one operation in a hundred.
+
+    A connection each avoids it. WAL lets the readers run concurrently with
+    the one writer, and busy_timeout makes a writer wait its turn rather than
+    raising "database is locked".
+    """
     with _lock:
-        if _conn is None:
+        generation = _generation
+    conn = getattr(_local, "conn", None)
+    if conn is not None and getattr(_local, "generation", -1) != generation:
+        try:
+            conn.close()
+        except sqlite3.Error:
+            pass
+        conn = None
+    if conn is None:
+        with _lock:
             DATA_DIR.mkdir(parents=True, exist_ok=True)
-            _conn = sqlite3.connect(DB_PATH, check_same_thread=False)
-            _conn.row_factory = sqlite3.Row
-            _conn.execute("PRAGMA journal_mode=WAL")
-            _conn.executescript(SCHEMA)
-            _conn.commit()
-        return _conn
+            fresh = sqlite3.connect(DB_PATH, timeout=30.0)
+            fresh.row_factory = sqlite3.Row
+            fresh.execute("PRAGMA journal_mode=WAL")
+            fresh.execute("PRAGMA busy_timeout=30000")
+            fresh.executescript(SCHEMA)
+            fresh.commit()
+        _local.conn = fresh
+        _local.generation = generation
+        with _lock:
+            _connections.append(fresh)
+        conn = fresh
+    return conn
 
 
 def reset() -> None:
     """Wipe everything. Used by the demo seeder."""
-    global _conn
+    global _generation
     with _lock:
-        if _conn is not None:
-            _conn.close()
-            _conn = None
-        if DB_PATH.exists():
-            DB_PATH.unlink()
-        for suffix in ("-wal", "-shm"):
-            side = DB_PATH.with_name(DB_PATH.name + suffix)
-            if side.exists():
-                side.unlink()
+        _generation += 1
+        for conn in _connections:
+            try:
+                conn.close()
+            except sqlite3.Error:
+                pass          # already closed, or owned by a dead thread
+        _connections.clear()
+    if hasattr(_local, "conn"):
+        del _local.conn
+
+    if DB_PATH.exists():
+        DB_PATH.unlink()
+    for suffix in ("-wal", "-shm"):
+        side = DB_PATH.with_name(DB_PATH.name + suffix)
+        if side.exists():
+            side.unlink()
     connect()
 
 

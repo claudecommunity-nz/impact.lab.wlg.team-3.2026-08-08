@@ -17,7 +17,7 @@ from .. import audit as audit_mod
 from .. import config, db
 from ..models import (PRIORITY_RANK, AuditAction, EngineMode, Priority,
                       Reporting, Signal, Status, utcnow)
-from . import dedupe, geocode, llm, rules
+from . import dedupe, geocode, llm, pool, rules
 
 
 def mode() -> EngineMode:
@@ -137,7 +137,12 @@ def ingest(r: Reporting, *, actor: str = "ingest", use_llm: bool | None = None) 
         r.location, r.content.text, r.content.transcript, r.content.subject)
 
     cluster_info = dedupe.assign_cluster(r)
-    triage(r, use_llm=use_llm)
+
+    # Rules only on the way in, so the reporting is in the queue immediately.
+    # The model runs behind it (see pool.py) and updates the record when its
+    # verdict arrives, unless the caller explicitly asked to wait for it.
+    deferred = use_llm is None and pool.enabled()
+    triage(r, use_llm=False if deferred else use_llm)
 
     db.save_reporting(r)
 
@@ -175,6 +180,11 @@ def ingest(r: Reporting, *, actor: str = "ingest", use_llm: bool | None = None) 
                   f"{cluster_info.get('flag_reason') or 'no reason recorded'}"),
             detail={"cluster_id": r.cluster_id,
                     "flagged_by": cluster_info.get("flagged_by")})
+
+    # Last, so a fast worker cannot write its assessment into the audit trail
+    # ahead of this reporting's own ingest and triage events.
+    if deferred:
+        pool.submit(r.id)
 
     return r
 

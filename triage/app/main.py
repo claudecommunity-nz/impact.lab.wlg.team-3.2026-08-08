@@ -15,6 +15,7 @@ from fastapi.staticfiles import StaticFiles
 
 from . import db
 from .api import router
+from .triage import pool
 
 STATIC = Path(__file__).resolve().parent.parent / "static"
 
@@ -40,6 +41,12 @@ app.include_router(router)
 @app.on_event("startup")
 def startup() -> None:
     db.connect()
+    pool.start()
+
+
+@app.on_event("shutdown")
+def shutdown() -> None:
+    pool.stop()
 
 
 @app.get("/", include_in_schema=False)
