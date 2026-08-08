@@ -151,9 +151,17 @@ function renderList(rows) {
     list.innerHTML = '<div class="empty">No reportings match these filters.</div>';
     return;
   }
+  // Replacing every row throws the scroll position back to the top. During a
+  // busy event the queue refreshes every couple of seconds, so an operator
+  // reading anything below the fold gets yanked away mid-sentence. Put them
+  // back where they were.
+  const keep = list.scrollTop;
   const frag = document.createDocumentFragment();
   rows.forEach((r) => frag.appendChild(row(r)));
   list.replaceChildren(frag);
+  if (keep && list.scrollHeight > list.clientHeight) {
+    list.scrollTop = Math.min(keep, list.scrollHeight - list.clientHeight);
+  }
 }
 
 export async function select(id) {
