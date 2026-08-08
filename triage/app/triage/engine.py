@@ -128,6 +128,11 @@ def ingest(r: Reporting, *, actor: str = "ingest", use_llm: bool | None = None) 
     r.ingested_at = utcnow()
     r.updated_at = r.ingested_at
 
+    # Keep the rules' sense of "now" alongside the reportings arriving. Live
+    # this does nothing; replaying a past event it is what stops every
+    # reporting being scored as months stale.
+    rules.note_received(r.source.received_at)
+
     r.location = geocode.enrich(
         r.location, r.content.text, r.content.transcript, r.content.subject)
 

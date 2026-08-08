@@ -217,3 +217,60 @@ adapters:
       content.subject: headline
       content.text: summary
       location.text: dateline
+
+  # =========================================================================
+  # Event replay — Wellington flooding, Monday 20 April 2026
+  # =========================================================================
+  # 348 reportings rebuilt for the day a state of emergency was declared at
+  # 17:25. Generated from the ground truth and the gauge record, and labelled
+  # as generated — see data/event/2026-04-20/manifest.json.
+  #
+  # They all arrive in one flat shape, so these six adapters differ only in
+  # the channel they declare. Channel is set here rather than read from the
+  # payload, so a replay cannot claim to be a channel it is not.
+  #
+  # `external_id` carries the report id, which is what makes re-running the
+  # replay safe: re-ingesting a known id is rejected rather than duplicated.
+  # -------------------------------------------------------------------------
+
+  - id: event_phone
+    name: Event replay — contact centre
+    channel: phone_call
+    description: Calls logged during the 20 April 2026 flooding. Generated.
+    mapping: &event_replay_mapping
+      source.system: "=Event replay 2026-04-20"
+      source.external_id: id
+      source.received_at: received_at
+      source.permalink: source_url
+      source.ingested_by: "=push.py"
+      content.text: text
+
+  - id: event_social
+    name: Event replay — social media
+    channel: social_media
+    description: Public posts during the 20 April 2026 flooding. Generated.
+    mapping: *event_replay_mapping
+
+  - id: event_form
+    name: Event replay — public report form
+    channel: web_form
+    description: Web form submissions during the 20 April 2026 flooding. Generated.
+    mapping: *event_replay_mapping
+
+  - id: event_email
+    name: Event replay — EOC inbox
+    channel: email
+    description: Email into the EOC during the 20 April 2026 flooding. Generated.
+    mapping: *event_replay_mapping
+
+  - id: event_partner
+    name: Event replay — partner agency
+    channel: partner_agency
+    description: Partner agency records during the 20 April 2026 flooding. Generated.
+    mapping: *event_replay_mapping
+
+  - id: event_news
+    name: Event replay — news monitoring
+    channel: news
+    description: News items during the 20 April 2026 flooding. Generated.
+    mapping: *event_replay_mapping

@@ -30,11 +30,53 @@ def _haystack(r: Reporting) -> str:
     return "\n".join(parts).lower()
 
 
+_scenario_now: "datetime | None" = None
+
+
+def scenario_now() -> "datetime":
+    """The present moment, as the queue understands it.
+
+    Live, that is the wall clock. Replaying a past event it is not: every
+    reporting from 20 April 2026 is months old by the wall clock, so the
+    `stale` rule fires on all of them and no freshness rule can ever fire.
+    The whole queue lands in situational awareness and the triage looks
+    broken when it is the clock that is wrong.
+
+    During a replay the present moment is the newest reporting received. That
+    advances by itself as the replay runs, so "20 minutes old" means twenty
+    minutes of event time, which is what the rules were written to mean.
+    """
+    return utcnow() if _scenario_now is None else _scenario_now
+
+
+def note_received(stamp: "datetime | None") -> None:
+    """Advance the scenario clock, if this reporting is from further ahead.
+
+    Only reportings dated well in the past move it. A live prototype never
+    calls this with anything old enough to matter, so it stays on the wall
+    clock unless something is genuinely being replayed.
+    """
+    global _scenario_now
+    if stamp is None:
+        return
+    if stamp.tzinfo is None:
+        stamp = stamp.replace(tzinfo=utcnow().tzinfo)
+    if stamp > utcnow() - timedelta(hours=12):
+        return          # recent enough to be live; leave the wall clock alone
+    if _scenario_now is None or stamp > _scenario_now:
+        _scenario_now = stamp
+
+
+def reset_scenario_clock() -> None:
+    global _scenario_now
+    _scenario_now = None
+
+
 def _age_minutes(r: Reporting) -> float:
     stamp = r.source.received_at or r.ingested_at
     if stamp.tzinfo is None:
         stamp = stamp.replace(tzinfo=utcnow().tzinfo)
-    return max(0.0, (utcnow() - stamp).total_seconds() / 60.0)
+    return max(0.0, (scenario_now() - stamp).total_seconds() / 60.0)
 
 
 def matches(when: dict, r: Reporting, hay: str, ctx: dict) -> bool:

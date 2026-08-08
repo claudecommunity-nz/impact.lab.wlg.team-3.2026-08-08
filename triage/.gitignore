@@ -3,3 +3,4 @@ data/triage.db-wal
 data/triage.db-shm
 __pycache__/
 *.pyc
+.venv/

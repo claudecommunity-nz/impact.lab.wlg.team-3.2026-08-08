@@ -20,7 +20,7 @@ from datetime import timedelta
 
 from .. import config, db
 from ..models import Reporting, new_id, utcnow
-from . import geocode
+from . import geocode, rules
 
 STOPWORDS = {
     "the", "a", "an", "and", "or", "but", "is", "are", "was", "were", "be",
@@ -83,7 +83,10 @@ def similarity(new: Reporting, other: Reporting) -> tuple[float, list[str]]:
 
 def _recent_candidates(new: Reporting) -> list[Reporting]:
     window = int(config.get("settings", "dedupe.time_window_minutes", 240))
-    cutoff = utcnow() - timedelta(minutes=window)
+    # Against the scenario clock, not the wall clock. Replaying a past event,
+    # every candidate is months outside a wall-clock window and nothing ever
+    # clusters - four people reporting one slip stay four separate rows.
+    cutoff = rules.scenario_now() - timedelta(minutes=window)
     out = []
     for r in db.all_reportings():
         if r.id == new.id:
