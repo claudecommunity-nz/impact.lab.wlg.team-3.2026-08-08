@@ -61,6 +61,9 @@ The board holds two time streams of action items in one view
 
 Every one of those decisions is written to an **event log**, so the board can always say who did what, when, and why. Also what makes an after-action review or an OIA response possible.
 
+### BRD
+A retrospective business requirements doc was created post-event with further details of the build and intent for WCC. Available in this repo here: main/Sightline_BRD.docx
+
 ---
 
 ## Running it
